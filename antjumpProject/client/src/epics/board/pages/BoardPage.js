@@ -3,6 +3,9 @@ import Box from "@mui/material/Box";
 import { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
+import LinearProgress, {
+  linearProgressClasses,
+} from "@mui/material/LinearProgress";
 import Grid from "@mui/material/Grid";
 
 function BoardPage() {
@@ -28,6 +31,20 @@ function BoardPage() {
     color: theme.palette.text.secondary,
   }));
 
+  // 진행률 설정
+  const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+    height: 10,
+    borderRadius: 5,
+    [`&.${linearProgressClasses.colorPrimary}`]: {
+      backgroundColor:
+        theme.palette.grey[theme.palette.mode === "light" ? 200 : 800],
+    },
+    [`& .${linearProgressClasses.bar}`]: {
+      borderRadius: 5,
+      backgroundColor: theme.palette.mode === "light" ? "#1a90ff" : "#308fe8",
+    },
+  }));
+
   return (
     <>
       <div classname="">
@@ -42,6 +59,28 @@ function BoardPage() {
           <button>스프린트 완료</button>
         </div>
       </div>
+
+      {/* 진행률 */}
+      <Box sx={{ flexGrow: 1 }}>
+        <BorderLinearProgress variant="determinate" value={50} />
+      </Box>
+
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          "& > :not(style)": {
+            m: 1,
+            width: 128,
+            height: 128,
+          },
+        }}
+      >
+        <Paper elevation={3} />
+        <Paper elevation={3} />
+        <Paper elevation={3} />
+      </Box>
+
       {/* <Box
         sx={{
           "& > :not(style)": {
