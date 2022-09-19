@@ -15,12 +15,14 @@ import QNAWrite from '../epics/qna/pages/QNAWrite';
 import Payment from '../epics/payment/pages/Payment';
 import PaymentDetail from '../epics/payment/pages/PaymentDetail';
 
+
+import ProjectlistPage from "../epics/project/pages/ProjectlistPage";
+
 function RootRouter() {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<MainPage />} />
-        <Route path="projects" element={<ProjectPage />} />
         <Route path="faqs" >
           <Route index element={<FAQ/>}/>
           <Route path="detail" element={<FaqDetail/>}/>
@@ -35,7 +37,8 @@ function RootRouter() {
           <Route index element={<Payment/>} />
           <Route path=":paymentNumber" element={<PaymentDetail/>}/>
         </Route>
-      </Route>
+        <Route path="projects" element={<ProjectlistPage/>}/>
+      </Route> 
     </Routes>
   );
 }

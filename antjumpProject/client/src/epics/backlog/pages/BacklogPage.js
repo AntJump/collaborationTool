@@ -1,5 +1,7 @@
 function BacklogPage() {
-  return <div></div>;
+  return <div>
+    <h2>백로그 페이지</h2>
+  </div>;
 }
 
 export default BacklogPage;
