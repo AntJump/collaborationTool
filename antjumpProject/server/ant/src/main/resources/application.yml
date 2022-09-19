@@ -1,0 +1,28 @@
+server:
+  port: 8181
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/antproject?serverTimezone=Asia/Seoul
+    username: antjump
+    password: antjump
+
+
+jwt:
+  secret: asdfjp298pafo1320efqw0udvnh0er0h412r08byfdq9dsvh02143908hfeqwn80fdqs0nfdqs0n412013rq0nqefn08dfas0das730732g86923
+
+
+mybatis:
+  # mapper.xml location Setting
+  mapper-locations: mybatis/mapper/*.xml
+  # alias Setting
+  type-aliases-package: com.antjump.ant
+  configuration:
+    map-underscore-to-camel-case: true
