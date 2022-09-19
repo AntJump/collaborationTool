@@ -1,4 +1,4 @@
-function Messenger() {
+function MessengerPage() {
     return (
       <div>
         채팅소개
@@ -6,5 +6,5 @@ function Messenger() {
     );
   }
   
-  export default Messenger;
+  export default MessengerPage;
   

@@ -159,7 +159,7 @@ const MainHeader = () => {
                   open={Boolean(anchorElIntroduce)}
                   onClose={handleCloseIntroduceMenu}
                 >
-                  <Button component={Link} to="/main/messenger">
+                  <Button component={Link} to="/intro/messenger">
                     <MenuItem onClick={handleCloseIntroduceMenu}>
                       <Typography textAlign="center">
                         {introduces[0]}
@@ -167,7 +167,7 @@ const MainHeader = () => {
                     </MenuItem>
                   </Button>
                   <p />
-                  <Button component={Link} to="/main/schedule">
+                  <Button component={Link} to="/intro/schedule">
                     <MenuItem onClick={handleCloseIntroduceMenu}>
                       <Typography textAlign="center">
                         {introduces[1]}
@@ -175,7 +175,7 @@ const MainHeader = () => {
                     </MenuItem>
                   </Button>
                   <p />
-                  <Button component={Link} to="/main/cooperation">
+                  <Button component={Link} to="/intro/cooperation">
                     <MenuItem onClick={handleCloseIntroduceMenu}>
                       <Typography textAlign="center">
                         {introduces[2]}
@@ -186,7 +186,7 @@ const MainHeader = () => {
               </Box>
 
               <p />
-              <Button component={Link} to="/main/charge">
+                <Button component={Link} to="/intro/charge"> 
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{pages[0]}</Typography>
                 </MenuItem>
@@ -231,7 +231,7 @@ const MainHeader = () => {
 
             <Button
               component={Link}
-              to="/main/charge"
+              to="/intro/charge"
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
             >

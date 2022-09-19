@@ -20,7 +20,7 @@ const rows = [
   { id: 9, qnaTitle:'프로젝트 참여는 어떻게 하나요',qnaStatus: '답변완료', qnaDate:'2022-08-24' },
 ];
 
-function QNA() {
+function QNAPage() {
   return (
     <>
         <div style={{ height: 400, width: '100%' }}>
@@ -35,4 +35,4 @@ function QNA() {
   );
 }
 
-export default QNA;
+export default QNAPage;

@@ -1,4 +1,4 @@
-function Payment() {
+function PaymentPage() {
 
     return (
         <>
@@ -7,4 +7,4 @@ function Payment() {
     );
 }
 
-export default Payment;
+export default PaymentPage;
