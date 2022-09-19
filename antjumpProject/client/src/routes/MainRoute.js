@@ -12,10 +12,10 @@ function MainRoute() {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<MainPage />} />
-        <Route path="charge" element={<Charge/>}/>
-        <Route path="cooperation" element={<Cooperation/>}/>
-        <Route path="messenger" element={<Messenger/>}/>
-        <Route path="schedule" element={<Schedule/>}/>
+        <Route path="charge" element={<Charge />} />
+        <Route path="cooperation" element={<Cooperation />} />
+        <Route path="messenger" element={<Messenger />} />
+        <Route path="schedule" element={<Schedule />} />
       </Route>
     </Routes>
   );
