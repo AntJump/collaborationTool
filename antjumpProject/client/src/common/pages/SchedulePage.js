@@ -1,4 +1,4 @@
-function Schedule() {
+function SchedulePage() {
     return (
       <div>
         일정소개
@@ -6,5 +6,5 @@ function Schedule() {
     );
   }
   
-  export default Schedule;
+  export default SchedulePage;
   

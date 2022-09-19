@@ -1,4 +1,4 @@
-function Charge() {
+function ChargePage() {
     return (
       <div>
         요금제 
@@ -6,5 +6,5 @@ function Charge() {
     );
   }
   
-  export default Charge;
+  export default ChargePage;
   
