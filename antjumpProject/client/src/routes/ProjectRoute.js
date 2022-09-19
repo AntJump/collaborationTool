@@ -7,6 +7,7 @@ import StoragePage from "../epics/storage/pages/StoragePage";
 import MyWorkPage from "../epics/myWork/pages/MyWorkPage";
 import CalendarPage from "../epics/calendar/pages/CalendarPage";
 import ChattingPage from "../epics/chatting/pages/ChattingPage";
+import ProjectlistPage from "../epics/project/pages/ProjectlistPage";
 
 function ProjectRoute() {
   return (
