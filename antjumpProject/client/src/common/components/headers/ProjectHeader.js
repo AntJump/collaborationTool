@@ -173,7 +173,7 @@ function ProjectHeader() {
             component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
-            개미 협업툴
+            ANT
           </Typography>
           <Search>
             <SearchIconWrapper>
