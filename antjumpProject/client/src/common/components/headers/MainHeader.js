@@ -159,7 +159,7 @@ const MainHeader = () => {
                   open={Boolean(anchorElIntroduce)}
                   onClose={handleCloseIntroduceMenu}
                 >
-                  <Button component={Link} to="/messenger">
+                  <Button component={Link} to="/main/messenger">
                     <MenuItem onClick={handleCloseIntroduceMenu}>
                       <Typography textAlign="center">
                         {introduces[0]}
@@ -167,7 +167,7 @@ const MainHeader = () => {
                     </MenuItem>
                   </Button>
                   <p />
-                  <Button component={Link} to="/schedule">
+                  <Button component={Link} to="/main/schedule">
                     <MenuItem onClick={handleCloseIntroduceMenu}>
                       <Typography textAlign="center">
                         {introduces[1]}
@@ -175,7 +175,7 @@ const MainHeader = () => {
                     </MenuItem>
                   </Button>
                   <p />
-                  <Button component={Link} to="/cooperation">
+                  <Button component={Link} to="/main/cooperation">
                     <MenuItem onClick={handleCloseIntroduceMenu}>
                       <Typography textAlign="center">
                         {introduces[2]}
@@ -186,19 +186,19 @@ const MainHeader = () => {
               </Box>
 
               <p />
-              <Button component={Link} to="/charge">
+              <Button component={Link} to="/main/charge">
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{pages[0]}</Typography>
                 </MenuItem>
               </Button>
               <p />
-              <Button component={Link} to="/faq">
+              <Button component={Link} to="/faqs">
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{pages[1]}</Typography>
                 </MenuItem>
               </Button>
               <p />
-              <Button component={Link} to="/qna">
+              <Button component={Link} to="/qnas">
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{pages[2]}</Typography>
                 </MenuItem>
@@ -231,7 +231,7 @@ const MainHeader = () => {
 
             <Button
               component={Link}
-              to="charge"
+              to="/main/charge"
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
             >
@@ -239,7 +239,7 @@ const MainHeader = () => {
             </Button>
             <Button
               component={Link}
-              to="faq"
+              to="/faqs"
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
             >
@@ -247,7 +247,7 @@ const MainHeader = () => {
             </Button>
             <Button
               component={Link}
-              to="qna"
+              to="/qnas"
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
             >
@@ -283,7 +283,7 @@ const MainHeader = () => {
                 </MenuItem>
               </Button>
               <p />
-              <Button component={Link} to="/payment">
+              <Button component={Link} to="/payments">
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{settings[1]}</Typography>
                 </MenuItem>
