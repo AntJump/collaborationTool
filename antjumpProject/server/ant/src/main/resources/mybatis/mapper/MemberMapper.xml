@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.antjump.ant.member.dao.MemberMapper">
+    <resultMap id="MemberDto" type="MemberDto">
+        <id column="memberId" property="MEMBER_ID" />
+        <result column="memberName" property="MEMBER_NAME" />
+        <result column="memberEmail" property="MEMBER_EMAIL" />
+        <result column="memberPwd" property="MEMBER_PWD" />
+        <result column="memberType" property="MEMBER_TYPE" />
+        <result column="memberPhone" property="MEMBER_PHONE" />
+    </resultMap>
+
+    <select id="selectByEmail" resultType="MemberDto">
+        SELECT
+                MEMBER_ID
+             ,  MEMBER_NAME
+             ,  MEMBER_PWD
+             ,  MEMBER_TYPE
+             ,  MEMBER_EMAIL
+        FROM TBL_MEMBERS
+        WHERE MEMBER_EMAIL = #{memberEmail}
+    </select>
+
+    <select id="findByMemberEmail" resultType="MemberDto">
+        SELECT
+                MEMBER_ID
+             ,  MEMBER_NAME
+             ,  MEMBER_PWD
+             ,  MEMBER_TYPE
+             ,  MEMBER_EMAIL
+        FROM TBL_MEMBERS
+        WHERE MEMBER_EMAIL = #{memberEmail}
+    </select>
+
+    <insert id="insertMember" parameterType="MemberDto" useGeneratedKeys="true" keyProperty="memberId">
+        INSERT INTO TBL_MEMBERS
+        (
+            MEMBER_PHONE,
+            MEMBER_NAME,
+            MEMBER_PWD,
+            MEMBER_EMAIL
+        )
+        VALUES
+        (
+            #{memberPhone},
+            #{memberName},
+            #{memberPwd},
+            #{memberEmail}
+        )
+    </insert>
+
+</mapper>
