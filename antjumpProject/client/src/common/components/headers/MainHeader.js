@@ -289,7 +289,7 @@ const MainHeader = () => {
                 </MenuItem>
               </Button>
               <p />
-              <Button component={Link} to="/projects">
+              <Button component={Link} to="/project">
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{settings[2]}</Typography>
                 </MenuItem>
