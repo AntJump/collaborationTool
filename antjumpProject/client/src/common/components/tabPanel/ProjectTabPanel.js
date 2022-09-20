@@ -18,13 +18,16 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
     backgroundColor: '#222224',
     color: theme.palette.common.white,
     borderRadius: "10px",
-    width: "200px"
+    width: "240px",
+    marginTop: "10px",
+    marginBottom: "10px"
+    // marginLeft: "15px"
 }));
 
 
 const StyledTab = styled(Tab)(({ theme }) => ({
-  color: theme.palette.common.white
-
+  color: theme.palette.common.white,
+  marginBottom: "30px"
 }));
 
 export default function ProjectTabPanel() {
@@ -48,6 +51,7 @@ export default function ProjectTabPanel() {
         >
           ANT
         </Typography>
+        <Divider sx={{ backgroundColor:"white", marginBottom: "30px"}}/>
         `<NavLink to= {`/project/${id}/backlog`}>
           <StyledTab icon={<ImageAspectRatio />} label="백로그"/>
         </NavLink>
@@ -57,7 +61,7 @@ export default function ProjectTabPanel() {
         <NavLink to={`/project/${id}/storage`}>
           <StyledTab icon={<PersonPinIcon />} label="보관" />
         </NavLink>
-        <Divider sx={{ backgroundColor:"white"}}/>
+        <Divider sx={{ backgroundColor:"white", marginBottom: "30px"}}/>
         <NavLink to={`/project/${id}/mywork`}>
           <StyledTab icon={<WorkIcon />} label="내 작업" />
         </NavLink>
