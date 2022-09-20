@@ -1,3 +1,5 @@
+import RegistButton from "../components/items/RegistButton";
+import SearchBox from "../components/items/SearchBox";
 import MyProjectList from "../components/lists/MyProjectList";
 import ParticipatedProjectList from "../components/lists/ParticipatedProjectList";
 
