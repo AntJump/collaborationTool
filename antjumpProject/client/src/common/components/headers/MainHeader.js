@@ -13,6 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
+import LogoButton from "../items/LogoButton";
 
 const pages = ["요금제", "FAQ", "문의"];
 const settings = ["내 정보", "결제", "프로젝트", "로그아웃"];
@@ -52,28 +53,8 @@ const MainHeader = () => {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Button component={Link} to="/">
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/main"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                textDecoration: "none",
-                color: "white",
-              }}
-            >
-              ANT
-            </Typography>
-          </Button>
-
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          
+          <LogoButton/>
           <Button component={Link} to="/">
             <Typography
               variant="h5"
