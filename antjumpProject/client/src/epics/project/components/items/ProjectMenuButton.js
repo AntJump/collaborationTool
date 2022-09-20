@@ -8,6 +8,8 @@ import Divider from "@mui/material/Divider";
 
 import { useState } from "react";
 import ModifyModal from "../modals/ModifyModal";
+import MemberListModal from "../modals/MemberListModal";
+import DeleteModal from "../modals/DeleteModal";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -48,9 +50,17 @@ function ProjectMenuButton({project}) {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
-    const [ModifymodalOpen, setModalOpen] = useState(false);
-    const handleModifyModalOpen = () => setModalOpen(true);
-    const handleModifyModalClose = () => setModalOpen(false);
+    const [modifyModalOpen, setModifyModalOpen] = useState(false);
+    const handleModifyModalOpen = () => setModifyModalOpen(true);
+    const handleModifyModalClose = () => setModifyModalOpen(false);
+
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const handleDeleteModalOpen = () => setDeleteModalOpen(true);
+    const handleDeleteModalClose = () => setDeleteModalOpen(false);
+
+    const [membersModalOpen, setProjectsModalOpen] = useState(false);
+    const handleMembersModalOpen = () => setProjectsModalOpen(true);
+    const handleMembersModalClose = () => setProjectsModalOpen(false);
 
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -59,8 +69,20 @@ function ProjectMenuButton({project}) {
       setAnchorEl(null);
     };
 
-    const onClickhandleModifyItem = () => {
-      handleModifyModalOpen();
+    const onClickHandleModifyItem = () => {
+      handleModifyModalOpen( );
+
+      // setAnchorEl(null);
+    };
+
+    const onClickHandleDeleteItem = () => {
+      handleDeleteModalOpen();
+      // setAnchorEl(null);
+    };
+
+    const onClickHandleMembersItem = () => {
+
+      handleMembersModalOpen();
       // setAnchorEl(null);
     };
 
@@ -83,18 +105,20 @@ function ProjectMenuButton({project}) {
           open={open}
           onClose={handleClose}
         >
-          <MenuItem onClick={onClickhandleModifyItem} disableRipple>
+          <MenuItem onClick={onClickHandleModifyItem} disableRipple>
             정보 수정
           </MenuItem>
-          <ModifyModal open = {ModifymodalOpen} handleClose = {handleModifyModalClose} project={project}/>
+          <ModifyModal open = {modifyModalOpen} handleClose = {handleModifyModalClose} project={project}/>
           <Divider sx={{ my: 0.5 }} />
-          <MenuItem onClick={handleClose} disableRipple>
+          <MenuItem onClick={ onClickHandleMembersItem } disableRipple>
             팀원 목록
           </MenuItem>
+          <MemberListModal open = {membersModalOpen} handleClose = {handleMembersModalClose} project={project}/>
           <Divider sx={{ my: 0.5 }} />
-          <MenuItem onClick={handleClose} disableRipple>
+          <MenuItem onClick={onClickHandleDeleteItem} disableRipple>
             프로젝트 삭제
           </MenuItem>
+          <DeleteModal open = {deleteModalOpen} handleClose = {handleDeleteModalClose} project={project}/>
         </StyledMenu>
       </div>
     );
