@@ -10,9 +10,11 @@ function ProjectInputForm(){
     return (
 
         <form onSubmit={onSubmitHandler}>
+            
             <Typography  sx={{ mt: 2 }}>
                 프로젝트 이름 *
             </Typography>
+            
             <TextField name="name" variant="outlined" />
             <Typography>
                 프로젝트 요약 *
@@ -22,7 +24,7 @@ function ProjectInputForm(){
                 프로젝트 설명 *
             </Typography>
             <TextField name="explanation" variant="outlined" />
-            <Button type="submit" color='button' variant="contained">
+            <br/><Button type="submit" color='button' variant="contained">
                 생성
             </Button>
         </form>

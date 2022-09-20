@@ -36,6 +36,7 @@ function MyProjectList(){
                         <StyledTableCell align="center">시작 날짜</StyledTableCell>
                         <StyledTableCell align="center">종료 날짜</StyledTableCell>
                         <StyledTableCell align="center">PM</StyledTableCell>
+                        <StyledTableCell align="center"></StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
