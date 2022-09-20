@@ -1,9 +1,9 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { Divider } from '@mui/material';
 
-
-import ProjectInputForm from '../items/ProjectInputForm';
+import ProjectModifyForm from '../Containers/ProjectModifyForm';
 
 
 const style = {
@@ -20,21 +20,22 @@ const style = {
   p: 4,
 };
 
-export default function CreateModal({open, handleClose}) {
+export default function ModifyModal({open, handleModifyModalClose, project}) {
 
 
   return (
     <Modal
         open={open}
-        onClose={handleClose}
+        onClose={handleModifyModalClose}
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
     >
         <Box sx={style}>
           <Typography id="modal-title" variant="h6" component="h2">
-            프로젝트 생성
+            프로젝트 수정
           </Typography>
-          <ProjectInputForm id = "modal-description"/>
+          <Divider sx={{ my: 3 }} />
+          <ProjectModifyForm project={project}/>
         </Box>
     </Modal>
   );

@@ -7,40 +7,67 @@ import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 import WorkIcon from "@mui/icons-material/Work";
 import TodayIcon from "@mui/icons-material/Today";
 import ChatIcon from "@mui/icons-material/Chat";
+import styled from "@emotion/styled";
+import { Divider, Grid } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import { NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
+const StyledTabs = styled(Tabs)(({ theme }) => ({
+    height: "97vh",
+    backgroundColor: '#222224',
+    color: theme.palette.common.white,
+    borderRadius: "10px",
+    width: "200px"
+}));
+
+
+const StyledTab = styled(Tab)(({ theme }) => ({
+  color: theme.palette.common.white
+
+}));
 
 export default function ProjectTabPanel() {
-  const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+
+  const {id} = useParams();
 
   return (
-    <Tabs
-      value={value}
-      onChange={handleChange}
-      aria-label="icon label tabs example"
-      orientation="vertical"
-    >
-      <NavLink to="/project/backlog">
-        <Tab icon={<ImageAspectRatio />} label="백로그"></Tab>
-      </NavLink>
-      <NavLink to="/project/board">
-        <Tab icon={<ContentPasteIcon />} label="보드"></Tab>
-      </NavLink>
-      <NavLink to="/project/storage">
-        <Tab icon={<PersonPinIcon />} label="보관" />
-      </NavLink>
-      <NavLink to="/project/myWork">
-        <Tab icon={<WorkIcon />} label="내 작업" />
-      </NavLink>
-      <NavLink to="/project/calendar">
-        <Tab icon={<TodayIcon />} label="캘린더" />
-      </NavLink>
-      <NavLink to="/project/chatting">
-        <Tab icon={<ChatIcon />} label="채팅" />
-      </NavLink>
-    </Tabs>
+    <>
+
+      <StyledTabs
+
+        aria-label="icon label tabs example"
+        orientation="vertical"
+      >
+        <Typography
+          variant="h6"
+          noWrap
+          component="div"
+          sx={{ display: { xs: "none", sm: "block" } }}
+        >
+          ANT
+        </Typography>
+        `<NavLink to= {`/project/${id}/backlog`}>
+          <StyledTab icon={<ImageAspectRatio />} label="백로그"/>
+        </NavLink>
+        <NavLink to={`/project/${id}/board`}>
+          <StyledTab icon={<ContentPasteIcon />} label="보드"/>
+        </NavLink>
+        <NavLink to={`/project/${id}/storage`}>
+          <StyledTab icon={<PersonPinIcon />} label="보관" />
+        </NavLink>
+        <Divider sx={{ backgroundColor:"white"}}/>
+        <NavLink to={`/project/${id}/mywork`}>
+          <StyledTab icon={<WorkIcon />} label="내 작업" />
+        </NavLink>
+        <NavLink to={`/project/${id}/calendar`}>
+          <StyledTab icon={<TodayIcon />} label="캘린더" />
+        </NavLink>
+        <NavLink to={`/project/${id}/chatting`}>
+          <StyledTab icon={<ChatIcon />} label="채팅" />
+        </NavLink>
+      </StyledTabs>
+    </>
   );
 }
