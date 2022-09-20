@@ -14,7 +14,9 @@ function ProjectRoute() {
     <Routes>
       <Route path="/" element={<ProjectLayout />}>
         <Route index element={<BacklogPage />} />
-        <Route path="backlog" element={<BacklogPage />} />
+        <Route path="backlog" element={<BacklogPage />}>
+          <Route path="issue-create" element={<BacklogPage />} />
+        </Route>
         <Route path="board" element={<BoardPage />} />
         <Route path="storage" element={<StoragePage />} />
         <Route path="myWork" element={<MyWorkPage />} />
