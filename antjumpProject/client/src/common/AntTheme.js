@@ -6,7 +6,12 @@ export const theme = createTheme({
         main: '#004392',
         contrastText: '#fff',
       },
+      blackline: {
+        main: '#000',
+        contrastText: '#000',
+      },
     },
 });
-  
+
+
   
