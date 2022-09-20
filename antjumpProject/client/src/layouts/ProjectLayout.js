@@ -11,7 +11,7 @@ import { Stack } from "@mui/material";
 function ProjectLayout() {
   const Item = styled(Paper)(({ theme }) => ({
     textAlign: "center",
-    border: "none"
+    borderRadius:'20px'
   }));
 
   return (

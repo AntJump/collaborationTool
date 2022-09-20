@@ -113,7 +113,7 @@ function ProjectHeader() {
 
   return (
 
-      <AppBar position="static" sx={{ backgroundColor: 'white'}}>
+      <AppBar position="static" sx={{ backgroundColor: 'white', borderRadius:'20px'}}>
         <Toolbar>
             <IconButton
               size="large"
