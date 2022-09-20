@@ -1,15 +1,18 @@
 import SprintIcon from "../icons/SprintIcon";
+import SprintFinishedModal from "../../../modals/SprintFinishedModal";
 import { useState } from "react";
 
 function BoardHeaderText() {
   const [sprintName, setSprintName] = useState("개미 스프린트");
   const [startDate, setStartDate] = useState("2022-07-12");
   const [endDate, setEndDate] = useState("2022-08-11");
+
   const leftDate = -29;
   return (
     <div
       style={{
         display: "flex",
+        justifyContent: "space-between",
       }}
     >
       <div>
@@ -21,17 +24,16 @@ function BoardHeaderText() {
         style={{
           marginLeft: "700px",
           marginTop: "20px",
+          display: "flex",
         }}
       >
-        <SprintIcon />
-        {leftDate}
-        <button
-          style={{
-            marginLeft: "50px",
-          }}
-        >
-          스프린트 완료
-        </button>
+        <h3>
+          <SprintIcon />
+          {leftDate}
+        </h3>
+        <div style={{ marginLeft: "20px", marginTop: "20px" }}>
+          <SprintFinishedModal />
+        </div>
       </div>
     </div>
   );

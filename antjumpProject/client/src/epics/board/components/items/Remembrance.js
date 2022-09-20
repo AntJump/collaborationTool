@@ -1,7 +1,9 @@
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { useState } from "react";
-import PlusIcon from "./icons/PlusIcon";
+import RemembranceLikedModal from "../../modals/RemembranceLikedModal";
+import RemembranceLearnedModal from "../../modals/RemembranceLearnedModal";
+import RemembranceLackedModal from "../../modals/RemembranceLackedModal";
 
 function Remembrance() {
   const [writtenDate, setWrittenDate] = useState("2022-07-15");
@@ -11,10 +13,9 @@ function Remembrance() {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          marginTop: "30px",
+      <Box
+        sx={{
+          flexWrap: "wrap",
         }}
       >
         <div
@@ -22,60 +23,43 @@ function Remembrance() {
             marginLeft: "50px",
           }}
         >
-          <h2>스프린트 회고</h2>
-        </div>
-        <div
-          style={{
-            marginLeft: "930px",
-          }}
-        >
-          <h2>
-            <PlusIcon />
-            회고 생성
-          </h2>
-        </div>
-      </div>
-      <div
-        style={{
-          marginLeft: "50px",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            "& > :not(style)": {
-              m: 1,
-              width: "140px",
-              marginRight: "140px",
-              height: 30,
-            },
-          }}
-        >
-          <Paper elevation={3}>Sprint</Paper>
-          <Paper elevation={3}>Liked</Paper>
-          <Paper elevation={3}>Learned</Paper>
-          <Paper elevation={3}>Lacked</Paper>
-        </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              "& > :not(style)": {
+                m: 1,
+                width: "140px",
+                marginRight: "140px",
+                height: 30,
+              },
+            }}
+          >
+            <Paper elevation={3}>Sprint</Paper>
+            <Paper elevation={3}>Liked</Paper>
+            <Paper elevation={3}>Learned</Paper>
+            <Paper elevation={3}>Lacked</Paper>
+          </Box>
 
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            "& > :not(style)": {
-              m: 1,
-              width: "230px",
-              height: 30,
-              marginRight: "50px",
-            },
-          }}
-        >
-          <Paper elevation={3}>스프린트 키 : {writtenDate}</Paper>
-          <Paper elevation={3}>{likedTitle}</Paper>
-          <Paper elevation={3}>{learnedTitle}</Paper>
-          <Paper elevation={3}>{lackedTitle}</Paper>
-        </Box>
-      </div>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              "& > :not(style)": {
+                m: 1,
+                width: "230px",
+                height: 30,
+                marginRight: "50px",
+              },
+            }}
+          >
+            <Paper elevation={3}>스프린트 키 : {writtenDate}</Paper>
+            <RemembranceLikedModal />
+            <RemembranceLearnedModal />
+            <RemembranceLackedModal />
+          </Box>
+        </div>
+      </Box>
     </>
   );
 }
