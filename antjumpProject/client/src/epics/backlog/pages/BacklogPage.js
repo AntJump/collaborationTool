@@ -1,7 +1,11 @@
+import IssueCreate from "./IssueCreate";
+
 function BacklogPage() {
-  return <div>
-    <h2>백로그 페이지</h2>
-  </div>;
+  return (
+    <>
+      <IssueCreate />
+    </>
+  );
 }
 
 export default BacklogPage;
