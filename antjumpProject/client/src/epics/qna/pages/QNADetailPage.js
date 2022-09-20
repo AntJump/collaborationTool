@@ -2,6 +2,7 @@ function QNADetailPage() {
 
     return (
         <>
+        문의 상세
         </>
     );
 }
