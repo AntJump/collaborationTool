@@ -8,8 +8,7 @@ import MyWorkPage from "../epics/myWork/pages/MyWorkPage";
 import CalendarPage from "../epics/calendar/pages/CalendarPage";
 import ChattingPage from "../epics/chatting/pages/ChattingPage";
 import ProjectErrorPage from "../epics/project/pages/ProjectErrorPage";
-import IssueCreate from "../epics/backlog/pages/IssueCreate";
-import IssueDetail from "../epics/backlog/pages/IssueDetail";
+import CalendarInsert from "../epics/calendar/pages/CalendarInsert";
 
 function ProjectRoute() {
   return (
@@ -23,7 +22,10 @@ function ProjectRoute() {
           <Route path="board" element={<BoardPage />} />
           <Route path="storage" element={<StoragePage />} />
           <Route path="myWork" element={<MyWorkPage />} />
-          <Route path="calendar" element={<CalendarPage />} />
+          <Route path="calendar">
+            <Route index element={<CalendarPage />} />
+            <Route path="add" element={<CalendarInsert />} />
+          </Route>
           <Route path="chatting" element={<ChattingPage />} />
         </Route>
       </Route>

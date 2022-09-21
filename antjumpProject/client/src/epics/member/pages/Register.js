@@ -1,5 +1,9 @@
 import * as React from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { callRegisterAPI } from "../../../apis/MemberAPICalls";
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -10,25 +14,28 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import axios from "axios";
 
 function Register() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const member = useSelector((state) => state.memberReducer);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    try {
-      const response = await axios.post("http://localhost:8181/signup", {
-        memberEmail: data.get("email"),
-        memberName: data.get("name"),
-        memberPhone: data.get("phone"),
-        memberPwd: data.get("password"),
-      });
-    } catch (err) {
-      if (!err?.response) {
-        console.log("error");
-      }
-    }
+    dispatch(
+      callRegisterAPI({
+        data,
+      })
+    );
   };
+
+  useEffect(() => {
+    if (member.status == 201) {
+      console.log("[Login] Register SUCCESS {}", member);
+      navigate("/members/login", { replace: true });
+    }
+  }, [member]);
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
