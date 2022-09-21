@@ -3,49 +3,50 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
-import SelectType from "../components/SelectType.js";
-import Priority from "../components/Priority.js";
-import Difficulty from "../components/Difficulty.js";
-import IssueCreateButton from "../components/IssueCreateButton.js";
-import Paper from "@mui/material/Paper";
+import IssueType from "../components/IssueType.js";
+import IssuePriority from "../components/IssuePriority.js";
+import IssueDifficulty from "../components/IssueDifficulty.js";
+import IssueCreateModal from "../modals/IssueCreateModal.js";
+import IssueDetail from "./IssueDetail.js";
 
 export default function IssueCreate() {
   return (
-    <div>
-      <h3>이슈 생성</h3>
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          "& > :not(style)": {
-            m: 1,
-            width: 430,
-            height: 100,
-          },
-        }}
-      >
-        <SelectType />
-        <Priority />
-        <Difficulty />
-      </Box>
-      <div>
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box>
+        <h3>이슈 생성</h3>
         <Box
           sx={{
-            width: 1000,
+            display: "flex",
+            flexWrap: "wrap",
+            "& > :not(style)": {
+              m: 1,
+              width: 430,
+              height: 100,
+            },
+          }}
+        >
+          <IssueType />
+          <IssuePriority />
+          <IssueDifficulty />
+        </Box>
+
+        <Box
+          sx={{
+            width: "100%",
 
             marginBottom: 10,
           }}
         >
           <TextField
             fullWidth
-            label="이슈 요약"
+            label="이슈 요약 *"
             id="issue-comment"
             placeholder="이슈에 대한 간략한 내용을 작성해 주세요."
           />
         </Box>
         <Box
           sx={{
-            width: 1000,
+            width: "100%",
           }}
         >
           <TextField
@@ -57,11 +58,8 @@ export default function IssueCreate() {
             rows={10}
           />
         </Box>
-      </div>
-
-      <IssueCreateButton />
-    </div>
+        <IssueCreateModal />
+      </Box>
+    </Box>
   );
 }
-
-//  return <Button variant="contained">Hello World</Button>;
