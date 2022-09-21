@@ -4,6 +4,7 @@ import { createActions, handleActions } from 'redux-actions';
 const initialState = {
       faqTitle: ""
     , faqContent: ""
+    , faqCategory: ""
     , faqWriteTime: ""
     , faqChangeTime: ""
     , fkAdminsFaqs: 0
@@ -25,7 +26,7 @@ const actions = createActions({
 console.log(actions);
 
 /* 리듀서 */
-const qnaReducer = handleActions(
+const faqReducer = handleActions(
     {
           [GET_FAQ_DETAIL]: (state, { payload : detail }) => {
 
@@ -51,4 +52,4 @@ const qnaReducer = handleActions(
     initialState
 );
 
-export default qnaReducer;
+export default faqReducer;

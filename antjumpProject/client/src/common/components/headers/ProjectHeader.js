@@ -3,7 +3,8 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 
@@ -11,11 +12,15 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { Badge, TextField } from "@mui/material";
+import HomeIcon from '@mui/icons-material/Home';
 
+import { Badge, TextField } from "@mui/material";
+import { Link, useParams } from "react-router-dom";
 
 
 function ProjectHeader() {
+  const {id} = useParams();
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -107,19 +112,30 @@ function ProjectHeader() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 , backgroundColor:"white", borderRadius:'10px'}}>
-      <AppBar position="static" sx={{backgroundColor:"white"}}>
-        <Toolbar >
+
+      <AppBar position="static" sx={{ backgroundColor: 'white', borderRadius:'20px'}}>
+        <Toolbar>
+            <IconButton
+              size="large"
+              aria-label="link to /projects"
+              component={Link}
+              to="/projects"
+            >
+              <HomeIcon/> 
+            </IconButton>
+          <Button component={Link} to={`/project/${id}/backlog`}> 
+                  <Typography sx={{ color:"black"}} textAlign="center">프로젝트 이름</Typography>
+          </Button>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex", color:"black"}}}>
-            
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
             >
             <Badge badgeContent={17} color="error">
-              <NotificationsIcon /> 알림
+              <NotificationsIcon /> 
+              <Typography>알림</Typography>
             </Badge>
 
             </IconButton>
@@ -132,10 +148,11 @@ function ProjectHeader() {
                 onClick={handleProfileMenuOpen}
                 color="inherit"
               >
-              <AccountCircle /> 아이디
+              <AccountCircle /> 
+              <Typography>아이디</Typography>
             </IconButton>
           </Box>
-          <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ display: { md: "none" } }}>
             <IconButton
               size="large"
               aria-label="show more"
@@ -148,10 +165,10 @@ function ProjectHeader() {
             </IconButton>
           </Box>
         </Toolbar>
+        {renderMobileMenu}
+        {renderMenu}
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </Box>
+
   );
 }
 
