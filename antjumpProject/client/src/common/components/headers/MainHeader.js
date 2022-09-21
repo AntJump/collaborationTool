@@ -13,6 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
+import LogoButton from "../items/LogoButton";
 
 const pages = ["요금제", "FAQ", "문의"];
 const settings = ["내 정보", "결제", "프로젝트", "로그아웃"];
@@ -52,28 +53,8 @@ const MainHeader = () => {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-          <Button component={Link} to="/">
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/main"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                textDecoration: "none",
-                color: "white",
-              }}
-            >
-              ANT
-            </Typography>
-          </Button>
-
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          
+          <LogoButton/>
           <Button component={Link} to="/">
             <Typography
               variant="h5"
@@ -159,7 +140,7 @@ const MainHeader = () => {
                   open={Boolean(anchorElIntroduce)}
                   onClose={handleCloseIntroduceMenu}
                 >
-                  <Button component={Link} to="/main/messenger">
+                  <Button component={Link} to="/intro/messenger">
                     <MenuItem onClick={handleCloseIntroduceMenu}>
                       <Typography textAlign="center">
                         {introduces[0]}
@@ -167,7 +148,7 @@ const MainHeader = () => {
                     </MenuItem>
                   </Button>
                   <p />
-                  <Button component={Link} to="/main/schedule">
+                  <Button component={Link} to="/intro/schedule">
                     <MenuItem onClick={handleCloseIntroduceMenu}>
                       <Typography textAlign="center">
                         {introduces[1]}
@@ -175,7 +156,7 @@ const MainHeader = () => {
                     </MenuItem>
                   </Button>
                   <p />
-                  <Button component={Link} to="/main/cooperation">
+                  <Button component={Link} to="/intro/cooperation">
                     <MenuItem onClick={handleCloseIntroduceMenu}>
                       <Typography textAlign="center">
                         {introduces[2]}
@@ -186,7 +167,7 @@ const MainHeader = () => {
               </Box>
 
               <p />
-              <Button component={Link} to="/main/charge">
+                <Button component={Link} to="/intro/charge"> 
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{pages[0]}</Typography>
                 </MenuItem>
@@ -231,7 +212,7 @@ const MainHeader = () => {
 
             <Button
               component={Link}
-              to="/main/charge"
+              to="/intro/charge"
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
             >
