@@ -18,9 +18,10 @@ export default function IssueCreate() {
           sx={{
             display: "flex",
             flexWrap: "wrap",
+            width: "100%",
             "& > :not(style)": {
               m: 1,
-              width: 430,
+              width: 300,
               height: 100,
             },
           }}
@@ -33,7 +34,6 @@ export default function IssueCreate() {
         <Box
           sx={{
             width: "100%",
-
             marginBottom: 10,
           }}
         >
@@ -47,6 +47,7 @@ export default function IssueCreate() {
         <Box
           sx={{
             width: "100%",
+            marginBottom: 5,
           }}
         >
           <TextField

@@ -27,9 +27,7 @@ export default function BasicModal() {
   return (
     <div>
       <Button
-        style={{
-          marginLeft: "1250px",
-        }}
+        style={{ marginBottom: 20 }}
         variant="contained"
         onClick={handleOpen}
       >
