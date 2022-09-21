@@ -10,6 +10,10 @@ export const theme = createTheme({
         main: '#000',
         contrastText: '#000',
       },
+      grey: {
+        main: '#D9D9D9',
+        contrastText: '#fff',
+      },
     },
 });
 

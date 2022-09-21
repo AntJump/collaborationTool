@@ -14,7 +14,7 @@ import { useParams } from "react-router-dom";
 
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
-    height: "97vh",
+    height: "95vh",
     backgroundColor: '#000',
     color: theme.palette.common.white,
     borderRadius: "20px",
@@ -44,7 +44,7 @@ export default function ProjectTabPanel() {
         orientation="vertical"
       >
         <LogoButton/>
-        <Divider sx={{ backgroundColor:"white", marginBottom: "30px"}}/>
+        <Divider sx={{ backgroundColor:"white", marginBottom: "0.1px"}}/>
         <NavLink to= {`/project/${id}/backlog`}>
           <StyledTab icon={<ImageAspectRatio />} label="백로그"/>
         </NavLink>
@@ -54,7 +54,7 @@ export default function ProjectTabPanel() {
         <NavLink to={`/project/${id}/storage`}>
           <StyledTab icon={<PersonPinIcon />} label="보관" />
         </NavLink>
-        <Divider sx={{ backgroundColor:"white", marginBottom: "30px"}}/>
+        <Divider sx={{ backgroundColor:"white", marginBottom: "0.1vh"}}/>
         <NavLink to={`/project/${id}/mywork`}>
           <StyledTab icon={<WorkIcon />} label="내 작업" />
         </NavLink>
