@@ -45,7 +45,7 @@ export default function ProjectTabPanel() {
       >
         <LogoButton/>
         <Divider sx={{ backgroundColor:"white", marginBottom: "30px"}}/>
-        <NavLink to= {`/project/${id}/backlog`}>
+        <NavLink to= {`/project/${id}`}>
           <StyledTab icon={<ImageAspectRatio />} label="백로그"/>
         </NavLink>
         <NavLink to={`/project/${id}/board`}>

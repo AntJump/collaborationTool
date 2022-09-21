@@ -2,7 +2,6 @@ import * as React from 'react';
 import { faqRows } from "../components/lists/FAQSample";
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import { GET_FAQ_DETAIL } from '../../../modules/FAQModule';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -24,7 +23,7 @@ function FAQDetailPage() {
         },
         [dispatch]
     );
-    return (
+    return faq && (
         <>
             <Typography sx={{ mt: 1, mb: 1,
                     fontFamily: 'monospace',
