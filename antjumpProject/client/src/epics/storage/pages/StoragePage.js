@@ -1,5 +1,11 @@
+import StorageHeader from "../components/items/texts/StorageHeader";
+
 function StoragePage() {
-  return <div></div>;
+  return (
+    <>
+      <StorageHeader />
+    </>
+  );
 }
 
 export default StoragePage;
