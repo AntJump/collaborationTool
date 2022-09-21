@@ -6,7 +6,7 @@ import AdminPage from "../pages/AdminPage";
 function AdminRoute() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path="/">
         <Route index element={<AdminPage />}/>
       </Route>
     </Routes>
