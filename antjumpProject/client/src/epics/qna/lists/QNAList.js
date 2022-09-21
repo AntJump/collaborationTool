@@ -17,8 +17,25 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import { qnaRows } from './QNASample';
 import { Link } from 'react-router-dom';
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {GET_QNAS} from "../../../modules/QNAModule";
+
 
 function TablePaginationActions(props) {
+  const qna = useSelector(state => state.qnaReducer);
+  const qnas = qna.list
+  console.log("qnas: ", qnas);
+
+  const dispatch = useDispatch();
+
+  useEffect(
+      ()=>{
+          dispatch({type: GET_QNAS, payload: qnaRows});
+      },
+      [dispatch]
+  );
+
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
