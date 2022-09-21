@@ -1,5 +1,9 @@
 import React from "react";
-import { useNavigate, Link as RouterLink } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { callLoginAPI } from "../../../apis/MemberAPICalls";
+
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
@@ -8,26 +12,35 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { Avatar, Typography } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import axios from "axios";
 
 function Login() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const loginMember = useSelector((state) => state.memberReducer); // API 요청하여 가져온 loginMember 정보
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    try {
-      const response = await axios.post("http://localhost:8181/login", {
-        memberEmail: data.get("email"),
-        memberPwd: data.get("password"),
-      });
-      navigate("/");
-    } catch (err) {
-      if (!err?.response) {
-        console.log("error");
-      }
-    }
+    dispatch(
+      callLoginAPI({
+        data,
+      })
+    );
   };
+
+  useEffect(() => {
+    if (loginMember.status === 200) {
+      console.log("[Login] Login SUCCESS {}", loginMember);
+      navigate("/", { replace: true });
+    }
+  }, [loginMember]);
+
+  // 로그인 상태일 시 로그인페이지로 접근 방지
+  if (loginMember.length > 0) {
+    console.log("[Login] Login is already authenticated by the server");
+    return navigate("/");
+  }
   return (
     <Container component="main" maxWidth="xs">
       <Box
