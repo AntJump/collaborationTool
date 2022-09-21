@@ -6,6 +6,7 @@ import ProjectRoute from "./routes/ProjectRoute";
 import QnaRoute from "./routes/QnaRoute";
 import RootRoute from "./routes/RootRoute";
 import MemberRoute from "./routes/MemberRoute";
+import CalendarRoute from "./routes/CalendarRoute";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/faqs/*" element={<FaqRoute />} />
         <Route path="/project/*" element={<ProjectRoute />} />
         <Route path="/members/*" element={<MemberRoute />} />
+        <Route path="/calendar/*" element={<CalendarRoute />} />
       </Routes>
     </BrowserRouter>
   );
