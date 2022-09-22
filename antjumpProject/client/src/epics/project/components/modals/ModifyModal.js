@@ -1,39 +1,30 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Divider } from '@mui/material';
+import { Divider, Button } from '@mui/material';
+import { modalBoxstyle } from './ModalStyle';
 
 import ProjectModifyForm from '../Containers/ProjectModifyForm';
 
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 600,
-  height: 600,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  borderRadius: 10,
-  boxShadow: 24,
-  p: 4,
-};
-
-export default function ModifyModal({open, handleModifyModalClose, project}) {
+export default function ModifyModal({open, handleClose, project}) {
 
 
   return (
     <Modal
         open={open}
-        onClose={handleModifyModalClose}
+        onClose={handleClose}
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
     >
-        <Box sx={style}>
+        <Box sx={modalBoxstyle}>
+          <Button onClick={handleClose} color="button" variant='contained'>
+            X
+          </Button>
           <Typography id="modal-title" variant="h6" component="h2">
             프로젝트 수정
           </Typography>
+
           <Divider sx={{ my: 3 }} />
           <ProjectModifyForm project={project}/>
         </Box>

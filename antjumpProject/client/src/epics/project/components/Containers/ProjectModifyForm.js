@@ -11,6 +11,7 @@ function ProjectModifyForm({project}){
     return (
 
         <form onSubmit={onSubmitHandler}>
+            <input name="id" value={project.id} type="hidden" readOnly disabled></input>
             <Typography  sx={{ mt: 1}}>
                 {project.key}
             </Typography>

@@ -4,9 +4,12 @@ import Typography from '@mui/material/Typography';
 function ProjectInputForm(){
 
     const onSubmitHandler = (e) =>{
-
+       
     }
 
+    const onClcikHandler = ()=>{
+        alert('프로젝트 생성 완료!');
+    }
     return (
 
         <form onSubmit={onSubmitHandler}>
@@ -24,7 +27,7 @@ function ProjectInputForm(){
                 프로젝트 설명 *
             </Typography>
             <TextField name="explanation" variant="outlined" />
-            <br/><Button type="submit" color='button' variant="contained">
+            <br/><Button type="submit" color='button' variant="contained" onClick={onClcikHandler}>
                 생성
             </Button>
         </form>

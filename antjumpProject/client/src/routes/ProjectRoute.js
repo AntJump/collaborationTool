@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-
+import IssueCreate from "../epics/backlog/pages/IssueCreate";
+import IssueDetail from "../epics/backlog/pages/IssueDetail";
 import ProjectLayout from "../layouts/ProjectLayout";
 import BacklogPage from "../epics/backlog/pages/BacklogPage";
 import BoardPage from "../epics/board/pages/BoardPage";
