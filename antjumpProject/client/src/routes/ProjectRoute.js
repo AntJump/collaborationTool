@@ -10,8 +10,6 @@ import CalendarPage from "../epics/calendar/pages/CalendarPage";
 import ChattingPage from "../epics/chatting/pages/ChattingPage";
 import ProjectErrorPage from "../epics/project/pages/ProjectErrorPage";
 import CalendarInsert from "../epics/calendar/pages/CalendarInsert";
-import IssueCreate from "../epics/backlog/pages/IssueCreate";
-import IssueDetail from "../epics/backlog/pages/IssueDetail";
 
 function ProjectRoute() {
   return (
