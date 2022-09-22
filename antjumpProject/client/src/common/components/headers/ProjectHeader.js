@@ -123,7 +123,7 @@ function ProjectHeader() {
             >
               <HomeIcon/> 
             </IconButton>
-          <Button component={Link} to={`/project/${id}/backlog`}> 
+          <Button component={Link} to={`/project/${id}`}> 
                   <Typography sx={{ color:"black"}} textAlign="center">프로젝트 이름</Typography>
           </Button>
           <Box sx={{ flexGrow: 1 }} />

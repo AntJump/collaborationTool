@@ -18,8 +18,6 @@ function DeleteModal({open, handleClose, project}) {
         <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-title"
-        aria-describedby="modal-description"
     >
         <Box sx={deleteModalBoxStyle}>
             <Typography id="modal-title" variant="h6" component="h1">
