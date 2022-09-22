@@ -5,6 +5,7 @@ import { Divider, Button } from '@mui/material';
 import { modalBoxstyle } from './ModalStyle';
 
 import ProjectModifyForm from '../Containers/ProjectModifyForm';
+import ModalHeader from './ModalHeader';
 
 
 export default function ModifyModal({open, handleClose, project}) {
@@ -14,18 +15,9 @@ export default function ModifyModal({open, handleClose, project}) {
     <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-title"
-        aria-describedby="modal-description"
     >
         <Box sx={modalBoxstyle}>
-          <Button onClick={handleClose} color="button" variant='contained'>
-            X
-          </Button>
-          <Typography id="modal-title" variant="h6" component="h2">
-            프로젝트 수정
-          </Typography>
-
-          <Divider sx={{ my: 3 }} />
+          <ModalHeader title="프로젝트 수정" onClickHandler={handleClose}/>
           <ProjectModifyForm project={project}/>
         </Box>
     </Modal>

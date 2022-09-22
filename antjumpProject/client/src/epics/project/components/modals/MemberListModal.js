@@ -5,6 +5,9 @@ import { Divider, Button, Grid, Stack } from '@mui/material';
 import { modalBoxstyle } from './ModalStyle';
 import ProjectMemberList from '../lists/ProjectMemberList';
 import ProjectWaitMemberList from '../lists/ProjectWaitMemberList';
+import FinishButton from '../items/FinishButton';
+import ProjectMemberInviteModal from './ProjectMemberInviteModal';
+import ModalHeader from './ModalHeader';
 
 
 function MemberListModal({open, handleClose, project}) {
@@ -12,18 +15,10 @@ function MemberListModal({open, handleClose, project}) {
         <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-title"
-        aria-describedby="modal-description"
     >
         <Box sx={modalBoxstyle}>
-            <Button onClick={handleClose} color="button" variant='contained'>
-                X
-            </Button>
+            <ModalHeader title="프로젝트 팀원 목록" onClickHandler={handleClose}/>
             <Box>
-                <Typography id="modal-title" variant="h6" component="h2">
-                    프로젝트 팀원 목록
-                </Typography>
-                <Divider sx={{ my: 3 }} />
                 <Grid container spacing={2}>
                     <Grid xs={11}>
                         <Typography  sx={{ mt: 1}}>
@@ -34,7 +29,7 @@ function MemberListModal({open, handleClose, project}) {
                         </Typography>
                     </Grid>
                     <Grid xs={1}>
-                        <Button color="button" variant="contained">팀원 초대</Button>
+                        <ProjectMemberInviteModal project={project}/>
                     </Grid>
                 </Grid>
            </Box>
@@ -55,8 +50,7 @@ function MemberListModal({open, handleClose, project}) {
                 </Box>
                 
             </Stack>
-            <Button onClick={handleClose}  color='button' variant="contained" sx={{marginTop: '40px'}}>닫기</Button>
-            
+            <FinishButton text="닫기" onClickHandler={handleClose}/>
         </Box>
     </Modal>
     );
