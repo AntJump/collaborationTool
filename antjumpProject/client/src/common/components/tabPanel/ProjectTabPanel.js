@@ -21,7 +21,6 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
     width: "240px",
     marginTop: "15px",
     marginBottom: "10px"
-    // marginLeft: "15px"
 }));
 
 
@@ -44,8 +43,8 @@ export default function ProjectTabPanel() {
         orientation="vertical"
       >
         <LogoButton/>
-        <Divider sx={{ backgroundColor:"white", marginBottom: "0.1px"}}/>
-        <NavLink to= {`/project/${id}/backlog`}>
+        <Divider sx={{ backgroundColor:"white", marginBottom: "0.1vh"}}/>
+        <NavLink to= {`/project/${id}`}>
           <StyledTab icon={<ImageAspectRatio />} label="백로그"/>
         </NavLink>
         <NavLink to={`/project/${id}/board`}>

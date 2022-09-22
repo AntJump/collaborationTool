@@ -17,8 +17,25 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import { qnaRows } from './QNASample';
 import { Link } from 'react-router-dom';
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {GET_QNAS} from "../../../modules/QNAModule";
+
 
 function TablePaginationActions(props) {
+  const qna = useSelector(state => state.qnaReducer);
+  const qnas = qna.list
+  console.log("qnas: ", qnas);
+
+  const dispatch = useDispatch();
+
+  useEffect(
+      ()=>{
+          dispatch({type: GET_QNAS, payload: qnaRows});
+      },
+      [dispatch]
+  );
+
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -149,30 +166,3 @@ function QNAList() {
 }
 
 export default QNAList;
-
-// return (
-    //     <TableContainer component={Paper}>
-    //       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-    //         <TableHead>
-    //           <TableRow>
-    //             <TableCell>문의 제목</TableCell>
-    //             <TableCell align="right">답변 상태</TableCell>
-    //             <TableCell align="right">문의 일자</TableCell>
-    //           </TableRow>
-    //         </TableHead>
-    //         <TableBody>
-    //           {qnaRows.map((qna) => (
-    //               <TableRow
-    //             component={Link} to={qna.id}
-    //             key={qna.id}
-    //             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-    //             >
-    //             <TableCell>{qna.qnaTitle}</TableCell>
-    //             <TableCell align="right">{qna.qnaStatus}</TableCell>
-    //             <TableCell align="right">{qna.qnaDate}</TableCell>
-    //             </TableRow>
-    //           ))}
-    //         </TableBody>
-    //       </Table>
-    //     </TableContainer>
-    //   );
