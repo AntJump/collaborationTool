@@ -18,6 +18,7 @@ function ProjectRoute() {
         <Route index element={<ProjectErrorPage />} />
         <Route path=":id">
           <Route index element={<BacklogPage />} />
+          <Route path="backlog" element={<BacklogPage />} />
           <Route path="issue-create" element={<IssueCreate />} />
           <Route path="issue/:issueId" element={<IssueDetail />} />
           <Route path="board" element={<BoardPage />} />
