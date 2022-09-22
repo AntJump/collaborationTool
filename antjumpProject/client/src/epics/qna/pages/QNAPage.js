@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import QNAList from '../lists/QNAList';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { Link } from "react-router-dom";
 
 function QNAPage() {
@@ -14,7 +14,14 @@ function QNAPage() {
             문의게시판
         </Typography>
         <QNAList/>
-        <Button component={Link} to="write">글 작성</Button>
+        <Box sx={{
+          display: 'flex',
+          justifyContent: 'center'
+        }}>
+          <Button
+            component={Link} to="write">글 작성
+          </Button>
+        </Box>
     </>
     
     
