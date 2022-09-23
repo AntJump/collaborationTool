@@ -7,26 +7,21 @@ const CustomButton = styled(Button)({
       backgroundColor: '#004392',
       color: '#fff',
       '&:hover': {
-        backgroundColor: '#3A7DCB',
-        color: 'white',
+        backgroundColor: '3A7DCB',
+        color: 'white'
       },
-      width: '200px',
-      marginTop: '10px',
-      marginBottom: '50px'
+      marginTop: '15px',
+      marginLeft: '15px',
+      height: '40px'
 })
 
-// const onClickHandler = () => {
-
-// }
-
-export default function CalendarInsertBtn() {
+export default function CalendarAddBtn() {
 
 
   return (
     <CustomButton 
-      variant="contained" 
-      disableElevation
-      // onClick={ onClickHandler }
+        variant="contained" 
+        disableElevation
     >
       일정 추가
     </CustomButton>

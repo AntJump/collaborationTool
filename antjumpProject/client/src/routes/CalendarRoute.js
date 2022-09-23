@@ -4,7 +4,7 @@ import ProjectLayout from "../layouts/ProjectLayout";
 import CalendarPage from "../epics/calendar/pages/CalendarPage";
 import CalendarInsert from "../epics/calendar/pages/CalendarInsert";
 
-function FaqRoute() {
+function CalendarRoute() {
     return (
       <Routes>
         <Route path="/" element={<ProjectLayout />}>
@@ -15,5 +15,5 @@ function FaqRoute() {
     );
 }
 
-export default FaqRoute;
+export default CalendarRoute;
   
