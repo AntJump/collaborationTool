@@ -6,8 +6,27 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { Avatar, Typography } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import axios from "axios";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
 
 function AdminPage() {
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+
+    try {
+      const response = await axios.post("http://localhost:8181/admin/login", {
+        adminEmail: data.get("email"),
+        adminPwd: data.get("password"),
+      });
+      navigate("/faqs");
+    } catch (err) {
+      if (!err?.response) {
+        console.log("error");
+      }
+    }
+  };
   return (
     <Container component="main" maxWidth="xs">
       <Box
@@ -18,6 +37,7 @@ function AdminPage() {
           alignItems: "center",
         }}
         component="form"
+        onSubmit={handleSubmit}
         noValidate
       >
         <Avatar sx={{ mt: 3, bgcolor: "secondary.main" }}>
