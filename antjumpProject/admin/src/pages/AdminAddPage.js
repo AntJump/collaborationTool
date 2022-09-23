@@ -10,11 +10,29 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import axios from "axios";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
 
 function AdminAddPage() {
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+
+    try {
+      const response = await axios.post("http://localhost:8181/admin/signup", {
+        adminEmail: data.get("email"),
+        adminPwd: data.get("password"),
+      });
+      navigate("/");
+    } catch (err) {
+      if (!err?.response) {
+        console.log("error");
+      }
+    }
+  };
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <Box
         sx={{
           marginTop: 8,
@@ -29,7 +47,7 @@ function AdminAddPage() {
         <Typography component="h1" variant="h5">
           회원가입
         </Typography>
-        <Box component="form" noValidate sx={{ mt: 3 }}>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -47,7 +65,7 @@ function AdminAddPage() {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="비밀번호"
                 type="password"
                 id="password"
                 autoComplete="new-password"

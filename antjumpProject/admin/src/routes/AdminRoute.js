@@ -8,7 +8,7 @@ function AdminRoute() {
     <Routes>
       <Route path="/">
         <Route index element={<AdminPage />} />
-        <Route path="/add" component={<AdminAddPage />} />
+        <Route path="add" element={<AdminAddPage />} />
       </Route>
     </Routes>
   );

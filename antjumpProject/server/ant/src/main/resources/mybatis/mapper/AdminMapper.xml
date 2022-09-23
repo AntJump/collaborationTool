@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.antjump.ant.admin.dao.AdminMapper">
     <resultMap id="AdminDto" type="AdminDto">
-        <id column="adminId" property="MEMBER_ID" />
+        <id column="adminId" property="ADMIN_ID" />
         <result column="adminEmail" property="ADMIN_EMAIL" />
         <result column="adminPwd" property="ADMIN_PWD" />
     </resultMap>
@@ -36,7 +36,7 @@
         VALUES
             (
                 #{adminEmail},
-                #{adminPwd},
+                #{adminPwd}
             )
     </insert>
 
