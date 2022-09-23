@@ -23,19 +23,6 @@ import {GET_QNAS} from "../../../modules/QNAModule";
 
 
 function TablePaginationActions(props) {
-  const qna = useSelector(state => state.qnaReducer);
-  const qnas = qna.list
-  console.log("qnas: ", qnas);
-
-  const dispatch = useDispatch();
-
-  useEffect(
-      ()=>{
-          dispatch({type: GET_QNAS, payload: qnaRows});
-      },
-      [dispatch]
-  );
-
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -97,12 +84,26 @@ TablePaginationActions.propTypes = {
 };
 
 function QNAList() {
+
+  const qna = useSelector(state => state.qnaReducer);
+  const qnas = qna.list
+  console.log("qnas: ", qnas);
+
+  const dispatch = useDispatch();
+
+  useEffect(
+      ()=>{
+          dispatch({type: GET_QNAS, payload: qnaRows});
+      },
+      [dispatch]
+  );
+
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - qnaRows.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - qnas.length) : 0;
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -113,83 +114,59 @@ function QNAList() {
     setPage(0);
   };
 
-  return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
-        <TableBody>
-          {(rowsPerPage > 0
-            ? qnaRows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : qnaRows
-          ).map((row) => (
-            <TableRow key={row.id} component ={Link} to={row.id}>
-              <TableCell component="th" scope="row">
-                {row.qnaTitle}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {row.qnaStatus}
-              </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {row.qnaDate}
-              </TableCell>
-            </TableRow>
-          ))}
+  return qnas && (
+      <TableContainer sx={{
+        width: '80%',
+        margin: 'auto'
+      }} component={Paper}>
+        <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+          <TableBody>
+            {(rowsPerPage > 0
+              ? qnas.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : qnas
+            ).map((qna) => (
+              <TableRow key={qna.id} component ={Link} to={qna.id}>
+                <TableCell component="th" scope="row">
+                  {qna.qnaTitle}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  {qna.qnaStatus}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  {qna.qnaDate}
+                </TableCell>
+              </TableRow>
+            ))}
 
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <TableCell colSpan={6} />
+              </TableRow>
+            )}
+          </TableBody>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+                colSpan={3}
+                count={qnas.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                SelectProps={{
+                  inputProps: {
+                    'aria-label': 'rows per page',
+                  },
+                  native: true,
+                }}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+              />
             </TableRow>
-          )}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
-              count={qnaRows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: {
-                  'aria-label': 'rows per page',
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </TableContainer>
+          </TableFooter>
+        </Table>
+      </TableContainer>
   );
 }
 
 export default QNAList;
-
-// return (
-    //     <TableContainer component={Paper}>
-    //       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-    //         <TableHead>
-    //           <TableRow>
-    //             <TableCell>문의 제목</TableCell>
-    //             <TableCell align="right">답변 상태</TableCell>
-    //             <TableCell align="right">문의 일자</TableCell>
-    //           </TableRow>
-    //         </TableHead>
-    //         <TableBody>
-    //           {qnaRows.map((qna) => (
-    //               <TableRow
-    //             component={Link} to={qna.id}
-    //             key={qna.id}
-    //             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-    //             >
-    //             <TableCell>{qna.qnaTitle}</TableCell>
-    //             <TableCell align="right">{qna.qnaStatus}</TableCell>
-    //             <TableCell align="right">{qna.qnaDate}</TableCell>
-    //             </TableRow>
-    //           ))}
-    //         </TableBody>
-    //       </Table>
-    //     </TableContainer>
-    //   );

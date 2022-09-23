@@ -8,8 +8,9 @@ import {createAction, handleActions} from "redux-actions"
 const initState =[];
 
 // 액션 타입 설정
-export const GET_MYPROJECTS = 'myProjects/GET_MYPROJECTS';
-export const GET_PARTICIPATED_PROJECTS = 'ParticipatedProjects/GET_PARTICIPATED_PROJECTS';
+export const GET_MYPROJECTS = 'project/GET_MYPROJECTS';
+export const GET_PARTICIPATED_PROJECTS = 'project/GET_PARTICIPATED_PROJECTS';
+export const GET_PROJECT_MEMBERS = 'project/GET_PROJECT_MEMBERS';
 
 // 액션 함수 생성
 // 프로젝트 목록 관련 액션 함수

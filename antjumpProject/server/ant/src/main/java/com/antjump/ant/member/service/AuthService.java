@@ -1,5 +1,7 @@
 package com.antjump.ant.member.service;
 
+import com.antjump.ant.admin.dao.AdminMapper;
+import com.antjump.ant.admin.dto.AdminDto;
 import com.antjump.ant.exception.DuplicatedUsernameException;
 import com.antjump.ant.exception.LoginFailedException;
 import com.antjump.ant.jwt.TokenProvider;
@@ -18,11 +20,14 @@ public class AuthService {
 
     private static final Logger log = LoggerFactory.getLogger(AuthService.class);
     private final MemberMapper memberMapper;
+
+    private final AdminMapper adminMapper;
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
 
-    public AuthService(MemberMapper memberMapper, PasswordEncoder passwordEncoder, TokenProvider tokenProvider) {
+    public AuthService(MemberMapper memberMapper, AdminMapper adminMapper, PasswordEncoder passwordEncoder, TokenProvider tokenProvider) {
         this.memberMapper = memberMapper;
+        this.adminMapper = adminMapper;
         this.passwordEncoder = passwordEncoder;
         this.tokenProvider = tokenProvider;
     }
@@ -47,7 +52,6 @@ public class AuthService {
 
         return memberDto;
     }
-
 
     @Transactional
     public TokenDto login(MemberDto memberDto) {
