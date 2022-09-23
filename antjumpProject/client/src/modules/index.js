@@ -6,15 +6,15 @@ import faqReducer from "./FAQModule";
 
 // 프로젝트 관련 모듈 import
 import { myProjectReducer, participatedProjectReducer } from "./ProjectModule";
+import { issueReducer } from "./IssueModule";
 const rootReducer = combineReducers({
-
   qnaReducer,
   paymentReducer,
   // 프로젝트 관련 모듈 combine
   myProjectReducer,
   participatedProjectReducer,
   memberReducer,
-
+  issueReducer,
 });
 
 export default rootReducer;

@@ -7,9 +7,10 @@ import IssueType from "../components/IssueType.js";
 import IssuePriority from "../components/IssuePriority.js";
 import IssueDifficulty from "../components/IssueDifficulty.js";
 import IssueCreateModal from "../modals/IssueCreateModal.js";
-import IssueDetail from "./IssueDetail.js";
+import IssueDetail from "./IssueDetailPage.js";
+import IssueFileUpload from "../components/IssueFileUpload.js";
 
-export default function IssueCreate() {
+export default function IssueCreatePage() {
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box>
@@ -59,6 +60,7 @@ export default function IssueCreate() {
             rows={10}
           />
         </Box>
+        <IssueFileUpload />
         <IssueCreateModal />
       </Box>
     </Box>
