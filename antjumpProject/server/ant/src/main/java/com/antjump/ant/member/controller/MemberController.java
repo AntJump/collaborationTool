@@ -13,27 +13,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/")
-public class MemberController {
+    @RequestMapping("/")
+    public class MemberController {
 
-    private final AuthService authService;
+        private final AuthService authService;
 
-    public MemberController(AuthService authService, MemberService memberService) {
-        this.authService = authService;
+        public MemberController(AuthService authService, MemberService memberService) {
+            this.authService = authService;
 //        this.memberService = memberService;
-    }
+        }
 
-    @PostMapping("/signup")
-    public ResponseEntity<ResponseDto> signup(@RequestBody MemberDto memberDto) {
+        @PostMapping("/signup")
+        public ResponseEntity<ResponseDto> signup(@RequestBody MemberDto memberDto) {
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "회원가입 성공", authService.signup(memberDto)));
-    }
+            return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "회원가입 성공", authService.signup(memberDto)));
+        }
 
 
-    @PostMapping("/login")
-    public ResponseEntity<ResponseDto> login(@RequestBody MemberDto memberDto) {
+        @PostMapping("/login")
+        public ResponseEntity<ResponseDto> login(@RequestBody MemberDto memberDto) {
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "로그인 성공", authService.login(memberDto)));
+            return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "로그인 성공", authService.login(memberDto)));
     }
 //    private final MemberService memberService;
 

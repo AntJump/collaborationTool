@@ -1,18 +1,18 @@
-package com.antjump.ant.member.dto;
+package com.antjump.ant.admin.dto;
 
-public class TokenDto {
+public class AdminTokenDto {
 
     private String grantType;
-    private String memberName;
+    private String adminEmail;
     private String accessToken;
     private Long accessTokenExpiresIn;
 
-    public TokenDto() {
+    public AdminTokenDto() {
     }
 
-    public TokenDto(String grantType, String memberName, String accessToken, Long accessTokenExpiresIn) {
+    public AdminTokenDto(String grantType, String adminEmail, String accessToken, Long accessTokenExpiresIn) {
         this.grantType = grantType;
-        this.memberName = memberName;
+        this.adminEmail = adminEmail;
         this.accessToken = accessToken;
         this.accessTokenExpiresIn = accessTokenExpiresIn;
     }
@@ -25,12 +25,12 @@ public class TokenDto {
         this.grantType = grantType;
     }
 
-    public String getMemberName() {
-        return memberName;
+    public String getAdminEmail() {
+        return adminEmail;
     }
 
-    public void setMemberName(String memberName) {
-        this.memberName = memberName;
+    public void setAdminEmail(String adminEmail) {
+        this.adminEmail = adminEmail;
     }
 
     public String getAccessToken() {
@@ -51,9 +51,9 @@ public class TokenDto {
 
     @Override
     public String toString() {
-        return "TokenDto{" +
+        return "AdminTokenDto{" +
                 "grantType='" + grantType + '\'' +
-                ", memberName='" + memberName + '\'' +
+                ", adminEmail='" + adminEmail + '\'' +
                 ", accessToken='" + accessToken + '\'' +
                 ", accessTokenExpiresIn=" + accessTokenExpiresIn +
                 '}';
