@@ -2,8 +2,7 @@ import { Button, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
 function LogoButton() {
     return (
-        <Button component={Link} to="/" sx={ {padding: '30px'}}>
-          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, color:"white", mr: 1}} /> */}
+        <Button component={Link} to="/" sx={ {padding: '20px'}}>
             <img 
             style={{
             width: '71px',

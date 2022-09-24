@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-
+import IssueCreate from "../epics/backlog/pages/IssueCreate";
+import IssueDetail from "../epics/backlog/pages/IssueDetail";
 import ProjectLayout from "../layouts/ProjectLayout";
 import BacklogPage from "../epics/backlog/pages/BacklogPage";
 import BoardPage from "../epics/board/pages/BoardPage";
@@ -19,8 +20,14 @@ function ProjectRoute() {
         <Route index element={<ProjectErrorPage />} />
         <Route path=":id">
           <Route index element={<BacklogPage />} />
+<<<<<<< HEAD
           <Route path="issue-create" element={<IssueCreatePage />} />
           <Route path="issue/:issueId" element={<IssueDetailPage />} />
+=======
+          <Route path="backlog" element={<BacklogPage />} />
+          <Route path="issue-create" element={<IssueCreate />} />
+          <Route path="issue/:issueId" element={<IssueDetail />} />
+>>>>>>> main
           <Route path="board" element={<BoardPage />} />
           <Route path="storage" element={<StoragePage />} />
           <Route path="myWork" element={<MyWorkPage />} />

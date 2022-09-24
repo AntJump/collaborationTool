@@ -13,9 +13,11 @@
 
 	<typeAliases>
 		<typeAlias alias="MemberDto" type="com.antjump.ant.member.dto.MemberDto"/>
+		<typeAlias alias="AdminDto" type="com.antjump.ant.admin.dto.AdminDto"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="MemberMapper.xml" />
+		<mapper resource="AdminMapper.xml" />
 	</mappers>
 </configuration>

@@ -13,14 +13,13 @@ import LogoButton from "../items/LogoButton";
 import { useParams } from "react-router-dom";
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
-  height: "97vh",
+  height: "95vh",
   backgroundColor: "#000",
   color: theme.palette.common.white,
   borderRadius: "20px",
   width: "240px",
   marginTop: "15px",
   marginBottom: "10px",
-  // marginLeft: "15px"
 }));
 
 const StyledTab = styled(Tab)(({ theme }) => ({
@@ -35,7 +34,7 @@ export default function ProjectTabPanel() {
     <>
       <StyledTabs aria-label="icon label tabs example" orientation="vertical">
         <LogoButton />
-        <Divider sx={{ backgroundColor: "white", marginBottom: "30px" }} />
+        <Divider sx={{ backgroundColor: "white", marginBottom: "0.1vh" }} />
         <NavLink to={`/project/${id}`}>
           <StyledTab icon={<ImageAspectRatio />} label="백로그" />
         </NavLink>
@@ -45,7 +44,7 @@ export default function ProjectTabPanel() {
         <NavLink to={`/project/${id}/storage`}>
           <StyledTab icon={<PersonPinIcon />} label="보관" />
         </NavLink>
-        <Divider sx={{ backgroundColor: "white", marginBottom: "30px" }} />
+        <Divider sx={{ backgroundColor: "white", marginBottom: "0.1vh" }} />
         <NavLink to={`/project/${id}/mywork`}>
           <StyledTab icon={<WorkIcon />} label="내 작업" />
         </NavLink>

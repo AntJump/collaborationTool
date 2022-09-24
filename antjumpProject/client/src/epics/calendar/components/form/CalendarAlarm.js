@@ -14,8 +14,8 @@ export default function CalendarAlarm() {
     };
 
     return (
-        <Box sx={{ display: 'inline-block' }}>
-            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+        <Box sx={{ display: 'inline-block', marginRight: '4px' }}>
+            <FormControl sx={{ m: 1, minWidth: 140 }} size="small">
                 <InputLabel id="demo-select-small">알람</InputLabel>
                 <Select
                     labelId="demo-select-small"

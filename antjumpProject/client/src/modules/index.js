@@ -10,6 +10,7 @@ import { issueReducer } from "./IssueModule";
 const rootReducer = combineReducers({
   qnaReducer,
   paymentReducer,
+  faqReducer,
   // 프로젝트 관련 모듈 combine
   myProjectReducer,
   participatedProjectReducer,

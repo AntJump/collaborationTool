@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.antjump.ant.admin.dao.AdminMapper">
+    <resultMap id="AdminDto" type="AdminDto">
+        <id column="adminId" property="ADMIN_ID" />
+        <result column="adminEmail" property="ADMIN_EMAIL" />
+        <result column="adminPwd" property="ADMIN_PWD" />
+    </resultMap>
+
+    <select id="findByAdminEmail" resultType="AdminDto">
+        SELECT
+            ADMIN_ID
+             ,  ADMIN_EMAIL
+             ,  ADMIN_PWD
+        FROM TBL_ADMINS
+        WHERE ADMIN_EMAIL = #{adminEmail}
+    </select>
+
+    <select id="selectByEmail" resultType="AdminDto">
+        SELECT
+            ADMIN_ID
+             ,  ADMIN_EMAIL
+             ,  ADMIN_PWD
+        FROM TBL_ADMINS
+        WHERE ADMIN_EMAIL = #{adminEmail}
+    </select>
+
+    <insert id="insertAdmin" parameterType="AdminDto" useGeneratedKeys="true" keyProperty="adminId">
+        INSERT INTO TBL_ADMINS
+        (
+            ADMIN_EMAIL,
+            ADMIN_PWD
+        )
+        VALUES
+            (
+                #{adminEmail},
+                #{adminPwd}
+            )
+    </insert>
+
+
+</mapper>

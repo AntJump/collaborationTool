@@ -10,7 +10,7 @@ const results = [
 
 function IssueContainBox() {
   return (
-    <Grid container spacing={2} marginTop={3}>
+    <Grid container spacing={3} marginTop={1}>
       {results.map((element) => {
         return (
           <Grid item xs={4}>
