@@ -6,7 +6,7 @@ import StoragePage from "../epics/storage/pages/StoragePage";
 import MyWorkPage from "../epics/myWork/pages/MyWorkPage";
 import CalendarPage from "../epics/calendar/pages/CalendarPage";
 import ChattingPage from "../epics/chatting/pages/ChattingPage";
-import ProjectErrorPage from "../epics/project/pages/ProjectErrorPage";
+import ProjectErrorPage from "../common/pages/ErrorPages/ProjectErrorPage";
 import CalendarInsert from "../epics/calendar/pages/CalendarInsert";
 import IssueCreatePage from "../epics/backlog/pages/IssueCreatePage";
 import IssueDetailPage from "../epics/backlog/pages/IssueDetailPage";

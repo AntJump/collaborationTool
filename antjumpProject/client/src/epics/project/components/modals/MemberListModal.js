@@ -2,12 +2,14 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { Divider, Button, Grid, Stack } from '@mui/material';
-import { modalBoxstyle } from './ModalStyle';
+
+
 import ProjectMemberList from '../lists/ProjectMemberList';
 import ProjectWaitMemberList from '../lists/ProjectWaitMemberList';
 import FinishButton from '../items/FinishButton';
 import ProjectMemberInviteModal from './ProjectMemberInviteModal';
-import ModalHeader from './ModalHeader';
+import { modalBoxStyle } from '../../../../common/styles/ModalStyle';
+import ModalHeader from '../../../../common/components/headers/ModalHeader';
 
 
 function MemberListModal({open, handleClose, project}) {
@@ -16,41 +18,47 @@ function MemberListModal({open, handleClose, project}) {
         open={open}
         onClose={handleClose}
     >
-        <Box sx={modalBoxstyle}>
+        <Box sx={modalBoxStyle({w:'60vw',h:'70vh'})} maxHeight='600px' maxWidth='600px'>
             <ModalHeader title="프로젝트 팀원 목록" onClickHandler={handleClose}/>
             <Box>
                 <Grid container spacing={2}>
-                    <Grid xs={11}>
-                        <Typography  sx={{ mt: 1}}>
+                    <Grid xs={6} >
+                        <Typography sx={{ mt: 1, ml: 2}} >
                             {project.key}
                         </Typography>
-                        <Typography  sx={{ mt: 1, mb:3 , fontSize: 35 }}>
+                        <Typography  sx={{mb:2 , ml: 2, fontSize: 25 }}>
                             {project.name}
                         </Typography>
                     </Grid>
-                    <Grid xs={1}>
+                    <Grid xs={6}>
                         <ProjectMemberInviteModal project={project}/>
                     </Grid>
                 </Grid>
-           </Box>
+            </Box>
             <Divider sx={{ my: 1 }} />
-            <Stack 
-                direction="row" 
-                justifyContent="center"
-                maxHeight={'50%'}
-                spacing={2}
-                >
-                <Box xs ={10} sx={{  textAlign:"center"}}>
-                    <h3>팀원</h3>
-                    <ProjectMemberList/>
-                </Box>
-                <Box xs ={2} sx={{ textAlign:"center"}}>
-                    <h3>초대 대기</h3>
-                    <ProjectWaitMemberList />
-                </Box>
-                
-            </Stack>
-            <FinishButton text="닫기" onClickHandler={handleClose}/>
+            <Grid container spacing={1} height='70%'>
+                <Grid item xs={12}  height='90%'>
+                    <Grid 
+                        container
+                        spacing={1}
+                        height={'100%'} 
+                        justifyContent="center"
+                        // direction="row"
+                    >   
+                        <Grid item xs ={7} height={'90%'}  sx={{ textAlign:"center"}}>
+                            <h3>팀원</h3>
+                            <ProjectMemberList/>
+                        </Grid>
+                        <Grid item xs ={5} height={'90%'}  sx={{ textAlign:"center"}}>
+                            <h3>초대 대기</h3>
+                            <ProjectWaitMemberList />
+                        </Grid> 
+                    </Grid>
+                </Grid>
+                <Grid item xs={12}>
+                    <FinishButton text="닫기" onClickHandler={handleClose}/>
+                </Grid>
+            </Grid>
         </Box>
     </Modal>
     );

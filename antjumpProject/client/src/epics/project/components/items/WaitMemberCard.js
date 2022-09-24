@@ -1,18 +1,17 @@
 import FaceIcon from '@mui/icons-material/Face';
-import { Box, IconButton, Typography } from '@mui/material';
+import { Box, IconButton,  Chip } from '@mui/material';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+
 
 function WaitMemberCard({wait}){
 
     return (
         <>
-            <Box>
-                <Typography>
-                    {wait.invitationEmail}
-                    <IconButton >
-                        <HighlightOffIcon color='secondary' variant="contained"/>
-                    </IconButton>
-                </Typography>
+            <Box sx={{ml: 4}}>
+                <Chip label={wait.invitationEmail} sx={{ width: '150px'}}/>
+                <IconButton >
+                    <HighlightOffIcon color='secondary' variant="contained"/>
+                </IconButton>
             </Box>
         </>
     );

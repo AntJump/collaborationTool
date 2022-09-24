@@ -1,5 +1,5 @@
 
-import Button from '@mui/material/Button';
+import {Button, Box} from '@mui/material';
 
 import { useState } from 'react';
 
@@ -11,12 +11,16 @@ function RegistButton() {
     const handleClose = () => setOpen(false);
 
     return (
-        <div>
-            <Button onClick = {handleOpen} color="button" variant="contained" size="medium">
+        <>
+            <Button 
+                onClick = {handleOpen} 
+                color="button" variant="contained" size="medium" 
+                sx={{float: 'right', m: 2}}
+            >
                 프로젝트 생성
             </Button>
             <RegistModal open = {open} handleClose = {handleClose}/>
-        </div>
+        </>
         
     );
 }
