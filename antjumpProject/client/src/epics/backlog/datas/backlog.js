@@ -8,7 +8,9 @@ export const issuesData = [
         issueStatus : '시작 전',
         fkMembersIssues : null,
         memberName : '없음',
-        issuePriority : 'S'
+        issuePriority : 'S',
+        sprintIncludeYn: 'N',
+        areaCode : 0
     },
     {
         issueId : 2,
@@ -19,7 +21,8 @@ export const issuesData = [
         issueStatus : '시작 전',
         fkMembersIssues : null,
         memberName : '없음',
-        issuePriority : 'M'
+        issuePriority : 'M',
+        areaCode : 0
     },
     {
         issueId : 3,
@@ -30,7 +33,8 @@ export const issuesData = [
         issueStatus : '시작 전',
         fkMembersIssues : null,
         memberName : '없음',
-        issuePriority : 'S'
+        issuePriority : 'S',
+        areaCode : 0
     },
     {
         issueId : 4,
@@ -41,7 +45,8 @@ export const issuesData = [
         issueStatus : '시작 전',
         fkMembersIssues : null,
         memberName : '없음',
-        issuePriority : 'M'
+        issuePriority : 'M',
+        areaCode : 0
     },
     {
         issueId : 5,
@@ -52,7 +57,8 @@ export const issuesData = [
         issueStatus : '시작 전',
         fkMembersIssues : null,
         memberName : '없음',
-        issuePriority : 'M'
+        issuePriority : 'M',
+        areaCode : 0
     },
     {
         issueId : 6,
@@ -63,7 +69,8 @@ export const issuesData = [
         issueStatus : '시작 전',
         fkMembersIssues : null,
         memberName : '없음',
-        issuePriority : 'M'
+        issuePriority : 'M',
+        areaCode : 0
     },
     {
         issueId : 7,
@@ -74,17 +81,55 @@ export const issuesData = [
         issueStatus : '시작 전',
         fkMembersIssues : null,
         memberName : '없음',
-        issuePriority : 'M'
+        issuePriority : 'M',
+        areaCode : 0
     },
     {
         issueId : 8,
         top_issue_id : null,
-        issueKey : 'ISSUE-7',
+        issueKey : 'ISSUE-8',
         issueCategory : '태스크',
         issueSummary : '이슈 요약입니다',
         issueStatus : '시작 전',
         fkMembersIssues : null,
         memberName : '없음',
-        issuePriority : 'M'
+        issuePriority : 'M',
+        areaCode : 0
+    },
+    {
+        issueId : 9,
+        top_issue_id : null,
+        issueKey : 'ISSUE-9',
+        issueCategory : '태스크',
+        issueSummary : '이슈 요약입니다',
+        issueStatus : '시작 전',
+        fkMembersIssues : null,
+        memberName : '없음',
+        issuePriority : 'M',
+        areaCode : 1
+    },
+    {
+        issueId : 10,
+        top_issue_id : null,
+        issueKey : 'ISSUE-10',
+        issueCategory : '태스크',
+        issueSummary : '이슈 요약입니다',
+        issueStatus : '시작 전',
+        fkMembersIssues : null,
+        memberName : '없음',
+        issuePriority : 'M',
+        areaCode : 2
+    },
+    {
+        issueId : 11,
+        top_issue_id : null,
+        issueKey : 'ISSUE-11',
+        issueCategory : '태스크',
+        issueSummary : '이슈 요약입니다',
+        issueStatus : '시작 전',
+        fkMembersIssues : null,
+        memberName : '없음',
+        issuePriority : 'M',
+        areaCode : 3
     }
 ]
