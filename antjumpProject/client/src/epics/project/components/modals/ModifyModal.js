@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { modalBoxStyle } from '../../../../common/styles/ModalStyle';
 
-import ProjectModifyForm from '../Containers/ProjectModifyForm';
+import ProjectModifyForm from '../containers/ProjectModifyForm';
 import ModalHeader from '../../../../common/components/headers/ModalHeader';
 
 

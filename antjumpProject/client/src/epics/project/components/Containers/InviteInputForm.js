@@ -1,10 +1,6 @@
 import ChipInput from 'material-ui-chip-input';
 import { useState } from 'react';
 
-let chips=[
-    'hello',
-    '?'
-];
 
 function InviteInputForm(){
 
@@ -33,9 +29,12 @@ function InviteInputForm(){
 
         <>
             <ChipInput
+                fullWidth
                 value={chips}
                 onAdd={(chip) => handleAddChip(chip)}
                 onDelete={(chip, index) => handleDeleteChip(chip, index)}
+                // variant = 'filled'
+                fullWidthInput
             /><br/>
         </>
     );
