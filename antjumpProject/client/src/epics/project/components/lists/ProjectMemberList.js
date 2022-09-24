@@ -1,8 +1,6 @@
 import { Stack} from '@mui/material';
 import Box from '@mui/material/Box';
-// import {  useEffect } from "react";
-// import { useSelector, useDispatch } from "react-redux";
-import { projectMembers } from '../../resource/datas/MemberList';
+import { projectMembers } from '../../datas/MemberList';
 import ProjectMemberCard from '../items/ProjectMemberCard';
 import RoleChangeButton from '../items/RoleChangeButton';
 

@@ -3,7 +3,7 @@ import {  useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { GET_PROJECTS } from "../../../../modules/ProjectModule";
-import {participatedProjects, myProjects} from "../../resource/datas/ProjectList"
+import {participatedProjects, myProjects} from "../../datas/ProjectList"
 
 import RegistButton from "../items/RegistButton";
 import MyProjectList from "./MyProjectList";
