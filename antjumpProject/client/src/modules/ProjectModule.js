@@ -11,15 +11,28 @@ const initState =[];
 export const GET_MYPROJECTS = 'project/GET_MYPROJECTS';
 export const GET_PARTICIPATED_PROJECTS = 'project/GET_PARTICIPATED_PROJECTS';
 export const GET_PROJECT_MEMBERS = 'project/GET_PROJECT_MEMBERS';
+export const SET_SELECTED_PROJECT = 'project/SET_SELECTED_PROJECT';
+
 
 // 액션 함수 생성
 // 프로젝트 목록 관련 액션 함수
 const actions =  createAction({
     [GET_MYPROJECTS]: () => {},
-    [GET_PARTICIPATED_PROJECTS]: () => {}
+    [GET_PARTICIPATED_PROJECTS]: () => {},
+    [SET_SELECTED_PROJECT] : () => {}
 });
 
 // 리듀서 함수 설정
+export const projectReducer = handleActions(
+    {
+        [SET_SELECTED_PROJECT] : (state, {payload}) => {
+            console.log('set selected project payload', payload);
+            return payload;
+        }
+    },
+    initState
+)
+
 export const myProjectReducer = handleActions(
     {
         [GET_MYPROJECTS]: (state, {payload}) => {
