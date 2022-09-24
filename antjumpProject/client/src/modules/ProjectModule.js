@@ -5,11 +5,13 @@ import {createAction, handleActions} from "redux-actions"
 
 
 // 초기 state 값 설정
-const initState =[];
+const initState ={
+    paticipatedProjects : [],
+    myProjects : []
+};
 
 // 액션 타입 설정
-export const GET_MYPROJECTS = 'project/GET_MYPROJECTS';
-export const GET_PARTICIPATED_PROJECTS = 'project/GET_PARTICIPATED_PROJECTS';
+export const GET_PROJECTS= 'project/GET_PROJECTS';
 export const GET_PROJECT_MEMBERS = 'project/GET_PROJECT_MEMBERS';
 export const SET_SELECTED_PROJECT = 'project/SET_SELECTED_PROJECT';
 
@@ -17,8 +19,8 @@ export const SET_SELECTED_PROJECT = 'project/SET_SELECTED_PROJECT';
 // 액션 함수 생성
 // 프로젝트 목록 관련 액션 함수
 const actions =  createAction({
-    [GET_MYPROJECTS]: () => {},
-    [GET_PARTICIPATED_PROJECTS]: () => {},
+    [GET_PROJECTS]: () => {},
+    [GET_PROJECT_MEMBERS]: ()=>{},
     [SET_SELECTED_PROJECT] : () => {}
 });
 
@@ -28,29 +30,17 @@ export const projectReducer = handleActions(
         [SET_SELECTED_PROJECT] : (state, {payload}) => {
             console.log('set selected project payload', payload);
             return payload;
+        },
+        [GET_PROJECTS]: (state, {payload}) => {
+            console.log('get project payload:', payload);
+            return payload;
+        },
+        [GET_PROJECT_MEMBERS]: (state, {payload}) =>{
+            console.log('get porject payload:', payload);
+            return payload;
         }
     },
     initState
 )
-
-export const myProjectReducer = handleActions(
-    {
-        [GET_MYPROJECTS]: (state, {payload}) => {
-            console.log('get_project payload:', payload);
-            return payload;
-        },
-    },
-    initState
-);
-
-export const participatedProjectReducer = handleActions(
-    {
-        [GET_PARTICIPATED_PROJECTS]: (state, {payload}) => {
-            console.log('get_project payload:', payload);
-            return payload;
-        }
-    },
-    initState
-);
 
 

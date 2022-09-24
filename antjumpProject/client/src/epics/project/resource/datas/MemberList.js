@@ -90,6 +90,12 @@ export const waitMembers = [
     },
     {
         projectId : '2',
+        invitationId : 1,
+        invitationEmail : "yunsdssssssssseo@mtvs.com",
+        authYn: 'N',
+    },
+    {
+        projectId : '2',
         invitationId : 2,
         invitationEmail : "hello@mtvs.com",
         authYn: 'N',

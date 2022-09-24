@@ -7,8 +7,8 @@ function WaitMemberCard({wait}){
 
     return (
         <>
-            <Box sx={{ml:5}}>
-                <Chip label={wait.invitationEmail}/>
+            <Box sx={{ml: 4}}>
+                <Chip label={wait.invitationEmail} sx={{ width: '150px'}}/>
                 <IconButton >
                     <HighlightOffIcon color='secondary' variant="contained"/>
                 </IconButton>

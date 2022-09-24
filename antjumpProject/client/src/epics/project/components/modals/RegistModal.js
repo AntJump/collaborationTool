@@ -16,7 +16,7 @@ export default function RegistModal({open, handleClose}) {
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
     >
-        <Box sx={modalBoxStyle({w: '40vw', h:'40vh'})}>
+        <Box sx={modalBoxStyle({w: '40vw', h:'75vh'})} maxHeight='600px'>
           <ModalHeader title="프로젝트 생성" onClickHandler={handleClose}/>
           <ProjectInputForm/>
         </Box>

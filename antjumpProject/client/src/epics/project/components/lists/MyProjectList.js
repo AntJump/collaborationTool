@@ -9,22 +9,11 @@ import { StyledTableCell } from './TableStyle.js';
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
-
-import {GET_MYPROJECTS} from "../../../../modules/ProjectModule";
-import {myProjects} from "../../resource/datas/ProjectList";
 import MyProjectCard from '../items/MyProjectCard.js';
 
 function MyProjectList(){
-    const projects = useSelector(state => state.myProjectReducer);
-    console.log(projects);
-    const dispatch = useDispatch();
-    
-    useEffect(
-        ()=>{
-            dispatch({type: GET_MYPROJECTS, payload: myProjects});
-        },
-        []
-    )
+    const result = useSelector(state => state.projectReducer);
+    const projects = result.myProjects;
 
     return projects && (
         <TableContainer component={Paper}>

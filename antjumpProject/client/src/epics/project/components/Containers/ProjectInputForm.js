@@ -48,7 +48,6 @@ function ProjectInputForm(){
                         /><br/>
                     </Grid>
                     <FinishButton text={"생성"} onClickHandler={onClickHandler}/>
-                    
                 </Grid>
             </Box>
             
