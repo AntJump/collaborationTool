@@ -9,7 +9,8 @@ function RoleChangeButton({member}){
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
-    const handleClose = () => {
+    const handleClose = (e) => {
+        member.roleName = e.target.value;
         setAnchorEl(null)
     };
     
@@ -24,8 +25,8 @@ function RoleChangeButton({member}){
                 open={open}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose} disableRipple> 팀원 </MenuItem>
-                <MenuItem onClick={handleClose} disableRipple> 스크럼 매니저 </MenuItem>
+                <MenuItem onClick={handleClose} value = '팀원' disableRipple> 팀원 </MenuItem>
+                <MenuItem onClick={handleClose} value = '스크럼 매니저'disableRipple> 스크럼 매니저 </MenuItem>
             </StyledMenu> 
         </Box>
     );

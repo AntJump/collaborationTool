@@ -20,14 +20,13 @@ function ProjectMemberList(){
 
 
     return members && (
-        <Box sx={{overflow:"scroll"}} maxHeight={'85%'}>
+        <Box sx={{overflowY:"scroll"}} maxHeight={'90%'}>
             {members.map(member => 
-                <Box key ={member.memberId} sx={{ minWidth:  275, maxWidth: 300}}>
-                     <Stack direction='row' spacing={1}>
+                <Box key ={member.memberId} sx={{ minWidth:  275, maxWidth: 300, marginTop: 2}}>
+                    <Stack direction='row' spacing={1}>
                         <ProjectMemberCard member = {member}/>
                         <RoleChangeButton member = {member}/>
                     </Stack>
-                    
                 </Box>
             )}
         </Box>

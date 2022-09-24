@@ -17,7 +17,7 @@ function ProjectWaitMemberList(){
 
 
     return waits && (
-        <Box sx={{overflow:"scroll"}}  maxHeight={'85%'}>
+        <Box sx={{overflowY:"scroll"}}  maxHeight={'90%'}>
             {waits.map(wait => 
                 <Box key ={wait.memberId} sx={{ minWidth:  275, maxWidth: 300}}>
                     <WaitMemberCard wait = {wait}/>

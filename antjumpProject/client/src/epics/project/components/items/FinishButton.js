@@ -2,7 +2,7 @@ import { Grid, Button } from "@mui/material";
 
 function FinishButton({text, onClickHandler}){
     return (
-        <Grid item xs={12}>
+        // <Grid item xs={12}>
             <Button 
                 type="submit" 
                 color='button' 
@@ -12,7 +12,7 @@ function FinishButton({text, onClickHandler}){
             >
                 {text}
             </Button>
-        </Grid>
+        // </Grid>
     );
 }
 

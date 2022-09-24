@@ -1,9 +1,13 @@
-import { Button, Modal, Box, Grid } from "@mui/material";
-import { inviteModalBoxstyle } from "./ModalStyle";
+
 import { useState } from "react";
-import ModalHeader from "./ModalHeader";
-import FinishButton from "../items/FinishButton";
+
+import { Button, Modal, Box, Grid } from "@mui/material";
+
+import { modalBoxStyle } from "../../../../common/styles/ModalStyle";
+import ModalHeader from "../../../../common/components/headers/ModalHeader";
 import InviteInputForm from "../Containers/InviteInputForm";
+import FinishButton from "../items/FinishButton";
+
 function ProjectMemberInviteModal({project}){
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
@@ -28,7 +32,7 @@ function ProjectMemberInviteModal({project}){
                 open={open}
                 onClose={handleClose}
             >
-                <Box sx={inviteModalBoxstyle} >
+                <Box sx={modalBoxStyle({w:'30vw', h:'50vh'})} >
                     <ModalHeader title="팀원 초대" onClickHandler={handleClose}/>
                     <Box sx={{}}>
                         <Grid container spacing={2}  >
@@ -36,14 +40,7 @@ function ProjectMemberInviteModal({project}){
                                 <InviteInputForm/>
                             </Grid>
                             <Grid item xs={12} >
-                                <Button  
-                                    color='button' 
-                                    variant="contained" 
-                                    onClick={inviteHandler}
-                                    sx={{float: 'right'}}
-                                >
-                                    초대 메일 발송
-                                </Button>
+                                <FinishButton text="초대 메일 발송" onClickHandler={inviteHandler}/>
                             </Grid>
                         </Grid>
                     </Box>
