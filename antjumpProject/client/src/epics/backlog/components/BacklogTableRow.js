@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 
 function BacklogTableRow({issue}){
 
+
     const {id} = useParams();
 
     return (
