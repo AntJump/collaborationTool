@@ -11,7 +11,11 @@ import IssueFileUpload from "../components/IssueFileUpload.js";
 import IssueManager from "../components/IssueManager.js";
 import SubIssueCard from "../items/SubIssueCard.js";
 import SubIssueList from "../lists/SubIssueList.js";
+import { useParams } from "react-router-dom";
+
 export default function IssueDetailPage() {
+  const { id } = useParams();
+
   return (
     <>
       <Box>
@@ -71,7 +75,14 @@ export default function IssueDetailPage() {
           </Box>
           <IssueFileUpload />
           <SubIssueList />
-          <IssueCreateModal />
+          <Button
+            style={{ marginTop: 20, marginBottom: 20 }}
+            color="button"
+            variant="contained"
+            href={`/project/${id}`}
+          >
+            확인
+          </Button>
         </Box>
       </Box>
     </>
