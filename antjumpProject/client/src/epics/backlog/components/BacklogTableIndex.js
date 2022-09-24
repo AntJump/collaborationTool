@@ -8,6 +8,7 @@ import { GET_BACKLOG, SET_AREA } from "../../../modules/BacklogModule";
 import { issuesData } from "../datas/backlog";
 
 import { Link, useParams } from "react-router-dom";
+import SprintStartModal from "../modals/SprintStartModal";
 
 function BacklogTableIndex(){
     const {id} = useParams();
@@ -26,20 +27,20 @@ function BacklogTableIndex(){
         dispatch({type: SET_AREA});
     }
 
+    
+
     return(
         <>
             <Grid item xs={12}>
                 <Box >
                     <Stack  direction='row' spacing={1} justifyContent="space-between" height='40px' mt={2} mb={2}>
-                        <h3 >메인 스프린트</h3>
-                        <Button color='button' variant="contained" size="small" > 
-                            스프린트 시작
-                        </Button>
+                        <h3>메인 스프린트</h3>
+                        <SprintStartModal includedIssues={backlog[1]}/> 
+                    
                     </Stack>
                     <Box sx={{background:'#F2F2F2', borderRadius:'10px'}} p={3}>
                         <BacklogTable isHeader={false} issues={backlog[1]}/>
                     </Box>
-                    
                 </Box>
             </Grid>
             <Grid item xs={12}>
@@ -54,9 +55,6 @@ function BacklogTableIndex(){
                             )
                         }
                     })}
-                    {/* <Box sx={{ background:'#F2F2F2', borderRadius:'10px'}} p={3} mt={1} id='sprintBox'>
-                        <BacklogTable isHeader={false}/>
-                    </Box>  */}
                     <Button sx={{float: 'right'}}color='button' onClick={onClickCreate}> 
                             + 빈 스프린트 생성
                     </Button>

@@ -15,9 +15,9 @@ import ModalHeader from '../../../../common/components/headers/ModalHeader';
 function MemberListModal({open, handleClose, project}) {
     return (
         <Modal
-        open={open}
-        onClose={handleClose}
-    >
+            open={open}
+            onClose={handleClose}
+        >
         <Box sx={modalBoxStyle({w:'60vw',h:'70vh'})} maxHeight='600px' maxWidth='600px'>
             <ModalHeader title="프로젝트 팀원 목록" onClickHandler={handleClose}/>
             <Box>

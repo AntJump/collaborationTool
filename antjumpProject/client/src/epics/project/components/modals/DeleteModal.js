@@ -16,9 +16,9 @@ function DeleteModal({open, handleClose, project}) {
 
     return (
         <Modal
-        open={open}
-        onClose={handleClose}
-    >
+            open={open}
+            onClose={handleClose}
+        >
         <Box sx={modalBoxStyle({w:'20vw',h:'10vh'})}>
             <Typography id="modal-title" variant="h6" component="h1" sx={{ height: '80%', textAlign: 'center'}}>
                 정말 삭제 하시겠습니까?
