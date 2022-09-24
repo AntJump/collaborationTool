@@ -16,10 +16,12 @@ import HomeIcon from '@mui/icons-material/Home';
 
 import { Badge, TextField } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 
 function ProjectHeader() {
   const {id} = useParams();
+  const selectedProject = useSelector(state => state.projectReducer);
+  console.log('project header selectedProject', selectedProject);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -124,7 +126,7 @@ function ProjectHeader() {
               <HomeIcon/> 
             </IconButton>
           <Button component={Link} to={`/project/${id}`}> 
-                  <Typography sx={{ color:"black"}} textAlign="center">프로젝트 이름</Typography>
+                  <Typography sx={{ color:"black"}} textAlign="center">{selectedProject.name}</Typography>
           </Button>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex", color:"black"}}}>

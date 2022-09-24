@@ -1,11 +1,9 @@
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Divider, Button } from '@mui/material';
-import { modalBoxstyle } from './ModalStyle';
+import { modalBoxStyle } from '../../../../common/styles/ModalStyle';
 
-import ProjectModifyForm from '../Containers/ProjectModifyForm';
-import ModalHeader from './ModalHeader';
+import ProjectModifyForm from '../containers/ProjectModifyForm';
+import ModalHeader from '../../../../common/components/headers/ModalHeader';
 
 
 export default function ModifyModal({open, handleClose, project}) {
@@ -16,7 +14,7 @@ export default function ModifyModal({open, handleClose, project}) {
         open={open}
         onClose={handleClose}
     >
-        <Box sx={modalBoxstyle}>
+        <Box sx={modalBoxStyle({w: '40vw', h:'75vh'})} maxHeight='600px'>
           <ModalHeader title="프로젝트 수정" onClickHandler={handleClose}/>
           <ProjectModifyForm project={project}/>
         </Box>
