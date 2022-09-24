@@ -45,8 +45,13 @@ function QNADetailPage() {
                     { qna.qnaContent }
                 </Typography>
             </Box>
-            <Button component={Link} to="modify">수정하기</Button>   
-            <Button>삭제하기</Button>
+            <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}>
+                <Button component={Link} to="modify">수정하기</Button>   
+                <Button>삭제하기</Button>
+            </Box>
         </>
     );
 }

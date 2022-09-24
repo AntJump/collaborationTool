@@ -32,13 +32,14 @@ class CalendarColorPicker extends React.Component {
     const styles = reactCSS({
       'default': {
         color: {
-          width: '36px',
+          width: '50px',
           height: '14px',
           borderRadius: '2px',
           background: `rgba(${ this.state.color.r }, ${ this.state.color.g }, ${ this.state.color.b }, ${ this.state.color.a })`,
-          paddingTop: '9px'
+          paddingTop: '13px'
         },
         swatch: {
+          position: 'relative',
           padding: '5px',
           background: '#fff',
           borderRadius: '1px',
@@ -49,7 +50,7 @@ class CalendarColorPicker extends React.Component {
         },
         popover: {
           position: 'absolute',
-          zIndex: '2',
+          zIndex: '2'
         },
         cover: {
           position: 'fixed',
@@ -63,7 +64,7 @@ class CalendarColorPicker extends React.Component {
 
     return (
       <Box sx={{ display: 'inline-block' }}>
-        <div style={{ justifyContent:'center', display: 'inline-block', padding: 10 }}>
+        <div style={{ justifyContent:'center', padding: '10px 15px 10px 15px' }}>
           <div style={ styles.swatch } onClick={ this.handleClick }>
               <div style={ styles.color } />
           </div>

@@ -15,7 +15,7 @@ export default function CalendarPublicSet() {
 
     return (
         <Box sx={{ display: 'inline-block' }}>
-            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+            <FormControl sx={{ m: 1, minWidth: 148 }} size="small">
                 <InputLabel id="demo-select-small">공개 여부 *</InputLabel>
                 <Select
                     labelId="demo-select-small"
