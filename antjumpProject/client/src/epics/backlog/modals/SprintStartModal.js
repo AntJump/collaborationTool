@@ -54,10 +54,11 @@ function SprintStartModal(){
                                 <SprintStartInfoForm />
                             </Grid>
                             <Grid item xs={12} >
-                                <SprintMemberSelectModal includedIssues={includedIssues} beforeHandleClose = {handleClose}/>
                                 <Button color="grey" variant="contained"  sx={{float:'left'}} onClick={handleClose} mb={1}>
                                     취소
                                 </Button>
+                                <SprintMemberSelectModal includedIssues={includedIssues} beforeHandleClose = {handleClose}/>
+                                
                             </Grid>
                         </Grid>
                     </Box>
