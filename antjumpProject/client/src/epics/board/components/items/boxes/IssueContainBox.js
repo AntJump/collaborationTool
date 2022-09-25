@@ -1,32 +1,3 @@
-// import { Grid, Typography } from "@mui/material";
-// import Box from "@mui/material/Box";
-// import Paper from "@mui/material/Paper";
-
-// const results = [
-//   { title: "1", details: "tttt2" },
-//   { title: "2", details: "ttttdwqd2" },
-//   { title: "3", details: "tttfwafawt2" },
-// ];
-
-// function IssueContainBox() {
-//   return (
-//     <Grid container spacing={3} marginTop={1}>
-//       {results.map((element) => {
-//         return (
-//           <Grid item xs={4}>
-//             <Paper elevation={3} sx={{ height: "400px" }}>
-//               <Typography> {element.title}</Typography>
-//               <Typography> {element.details}</Typography>
-//             </Paper>
-//           </Grid>
-//         );
-//       })}
-//     </Grid>
-//   );
-// }
-
-// export default IssueContainBox;
-
 import * as React from "react";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
@@ -47,9 +18,9 @@ function intersection(a, b) {
 
 export default function IssueContainBox() {
   const [checked, setChecked] = React.useState([]);
-  const [left, setLeft] = React.useState([0, 1, 2, 3]);
-  const [middle, setMiddle] = React.useState([4, 5, 6, 7]);
-  const [right, setRight] = React.useState([8, 9, 10, 11]);
+  const [left, setLeft] = React.useState([0, 1, 2, 3, 4]);
+  const [middle, setMiddle] = React.useState([]);
+  const [right, setRight] = React.useState([]);
 
   const leftChecked = intersection(checked, left);
   const middleChecked = intersection(checked, middle);
@@ -138,7 +109,6 @@ export default function IssueContainBox() {
             sx={{ my: 0.5 }}
             variant="outlined"
             size="small"
-            // onClick={handleCheckedRight}
             onClick={handlecheckedLeftToMiddle}
             disabled={leftChecked.length === 0}
             aria-label="move selected right"
@@ -149,9 +119,7 @@ export default function IssueContainBox() {
             sx={{ my: 0.5 }}
             variant="outlined"
             size="small"
-            // onClick={handleCheckedLeft}
             onClick={handleCheckedMiddleToLeft}
-            // disabled={rightChecked.length === 0}
             disabled={middleChecked.length === 0}
             aria-label="move selected left"
           >
@@ -159,19 +127,13 @@ export default function IssueContainBox() {
           </Button>
         </Grid>
       </Grid>
-      {/* <Grid item>{customList(right)}</Grid> */}
       <Grid item>{customList(middle)}</Grid>
-
-      {/* middle to right */}
-      {/* <Grid item>{customList(middle)}</Grid> */}
       <Grid item>
         <Grid container direction="column" alignItems="center">
           <Button
             sx={{ my: 0.5 }}
             variant="outlined"
             size="small"
-            // onClick={handleCheckedRight}
-            // onClick={handlecheckedLeftToMiddle}
             onClick={handlecheckedMiddleToRight}
             disabled={middleChecked.length === 0}
             aria-label="move selected right"
@@ -182,10 +144,7 @@ export default function IssueContainBox() {
             sx={{ my: 0.5 }}
             variant="outlined"
             size="small"
-            // onClick={handleCheckedLeft}
-            // onClick={handleCheckedMiddleToLeft}
             onClick={handleCheckedRightToMiddle}
-            // disabled={rightChecked.length === 0}
             disabled={rightChecked.length === 0}
             aria-label="move selected left"
           >
@@ -193,7 +152,6 @@ export default function IssueContainBox() {
           </Button>
         </Grid>
       </Grid>
-      {/* <Grid item>{customList(right)}</Grid> */}
       <Grid item>{customList(right)}</Grid>
     </Grid>
   );

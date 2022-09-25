@@ -7,27 +7,30 @@ import RemembranceHeader from "../components/items/texts/RemembranceHeader";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import RemembranceList from "../components/lists/RemembranceList";
-
-const remembranceStyle = {
-  bgcolor: "background.paper",
-  borderColor: "text.primary",
-  m: 1,
-  border: 1,
-  width: "75rem",
-  height: "6rem",
-};
+import Grid from "@mui/material/Grid";
 
 function BoardPage() {
   return (
     <>
-      <BoardHeaderText />
-      <Box sx={{ m: 1, border: 1 }}>
-        <ProgressBar />
-        <IssueContainBox />
-      </Box>
-      <AlarmText />
-      <RemembranceHeader />
-      <RemembranceList />
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        style={{ minHeight: "100vh" }}
+      >
+        <BoardHeaderText />
+        <Box sx={{ m: 1, border: 1 }}>
+          <ProgressBar />
+          <IssueContainBox />
+        </Box>
+        <hr />
+        <Grid item xs={3}>
+          <AlarmText />
+          <RemembranceHeader />
+          <RemembranceList />
+        </Grid>
+      </Grid>
     </>
   );
 }
