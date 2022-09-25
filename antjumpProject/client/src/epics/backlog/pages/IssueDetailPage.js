@@ -11,6 +11,7 @@ import IssueFileUpload from "../components/IssueFileUpload.js";
 import IssueManager from "../components/IssueManager.js";
 import SubIssueCard from "../items/SubIssueCard.js";
 import SubIssueList from "../lists/SubIssueList.js";
+import IssueDelete from "../components/IssueDelete.js";
 import { useParams } from "react-router-dom";
 
 export default function IssueDetailPage() {
@@ -75,6 +76,7 @@ export default function IssueDetailPage() {
           </Box>
           <IssueFileUpload />
           <SubIssueList />
+          <IssueDelete />
           <Button
             style={{ marginTop: 20, marginBottom: 20 }}
             color="button"
