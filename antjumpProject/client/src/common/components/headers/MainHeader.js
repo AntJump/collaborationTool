@@ -53,8 +53,7 @@ const MainHeader = () => {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          
-          <LogoButton/>
+          <LogoButton />
           <Button component={Link} to="/">
             <Typography
               variant="h5"
@@ -167,7 +166,7 @@ const MainHeader = () => {
               </Box>
 
               <p />
-                <Button component={Link} to="/intro/charge"> 
+              <Button component={Link} to="/intro/charge">
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{pages[0]}</Typography>
                 </MenuItem>
@@ -258,7 +257,7 @@ const MainHeader = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <Button component={Link} to="/profile">
+              <Button component={Link} to="/members/profile">
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{settings[0]}</Typography>
                 </MenuItem>

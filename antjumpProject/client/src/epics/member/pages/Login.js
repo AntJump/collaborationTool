@@ -87,7 +87,9 @@ function Login() {
         </Button>
         <Grid container>
           <Grid item xs>
-            <Link href="#">비밀번호 찾기</Link>
+            <Link component={RouterLink} to="/members/request">
+              비밀번호 찾기
+            </Link>
           </Grid>
           <Grid item>
             <Link component={RouterLink} to="/members/register">

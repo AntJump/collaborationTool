@@ -1,6 +1,8 @@
 import React from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
 
 function FindPwd() {
   return (
@@ -13,7 +15,6 @@ function FindPwd() {
           alignItems: "center",
         }}
         component="form"
-        onSubmit={handleSubmit}
         noValidate
       >
         <h1>비밀번호 찾기</h1>
