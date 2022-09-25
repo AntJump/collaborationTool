@@ -1,17 +1,19 @@
-
-
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Button, Modal, Box, Grid, Typography} from "@mui/material";
 
 import { modalBoxStyle } from "../../../common/styles/ModalStyle";
 import ModalHeader from "../../../common/components/headers/ModalHeader";
 import SprintStartInfoForm from "../components/SprintStartInfoForm";
+import SprintMemberSelectModal from "./SprintMemberSelectModal";
 
-function SprintStartModal({includedIssues}){
+import { GET_INCLUDED_ISSUES } from "../../../modules/IssueModule";
+import { useSelector, useDispatch} from "react-redux";
+import { incluedIssuesData } from "../datas/sprint";
+
+
+function SprintStartModal(){
     const [open, setOpen] = useState(false);
-    console.log(includedIssues);
     const handleOpen = () => {
       setOpen(true);
     };
@@ -19,13 +21,17 @@ function SprintStartModal({includedIssues}){
       setOpen(false);
     };
 
-    const finishHandler = () =>{
-        handleClose();
-    };
 
-    const onClickNext = () => {
-        alert('다음?');
-    };
+    const includedIssues = useSelector(state => state.issueReducer);
+    console.log(includedIssues);
+    const dispatch = useDispatch();
+    useEffect(
+        ()=>{
+            dispatch({type: GET_INCLUDED_ISSUES, payload: incluedIssuesData});
+        },
+        [open]
+    )
+
     return (
         includedIssues?
             <>
@@ -37,24 +43,19 @@ function SprintStartModal({includedIssues}){
                     onClose={handleClose}
                 >
                     <Box sx={modalBoxStyle({w: '600px', h: '600px'})} >
-                        <ModalHeader title="스프린트 / 정보 입력" onClickHandler={handleClose}/>
+                        <ModalHeader title={`스프린트 시작 | 포함된 이슈(${includedIssues.length}개)`} onClickHandler={handleClose}/>
                         <Grid container spacing={1} height='80%'>
                             <Grid item xs={12} height='10%'  mb={2}>
                                 <Typography  sx={{fontSize: 30, display: 'inline-block'}}>
-                                    스프린트 시작 |
-                                </Typography>
-                                <Typography sx= {{ml: 1 ,display: 'inline-block'}}>
-                                    포함된 이슈({includedIssues.length}개)
+                                    정보 입력
                                 </Typography>
                             </Grid>
                             <Grid item xs={12} height='85%'>
-                                <SprintStartInfoForm/>
+                                <SprintStartInfoForm />
                             </Grid>
                             <Grid item xs={12} >
-                                <Button color="button" variant="contained" sx={{float:'right'}} onClick={onClickNext} mb={1}>
-                                    다음
-                                </Button>
-                                <Button color="grey" variant="contained"  sx={{float:'right'}} onClick={handleClose} mb={1}>
+                                <SprintMemberSelectModal includedIssues={includedIssues} beforeHandleClose = {handleClose}/>
+                                <Button color="grey" variant="contained"  sx={{float:'left'}} onClick={handleClose} mb={1}>
                                     취소
                                 </Button>
                             </Grid>

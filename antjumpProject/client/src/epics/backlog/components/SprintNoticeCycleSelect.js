@@ -8,13 +8,11 @@ import { useState } from "react";
 
 function SprintNoticeCycleSelect(){
 
-  const [select, setSelect] = useState(1);
-
-  const handleChange = (event) => {
-    setSelect(event.target.value);
-  };
-
-
+    const [select, setSelect] = useState(1);
+    const handleChange= (e)=>{
+        setSelect(e.target.value);
+    }
+    
     return (
         <FormControl fullWidth>
             <InputLabel id="select-label">알림 주기 *</InputLabel>

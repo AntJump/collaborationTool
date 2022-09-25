@@ -29,14 +29,17 @@ export const projectReducer = handleActions(
     {
         [SET_SELECTED_PROJECT] : (state, {payload}) => {
             console.log('set selected project payload', payload);
+
             return payload;
         },
         [GET_PROJECTS]: (state, {payload}) => {
             console.log('get project payload:', payload);
+
             return payload;
         },
         [GET_PROJECT_MEMBERS]: (state, {payload}) =>{
             console.log('get porject payload:', payload);
+            
             return payload;
         }
     },
