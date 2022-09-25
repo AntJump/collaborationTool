@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import ProjectLayout from "../layouts/ProjectLayout";
 import BacklogPage from "../epics/backlog/pages/BacklogPage";
 import BoardPage from "../epics/board/pages/BoardPage";
-import StoragePage from "../epics/storage/pages/StoragePage";
+import SprintStoragePage from "../epics/storage/pages/SprintStoragePage";
 import MyWorkPage from "../epics/myWork/pages/MyWorkPage";
 import CalendarPage from "../epics/calendar/pages/CalendarPage";
 import ChattingPage from "../epics/chatting/pages/ChattingPage";
@@ -14,7 +14,7 @@ import IssueDetailPage from "../epics/backlog/pages/IssueDetailPage";
 
 import SubIssueCreatePage from "../epics/backlog/pages/SubIssueCreatePage";
 import SubIssueDetailPage from "../epics/backlog/pages/SubIssueDetailPage";
-
+import RemembranceStoragePage from "../epics/storage/pages/RemembranceStoragePage";
 
 function ProjectRoute() {
   return (
@@ -29,7 +29,11 @@ function ProjectRoute() {
             <Route path="subissue/:issueId" element={<SubIssueDetailPage />} />
           </Route>
           <Route path="board" element={<BoardPage />} />
-          <Route path="storage" element={<StoragePage />} />
+          <Route path="sprintstorage" element={<SprintStoragePage />} />
+          <Route
+            path="remembrancestorage/1"
+            element={<RemembranceStoragePage />}
+          />
           <Route path="myWork" element={<MyWorkPage />} />
           <Route path="calendar">
             <Route index element={<CalendarPage />} />

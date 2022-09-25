@@ -22,7 +22,7 @@ function BoardHeaderText() {
       </div>
       <div
         style={{
-          marginLeft: "700px",
+          marginLeft: "400px",
           marginTop: "20px",
           display: "flex",
         }}

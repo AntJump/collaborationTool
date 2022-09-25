@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import FinishedSprintText from "../texts/FinishedSprintText";
-import StorageHeader from "../texts/StorageHeader";
 
 const remembranceStyle = {
   bgcolor: "background.paper",
