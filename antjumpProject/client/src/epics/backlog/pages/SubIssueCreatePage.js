@@ -6,8 +6,7 @@ import TextField from "@mui/material/TextField";
 import IssueType from "../components/IssueType.js";
 import IssuePriority from "../components/IssuePriority.js";
 import IssueDifficulty from "../components/IssueDifficulty.js";
-import IssueCreateModal from "../modals/IssueCreateModal.js";
-import IssueDetail from "./IssueDetailPage.js";
+import SubIssueCreateModal from "../modals/SubIssueCreateModal";
 import IssueFileUpload from "../components/IssueFileUpload.js";
 
 export default function SubIssueCreatePage() {
@@ -61,7 +60,7 @@ export default function SubIssueCreatePage() {
           />
         </Box>
         <IssueFileUpload />
-        <IssueCreateModal />
+        <SubIssueCreateModal />
       </Box>
     </Box>
   );

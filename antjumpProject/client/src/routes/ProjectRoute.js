@@ -15,7 +15,6 @@ import IssueDetailPage from "../epics/backlog/pages/IssueDetailPage";
 import SubIssueCreatePage from "../epics/backlog/pages/SubIssueCreatePage";
 import SubIssueDetailPage from "../epics/backlog/pages/SubIssueDetailPage";
 
-
 function ProjectRoute() {
   return (
     <Routes>
@@ -26,6 +25,7 @@ function ProjectRoute() {
           <Route path="issue-create" element={<IssueCreatePage />} />
           <Route path="issue/:issueId">
             <Route index element={<IssueDetailPage />} />
+            <Route path="subissue-create" element={<SubIssueCreatePage />} />
             <Route path="subissue/:issueId" element={<SubIssueDetailPage />} />
           </Route>
           <Route path="board" element={<BoardPage />} />

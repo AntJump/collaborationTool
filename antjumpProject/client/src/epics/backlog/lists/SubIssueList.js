@@ -14,7 +14,7 @@ import SubIssueCard from "../items/SubIssueCard.js";
 
 export default function SubIssueList() {
   const issues = useSelector((state) => state.issueReducer);
-  console.log("8uohkjbkjb : ", issues);
+  console.log(issues);
   const dispatch = useDispatch();
 
   useEffect(() => {
