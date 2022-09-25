@@ -109,7 +109,6 @@ export default function IssueContainBox() {
             sx={{ my: 0.5 }}
             variant="outlined"
             size="small"
-            // onClick={handleCheckedRight}
             onClick={handlecheckedLeftToMiddle}
             disabled={leftChecked.length === 0}
             aria-label="move selected right"
@@ -120,9 +119,7 @@ export default function IssueContainBox() {
             sx={{ my: 0.5 }}
             variant="outlined"
             size="small"
-            // onClick={handleCheckedLeft}
             onClick={handleCheckedMiddleToLeft}
-            // disabled={rightChecked.length === 0}
             disabled={middleChecked.length === 0}
             aria-label="move selected left"
           >
@@ -130,18 +127,13 @@ export default function IssueContainBox() {
           </Button>
         </Grid>
       </Grid>
-      {/* <Grid item>{customList(right)}</Grid> */}
       <Grid item>{customList(middle)}</Grid>
-      {/* middle to right */}
-      {/* <Grid item>{customList(middle)}</Grid> */}
       <Grid item>
         <Grid container direction="column" alignItems="center">
           <Button
             sx={{ my: 0.5 }}
             variant="outlined"
             size="small"
-            // onClick={handleCheckedRight}
-            // onClick={handlecheckedLeftToMiddle}
             onClick={handlecheckedMiddleToRight}
             disabled={middleChecked.length === 0}
             aria-label="move selected right"
@@ -152,10 +144,7 @@ export default function IssueContainBox() {
             sx={{ my: 0.5 }}
             variant="outlined"
             size="small"
-            // onClick={handleCheckedLeft}
-            // onClick={handleCheckedMiddleToLeft}
             onClick={handleCheckedRightToMiddle}
-            // disabled={rightChecked.length === 0}
             disabled={rightChecked.length === 0}
             aria-label="move selected left"
           >
@@ -163,7 +152,6 @@ export default function IssueContainBox() {
           </Button>
         </Grid>
       </Grid>
-      {/* <Grid item>{customList(right)}</Grid> */}
       <Grid item>{customList(right)}</Grid>
     </Grid>
   );
