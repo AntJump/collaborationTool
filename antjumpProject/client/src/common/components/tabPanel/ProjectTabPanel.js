@@ -41,7 +41,7 @@ export default function ProjectTabPanel() {
         <NavLink to={`/project/${id}/board`}>
           <StyledTab icon={<ContentPasteIcon />} label="보드" />
         </NavLink>
-        <NavLink to={`/project/${id}/storage`}>
+        <NavLink to={`/project/${id}/sprintstorage`}>
           <StyledTab icon={<PersonPinIcon />} label="보관" />
         </NavLink>
         <Divider sx={{ backgroundColor: "white", marginBottom: "0.1vh" }} />

@@ -29,7 +29,7 @@ function Remembrance() {
               flexWrap: "wrap",
               "& > :not(style)": {
                 m: 1,
-                width: "140px",
+                width: "120px",
                 marginRight: "140px",
                 height: 30,
               },
@@ -47,7 +47,7 @@ function Remembrance() {
               flexWrap: "wrap",
               "& > :not(style)": {
                 m: 1,
-                width: "230px",
+                width: "200px",
                 height: 30,
                 marginRight: "50px",
               },
