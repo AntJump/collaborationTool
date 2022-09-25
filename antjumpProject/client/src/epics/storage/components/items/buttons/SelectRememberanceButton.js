@@ -2,11 +2,11 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
 function SelectRememberanceButton() {
-  const projectNum = 1;
+  const sprintNum = 1;
   return (
     <Box sx={{ "& button": { m: 1 } }}>
       <div>
-        <Button variant="contained" size="large" href={`storage/${projectNum}`}>
+        <Button variant="contained" size="large" href={`storage/${sprintNum}`}>
           회고
           <br />
           조회

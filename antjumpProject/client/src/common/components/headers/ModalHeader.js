@@ -11,7 +11,6 @@ function ModalHeader({title, onClickHandler}){
             <IconButton onClick={onClickHandler}  sx={{float: 'right'}}>
                 <CloseIcon  />
             </IconButton>
-
             <Typography variant="h6" component="h2">
                 {title}
             </Typography>
