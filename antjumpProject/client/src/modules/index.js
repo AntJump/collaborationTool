@@ -6,7 +6,9 @@ import faqReducer from "./FAQModule";
 import { backlogReducer } from "./BacklogModule";
 
 // 프로젝트 관련 모듈 import
-import { projectReducer} from "./ProjectModule";
+
+import { issueReducer } from "./IssueModule";
+import { projectReducer } from "./ProjectModule";
 
 const rootReducer = combineReducers({
   qnaReducer,
@@ -15,6 +17,7 @@ const rootReducer = combineReducers({
   projectReducer,
   backlogReducer,
   memberReducer,
+  issueReducer,
 });
 
 export default rootReducer;

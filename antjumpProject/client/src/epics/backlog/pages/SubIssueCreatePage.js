@@ -10,11 +10,11 @@ import IssueCreateModal from "../modals/IssueCreateModal.js";
 import IssueDetail from "./IssueDetailPage.js";
 import IssueFileUpload from "../components/IssueFileUpload.js";
 
-export default function IssueCreatePage() {
+export default function SubIssueCreatePage() {
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box>
-        <h3>이슈 생성</h3>
+        <h3>하위이슈 생성</h3>
         <Box
           sx={{
             display: "flex",
@@ -40,9 +40,9 @@ export default function IssueCreatePage() {
         >
           <TextField
             fullWidth
-            label="이슈 요약 *"
-            id="issue-comment"
-            placeholder="이슈에 대한 간략한 내용을 작성해 주세요."
+            label="하위이슈 요약 *"
+            id="subissue-comment"
+            placeholder="하위이슈에 대한 간략한 내용을 작성해 주세요."
           />
         </Box>
         <Box
@@ -53,9 +53,9 @@ export default function IssueCreatePage() {
         >
           <TextField
             fullWidth
-            id="issue-explanation"
-            label="이슈 설명"
-            placeholder="이슈에 대한 자세한 내용을 작성해 주세요."
+            id="subissue-explanation"
+            label="하위이슈 설명"
+            placeholder="하위이슈에 대한 자세한 내용을 작성해 주세요."
             multiline
             rows={10}
           />

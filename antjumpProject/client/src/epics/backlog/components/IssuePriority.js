@@ -13,7 +13,7 @@ export default function IssuePriority() {
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box>
       <FormControl fullWidth>
         <InputLabel id="priority-select-label">우선순위</InputLabel>
         <Select
