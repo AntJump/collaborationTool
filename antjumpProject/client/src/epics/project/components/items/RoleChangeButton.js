@@ -3,6 +3,7 @@ import { StyledMenu } from "./StyledMenu";
 import { useState } from "react";
 
 function RoleChangeButton({member}){
+    const [role, setRole] = useState(member.roleName);
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -10,15 +11,17 @@ function RoleChangeButton({member}){
         setAnchorEl(event.currentTarget);
     };
     const handleClose = (e) => {
-        member.roleName = e.target.value;
+        setRole(e.target.value);
         setAnchorEl(null)
     };
+
+    
     
 
     return (
         <Box >
             <Button color = "grey" variant="contained" onClick={handleClick} sx={{ borderRadius:10, display: 'inline-block'}}>
-                {member.roleName}
+                {role}
             </Button>
             <StyledMenu
                 anchorEl={anchorEl}

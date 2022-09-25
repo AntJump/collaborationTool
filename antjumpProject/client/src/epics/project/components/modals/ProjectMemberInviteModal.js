@@ -14,6 +14,7 @@ function ProjectMemberInviteModal({project}){
       setOpen(true);
     };
     const handleClose = () => {
+        alert("초대 메일을 발송하였습니다!");
       setOpen(false);
     };
 

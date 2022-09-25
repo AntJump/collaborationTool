@@ -38,6 +38,17 @@ export const backlogReducer = handleActions(
             ];
             return stateCopy;
         },
+        [DELETE_AREA] : (state, {idx}) => {
+            console.log('delete area payload', idx);
+            var changedArray = state.filter((data, index) => {
+                return index != idx;
+            });
+
+            console.log(changedArray);
+
+            return changedArray;
+
+        }
 
     },
     initState

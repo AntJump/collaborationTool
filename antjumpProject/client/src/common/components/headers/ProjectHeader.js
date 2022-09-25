@@ -17,13 +17,30 @@ import HomeIcon from '@mui/icons-material/Home';
 import { Badge, TextField } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { GET_SELECTED_PROJECT } from "../../../modules/ProjectModule";
+import { useDispatch } from "react-redux";
+import { participatedProjects } from "../../../epics/project/datas/ProjectList"
 
 function ProjectHeader() {
+
+  const projects = participatedProjects;
   const {id} = useParams();
-  const selectedProject = useSelector(state => state.projectReducer);
   
-  console.log('project header selectedProject', selectedProject);
-  
+  const result = useSelector(state => state.projectReducer);
+  const selectedProject = result[0];
+
+
+  console.log('project header ', selectedProject);
+
+  const dispatch = useDispatch();
+  useEffect(
+    ()=>{
+      dispatch({type: GET_SELECTED_PROJECT, payload:{projects ,id}})
+    },
+    []
+  )
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -114,7 +131,7 @@ function ProjectHeader() {
     </Menu>
   );
 
-  return (
+  return selectedProject && (
 
       <AppBar position="static" sx={{ backgroundColor: 'white', borderRadius:'20px'}}>
         <Toolbar>
