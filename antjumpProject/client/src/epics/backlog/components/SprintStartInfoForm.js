@@ -17,7 +17,6 @@ function SprintStartInfoForm(){
     const onSubmitHandler = (e) =>{
        
     }
-
     
 
     return (

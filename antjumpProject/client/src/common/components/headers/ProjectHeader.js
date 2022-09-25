@@ -21,8 +21,9 @@ import { useSelector } from "react-redux";
 function ProjectHeader() {
   const {id} = useParams();
   const selectedProject = useSelector(state => state.projectReducer);
+  
   console.log('project header selectedProject', selectedProject);
-
+  
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 

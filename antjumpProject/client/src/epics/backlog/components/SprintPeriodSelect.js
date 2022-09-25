@@ -4,7 +4,6 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import { useState } from "react";
 
 function SprintPeriodSelect({period, setPeriod}){
     const handleChange = (event) => {
@@ -16,7 +15,6 @@ function SprintPeriodSelect({period, setPeriod}){
         <FormControl fullWidth>
             <InputLabel id="select-label">기간 *</InputLabel>
             <Select
-
                 defaultValue={period}
                 label='기간 *'
                 onChange={handleChange}
