@@ -41,7 +41,7 @@ export default function TabPanel() {
         <Box component={Link} to="/qnas"><StyledTab label="문의 목록"/></Box>
         <Box component={Link} to="/members"><StyledTab label="회원 목록"/></Box>
         <Box component={Link} to="/members"><StyledTab label="탈퇴회원 목록"/></Box>
-        <Box component={Link} to="/payments"><StyledTab label="결제회원 목록"/></Box>
+        <Box component={Link} to="/payments"><StyledTab label="결제 내역"/></Box>
         <Box component={Link} to="/intros"><StyledTab label="소개 목록"/></Box>        
         <Box component={Link} to="/faqs"><StyledTab label="FAQ 목록"/></Box>
       </StyledTabs>
