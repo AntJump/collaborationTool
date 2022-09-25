@@ -7,6 +7,7 @@ import RemembranceHeader from "../components/items/texts/RemembranceHeader";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import RemembranceList from "../components/lists/RemembranceList";
+import Grid from "@mui/material/Grid";
 
 const remembranceStyle = {
   bgcolor: "background.paper",
@@ -20,14 +21,38 @@ const remembranceStyle = {
 function BoardPage() {
   return (
     <>
-      <BoardHeaderText />
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        style={{ minHeight: "100vh" }}
+      >
+        {/* <RemembranceStorageHeader /> */}
+        <BoardHeaderText />
+        <Box sx={{ m: 1, border: 1 }}>
+          <ProgressBar />
+          <IssueContainBox />
+        </Box>
+        <hr />
+        <Grid item xs={3}>
+          {/* <RemembranceList />
+          <RemembranceList />
+          <RemembranceList /> */}
+          <AlarmText />
+          <RemembranceHeader />
+          <RemembranceList />
+        </Grid>
+      </Grid>
+
+      {/* <BoardHeaderText />
       <Box sx={{ m: 1, border: 1 }}>
         <ProgressBar />
         <IssueContainBox />
       </Box>
       <AlarmText />
       <RemembranceHeader />
-      <RemembranceList />
+      <RemembranceList /> */}
     </>
   );
 }

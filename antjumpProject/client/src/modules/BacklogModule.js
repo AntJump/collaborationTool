@@ -37,7 +37,8 @@ export const backlogReducer = handleActions(
                 []
             ];
             return stateCopy;
-        }
+        },
+
     },
     initState
 )

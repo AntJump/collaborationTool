@@ -18,9 +18,9 @@ function intersection(a, b) {
 
 export default function IssueContainBox() {
   const [checked, setChecked] = React.useState([]);
-  const [left, setLeft] = React.useState([0, 1, 2, 3]);
-  const [middle, setMiddle] = React.useState([4, 5, 6, 7]);
-  const [right, setRight] = React.useState([8, 9, 10, 11]);
+  const [left, setLeft] = React.useState([0, 1, 2, 3, 4]);
+  const [middle, setMiddle] = React.useState([]);
+  const [right, setRight] = React.useState([]);
 
   const leftChecked = intersection(checked, left);
   const middleChecked = intersection(checked, middle);
@@ -132,7 +132,6 @@ export default function IssueContainBox() {
       </Grid>
       {/* <Grid item>{customList(right)}</Grid> */}
       <Grid item>{customList(middle)}</Grid>
-
       {/* middle to right */}
       {/* <Grid item>{customList(middle)}</Grid> */}
       <Grid item>

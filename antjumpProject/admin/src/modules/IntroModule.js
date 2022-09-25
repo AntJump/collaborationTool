@@ -9,9 +9,9 @@ const initialState = {
 };
 
 /* 액션 */
-export const GET_INTROS = 'faqs/GET_INTROS';
-export const GET_INTRO_DETAIL = 'faqs/GET_INTRO_DETAIL';
-export const INTRO_CONTENT = 'faqs/INTRO_CONTENT';
+export const GET_INTROS = 'intros/GET_INTROS';
+export const GET_INTRO_DETAIL = 'intros/GET_INTRO_DETAIL';
+export const INTRO_CONTENT = 'intros/INTRO_CONTENT';
 
 const actions = createActions({
     [GET_INTROS]: () => {},
@@ -22,7 +22,7 @@ const actions = createActions({
 console.log(actions);
 
 /* 리듀서 */
-const qnaReducer = handleActions(
+const introReducer = handleActions(
     {
           [GET_INTRO_DETAIL]: (state, { payload : detail }) => {
 
@@ -43,4 +43,4 @@ const qnaReducer = handleActions(
     initialState
 );
 
-export default qnaReducer;
+export default introReducer;
