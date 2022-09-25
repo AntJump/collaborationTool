@@ -1,7 +1,7 @@
-import Box from '@mui/material/Box';
+import {Box, Stack} from '@mui/material';
 // import {  useEffect } from "react";
 // import { useSelector, useDispatch } from "react-redux";
-import { waitMembers } from '../../resource/datas/MemberList';
+import { waitMembers } from '../../datas/MemberList';
 import WaitMemberCard from '../items/WaitMemberCard';
 
 function ProjectWaitMemberList(){
@@ -17,10 +17,12 @@ function ProjectWaitMemberList(){
 
 
     return waits && (
-        <Box sx={{overflow:"scroll"}}  maxHeight={'85%'}>
+        <Box sx={{overflowY:"scroll"}}  maxHeight={'90%'} maxWidth={'100%'} >
             {waits.map(wait => 
-                <Box key ={wait.memberId} sx={{ minWidth:  275, maxWidth: 300}}>
-                    <WaitMemberCard wait = {wait}/>
+                <Box key ={wait.memberId} sx={{ minWidth:  210, maxWidth: 300 , margin: 'auto'}}>
+                    <Stack direction='row' spacing={1}>
+                        <WaitMemberCard wait = {wait}/>
+                    </Stack>
                 </Box>
             )}
         </Box>

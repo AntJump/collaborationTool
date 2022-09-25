@@ -7,7 +7,7 @@ const remembranceStyle = {
   borderColor: "text.primary",
   m: 1,
   border: 1,
-  width: "77rem",
+  width: "75rem",
   height: "6rem",
 };
 

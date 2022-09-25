@@ -7,11 +7,15 @@ const CustomButton = styled(Button)({
       backgroundColor: 'gray',
       color: '#fff',
       '&:hover': {
-        backgroundColor: 'gray',
-        color: '#3c52b2',
-  }})
+        backgroundColor: '#E8E8E8',
+        color: 'black'
+      },
+      marginTop: '8px',
+      marginLeft: '15px',
+      height: '40px'
+})
 
-export default function DisableElevation() {
+export default function CalendarShareBtn() {
 
 
   return (

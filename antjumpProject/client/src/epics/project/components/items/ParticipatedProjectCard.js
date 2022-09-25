@@ -3,13 +3,20 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { SET_SELECTED_PROJECT } from '../../../../modules/ProjectModule';
 
 function ParticipatedProjectCard({project}){
+
+    const dispatch = useDispatch();
+    const onClickProject = () => {
+        dispatch({type: SET_SELECTED_PROJECT, payload: project})
+    }
+
     return (
         <Card variant="outlined" >                        
-            <Button color="blackline" component={Link} to={`/project/${project.id}`}>
+            <Button color="blackline" onClick={onClickProject} component={Link} to={`/project/${project.id}`}>
                 <CardContent>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                         {project.key}

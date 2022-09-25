@@ -3,19 +3,21 @@ import qnaReducer from "./QNAModule";
 import paymentReducer from "./PaymentModule";
 import memberReducer from "./MemberModule";
 import faqReducer from "./FAQModule";
+import { backlogReducer } from "./BacklogModule";
 
 // 프로젝트 관련 모듈 import
-import { myProjectReducer, participatedProjectReducer } from "./ProjectModule";
-const rootReducer = combineReducers({
 
+import { issueReducer } from "./IssueModule";
+import { projectReducer } from "./ProjectModule";
+
+const rootReducer = combineReducers({
   qnaReducer,
   paymentReducer,
   faqReducer,
-  // 프로젝트 관련 모듈 combine
-  myProjectReducer,
-  participatedProjectReducer,
+  projectReducer,
+  backlogReducer,
   memberReducer,
-
+  issueReducer,
 });
 
 export default rootReducer;

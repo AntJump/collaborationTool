@@ -1,17 +1,12 @@
-import RegistButton from "../components/items/RegistButton";
+
 import SearchBox from "../components/items/SearchBox";
-import MyProjectList from "../components/lists/MyProjectList";
-import ParticipatedProjectList from "../components/lists/ParticipatedProjectList";
+import ProjectList from "../components/lists/ProjectList";
 
 function ProjectlistPage() {
   return (
     <div>
       <SearchBox />
-      <h2>참여중인 프로젝트</h2>
-      <ParticipatedProjectList />
-      <h2>내 프로젝트</h2>
-      <RegistButton />
-      <MyProjectList />
+      <ProjectList/>
     </div>
   );
 }

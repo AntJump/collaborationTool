@@ -8,14 +8,14 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import RemembranceList from "../components/lists/RemembranceList";
 
-// const remembranceStyle = {
-//   bgcolor: "background.paper",
-//   borderColor: "text.primary",
-//   m: 1,
-//   border: 1,
-//   width: "77rem",
-//   height: "6rem",
-// };
+const remembranceStyle = {
+  bgcolor: "background.paper",
+  borderColor: "text.primary",
+  m: 1,
+  border: 1,
+  width: "75rem",
+  height: "6rem",
+};
 
 function BoardPage() {
   return (
@@ -28,10 +28,6 @@ function BoardPage() {
       <AlarmText />
       <RemembranceHeader />
       <RemembranceList />
-      {/* <RemembranceHeader />
-      <Box sx={{ ...remembranceStyle, borderRadius: "16px" }}>
-        <Remembrance />
-      </Box> */}
     </>
   );
 }

@@ -10,6 +10,7 @@ import CalendarColorPicker from '../components/form/CalendarColorPicker';
 import CalendarAlarm from '../components/form/CalendarAlarm';
 import CalendarPublicSet from '../components/form/CalendarPublicSet';
 import CalendarShareBtn from '../components/form/CalendarShareBtn';
+import CalendarInsertBtn from '../components/form/CalendarInsertBtn';
 
 function CalendarInsert() {
   return (
@@ -23,11 +24,15 @@ function CalendarInsert() {
       <br/>
       <CalendarFileUpload/>
       <br/>
-      <CalendarTension/>
-      <CalendarColorPicker/>
-      <CalendarAlarm/>
-      <CalendarPublicSet/>
-      <CalendarShareBtn/>
+      <div style={{display: 'flex', justifyContent: 'center', marginRight: '10px' }}>
+        <CalendarTension/>
+        <CalendarColorPicker/>
+        <CalendarAlarm/>
+        <CalendarPublicSet/>
+        <CalendarShareBtn/>
+      </div>
+      <br/>
+      <CalendarInsertBtn/>
     </>
   );
 }

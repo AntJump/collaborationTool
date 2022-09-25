@@ -9,8 +9,7 @@ function SelectRememberanceButton() {
         <Button
           variant="contained"
           size="large"
-          // href={`remembrancestorage/${sprintNum}`}
-          href={`remembrancestorage`}
+          href={`remembrancestorage/${sprintNum}`}
         >
           회고
           <br />

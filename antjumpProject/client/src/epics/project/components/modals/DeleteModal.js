@@ -3,8 +3,8 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Button, Divider } from '@mui/material';
-import { deleteModalBoxStyle } from './ModalStyle';
+import { Button, Divider, Stack } from '@mui/material';
+import { modalBoxStyle } from '../../../../common/styles/ModalStyle';
 
 
 function DeleteModal({open, handleClose, project}) {
@@ -16,21 +16,22 @@ function DeleteModal({open, handleClose, project}) {
 
     return (
         <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-title"
-        aria-describedby="modal-description"
-    >
-        <Box sx={deleteModalBoxStyle}>
-            <Typography id="modal-title" variant="h6" component="h1">
+            open={open}
+            onClose={handleClose}
+        >
+        <Box sx={modalBoxStyle({w:'20vw',h:'10vh'})}>
+            <Typography id="modal-title" variant="h6" component="h1" sx={{ height: '80%', textAlign: 'center'}}>
                 정말 삭제 하시겠습니까?
             </Typography>
-            <Button color='button' variant="contained" onClick={onClickDeleteButton}>
-                예
-            </Button>
-            <Button sx={{ color : 'black'}} onClick={handleClose}>
-                아니요
-            </Button>
+            <Stack direction='row' spacing ={2} sx={{justifyContent: 'center', verticalAlign: 'bottom'}}>
+                <Button color='button' variant="contained" onClick={onClickDeleteButton}>
+                    예
+                </Button>
+                <Button sx={{ color : 'black'}} onClick={handleClose}>
+                    아니요
+                </Button>
+            </Stack>
+            
         </Box>
 
     </Modal>

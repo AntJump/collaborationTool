@@ -1,25 +1,13 @@
 import Box from '@mui/material/Box';
-import {  useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
-import {GET_PARTICIPATED_PROJECTS} from "../../../../modules/ProjectModule";
-import {participatedProjects} from "../../resource/datas/ProjectList"
+import { useSelector} from "react-redux";
+
 
 import ParticipatedProjectCard from '../items/ParticipatedProjectCard';
 
 function ParticipatedProjectList(){
-    const projects = useSelector(state => state.participatedProjectReducer);
-    console.log("[ParticipatedProjectList] projects: ", projects);
-
-    const dispatch = useDispatch();
-
-    useEffect(
-        ()=>{
-            dispatch({type: GET_PARTICIPATED_PROJECTS, payload: participatedProjects});
-        },
-        []
-    );
-
+    const result = useSelector(state => state.projectReducer);
+    const projects = result.participatedProjects;
 
     return projects && (
         <div>

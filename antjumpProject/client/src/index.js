@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 
 // 테마 적용
 import {ThemeProvider } from '@mui/material/styles';
-import {theme} from "./common/AntTheme";
+import {theme} from "./common/styles/AntTheme";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
