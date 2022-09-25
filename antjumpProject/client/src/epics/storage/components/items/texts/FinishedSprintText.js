@@ -29,41 +29,39 @@ function FinishedSprintText() {
         alignItems="flex-start"
         spacing={0}
       >
-        <div style={{ display: "flex" }}>
-          <div>
-            <h2>{sprintName} </h2>
-            <h4>{sprintKey}</h4>
-            <h3>
-              {startDate} ~ {finishedDate}
-            </h3>
-          </div>
+        <div>
+          <h2>{sprintName} </h2>
+          <h4>{sprintKey}</h4>
+          <h3>
+            {startDate} ~ {finishedDate}
+          </h3>
+        </div>
 
-          <div>
-            <div
-              style={{
-                display: "flex",
-              }}
-            >
+        <div>
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
+            <div>
+              <h3 style={h3Style}>백로그 </h3>
               <div>
-                <h3 style={h3Style}>백로그 </h3>
-                <div>
-                  <h4 style={h4Style}>완료: {finishedCount}</h4>
-                  <h4 style={h4Style}>미완료: {unFinishedCount}</h4>
-                </div>
+                <h4 style={h4Style}>완료: {finishedCount}</h4>
+                <h4 style={h4Style}>미완료: {unFinishedCount}</h4>
               </div>
-
-              <div>
-                <h3 style={h3Style}>실제 완료 날짜 </h3>
-                <h4 style={h3Style}>{deadLineDate}</h4>
-              </div>
-
-              <div>
-                <h3>참여자 수</h3>
-                <h4>{participantCount}명</h4>
-              </div>
-
-              <SelectRememberanceButton />
             </div>
+
+            <div>
+              <h3 style={h3Style}>실제 완료 날짜 </h3>
+              <h4 style={h3Style}>{deadLineDate}</h4>
+            </div>
+
+            <div>
+              <h3>참여자 수</h3>
+              <h4>{participantCount}명</h4>
+            </div>
+
+            <SelectRememberanceButton />
           </div>
         </div>
       </Stack>

@@ -54,26 +54,7 @@ function AlarmText() {
             </Select>
           </FormControl>
         </Box>
-        {/* </Item> */}
       </Stack>
-      {/* <AlarmIcon />
-      <Box sx={{ minWidth: 100, marginTop: "10px" }}>
-        <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">알람 주기</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={alarmCycle}
-            label="알람 주기"
-            onChange={handleChange}
-          >
-            <MenuItem value={1}>하루마다</MenuItem>
-            <MenuItem value={3}>3일마다</MenuItem>
-            <MenuItem value={7}>7일마다</MenuItem>
-            <MenuItem value={10}>10일마다</MenuItem>
-          </Select>
-        </FormControl>
-      </Box> */}
     </div>
   );
 }

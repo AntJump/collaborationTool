@@ -4,12 +4,13 @@ import IssueDetail from "../epics/backlog/pages/IssueDetail";
 import ProjectLayout from "../layouts/ProjectLayout";
 import BacklogPage from "../epics/backlog/pages/BacklogPage";
 import BoardPage from "../epics/board/pages/BoardPage";
-import StoragePage from "../epics/storage/pages/StoragePage";
+import SprintStoragePage from "../epics/storage/pages/SprintStoragePage";
 import MyWorkPage from "../epics/myWork/pages/MyWorkPage";
 import CalendarPage from "../epics/calendar/pages/CalendarPage";
 import ChattingPage from "../epics/chatting/pages/ChattingPage";
 import ProjectErrorPage from "../epics/project/pages/ProjectErrorPage";
 import CalendarInsert from "../epics/calendar/pages/CalendarInsert";
+import RemembranceStoragePage from "../epics/storage/pages/RemembranceStoragePage";
 
 function ProjectRoute() {
   return (
@@ -22,7 +23,11 @@ function ProjectRoute() {
           <Route path="issue-create" element={<IssueCreate />} />
           <Route path="issue/:issueId" element={<IssueDetail />} />
           <Route path="board" element={<BoardPage />} />
-          <Route path="storage" element={<StoragePage />} />
+          <Route path="sprintstorage" element={<SprintStoragePage />} />
+          <Route
+            path="Remembrancestorage"
+            element={<RemembranceStoragePage />}
+          />
           <Route path="myWork" element={<MyWorkPage />} />
           <Route path="calendar">
             <Route index element={<CalendarPage />} />
