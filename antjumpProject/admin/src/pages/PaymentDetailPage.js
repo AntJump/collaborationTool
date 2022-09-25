@@ -69,7 +69,7 @@ function PaymentDetailPage() {
                 <Typography sx={{ mt: 1, mb: 1,
                       fontFamily: 'monospace',
                       fontWeight: 700 }} variant="h5" align='left' color='#004392' >
-                        환불 요청 사유 : { payment.refundReason }
+                    환불 요청 사유 : { payment.refundReason }
                 </Typography>
             </Box>
             <Box sx={{
