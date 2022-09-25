@@ -32,7 +32,7 @@ function SprintDateSelect({period}){
                 />
             </Grid>
             <Grid item  sx= {{width: '47%'}}>
-                {period == 0 ?
+                {period !== 0 ?
                     <TextField
                         label="종료 날짜 *"
                         value={endDate.format('YYYY-MM-DD HH:mm:ss')}

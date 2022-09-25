@@ -40,7 +40,7 @@ export const incluedIssuesData = [
     },
     {
         issueId : 21,
-        topIssueId : 1,
+        topIssueId : 15,
         issueKey : 'ISSUE-15-SUB-2',
         issueCategory : '스토리',
         issueSummary : '이슈 요약입니다',

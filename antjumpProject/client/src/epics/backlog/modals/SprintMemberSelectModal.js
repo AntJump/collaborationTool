@@ -42,13 +42,13 @@ function SprintAllocateModal({includedIssues, beforeHandleClose}){
                                 팀원(담당자) 배정
                             </Typography>
                         </Grid>
-                        <Grid item xs={12}   sx={{textAlign:"center"}}> 
+                        <Grid item xs={12} sx={{textAlign:"center"}}> 
                             <Grid  container spacing={2} >
                                 <Grid item xs={6}><h4>이슈</h4></Grid>
                                 <Grid item xs={6}><h4>프로젝트 팀원</h4></Grid>
                             </Grid>
                         </Grid>
-                        <Grid item xs={12} height='80%'>
+                        <Grid item xs={12} height='75%'>
                             <SprintMemberSelectList includedIssues={includedIssues}/>
                         </Grid>
                         <Grid item xs={12} height='5%'>

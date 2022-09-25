@@ -5,7 +5,7 @@ import SprintMemberSelectCard from "../components/SprintMemberSelectCard";
 function SprintMemberSelectList({includedIssues}){
 
     return includedIssues && (
-        <Box sx={{overflowY: 'scroll'}} >
+        <Box sx={{overflowY:"scroll" }} maxHeight={'90%'}>
             {includedIssues
                 .filter(issue => issue.topIssueId=== null)
                 .map((topIssue)=>
