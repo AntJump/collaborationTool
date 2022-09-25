@@ -1,7 +1,7 @@
 import {Box, Stack} from '@mui/material';
 // import {  useEffect } from "react";
 // import { useSelector, useDispatch } from "react-redux";
-import { waitMembers } from '../../resource/datas/MemberList';
+import { waitMembers } from '../../datas/MemberList';
 import WaitMemberCard from '../items/WaitMemberCard';
 
 function ProjectWaitMemberList(){
