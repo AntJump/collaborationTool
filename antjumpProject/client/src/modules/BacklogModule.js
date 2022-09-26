@@ -8,12 +8,13 @@ const initState =[];
 // 액션 타입 설정
 export const GET_BACKLOG = 'backlog/GET_BACKLOG';
 export const SET_AREA = 'backlog/SET_AREA';
-
+export const DELETE_AREA = 'backlog/SET_AREA';
 
 // 액션 함수 생성
 const actions =  createAction({
     [GET_BACKLOG]: () => {},
-    [SET_AREA]: () => {}
+    [SET_AREA]: () => {},
+    [DELETE_AREA]: ()=>{}
 });
 
 // 리듀서 함수 설정
