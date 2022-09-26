@@ -11,7 +11,6 @@ function BacklogTable({isHeader, issues, idx}) {
                 { Array.isArray(issues) && issues.length === 0 ?
                     <Box sx={{color:'gray'}}>
                         빈 스프린트
-                        
                     </Box>
                     : 
                     <TableContainer component={Paper}> 
