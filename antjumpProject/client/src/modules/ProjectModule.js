@@ -1,16 +1,15 @@
-import {createAction, handleActions} from "redux-actions"
-
+import { createAction, handleActions } from "redux-actions";
 
 // 프로젝트 정보와 관련된 리덕스 모듈 설정
 
-
 // 초기 state 값 설정
-const initState ={
-    paticipatedProjects : [],
-    myProjects : []
+const initState = {
+  paticipatedProjects: [],
+  myProjects: [],
 };
 
 // 액션 타입 설정
+
 export const GET_PROJECTS= 'project/GET_PROJECTS';
 export const GET_PROJECT_MEMBERS = 'project/GET_PROJECT_MEMBERS';
 export const GET_SELECTED_PROJECT = 'project/GET_SELECTED_PROJECT';
@@ -44,8 +43,6 @@ export const projectReducer = handleActions(
             
             return payload;
         }
-    },
-    initState
-)
-
-
+  },
+  initState
+);

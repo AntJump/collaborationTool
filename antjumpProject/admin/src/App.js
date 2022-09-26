@@ -11,11 +11,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/*" element={<AdminRoute />} />
-        <Route path="/intros" element={<IntroRoute />} />
-        <Route path="/members" element={<MemberRoute />} />
-        <Route path="/faqs" element={<FAQRoute />} />
-        <Route path="/payments" element={<PaymentRoute />} />
-        <Route path="/qnas*" element={<QNARoute />} />
+        <Route path="/intros/*" element={<IntroRoute />} />
+        <Route path="/members/*" element={<MemberRoute />} />
+        <Route path="/faqs/*" element={<FAQRoute />} />
+        <Route path="/payments/*" element={<PaymentRoute />} />
+        <Route path="/qnas/*" element={<QNARoute />} />
       </Routes>
     </BrowserRouter>
   );
