@@ -33,5 +33,10 @@
         <appender-ref ref="STDOUT"/>
     </root>
 
+    <!-- 로그 파일의 위치 지정-->
+    <logger name="com.antjump.ant.member.controller" level="INFO">
+        <appender-ref ref="DAILY_ROLLING_FILE_APPENDER" />
+    </logger>
+
 
 </configuration>

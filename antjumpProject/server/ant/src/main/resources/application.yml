@@ -26,3 +26,7 @@ mybatis:
   type-aliases-package: com.antjump.ant
   configuration:
     map-underscore-to-camel-case: true
+
+logging:
+  level:
+    root: info
