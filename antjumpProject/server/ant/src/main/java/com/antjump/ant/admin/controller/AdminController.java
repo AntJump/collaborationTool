@@ -34,7 +34,5 @@ public class AdminController {
 
             return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "회원가입 성공", adminAuthService.adminSignup(adminDto)));
         }
-
-
 }
 
