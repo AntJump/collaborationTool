@@ -19,5 +19,9 @@
 	<mappers>
 		<mapper resource="MemberMapper.xml" />
 		<mapper resource="AdminMapper.xml" />
+		<mapper resource="FAQMapper.xml" />
+		<mapper resource="GoodsMapper.xml" />
+		<mapper resource="PaymentMapper.xml" />
+		<mapper resource="QNAMapper.xml" />
 	</mappers>
 </configuration>
