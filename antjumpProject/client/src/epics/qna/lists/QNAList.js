@@ -15,11 +15,11 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import { qnaRows } from "./QNASample";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { GET_QNAS } from "../../../modules/QNAModule";
+import { callFAQListAPI } from "../../../apis/QNAAPICalls";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -98,7 +98,9 @@ function QNAList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: GET_QNAS, payload: qnaRows });
+    dispatch(callFAQListAPI({
+
+    }));
   }, [dispatch]);
 
   const [page, setPage] = React.useState(0);

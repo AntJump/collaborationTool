@@ -4,15 +4,14 @@ import com.antjump.ant.common.ResponseDto;
 import com.antjump.ant.common.paging.Pagenation;
 import com.antjump.ant.common.paging.ResponseDtoWithPaging;
 import com.antjump.ant.common.paging.SelectCriteria;
+import com.antjump.ant.qna.dto.QNACreateDTO;
+import com.antjump.ant.qna.dto.QNAModifyDTO;
 import com.antjump.ant.qna.service.QNAService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <pre>
@@ -46,6 +45,7 @@ public class QNAController {
         log.info("[QNAController] selectQNAListWithPaging : " + offset);
 
         int totalCount = qnaService.selectQNATotal();
+
         int limit = 10;
         int buttonAmount = 5;
 
@@ -59,5 +59,29 @@ public class QNAController {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "조회 성공", responseDtoWithPaging));
 
+    }
+
+    @GetMapping("{qnaId}")
+    public ResponseEntity<ResponseDto> selectQNADetail(@PathVariable String qnaId) {
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 상세 조회 성공", qnaService.selectQNA(qnaId)));
+    }
+
+    @PostMapping("create")
+    public ResponseEntity<ResponseDto> insertQNA(@ModelAttribute QNACreateDTO qnaCreateDTO) {
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 입력 성공", qnaService.insertQNA(qnaCreateDTO)));
+    }
+
+    @PutMapping("modify")
+    public  ResponseEntity<ResponseDto> modifyQNA(@ModelAttribute QNAModifyDTO qnaModifyDTO) {
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 업데이트 성공", qnaService.updateQNA(qnaModifyDTO)));
+    }
+
+    @DeleteMapping("delete/{qnaId}")
+    public ResponseEntity<ResponseDto> deleteQNA(@PathVariable String qnaId) {
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 삭제 성공", qnaService.deleteQNA(qnaId)));
     }
 }

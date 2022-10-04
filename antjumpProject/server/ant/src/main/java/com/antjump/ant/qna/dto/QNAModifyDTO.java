@@ -1,12 +1,10 @@
 package com.antjump.ant.qna.dto;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import java.sql.Timestamp;
 
 /**
  * <pre>
- * Class : QNAList
+ * Class : QNAModifyDTO
  * Comment: 전송하기 위해 사용한 객체
  * History
  * ================================================================
@@ -18,31 +16,24 @@ import java.sql.Timestamp;
  * @author 부시연(최초 작성자)
  * @version 1(클래스 버전)
  */
-public class QNAListDTO {
+public class QNAModifyDTO {
 
     private int qnaId;
     private String qnaTitle;
+    private String qnaContent;
     private Timestamp qnaModifyTime;
     private int memberId;
     private String memberName;
-    private int qnaDepth;
-    private Integer refQnaId;
-    private char qnaStatus;
     private int qnaCategoryNo;
-    private String  qnaCategoryName;
+    private String qnaCategoryName;
 
-    public QNAListDTO() {
-    }
-
-    public QNAListDTO(int qnaId, String qnaTitle, Timestamp qnaModifyTime, int memberId, String memberName, int qnaDepth, Integer refQnaId, char qnaStatus, int qnaCategoryNo, String qnaCategoryName) {
+    public QNAModifyDTO(int qnaId, String qnaTitle, String qnaContent, Timestamp qnaModifyTime, int memberId, String memberName, int qnaCategoryNo, String qnaCategoryName) {
         this.qnaId = qnaId;
         this.qnaTitle = qnaTitle;
+        this.qnaContent = qnaContent;
         this.qnaModifyTime = qnaModifyTime;
         this.memberId = memberId;
         this.memberName = memberName;
-        this.qnaDepth = qnaDepth;
-        this.refQnaId = refQnaId;
-        this.qnaStatus = qnaStatus;
         this.qnaCategoryNo = qnaCategoryNo;
         this.qnaCategoryName = qnaCategoryName;
     }
@@ -61,6 +52,14 @@ public class QNAListDTO {
 
     public void setQnaTitle(String qnaTitle) {
         this.qnaTitle = qnaTitle;
+    }
+
+    public String getQnaContent() {
+        return qnaContent;
+    }
+
+    public void setQnaContent(String qnaContent) {
+        this.qnaContent = qnaContent;
     }
 
     public Timestamp getQnaModifyTime() {
@@ -87,30 +86,6 @@ public class QNAListDTO {
         this.memberName = memberName;
     }
 
-    public int getQnaDepth() {
-        return qnaDepth;
-    }
-
-    public void setQnaDepth(int qnaDepth) {
-        this.qnaDepth = qnaDepth;
-    }
-
-    public Integer getRefQnaId() {
-        return refQnaId;
-    }
-
-    public void setRefQnaId(Integer refQnaId) {
-        this.refQnaId = refQnaId;
-    }
-
-    public char getQnaStatus() {
-        return qnaStatus;
-    }
-
-    public void setQnaStatus(char qnaStatus) {
-        this.qnaStatus = qnaStatus;
-    }
-
     public int getQnaCategoryNo() {
         return qnaCategoryNo;
     }
@@ -129,15 +104,13 @@ public class QNAListDTO {
 
     @Override
     public String toString() {
-        return "QNAListDTO{" +
+        return "QNAModifyDTO{" +
                 "qnaId=" + qnaId +
                 ", qnaTitle='" + qnaTitle + '\'' +
+                ", qnaContent='" + qnaContent + '\'' +
                 ", qnaModifyTime=" + qnaModifyTime +
                 ", memberId=" + memberId +
                 ", memberName='" + memberName + '\'' +
-                ", qnaDepth=" + qnaDepth +
-                ", refQnaId=" + refQnaId +
-                ", qnaStatus=" + qnaStatus +
                 ", qnaCategoryNo=" + qnaCategoryNo +
                 ", qnaCategoryName='" + qnaCategoryName + '\'' +
                 '}';
