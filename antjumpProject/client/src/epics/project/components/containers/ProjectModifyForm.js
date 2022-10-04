@@ -33,7 +33,7 @@ function ProjectModifyForm({project}){
                         defaultValue={project.summary}
                         fullWidth
                         rows={3}
-                    /><br/>
+                /><br/>
                 </Grid>
                 <Grid item xs={12}>
                     <TextField 
