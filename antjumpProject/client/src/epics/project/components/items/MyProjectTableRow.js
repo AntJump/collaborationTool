@@ -4,14 +4,10 @@ import ProjectMenuButton from "./ProjectMenuButton";
 
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { SET_SELECTED_PROJECT } from "../../../../modules/ProjectModule";
 
-function MyProjectCard({ project }) {
+function MyProjectTableRow({ project }) {
   const dispatch = useDispatch();
-  const onClickProject = () => {
-    console.log(project);
-    dispatch({ type: SET_SELECTED_PROJECT, payload: project });
-  };
+
 
   return (
     <>
@@ -22,15 +18,14 @@ function MyProjectCard({ project }) {
         <TableCell
           component={Link}
           to={`/project/${project.id}`}
-          onClick={onClickProject}
-          align="left"
+          align="center"
         >
           {project.name}
         </TableCell>
         <TableCell align="center">{project.produceTime}</TableCell>
         <TableCell align="center">{project.endDate}</TableCell>
-        <TableCell align="center">{project.constructor}</TableCell>
-        <TableCell align="right">
+        <TableCell align="center">{project.constructor} </TableCell>
+        <TableCell align="right"> 
           <ProjectMenuButton project={project} />
         </TableCell>
       </TableRow>
@@ -38,4 +33,4 @@ function MyProjectCard({ project }) {
   );
 }
 
-export default MyProjectCard;
+export default MyProjectTableRow;

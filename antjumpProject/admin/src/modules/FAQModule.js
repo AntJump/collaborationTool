@@ -24,8 +24,8 @@ const actions = createActions({
 
 console.log(actions);
 
-/* 리듀서 */
-const qnaReducer = handleActions(
+/* FAQ 리듀서 */
+const faqReducer = handleActions(
     {
           [GET_FAQ_DETAIL]: (state, { payload : detail }) => {
 
@@ -51,4 +51,4 @@ const qnaReducer = handleActions(
     initialState
 );
 
-export default qnaReducer;
+export default faqReducer;

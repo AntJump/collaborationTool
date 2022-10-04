@@ -47,7 +47,7 @@ function MemberListModal({open, handleClose, project}) {
                     >   
                         <Grid item xs ={7} height={'90%'}  sx={{ textAlign:"center"}}>
                             <h3>팀원</h3>
-                            <ProjectMemberList/>
+                            <ProjectMemberList isRoleChange={true}/>
                         </Grid>
                         <Grid item xs ={5} height={'90%'}  sx={{ textAlign:"center"}}>
                             <h3>초대 대기</h3>
