@@ -26,6 +26,7 @@ function ProjectHeader() {
 
   const projects = participatedProjects;
   const {id} = useParams();
+
   
   const result = useSelector(state => state.projectReducer);
   const selectedProject = result[0];

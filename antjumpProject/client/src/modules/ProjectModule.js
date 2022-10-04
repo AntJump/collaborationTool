@@ -21,10 +21,18 @@ const actions =  createAction({
     [GET_PROJECTS]: () => {},
     [GET_PROJECT_MEMBERS]: ()=>{},
     [GET_SELECTED_PROJECT] : () => {}
+<<<<<<< HEAD
+=======
+
+>>>>>>> d53b8da88fbffd75c581abd27439fc3dec55a6b5
 });
 
 // 리듀서 함수 설정
 export const projectReducer = handleActions(
+<<<<<<< HEAD
+=======
+
+>>>>>>> d53b8da88fbffd75c581abd27439fc3dec55a6b5
     {
         [GET_SELECTED_PROJECT] : (state, {payload}) => {
             console.log('set selected project payload', payload);
