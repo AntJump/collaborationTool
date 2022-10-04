@@ -12,6 +12,7 @@ import IssueManager from "../components/IssueManager.js";
 import SubIssueCard from "../items/SubIssueCard.js";
 import SubIssueList from "../lists/SubIssueList.js";
 import IssueDeleteModal from "../modals/IssueDeleteModal";
+import IssuseStatus from "../components/IssueStatus";
 import SubIssueListHeader from "../components/SubIssueListHeader.js";
 import { useParams } from "react-router-dom";
 
@@ -20,9 +21,21 @@ export default function IssueDetailPage() {
 
   return (
     <>
-      <Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          width: "100%",
+          marginBottom: 5,
+          "& > :not(style)": {
+            m: 1,
+          },
+        }}
+      >
         <h3>Task</h3>
         <h1>ISSUE-1</h1>
+        <IssuseStatus />
       </Box>
 
       <Box sx={{ display: "flex", justifyContent: "center" }}>

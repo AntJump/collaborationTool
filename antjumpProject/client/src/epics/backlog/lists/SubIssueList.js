@@ -4,7 +4,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { StyledTableCell } from "./IssueTableStyle.js";
+import { StyledTableCell } from "../../../common/styles/TableStyle.js";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";

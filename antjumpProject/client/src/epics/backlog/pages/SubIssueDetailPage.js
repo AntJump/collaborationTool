@@ -4,21 +4,34 @@ import Stack from "@mui/material/Stack";
 import IssueType from "../components/IssueType.js";
 import IssuePriority from "../components/IssuePriority.js";
 import IssueDifficulty from "../components/IssueDifficulty.js";
-import IssueCreateModal from "../modals/IssueCreateModal.js";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import IssueFileUpload from "../components/IssueFileUpload.js";
 import IssueManager from "../components/IssueManager.js";
 import { useParams } from "react-router-dom";
+import IssueDeleteModal from "../modals/IssueDeleteModal";
+import IssuseStatus from "../components/IssueStatus";
 
 export default function SubIssueDetailPage() {
   const { id } = useParams();
 
   return (
     <>
-      <Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          width: "100%",
+          marginBottom: 5,
+          "& > :not(style)": {
+            m: 1,
+          },
+        }}
+      >
         <h3>Sub-Task</h3>
-        <h1>ISSUE-10</h1>
+        <h1>ISSUE-1-SUB-3</h1>
+        <IssuseStatus />
       </Box>
 
       <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -72,8 +85,11 @@ export default function SubIssueDetailPage() {
             />
           </Box>
           <IssueFileUpload />
+          <Box sx={{ float: "left", m: 2 }}>
+            <IssueDeleteModal />
+          </Box>
           <Button
-            style={{ marginTop: 20, marginBottom: 20 }}
+            style={{ marginTop: 50, marginBottom: 20 }}
             color="button"
             variant="contained"
             href={`/project/${id}`}
