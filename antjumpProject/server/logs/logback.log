@@ -1,0 +1,2 @@
+[2022-10-04 15:27:35:79137][http-nio-8181-exec-8] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectQNAListWithPaging : 1
+[2022-10-04 15:27:35:79464][http-nio-8181-exec-8] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectCriteria : SelectCriteria [pageNo=1, totalCount=1, limit=10, buttonAmount=5, maxPage=1, startPage=1, endPage=1, startRow=1, endRow=10]
