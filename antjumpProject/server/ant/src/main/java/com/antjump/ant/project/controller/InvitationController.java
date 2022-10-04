@@ -21,6 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/invitations")
-public class InviteController {
+public class InvitationController {
 
 }

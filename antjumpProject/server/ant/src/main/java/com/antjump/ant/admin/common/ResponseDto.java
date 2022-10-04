@@ -1,4 +1,4 @@
-package com.antjump.ant.common;
+package com.antjump.ant.admin.common;
 
 import org.springframework.http.HttpStatus;
 

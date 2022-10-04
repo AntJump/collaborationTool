@@ -1,12 +1,11 @@
 package com.antjump.ant.member.controller;
 
-import com.antjump.ant.common.ResponseDto;
+import com.antjump.ant.admin.common.ResponseDto;
 import com.antjump.ant.member.dto.MemberDto;
 import com.antjump.ant.member.service.AuthService;
 import com.antjump.ant.member.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
