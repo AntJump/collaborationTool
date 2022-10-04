@@ -10,9 +10,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/antproject?serverTimezone=Asia/Seoul
-    username: antjump
-    password: antjump
+    url: jdbc:mysql://metaverse.ohgiraffers.com/pjhbsy?serverTimezone=Asia/Seoul
+    username: pjhbsy
+    password: pjhbsy
 
 
 jwt:
@@ -26,3 +26,7 @@ mybatis:
   type-aliases-package: com.antjump.ant
   configuration:
     map-underscore-to-camel-case: true
+
+logging:
+  level:
+    root: info
