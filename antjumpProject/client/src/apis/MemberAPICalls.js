@@ -1,7 +1,10 @@
 import { GET_MEMBER, POST_LOGIN, POST_REGISTER } from "../modules/MemberModule";
 
-export const callGetMemberAPI = ({ memberEmail }) => {
-  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/members/${memberEmail}`;
+export const callGetMemberAPI = ({ memberId }) => {
+  console.log(memberId);
+  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/members/${memberId}`;
+
+  console.log(requestURL);
 
   return async (dispatch, getState) => {
     // 클라이언트 fetch mode : no-cors 사용시 application/json 방식으로 요청이 불가능
@@ -11,7 +14,7 @@ export const callGetMemberAPI = ({ memberEmail }) => {
       headers: {
         "Content-Type": "application/json",
         Accept: "*/*",
-        Authorization: "Bearer " + window.localStorage.getItem("accessToken"),
+        //    Authorization: "Bearer " + window.localStorage.getItem("accessToken"),
       },
     }).then((response) => response.json());
 
@@ -22,7 +25,7 @@ export const callGetMemberAPI = ({ memberEmail }) => {
 };
 
 export const callLoginAPI = ({ data }) => {
-  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/login`;
+  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/auth/login`;
 
   return async (dispatch, getState) => {
     // 클라이언트 fetch mode : no-cors 사용시 application/json 방식으로 요청이 불가능
@@ -56,7 +59,7 @@ export const callLogoutAPI = () => {
 };
 
 export const callRegisterAPI = ({ data }) => {
-  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/signup`;
+  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/auth/signup`;
 
   return async (dispatch, getState) => {
     const result = await fetch(requestURL, {
