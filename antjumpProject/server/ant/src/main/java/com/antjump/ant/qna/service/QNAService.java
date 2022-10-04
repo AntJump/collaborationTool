@@ -1,6 +1,13 @@
 package com.antjump.ant.qna.service;
 
+import com.antjump.ant.common.paging.SelectCriteria;
+import com.antjump.ant.qna.dao.QNAMapper;
+import com.antjump.ant.qna.dto.QNAListDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <pre>
@@ -18,4 +25,34 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class QNAService {
+
+    private static final Logger log = LoggerFactory.getLogger(QNAService.class);
+    private final QNAMapper qnaMapper;
+
+    public QNAService(QNAMapper qnaMapper) {
+        this.qnaMapper = qnaMapper;
+    }
+
+    public int selectQNATotal() {
+
+        log.info("[QNAService] selectQNATotal Start ===============");
+        int result = qnaMapper.selectQNATotal();
+
+        log.info("[QNAService] selectQNATotal End ===============");
+        return result;
+
+    }
+
+    public Object selectQNAListWithPaging(SelectCriteria selectCriteria) {
+
+        log.info("[QNAService] selectQNAListWithPaging Start ===============");
+        List<QNAListDTO> qnaList = qnaMapper.selectQNAListWithPaging(selectCriteria);
+
+//        for (int i = 0; i < qnaList.size(); i++) {
+//            qnaList.get(i).setQnaFileUrl(IMAGE_URL + qnaList.get(i).getQnaFileUrl());
+//        }
+
+        log.info("[QNAService] selectQNAListWithPaging End ===============");
+        return qnaList;
+    }
 }

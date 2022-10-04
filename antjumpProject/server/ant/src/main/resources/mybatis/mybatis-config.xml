@@ -14,6 +14,7 @@
 	<typeAliases>
 		<typeAlias alias="MemberDto" type="com.antjump.ant.member.dto.MemberDto"/>
 		<typeAlias alias="AdminDto" type="com.antjump.ant.admin.dto.AdminDto"/>
+		<typeAlias alias="QNAListDto" type="com.antjump.ant.qna.dto.QNAListDTO"/>
 	</typeAliases>
 
 	<mappers>

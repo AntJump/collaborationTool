@@ -4,4 +4,34 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.antjump.ant.qna.dao.QNAMapper">
 
+    <select id="selectQNATotal" resultType="int">
+        SELECT
+               count(*)
+          FROM TBL_QNAS A
+          JOIN TBL_QNA_CATEGORIES B ON (A.FK_QNACATEGORIES_QNAS = B.QNA_CATEGORY_NO)
+          JOIN TBL_QNA_FILES C ON (A.QNA_ID = C.FK_QNAS_FILES)
+         WHERE QNA_STATUS = 'N'
+    </select>
+
+    <select id="selectQNAListWithPaging">
+        <![CDATA[
+        select
+               a.qna_id
+             , a.qna_title
+             , a.qna_content
+             , a.qna_modify_time
+             , a.qna_depth
+             , a.qna_status
+             , a.ref_qna_id
+             , b.qna_file_id
+             , b.qna_file_url
+             , c.qna_category_no
+             , c.qna_category_name
+          from tbl_qnas a
+          join tbl_qna_files b on(a.qna_id = b.fk_qnas_files)
+          join tbl_qna_categories c on(a.fk_qnacategories_qnas = c.qna_category_no)
+         limit #{ startPage }, #{ endPage }
+        ]]>
+    </select>
+
 </mapper>

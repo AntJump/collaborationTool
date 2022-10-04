@@ -17,5 +17,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @version 1(클래스 버전)
  */
 @Mapper
-public class GoodsMapper {
+public interface GoodsMapper {
 }

@@ -1,9 +1,17 @@
 package com.antjump.ant.qna.controller;
 
+import com.antjump.ant.common.ResponseDto;
+import com.antjump.ant.common.paging.Pagenation;
+import com.antjump.ant.common.paging.ResponseDtoWithPaging;
+import com.antjump.ant.common.paging.SelectCriteria;
 import com.antjump.ant.qna.service.QNAService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -21,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @version 1(클래스 버전)
  */
 @RestController
-@RequestMapping("")
+@RequestMapping("qnas")
 public class QNAController {
 
     private static final Logger log = LoggerFactory.getLogger(QNAController.class);
@@ -30,5 +38,26 @@ public class QNAController {
 
     public QNAController(QNAService qnaService) {
         this.qnaService = qnaService;
+    }
+
+    @GetMapping("list")
+    public ResponseEntity<ResponseDto> selectQNAListWithPaging(@RequestParam(name = "offset", defaultValue = "1") String offset) {
+
+        log.info("[QNAController] selectQNAListWithPaging : " + offset);
+
+        int totalCount = qnaService.selectQNATotal();
+        int limit = 10;
+        int buttonAmount = 5;
+
+        SelectCriteria selectCriteria = Pagenation.getSelectCriteria(Integer.parseInt(offset), totalCount, limit, buttonAmount);
+
+        log.info("[QNAController] selectCriteria : " + selectCriteria);
+
+        ResponseDtoWithPaging responseDtoWithPaging = new ResponseDtoWithPaging();
+        responseDtoWithPaging.setPageInfo(selectCriteria);
+        responseDtoWithPaging.setData(qnaService.selectQNAListWithPaging(selectCriteria));
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "조회 성공", responseDtoWithPaging));
+
     }
 }
