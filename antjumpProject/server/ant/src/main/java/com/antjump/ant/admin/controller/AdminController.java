@@ -2,7 +2,7 @@ package com.antjump.ant.admin.controller;
 
 import com.antjump.ant.admin.dto.AdminDto;
 import com.antjump.ant.admin.service.AdminAuthService;
-import com.antjump.ant.admin.common.ResponseDto;
+import com.antjump.ant.common.ResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

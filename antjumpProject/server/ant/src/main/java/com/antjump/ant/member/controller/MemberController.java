@@ -1,6 +1,6 @@
 package com.antjump.ant.member.controller;
 
-import com.antjump.ant.admin.common.ResponseDto;
+import com.antjump.ant.common.ResponseDto;
 import com.antjump.ant.member.dto.MemberDto;
 import com.antjump.ant.member.service.AuthService;
 import com.antjump.ant.member.service.MemberService;

@@ -18,7 +18,7 @@ function ProjectMemberList({isRoleChange}){
 
 
     return members && (
-        <Box sx={{overflowY:"scroll" }} maxHeight={'90%'}>
+        <Box sx={{overflowY:"scroll", float: 'right' }} maxHeight={'90%'} maxWidth={'100%'}>
             {members.map(member =>
                 <Box key ={member.memberId} sx={{ minWidth:  200, maxWidth: 300,  margin: 'auto', p:1}} >
                     <Stack direction='row' spacing={1}>
