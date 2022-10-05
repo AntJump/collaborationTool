@@ -4,4 +4,69 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.antjump.ant.faq.dao.FAQMapper">
 
+    <select id="selectFaqList" resultType="FAQListDTO">
+        select /* com.anjump.ant.faq.dao.FAQMapper#selectFaqList() */
+               a.faq_id
+             , a.faq_title
+             , a.faq_modify_time
+             , b.faq_category_no
+             , b.faq_category_name
+          from tbl_faqs a
+          left join tbl_faq_categories b on (a.fk_faqcategories_faqs = b.faq_category_no)
+         where a.faq_delete_yn = 'N'
+    </select>
+
+    <select id="selectFAQ" resultType="FAQDetailDTO">
+        select /* com.anjump.ant.faq.dao.FAQMapper#selectFAQ(String faqId) */
+               a.faq_id
+             , a.faq_title
+             , a.faq_content
+             , a.faq_modify_time
+             , b.faq_category_no
+             , b.faq_category_name
+          from tbl_faqs a
+          left join tbl_faq_categories b on (a.fk_faqcategories_faqs = b.faq_category_no)
+         where a.faq_id = #{ faqId }
+           and a.faq_delete_yn = 'N'
+    </select>
+
+    <insert id="insertFAQ" parameterType="FAQCreateDTO">
+        insert /* com.antjump.ant.faq.dao.FAQMapper#insertFAQ(FAQCreateDTO faqCreateDTO) */
+          into tbl_faqs
+        (
+          faq_title
+        , faq_content
+        , faq_write_time
+        , fk_faqcategories_faqs
+        , fk_faqs_admins
+        )
+        values
+        (
+          #{ faqTitle }
+        , #{ faqContent }
+        , now()
+        , #{ faqCategoryNo }
+        , #{ adminId }
+        )
+    </insert>
+
+    <update id="updateFAQ" parameterType="FAQModifyDTO">
+        update /* com.antjump.ant.faq.dao.FAQMapper#updateFAQ(FAQModifyDTO faqModifyDTO) */
+               tbl_faqs
+           set
+               faq_title = #{ faqTitle }
+             , faq_content = #{ faqContent }
+             , faq_modify_time = now()
+             , fk_faqcategories_faqs = #{ faqCategoryNo }
+         where faq_id = #{ faqId }
+    </update>
+
+    <update id="deleteFAQ">
+        update /* com.antjump.ant.faq.dao.FAQMapper#deleteFAQ(String faqId) */
+               tbl_faqs
+           set
+               faq_delete_yn = 'Y'
+         where faq_id = #{ faqId }
+    </update>
+
 </mapper>

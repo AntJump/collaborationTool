@@ -1,6 +1,12 @@
 package com.antjump.ant.faq.dao;
 
+import com.antjump.ant.faq.dto.FAQCreateDTO;
+import com.antjump.ant.faq.dto.FAQDetailDTO;
+import com.antjump.ant.faq.dto.FAQListDTO;
+import com.antjump.ant.faq.dto.FAQModifyDTO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * <pre>
@@ -18,4 +24,13 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface FAQMapper {
+    List<FAQListDTO> selectFaqList();
+
+    FAQDetailDTO selectFAQ(String faqId);
+
+    int insertFAQ(FAQCreateDTO faqCreateDTO);
+
+    int updateFAQ(FAQModifyDTO faqModifyDTO);
+
+    int deleteFAQ(String faqId);
 }
