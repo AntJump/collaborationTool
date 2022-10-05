@@ -5,24 +5,43 @@ import {
     QNA_CONTENT
 } from '../modules/QNAModule';
 
-export const callFAQListAPI = () => {
+export const callQNAListAPI = () => {
     const requestURL = `${process.env.REACT_APP_SERVER_IP}/qnas/list/`;
 
     return async (dispatch, getState) => {
 
-        const list = await fetch(requestURL, {
+        const result = await fetch(requestURL, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json",
-                "Accept": "*/*",
-                "Authorization": "Bearer " + window.localStorage.getItem("accessToken")
+                "Content-Type": "application/json"
             }
         })
         .then(response => response.json());
 
-        console.log('[QNAAPICalls] callPurchaseListAPI RESULT : ', list);
+        console.log('[QNAAPICalls] callQNAListAPI RESULT : ', result.data.data);
 
-        dispatch({ type: GET_QNAS,  payload: list });
+        dispatch({ type: GET_QNAS,  payload: result.data.data });
+        
+    };
+    
+}
+
+export const callQNADetailAPI = (qnaId) => {
+    const requestURL = `${process.env.REACT_APP_SERVER_IP}/qnas/${qnaId}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(response => response.json());
+
+        console.log('[QNAAPICalls] callQNADetailAPI RESULT : ', result.data);
+
+        dispatch({ type: GET_QNA_DETAIL,  payload: result.data });
         
     };
     
