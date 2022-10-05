@@ -2,7 +2,6 @@ import { Button } from "@mui/material";
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { GET_GOODS } from "../../../modules/PaymentModule";
-import { getUrl } from "../../../common/items/url";
 import {goodsRows} from "../lists/GoodsSample";
 import { loadTossPayments } from '@tosspayments/payment-sdk'
 import uuid from 'react-uuid'
@@ -37,8 +36,8 @@ function GoodsPage() {
             orderId: uuid(),
             orderName: goods[0].goodsName,
             customerName: '부시연',
-            successUrl: getUrl() + '/success',
-            failUrl: getUrl() + '/fail',
+            successUrl: `${process.env.REACT_APP_SERVER_IP}` + '/success',
+            failUrl: `${process.env.REACT_APP_SERVER_IP}` + '/fail',
           }).catch(function (error) {
             if (error.code === 'USER_CANCEL') {
               // 결제 고객이 결제창을 닫았을 때 에러 처리

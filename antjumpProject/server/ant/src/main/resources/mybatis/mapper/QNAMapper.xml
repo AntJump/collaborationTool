@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.antjump.ant.qna.dao.QNAMapper">
+
+    <select id="selectQNATotal" resultType="int">
+        select /* com.anjump.ant.qna.dao.QNAMapper#selectQNATotal() */
+               count(*)
+          from tbl_qnas a
+          left join tbl_qna_categories b on (a.fk_qnacategories_qnas = b.qna_category_no)
+          left join tbl_qna_files c on (a.qna_id = c.fk_qnas_files)
+         where qna_status = 'n'
+    </select>
+
+    <select id="selectQNAListWithPaging" resultType="QNAListDTO">
+        <![CDATA[
+        select /* com.anjump.ant.qna.dao.QNAMapper#selectQNAListWithPaging(SelectCriteria selectCriteria) */
+               a.qna_id
+             , a.qna_title
+             , a.qna_modify_time
+             , a.qna_depth
+             , a.qna_status
+             , a.ref_qna_id
+             , b.qna_category_no
+             , b.qna_category_name
+             , c.member_id
+             , c.member_name
+          from tbl_qnas a
+          left join tbl_qna_categories b on(a.fk_qnacategories_qnas = b.qna_category_no)
+          left join tbl_members c on (a.fk_members_qnas = c.member_id)
+         limit #{ startRow }, #{ limit }
+        ]]>
+    </select>
+
+    <select id="selectQNA" resultType="QNADetailDTO">
+        select /* com.anjump.ant.qna.dao.QNAMapper#selectQNA(String qnaId) */
+               a.qna_id
+             , a.qna_title
+             , a.qna_content
+             , a.qna_modify_time
+             , a.qna_depth
+             , a.qna_status
+             , a.ref_qna_id
+             , b.qna_category_no
+             , b.qna_category_name
+             , c.qna_file_id
+             , c.qna_file_url
+             , d.member_id
+             , d.member_name
+          from tbl_qnas a
+          left join tbl_qna_categories b on(a.fk_qnacategories_qnas = b.qna_category_no)
+          left join tbl_qna_files c on(a.qna_id = c.fk_qnas_files)
+          left join tbl_members d on(a.fk_members_qnas = d.member_id)
+         where qna_delete_yn = 'N'
+           and qna_id = #{ qnaId }
+    </select>
+
+    <insert id="insertQNA" parameterType="QNACreateDTO">
+        insert /* com.anjump.ant.qna.dao.QNAMapper#insertQNA(QNACreateDTO qnaCreateDTO) */
+          into tbl_qnas
+        (
+          qna_title
+        , qna_content
+        , qna_write_time
+        , fk_qnacategories_qnas
+        , fk_members_qnas
+        )
+        values
+        (
+          #{ qnaTitle }
+        , #{ qnaContent }
+        , now()
+        , #{ qnaCategoryNo }
+        , #{ memberId }
+        )
+    </insert>
+
+    <update id="updateQNA" parameterType="QNAModifyDTO">
+        update /* com.anjump.ant.qna.dao.QNAMapper#updateQNA(QNAModifyDTO qnaModifyDTO) */
+               tbl_qnas
+           set
+          qna_title = #{ qnaTitle }
+        , qna_content = #{ qnaContent }
+        , qna_modify_time = now()
+        , fk_qnacategories_qnas = #{ qnaCategoryNo }
+         where qna_id = #{ qnaId }
+    </update>
+
+    <update id="deleteQNA">
+        update /* com.anjump.ant.qna.dao.QNAMapper#deleteQNA(String qnaId) */
+               tbl_qnas
+           set
+          qna_delete_yn = 'Y'
+         where qna_id = #{ qnaId }
+    </update>
+
+</mapper>

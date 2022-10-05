@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <!DOCTYPE configuration 
     PUBLIC "-//mybatis.org//DTD SQL Map Config 3.0//EN" 
-    "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration> 
 	<!-- http://www.mybatis.org/mybatis-3/configuration.html#settings 참고 --> 
 	<settings> 
@@ -14,10 +14,15 @@
 	<typeAliases>
 		<typeAlias alias="MemberDto" type="com.antjump.ant.member.dto.MemberDto"/>
 		<typeAlias alias="AdminDto" type="com.antjump.ant.admin.dto.AdminDto"/>
+		<typeAlias alias="QNAListDto" type="com.antjump.ant.qna.dto.QNAListDTO"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="MemberMapper.xml" />
 		<mapper resource="AdminMapper.xml" />
+		<mapper resource="FAQMapper.xml" />
+		<mapper resource="GoodsMapper.xml" />
+		<mapper resource="PaymentMapper.xml" />
+		<mapper resource="QNAMapper.xml" />
 	</mappers>
 </configuration>

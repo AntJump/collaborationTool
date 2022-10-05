@@ -24,7 +24,7 @@ const actions = createActions({
 
 console.log(actions);
 
-/* 리듀서 */
+/* FAQ 리듀서 */
 const faqReducer = handleActions(
     {
           [GET_FAQ_DETAIL]: (state, { payload : detail }) => {

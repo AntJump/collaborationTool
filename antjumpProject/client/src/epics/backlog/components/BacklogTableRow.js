@@ -15,7 +15,7 @@ function BacklogTableRow({issue}){
             <TableCell component="th" scope="row" align='center'> {issue.issueKey} </TableCell>
             <TableCell align="center" >{issue.issueCategory}</TableCell>
             <TableCell 
-                component={Link} align="left"
+                component={Link} align="center"
                 to={`/project/${id}/issue/${issue.issueId}`}  
             >
                 {issue.issueSummary}

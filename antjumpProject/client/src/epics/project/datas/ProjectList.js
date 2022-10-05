@@ -37,9 +37,9 @@ export const participatedProjects = [
         role: "팀원"
     },
     {
-        id : 2,
-        key: "PROJECT2",
-        name: "프로젝트2",
+        id : 51,
+        key: "PROJECT51",
+        name: "프로젝트51",
         summary: "프로젝트 요약 입니다",
         explanation: "프로젝트 설명 입니다",
         produceTime: "2022-09-18",
@@ -101,6 +101,50 @@ export const myProjects =
         },
         {
             id : 7,
+            key: "BAJJ",
+            name: "배짱이 프로젝트",
+            summary: "프로젝트 요약 입니다",
+            explanation: "프로젝트 설명 입니다",
+            produceTime: "2022-08-29",
+            endDate: "",
+            enableYn: "Y",
+            constructor: "배짱이"
+        },
+        {
+            id : 30,
+            key: "BAJJ",
+            name: "배짱이 프로젝트",
+            summary: "프로젝트 요약 입니다",
+            explanation: "프로젝트 설명 입니다",
+            produceTime: "2022-08-29",
+            endDate: "",
+            enableYn: "Y",
+            constructor: "배짱이"
+        },
+        {
+            id : 31,
+            key: "BAJJ",
+            name: "배짱이 프로젝트",
+            summary: "프로젝트 요약 입니다",
+            explanation: "프로젝트 설명 입니다",
+            produceTime: "2022-08-29",
+            endDate: "",
+            enableYn: "Y",
+            constructor: "배짱이"
+        },
+        {
+            id : 32,
+            key: "BAJJ",
+            name: "배짱이 프로젝트",
+            summary: "프로젝트 요약 입니다",
+            explanation: "프로젝트 설명 입니다",
+            produceTime: "2022-08-29",
+            endDate: "",
+            enableYn: "Y",
+            constructor: "배짱이"
+        },
+        {
+            id : 33,
             key: "BAJJ",
             name: "배짱이 프로젝트",
             summary: "프로젝트 요약 입니다",
