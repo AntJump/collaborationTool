@@ -18,14 +18,14 @@ public class MemberService {
         this.memberMapper = memberMapper;
     }
 
-//    @GetMapping
-//    public MemberDto selectMyInfo(@PathVariable String memberId) {
-//        log.info("[MemberService] getMyInfo Start ==============================");
-//
-//        MemberDto member = memberMapper.selectByMemberId(memberId);
-//        log.info("[MemberService] {}", member);
-//        log.info("[MemberService] getMyInfo End ==============================");
-//
-//        return member;
-//    }
+    @GetMapping
+    public MemberDto selectMyInfo(@PathVariable String memberId) {
+        log.info("[MemberService] getMyInfo Start ==============================");
+
+        MemberDto member = memberMapper.selectByMemberId(memberId);
+        log.info("[MemberService] {}", member);
+        log.info("[MemberService] getMyInfo End ==============================");
+
+        return member;
+    }
 }

@@ -13,7 +13,27 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+
+import { callGetMemberAPI } from "../../../apis/MemberAPICalls";
+import { decodeJwt } from "../../../utils/tokenUtils";
+
 function Profile() {
+  const dispatch = useDispatch();
+  const member = useSelector((state) => state.memberReducer);
+  const token = decodeJwt(window.localStorage.getItem("accessToken"));
+  const memberDetail = member.data;
+
+  useEffect(() => {
+    console.log("token", token.sub);
+    if (token !== null) {
+      dispatch(
+        callGetMemberAPI({
+          memberId: token.sub,
+        })
+      );
+    }
+  }, []);
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -42,6 +62,7 @@ function Profile() {
                 id="email"
                 label="이메일"
                 autoFocus
+                value={memberDetail.memberEmail || ""}
               />
             </Grid>
             <Grid item xs={12}>
@@ -52,6 +73,7 @@ function Profile() {
                 label="이름"
                 name="name"
                 autoComplete="name"
+                value={memberDetail.memberName || ""}
               />
             </Grid>
             <Grid item xs={12}>
@@ -62,6 +84,7 @@ function Profile() {
                 label="전화번호"
                 name="phone"
                 autoComplete="phone"
+                value={memberDetail.memberPhone || ""}
               />
             </Grid>
             <Grid item xs={12}>

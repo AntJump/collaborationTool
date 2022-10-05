@@ -29,14 +29,26 @@
         </rollingPolicy>
     </appender>
 
-    <root level="INFO">
-        <appender-ref ref="STDOUT"/>
-    </root>
 
-    <!-- 로그 파일의 위치 지정-->
+    <!-- log4jdbc 옵션 설정-->
     <logger name="com.antjump.ant.member.controller" level="INFO">
         <appender-ref ref="DAILY_ROLLING_FILE_APPENDER" />
     </logger>
+    <logger name="com.antjump.ant.qna.controller" level="INFO">
+        <appender-ref ref="DAILY_ROLLING_FILE_APPENDER" />
+    </logger>
+    <logger name="com.antjump.ant.payment.controller" level="INFO">
+        <appender-ref ref="DAILY_ROLLING_FILE_APPENDER" />
+    </logger>
+    <logger name="com.antjump.ant.goods.controller" level="INFO">
+        <appender-ref ref="DAILY_ROLLING_FILE_APPENDER" />
+    </logger>
+    <logger name="com.antjump.ant.faq.controller" level="INFO">
+        <appender-ref ref="DAILY_ROLLING_FILE_APPENDER" />
+    </logger>
 
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
 
 </configuration>
