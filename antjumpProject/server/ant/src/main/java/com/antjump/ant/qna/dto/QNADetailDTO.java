@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 /**
  * <pre>
- * Class : QNAList
+ * Class : QNADetailDTO
  * Comment: 전송하기 위해 사용한 객체
  * History
  * ================================================================
@@ -18,33 +18,39 @@ import java.sql.Timestamp;
  * @author 부시연(최초 작성자)
  * @version 1(클래스 버전)
  */
-public class QNAListDTO {
+public class QNADetailDTO {
 
     private int qnaId;
     private String qnaTitle;
+    private String qnaContent;
     private Timestamp qnaModifyTime;
     private int memberId;
     private String memberName;
     private int qnaDepth;
-    private Integer refQnaId;
     private char qnaStatus;
+    private Integer refQnaId;
     private int qnaCategoryNo;
     private String  qnaCategoryName;
+    private MultipartFile qnaFile;
+    private String qnaFileUrl;
 
-    public QNAListDTO() {
+    public QNADetailDTO() {
     }
 
-    public QNAListDTO(int qnaId, String qnaTitle, Timestamp qnaModifyTime, int memberId, String memberName, int qnaDepth, Integer refQnaId, char qnaStatus, int qnaCategoryNo, String qnaCategoryName) {
+    public QNADetailDTO(int qnaId, String qnaTitle, String qnaContent, Timestamp qnaModifyTime, int memberId, String memberName, int qnaDepth, char qnaStatus, Integer refQnaId, int qnaCategoryNo, String qnaCategoryName, MultipartFile qnaFile, String qnaFileUrl) {
         this.qnaId = qnaId;
         this.qnaTitle = qnaTitle;
+        this.qnaContent = qnaContent;
         this.qnaModifyTime = qnaModifyTime;
         this.memberId = memberId;
         this.memberName = memberName;
         this.qnaDepth = qnaDepth;
-        this.refQnaId = refQnaId;
         this.qnaStatus = qnaStatus;
+        this.refQnaId = refQnaId;
         this.qnaCategoryNo = qnaCategoryNo;
         this.qnaCategoryName = qnaCategoryName;
+        this.qnaFile = qnaFile;
+        this.qnaFileUrl = qnaFileUrl;
     }
 
     public int getQnaId() {
@@ -61,6 +67,14 @@ public class QNAListDTO {
 
     public void setQnaTitle(String qnaTitle) {
         this.qnaTitle = qnaTitle;
+    }
+
+    public String getQnaContent() {
+        return qnaContent;
+    }
+
+    public void setQnaContent(String qnaContent) {
+        this.qnaContent = qnaContent;
     }
 
     public Timestamp getQnaModifyTime() {
@@ -95,20 +109,20 @@ public class QNAListDTO {
         this.qnaDepth = qnaDepth;
     }
 
-    public Integer getRefQnaId() {
-        return refQnaId;
-    }
-
-    public void setRefQnaId(Integer refQnaId) {
-        this.refQnaId = refQnaId;
-    }
-
     public char getQnaStatus() {
         return qnaStatus;
     }
 
     public void setQnaStatus(char qnaStatus) {
         this.qnaStatus = qnaStatus;
+    }
+
+    public Integer getRefQnaId() {
+        return refQnaId;
+    }
+
+    public void setRefQnaId(Integer refQnaId) {
+        this.refQnaId = refQnaId;
     }
 
     public int getQnaCategoryNo() {
@@ -127,19 +141,38 @@ public class QNAListDTO {
         this.qnaCategoryName = qnaCategoryName;
     }
 
+    public MultipartFile getQnaFile() {
+        return qnaFile;
+    }
+
+    public void setQnaFile(MultipartFile qnaFile) {
+        this.qnaFile = qnaFile;
+    }
+
+    public String getQnaFileUrl() {
+        return qnaFileUrl;
+    }
+
+    public void setQnaFileUrl(String qnaFileUrl) {
+        this.qnaFileUrl = qnaFileUrl;
+    }
+
     @Override
     public String toString() {
-        return "QNAListDTO{" +
+        return "QNADetailDTO{" +
                 "qnaId=" + qnaId +
                 ", qnaTitle='" + qnaTitle + '\'' +
+                ", qnaContent='" + qnaContent + '\'' +
                 ", qnaModifyTime=" + qnaModifyTime +
                 ", memberId=" + memberId +
                 ", memberName='" + memberName + '\'' +
                 ", qnaDepth=" + qnaDepth +
-                ", refQnaId=" + refQnaId +
                 ", qnaStatus=" + qnaStatus +
+                ", refQnaId=" + refQnaId +
                 ", qnaCategoryNo=" + qnaCategoryNo +
                 ", qnaCategoryName='" + qnaCategoryName + '\'' +
+                ", qnaFile=" + qnaFile +
+                ", qnaFileUrl='" + qnaFileUrl + '\'' +
                 '}';
     }
 

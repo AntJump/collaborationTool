@@ -15,11 +15,12 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import { qnaRows } from "./QNASample";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { GET_QNAS } from "../../../modules/QNAModule";
+import moment from 'moment';
+import { callQNAListAPI } from "../../../apis/QNAAPICalls";
+import { TableHead } from "@mui/material";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -98,7 +99,9 @@ function QNAList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: GET_QNAS, payload: qnaRows });
+    dispatch(callQNAListAPI({
+
+    }));
   }, [dispatch]);
 
   const [page, setPage] = React.useState(0);
@@ -127,12 +130,23 @@ function QNAList() {
         component={Paper}
       >
         <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
+          <TableHead>
+            <TableCell>
+              문의 제목
+            </TableCell>
+            <TableCell style={{ width: 160 }} align="right">
+              답변 상태
+            </TableCell>
+            <TableCell style={{ width: 160 }} align="right">
+              문의 일자
+            </TableCell >
+          </TableHead>
           <TableBody>
             {(rowsPerPage > 0
               ? qnas.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : qnas
             ).map((qna) => (
-              <TableRow key={qna.id} component={Link} to={qna.id}>
+              <TableRow key={qna.qnaId} component={Link} to={String(qna.qnaId)}>
                 <TableCell component="th" scope="row">
                   {qna.qnaTitle}
                 </TableCell>
@@ -140,7 +154,7 @@ function QNAList() {
                   {qna.qnaStatus}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                  {qna.qnaDate}
+                  {qna.qnaModifyTime=moment().format('YYYY-MM-DD')}
                 </TableCell>
               </TableRow>
             ))}

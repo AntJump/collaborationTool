@@ -1,7 +1,10 @@
 package com.antjump.ant.qna.dao;
 
 import com.antjump.ant.common.paging.SelectCriteria;
+import com.antjump.ant.qna.dto.QNACreateDTO;
+import com.antjump.ant.qna.dto.QNADetailDTO;
 import com.antjump.ant.qna.dto.QNAListDTO;
+import com.antjump.ant.qna.dto.QNAModifyDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -26,4 +29,12 @@ public interface QNAMapper {
     int selectQNATotal();
 
     List<QNAListDTO> selectQNAListWithPaging(SelectCriteria selectCriteria);
+
+    QNADetailDTO selectQNA(String qnaId);
+
+    int insertQNA(QNACreateDTO qnaCreateDTO);
+
+    int updateQNA(QNAModifyDTO qnaModifyDTO);
+
+    int deleteQNA(String qnaId);
 }
