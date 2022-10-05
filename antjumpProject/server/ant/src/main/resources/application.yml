@@ -10,9 +10,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/antproject?serverTimezone=Asia/Seoul
-    username: antjump
-    password: antjump
+    url: jdbc:mysql://metaverse.ohgiraffers.com:3306/antproject?serverTimezone=Asia/Seoul
+    username: pjhbsy
+    password: pjhbsy
 
 
 jwt:

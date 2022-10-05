@@ -1,0 +1,41 @@
+package com.antjump.ant.sprint.model.dao;
+
+import com.antjump.ant.sprint.model.dto.AlarmDto;
+import com.antjump.ant.sprint.model.dto.SprintAndAlarmDto;
+import com.antjump.ant.sprint.model.dto.SprintDto;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+
+/**
+ * <pre>
+ * Class : SprintMapper
+ * Comment: 클래스에 대한 간단 설명
+ * History
+ * ================================================================
+ * DATE             AUTHOR           NOTE
+ * ----------------------------------------------------------------
+ * 2022-10-05       홍길동           최초 생성
+ * </pre>
+ *
+ * @author 홍길동(최초 작성자)
+ * @version 1(클래스 버전)
+ */
+
+@Mapper
+public interface SprintMapper {
+
+
+    List<SprintDto> selectSprintById(String id);
+
+    List<SprintDto> selectSprintsByStatus(String sprintStatus);
+
+    int modifySprintAlarm(AlarmDto alarmDto);
+
+    int startSprint(int id, SprintAndAlarmDto sprintAndAlarmDto);
+
+    int createSprint(SprintDto sprintDto);
+
+    int deleteSprint(int id);
+
+}
