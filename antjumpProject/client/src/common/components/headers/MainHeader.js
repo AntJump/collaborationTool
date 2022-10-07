@@ -12,19 +12,125 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import LogoButton from "../items/LogoButton";
-
-import { Link } from "react-router-dom";
-
+import { useSelector, useDispatch } from "react-redux";
+import { decodeJwt } from "../../../utils/tokenUtils";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { callLogoutAPI } from "../../../apis/MemberAPICalls";
+import Link from "@mui/material/Link";
 
 const pages = ["요금제", "FAQ", "문의"];
 const settings = ["내 정보", "결제", "프로젝트", "로그아웃"];
 const introduces = ["메신저", "일정 관리", "프로젝트"];
 
 const MainHeader = () => {
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const loginMember = useSelector((state) => state.memberReducer); // 저장소에서 가져온 loginMember 정보
+  const isLogin = window.localStorage.getItem("accessToken"); // Local Storage 에 token 정보 확인
+
+  // const onClickMypageHandler = () => {
+  //   // 토큰이 만료되었을때 다시 로그인
+  //   const token = decodeJwt(window.localStorage.getItem("accessToken"));
+  //   console.log("[Header] onClickMypageHandler token : ", token);
+
+  //   if (token.exp * 1000 < Date.now()) {
+  //     setLoginModal(true);
+  //     return;
+  //   }
+
+  //   navigate("/mypage", { replace: true });
+  // };
+
+  const onClickLogoutHandler = () => {
+    window.localStorage.removeItem("accessToken");
+    //로그아웃
+    dispatch(callLogoutAPI());
+
+    alert("로그아웃이 되어 메인화면으로 이동합니다.");
+    navigate("/", { replace: true });
+    window.location.reload();
+  };
+
+  function BeforeLogin() {
+    return (
+      <div>
+        <Link
+          component={RouterLink}
+          to="/members/login"
+          underline="hover"
+          color="white"
+        >
+          로그인 &nbsp;
+        </Link>
+        |
+        <Link
+          component={RouterLink}
+          to="/members/register"
+          underline="hover"
+          color="white"
+        >
+          &nbsp; 회원가입
+        </Link>
+      </div>
+    );
+  }
+
+  function AfterLogin() {
+    return (
+      <Box sx={{ flexGrow: 0 }}>
+        <Tooltip title="설정 열기">
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+          </IconButton>
+        </Tooltip>
+        <Menu
+          sx={{ mt: "45px" }}
+          id="menu-appbar"
+          anchorEl={anchorElUser}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          keepMounted
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          open={Boolean(anchorElUser)}
+          onClose={handleCloseUserMenu}
+        >
+          <Button component={Link} to="/members/profile">
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Typography textAlign="center">{settings[0]}</Typography>
+            </MenuItem>
+          </Button>
+          <p />
+          <Button component={Link} to="/payments">
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Typography textAlign="center">{settings[1]}</Typography>
+            </MenuItem>
+          </Button>
+          <p />
+          <Button component={Link} to="/projects">
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Typography textAlign="center">{settings[2]}</Typography>
+            </MenuItem>
+          </Button>
+          <p />
+          <Button component={Link} to="/">
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Typography textAlign="center">{settings[3]}</Typography>
+            </MenuItem>
+          </Button>
+        </Menu>
+      </Box>
+    );
+  }
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElIntroduce, setAnchorElIntroduce] = React.useState(null);
-
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -236,54 +342,11 @@ const MainHeader = () => {
               {pages[2]}
             </Button>
           </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="설정 열기">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <Button component={Link} to="/members/profile">
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{settings[0]}</Typography>
-                </MenuItem>
-              </Button>
-              <p />
-              <Button component={Link} to="/payments">
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{settings[1]}</Typography>
-                </MenuItem>
-              </Button>
-              <p />
-              <Button component={Link} to="/projects">
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{settings[2]}</Typography>
-                </MenuItem>
-              </Button>
-              <p />
-              <Button component={Link} to="/">
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{settings[3]}</Typography>
-                </MenuItem>
-              </Button>
-            </Menu>
-          </Box>
+          {isLogin == null || isLogin === undefined ? (
+            <BeforeLogin />
+          ) : (
+            <AfterLogin />
+          )}
         </Toolbar>
       </Container>
     </AppBar>
