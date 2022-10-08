@@ -16,8 +16,10 @@
 		<typeAlias alias="AdminDto" type="com.antjump.ant.admin.dto.AdminDto"/>
 		<typeAlias alias="QNAListDto" type="com.antjump.ant.qna.dto.QNAListDTO"/>
 		<typeAlias alias="IssueDto" type="com.antjump.ant.issue.dto.IssueDTO"/>
-	</typeAliases>
+		<typeAlias alias="SprintDto" type="com.antjump.ant.sprint.model.dto.SprintDto"/>
+		<typeAlias alias="RemembranceDto" type="com.antjump.ant.remembrance.model.dto.RemembranceDto"/>
 
+	</typeAliases>
 	<mappers>
 		<mapper resource="MemberMapper.xml" />
 		<mapper resource="AdminMapper.xml" />
@@ -26,5 +28,7 @@
 		<mapper resource="PaymentMapper.xml" />
 		<mapper resource="QNAMapper.xml" />
 		<mapper resource="IssueMapper.xml" />
+		<mapper resource="SprintMapper.xml" />
+		<mapper resource="RemembranceMapper.xml" />
 	</mappers>
 </configuration>

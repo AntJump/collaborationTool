@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.antjump.ant.sprint.model.dao.SprintMapper">
+
+    <resultMap id="sprintResultMap" type="SprintDto">
+        <id property="sprintId" column="SPRINT_ID" />
+        <result property="sprintName" column="SPRINT_NAME" />
+        <result property="sprintStatus" column="SPRINT_STATUS" />
+        <result property="sprintStartDate" column="SPRINT_START_DATE" />
+        <result property="sprintEndDate" column="SPRINT_END_DATE" />
+        <result property="sprintActualEndDate" column="SPRINT_ACTUAL_END_DATE" />
+        <result property="sprintGoal" column="SPRINT_GOAL" />
+        <result property="sprintAlarmCycle" column="SPRINT_ALARM_CYCLE" />
+        <result property="fkProjectsSprints" column="FK_PROJECTS_SPRINTS" />
+        <result property="fkMembersSprints" column="FK_MEMBERS_SPRINTS" />
+    </resultMap>
+
+    <select id="selectSprintById" resultMap="sprintResultMap">
+        SELECT
+               S.SPRINT_ID
+             , S.SPRINT_NAME
+             , S.SPRINT_STATUS
+             , S.SPRINT_START_DATE
+             , S.SPRINT_END_DATE
+             , S.SPRINT_ACTUAL_END_DATE
+             , S.SPRINT_GOAL
+             , S.FK_PROJECTS_SPRINTS
+             , S.FK_MEMBERS_SPRINTS
+             , S.SPRINT_ALARM_CYCLE
+          FROM TBL_SPRINTS S
+         WHERE S.SPRINT_ID = #{sprintId}
+    </select>
+
+    <select id="selectSprintsByStatus" resultMap="sprintResultMap">
+        SELECT
+            S.SPRINT_ID
+             , S.SPRINT_NAME
+             , S.SPRINT_STATUS
+             , S.SPRINT_START_DATE
+             , S.SPRINT_END_DATE
+             , S.SPRINT_ACTUAL_END_DATE
+             , S.SPRINT_GOAL
+             , S.FK_PROJECTS_SPRINTS
+             , S.FK_MEMBERS_SPRINTS
+             , S.SPRINT_ALARM_CYCLE
+          FROM TBL_SPRINTS S
+         WHERE S.SPRINT_STATUS = #{status}
+    </select>
+
+    <insert id="createSprint" parameterType="SprintDto">
+        INSERT
+          INTO TBL_SPRINTS
+        (
+          FK_PROJECTS_SPRINTS
+        , FK_MEMBERS_SPRINTS
+        )
+        VALUES
+        (
+          #{fkProjectsSprints}
+        , #{fkMembersSprints}
+        )
+    </insert>
+
+    <update id="startSprint" parameterType="sprintDto">
+        UPDATE
+            TBL_SPRINTS S
+        SET S.SPRINT_NAME = #{sprintName}
+          , S.SPRINT_START_DATE = #{sprintStartDate}
+          , S.SPRINT_END_DATE = #{sprintEndDate}
+          , S.SPRINT_GOAL = #{sprintGoal}
+          , S.SPRINT_ALARM_CYCLE = #{sprintAlarmCycle}
+        WHERE S.SPRINT_ID = #{sprintId}
+    </update>
+
+    <update id="modifySprintAlarm" parameterType="sprintDto">
+        UPDATE
+               TBL_SPRINTS S
+           SET S.SPRINT_ALARM_CYCLE = #{sprintAlarmCycle}
+         WHERE S.SPRINT_ID = #{sprintId}
+    </update>
+
+    <update id="closeSprint" parameterType="sprintDto">
+        UPDATE
+               TBL_SPRINTS S
+           SET S.SPRINT_ACTUAL_END_DATE = SYSDATE()
+             , S.SPRINT_STATUS = '완료'
+         WHERE S.SPRINT_ID = #{sprintId}
+    </update>
+
+    <delete id="deleteSprint" parameterType="SprintDto">
+        DELETE
+          FROM TBL_SPRINTS S
+         WHERE S.SPRINT_ID = #{sprintId}
+    </delete>
+
+</mapper>
