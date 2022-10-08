@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.antjump.ant.issue.model.dao.IssueMapper">
+
+    <resultMap id="issueResultMap" type="IssueDto">
+        <id property="issueId" column="issue_id"/>
+        <result property="topIssueId" column="top_issue_id"/>
+        <result property="issueName" column="issue_name"/>
+        <result property="issueSummary" column="issue_summary"/>
+        <result property="issueExplanation" column="issue_explanation"/>
+        <result property="issueDifficulty" column="issue_difficulty"/>
+        <result property="issueStatus" column="issue_status"/>
+        <result property="issueCategory" column="issue_category"/>
+        <result property="issuePriority" column="issue_priority"/>
+        <result property="sprintIncludeYN" column="sprint_include_yn"/>
+        <result property="projectId" column="fk_projects_issues"/>
+        <result property="memberId" column="fk_members_issues"/>
+    </resultMap>
+
+
+
+    <select id="selectIssues" resultMap="issueResultMap">
+        SELECT
+               A.ISSUE_NAME
+             , A.ISSUE_CATEGORY
+             , A.ISSUE_SUMMARY
+             , A.ISSUE_STATUS
+             , A.ISSUE_PRIORITY
+          FROM TBL_ISSUES A
+#           LEFT JOIN TBL_MEMBERS B ON (A.FK_MEMBERS_ISSUES = B.MEMBER_ID)
+    </select>
+
+    <insert id="createIssue" parameterType="IssueDto">
+      INSERT
+        INTO tbl_issues
+        (
+          issue_category
+        , issue_priority
+        , issue_difficulty
+        , issue_summary
+        , issue_explanation
+        )
+      VALUES
+        (
+          #{ issueCategory }
+        , #{ issuePriority }
+        , #{ issueDifficulty }
+        , #{ issueSummary }
+        , #{ issueExplanation }
+        )
+    </insert>
+
+    <delete id="deleteIssue" parameterType="IssueDto">
+        DELETE
+          FROM tbl_issues
+         WHERE issue_name = #{ issueName }
+    </delete>
+
+</mapper>

@@ -1,7 +1,7 @@
 package com.antjump.ant.issue.controller;
 
 import com.antjump.ant.common.ResponseDto;
-import com.antjump.ant.issue.model.dto.IssueDto;
+import com.antjump.ant.issue.model.dto.IssueDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,86 +38,31 @@ public class IssueController {
     @GetMapping("/")
     public ResponseEntity <ResponseDto> selectIssues(){
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "이슈 조회 성공",  issueService.selectIssues()));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "백로그 목록 내 이슈 조회 성공",  issueService.selectIssues()));
     }
 
-    @PostMapping("/{issueId}")
-    public ResponseEntity <ResponseDto> createIssue(@ModelAttribute IssueDto issueDto){
-
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "이슈 생성 성공",  issueService.createIssue()));
-    }
-
-    @GetMapping("/")
-    public ResponseEntity <ResponseDto> selectIssueById(){
-
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "이슈 상세정보 조회 성공",  issueService.selectIssueById()));
-    }
-
-    @PutMapping()
-    public ResponseEntity <ResponseDto> modifyIssue(){
-
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "이슈 수정 조회 성공",  issueService.modifyIssue()));
-    }
-
-
-}
-
-
-
-
-
-/**
-package com.antjump.ant.remembrance.controller;
-
-        import com.antjump.ant.common.ResponseDto;
-        import com.antjump.ant.remembrance.model.dto.RemembranceDto;
-        import com.antjump.ant.remembrance.model.service.RemembranceService;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.http.HttpStatus;
-        import org.springframework.http.ResponseEntity;
-        import org.springframework.web.bind.annotation.*;
-
-
-@RestController
-@RequestMapping("/remembrance")
-public class RemembranceController {
-
-    private final RemembranceService remembranceService;
-
-    @Autowired
-    public RemembranceController(RemembranceService remembranceService) {
-        this.remembranceService = remembranceService;
-    }
-
-    @GetMapping("/{sprintId}")
-    public ResponseEntity<ResponseDto> selectRemembrances(@PathVariable int sprintId) {
-
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "데일리 회고 목록 조회 성공", remembranceService.selectRemembrances(sprintId)));
-    }
-
-    @GetMapping("/{remembranceId}")
-    public ResponseEntity<ResponseDto> selectArticle(@PathVariable int remembranceId, @RequestParam(name = "remembranceArticle") String remembranceArticle) {
-
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회고 항목 조회 성공", remembranceService.selectArticle(remembranceId, remembranceArticle)));
-    }
-
-    @GetMapping("/")
-    public ResponseEntity<ResponseDto> selectFinishedRemembrances(@RequestParam(name = "completedStatus") String completedStatus) {
-
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "완료된 데일리 회고 조회 성공", remembranceService.selectFinishedRemembrances(completedStatus)));
-    }
-
-//    @PostMapping("/{sprintId}")
-//    public ResponseEntity<ResponseDto> createRemembrance(@PathVariable int sprintId, @RequestBody RemembranceDto remembranceDto) {
+//   @PostMapping("/")
+//    public ResponseEntity <ResponseDto> createIssue(@ModelAttribute IssueDTO issueDTO){
 //
-//        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "데일리 회고 생성", remembranceService.createRemembrance(remembranceDto)));
+//        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "이슈 생성 성공",  issueService.createIssue(issueDTO)));
+//    }
+////
+//    @GetMapping("/{issueId}")
+//    public ResponseEntity <ResponseDto> selectIssueById(@PathVariable int issueId){
+//
+//        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "이슈 상세정보 조회 성공",  issueService.selectIssueById(issueId)));
+//    }
+//
+//    @PutMapping("/modify")
+//    public ResponseEntity <ResponseDto> modifyIssue(@ModelAttribute IssueDTO issueDTO){
+//
+//        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "이슈 수정 성공",  issueService.modifyIssue(issueDTO)));
+//    }
+//    @DeleteMapping("/delete")
+//    public ResponseEntity <ResponseDto> deleteIssue(@PathVariable int issueId){
+//
+//        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "이슈 삭제 성공",  issueService.deleteIssue(issueId)));
 //    }
 
-    @PostMapping("/{remembranceId}")
-    public ResponseEntity<ResponseDto> createArticle(@PathVariable int remembranceId, @RequestParam(name = "remembranceArticle") String remembranceArticle) {
-
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회고 항목 생성 성공", remembranceService.createArticle(remembranceId, remembranceArticle)));
-    }
-
 }
- */
+

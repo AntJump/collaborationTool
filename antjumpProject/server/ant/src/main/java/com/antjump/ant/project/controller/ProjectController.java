@@ -22,5 +22,5 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/projects")
 public class ProjectController {
-
+    
 }
