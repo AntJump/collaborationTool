@@ -2,10 +2,7 @@ package com.antjump.ant.qna.service;
 
 import com.antjump.ant.common.paging.SelectCriteria;
 import com.antjump.ant.qna.dao.QNAMapper;
-import com.antjump.ant.qna.dto.QNACreateDTO;
-import com.antjump.ant.qna.dto.QNADetailDTO;
-import com.antjump.ant.qna.dto.QNAListDTO;
-import com.antjump.ant.qna.dto.QNAModifyDTO;
+import com.antjump.ant.qna.dto.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -99,5 +96,28 @@ public class QNAService {
         log.info("[QNAService] deleteQNA End ===============");
 
         return (result > 0) ? "문의 삭제 성공" : "문의 삭제 실패";
+    }
+
+    @Transactional
+    public Object insertAdminQNA(QNAAdminCreateDTO qnaAdminCreateDTO) {
+
+        log.info("[QNAService] insertQNA Start ===============");
+        log.info("[QNAService] qnaCreateDTO : " + qnaAdminCreateDTO);
+
+        int result = qnaMapper.insertAdminQNA(qnaAdminCreateDTO);
+
+        return (result > 0) ? "문의 입력 성공" : "문의 입력 실패";
+
+    }
+
+    @Transactional
+    public Object updateAdminQNA(QNAAdminModifyDTO qnaAdminModifyDTO) {
+
+        log.info("[QNAService] modifyQNA Start ===============");
+        log.info("[QNAService] qnaModifyDTO : " + qnaAdminModifyDTO);
+
+        int result = qnaMapper.updateAdminQNA(qnaAdminModifyDTO);
+
+        return (result > 0 ) ? "문의 수정 성공" : "문의 수정 실패";
     }
 }

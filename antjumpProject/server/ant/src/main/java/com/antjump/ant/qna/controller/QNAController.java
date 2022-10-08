@@ -4,6 +4,8 @@ import com.antjump.ant.common.ResponseDto;
 import com.antjump.ant.common.paging.Pagenation;
 import com.antjump.ant.common.paging.ResponseDtoWithPaging;
 import com.antjump.ant.common.paging.SelectCriteria;
+import com.antjump.ant.qna.dto.QNAAdminCreateDTO;
+import com.antjump.ant.qna.dto.QNAAdminModifyDTO;
 import com.antjump.ant.qna.dto.QNACreateDTO;
 import com.antjump.ant.qna.dto.QNAModifyDTO;
 import com.antjump.ant.qna.service.QNAService;
@@ -39,7 +41,7 @@ public class QNAController {
         this.qnaService = qnaService;
     }
 
-    @GetMapping("list")
+    @GetMapping("/")
     public ResponseEntity<ResponseDto> selectQNAListWithPaging(@RequestParam(name = "offset", defaultValue = "1") String offset) {
 
         log.info("[QNAController] selectQNAListWithPaging : " + offset);
@@ -67,21 +69,33 @@ public class QNAController {
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 상세 조회 성공", qnaService.selectQNA(qnaId)));
     }
 
-    @PostMapping("create")
+    @PostMapping("/")
     public ResponseEntity<ResponseDto> insertQNA(@ModelAttribute QNACreateDTO qnaCreateDTO) {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 입력 성공", qnaService.insertQNA(qnaCreateDTO)));
     }
 
-    @PutMapping("modify")
+    @PutMapping("/")
     public  ResponseEntity<ResponseDto> modifyQNA(@ModelAttribute QNAModifyDTO qnaModifyDTO) {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 업데이트 성공", qnaService.updateQNA(qnaModifyDTO)));
     }
 
-    @DeleteMapping("delete/{qnaId}")
+    @DeleteMapping("{qnaId}")
     public ResponseEntity<ResponseDto> deleteQNA(@PathVariable String qnaId) {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 삭제 성공", qnaService.deleteQNA(qnaId)));
+    }
+
+    @PostMapping("admin")
+    public ResponseEntity<ResponseDto> insertAdminQNA(@ModelAttribute QNAAdminCreateDTO qnaAdminCreateDTO) {
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 입력 성공", qnaService.insertAdminQNA(qnaAdminCreateDTO)));
+    }
+
+    @PutMapping("admin")
+    public  ResponseEntity<ResponseDto> modifyAdminQNA(@ModelAttribute QNAAdminModifyDTO qnaAdminModifyDTO) {
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 업데이트 성공", qnaService.updateAdminQNA(qnaAdminModifyDTO)));
     }
 }
