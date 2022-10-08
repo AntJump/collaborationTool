@@ -41,7 +41,7 @@ public class QNAController {
         this.qnaService = qnaService;
     }
 
-    @GetMapping("list")
+    @GetMapping("/")
     public ResponseEntity<ResponseDto> selectQNAListWithPaging(@RequestParam(name = "offset", defaultValue = "1") String offset) {
 
         log.info("[QNAController] selectQNAListWithPaging : " + offset);
@@ -69,19 +69,19 @@ public class QNAController {
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 상세 조회 성공", qnaService.selectQNA(qnaId)));
     }
 
-    @PostMapping("create")
+    @PostMapping("/")
     public ResponseEntity<ResponseDto> insertQNA(@ModelAttribute QNACreateDTO qnaCreateDTO) {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 입력 성공", qnaService.insertQNA(qnaCreateDTO)));
     }
 
-    @PutMapping("modify")
+    @PutMapping("/")
     public  ResponseEntity<ResponseDto> modifyQNA(@ModelAttribute QNAModifyDTO qnaModifyDTO) {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 업데이트 성공", qnaService.updateQNA(qnaModifyDTO)));
     }
 
-    @DeleteMapping("delete/{qnaId}")
+    @DeleteMapping("{qnaId}")
     public ResponseEntity<ResponseDto> deleteQNA(@PathVariable String qnaId) {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 삭제 성공", qnaService.deleteQNA(qnaId)));
