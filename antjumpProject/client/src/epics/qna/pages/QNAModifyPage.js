@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 import { QNA_CONTENT, QNA_TITLE } from '../../../modules/QNAModule';
 // import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 import { InputAdornment } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
@@ -25,9 +24,8 @@ const CustomButton = styled(Button)({
 export default function QNATitle() {
 
     const dispatch = useDispatch();
-    const { qnaNumber } = useParams();
     const qnas = useSelector(state => state.qnaReducer);
-    const qna = qnas[qnaNumber];
+    const qna = qnas;
     console.log("qna: ", qna);
 
     

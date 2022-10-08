@@ -1,7 +1,5 @@
 package com.antjump.ant.sprint.model.dao;
 
-import com.antjump.ant.sprint.model.dto.AlarmDto;
-import com.antjump.ant.sprint.model.dto.SprintAndAlarmDto;
 import com.antjump.ant.sprint.model.dto.SprintDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -26,16 +24,17 @@ import java.util.List;
 public interface SprintMapper {
 
 
-    List<SprintDto> selectSprintById(String id);
+    List<SprintDto> selectSprintById(int id);
 
-    List<SprintDto> selectSprintsByStatus(String sprintStatus);
+    List<SprintDto> selectSprintsByStatus(String status);
 
-    int modifySprintAlarm(AlarmDto alarmDto);
+    int modifySprintAlarm(SprintDto sprintDto);
 
-    int startSprint(int id, SprintAndAlarmDto sprintAndAlarmDto);
+    int startSprint(SprintDto sprintDto);
 
     int createSprint(SprintDto sprintDto);
 
     int deleteSprint(int id);
 
+    int closeSprint(int id);
 }

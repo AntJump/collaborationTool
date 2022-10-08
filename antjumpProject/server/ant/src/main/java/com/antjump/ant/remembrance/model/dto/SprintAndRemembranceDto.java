@@ -1,47 +1,50 @@
-package com.antjump.ant.sprint.model.dto;
+package com.antjump.ant.remembrance.model.dto;
 
 import java.sql.Date;
+import java.util.List;
 
 /**
  * <pre>
- * Class : SprintAndAlarmDto
+ * Class : SprintAndRemembranceDto
  * Comment: 클래스에 대한 간단 설명
  * History
  * ================================================================
  * DATE             AUTHOR           NOTE
  * ----------------------------------------------------------------
- * 2022-10-05       이상학           최초 생성
+ * 2022-10-07       홍길동           최초 생성
  * </pre>
  *
- * @author 이상학(최초 작성자)
+ * @author 홍길동(최초 작성자)
  * @version 1(클래스 버전)
  */
-public class SprintAndAlarmDto {
+public class SprintAndRemembranceDto {
 
     private int sprintId;
-    private String sprintKey;
+    private String sprintName;
     private String sprintStatus;
     private Date sprintStartDate;
     private Date sprintEndDate;
     private Date sprintActualEndDate;
     private String sprintGoal;
+    private String sprintAlarmCycle;
     private int fkProjectsSprints;
     private int fkMembersSprints;
-    private AlarmDto alarmDto;
+    List<RemembranceDto> remembranceInfo;
 
-    public SprintAndAlarmDto() {}
+    public SprintAndRemembranceDto() {}
 
-    public SprintAndAlarmDto(int sprintId, String sprintKey, String sprintStatus, Date sprintStartDate, Date sprintEndDate, Date sprintActualEndDate, String sprintGoal, int fkProjectsSprints, int fkMembersSprints, AlarmDto alarmDto) {
+    public SprintAndRemembranceDto(int sprintId, String sprintName, String sprintStatus, Date sprintStartDate, Date sprintEndDate, Date sprintActualEndDate, String sprintGoal, String sprintAlarmCycle, int fkProjectsSprints, int fkMembersSprints, List<RemembranceDto> remembranceInfo) {
         this.sprintId = sprintId;
-        this.sprintKey = sprintKey;
+        this.sprintName = sprintName;
         this.sprintStatus = sprintStatus;
         this.sprintStartDate = sprintStartDate;
         this.sprintEndDate = sprintEndDate;
         this.sprintActualEndDate = sprintActualEndDate;
         this.sprintGoal = sprintGoal;
+        this.sprintAlarmCycle = sprintAlarmCycle;
         this.fkProjectsSprints = fkProjectsSprints;
         this.fkMembersSprints = fkMembersSprints;
-        this.alarmDto = alarmDto;
+        this.remembranceInfo = remembranceInfo;
     }
 
     public int getSprintId() {
@@ -52,12 +55,12 @@ public class SprintAndAlarmDto {
         this.sprintId = sprintId;
     }
 
-    public String getSprintKey() {
-        return sprintKey;
+    public String getSprintName() {
+        return sprintName;
     }
 
-    public void setSprintKey(String sprintKey) {
-        this.sprintKey = sprintKey;
+    public void setSprintName(String sprintName) {
+        this.sprintName = sprintName;
     }
 
     public String getSprintStatus() {
@@ -100,6 +103,14 @@ public class SprintAndAlarmDto {
         this.sprintGoal = sprintGoal;
     }
 
+    public String getSprintAlarmCycle() {
+        return sprintAlarmCycle;
+    }
+
+    public void setSprintAlarmCycle(String sprintAlarmCycle) {
+        this.sprintAlarmCycle = sprintAlarmCycle;
+    }
+
     public int getFkProjectsSprints() {
         return fkProjectsSprints;
     }
@@ -116,27 +127,28 @@ public class SprintAndAlarmDto {
         this.fkMembersSprints = fkMembersSprints;
     }
 
-    public AlarmDto getAlarmDto() {
-        return alarmDto;
+    public List<RemembranceDto> getRemembranceInfo() {
+        return remembranceInfo;
     }
 
-    public void setAlarmDto(AlarmDto alarmDto) {
-        this.alarmDto = alarmDto;
+    public void setRemembranceInfo(List<RemembranceDto> remembranceInfo) {
+        this.remembranceInfo = remembranceInfo;
     }
 
     @Override
     public String toString() {
-        return "SprintAndAlarmDto{" +
+        return "SprintAndRemembranceDto{" +
                 "sprintId=" + sprintId +
-                ", sprintKey='" + sprintKey + '\'' +
+                ", sprintName='" + sprintName + '\'' +
                 ", sprintStatus='" + sprintStatus + '\'' +
                 ", sprintStartDate=" + sprintStartDate +
                 ", sprintEndDate=" + sprintEndDate +
                 ", sprintActualEndDate=" + sprintActualEndDate +
                 ", sprintGoal='" + sprintGoal + '\'' +
+                ", sprintAlarmCycle='" + sprintAlarmCycle + '\'' +
                 ", fkProjectsSprints=" + fkProjectsSprints +
                 ", fkMembersSprints=" + fkMembersSprints +
-                ", alarmDto=" + alarmDto +
+                ", remembranceInfo=" + remembranceInfo +
                 '}';
     }
 }

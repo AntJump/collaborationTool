@@ -4,20 +4,22 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
-
 public class AdminDto implements UserDetails {
 
     private Integer adminId; // 관리자번호
     private String adminEmail; // 관리자아이디
     private String adminPwd; // 관리자비밀번호
+    private String adminRole; // 관리자 권한
 
     public AdminDto() {
     }
 
-    public AdminDto(Integer adminId, String adminEmail, String adminPwd) {
+    public AdminDto(Integer adminId, String adminEmail, String adminPwd, String adminRole, Collection<? extends GrantedAuthority> authorities) {
         this.adminId = adminId;
         this.adminEmail = adminEmail;
         this.adminPwd = adminPwd;
+        this.adminRole = adminRole;
+        this.authorities = authorities;
     }
 
     public Integer getAdminId() {
@@ -42,6 +44,14 @@ public class AdminDto implements UserDetails {
 
     public void setAdminPwd(String adminPwd) {
         this.adminPwd = adminPwd;
+    }
+
+    public String getAdminRole() {
+        return adminRole;
+    }
+
+    public void setAdminRole(String adminRole) {
+        this.adminRole = adminRole;
     }
 
     public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
@@ -93,6 +103,7 @@ public class AdminDto implements UserDetails {
                 "adminId=" + adminId +
                 ", adminEmail='" + adminEmail + '\'' +
                 ", adminPwd='" + adminPwd + '\'' +
+                ", adminRole='" + adminRole + '\'' +
                 ", authorities=" + authorities +
                 '}';
     }

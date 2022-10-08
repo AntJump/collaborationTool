@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="91836b75-5511-49ae-abaa-7582e8970075" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/common/AntTheme.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/common/components/headers/MainHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/common/components/headers/MainHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/common/components/headers/ProjectHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/common/components/headers/ProjectHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/common/components/tabPanel/ProjectTabPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/common/components/tabPanel/ProjectTabPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/common/pages/MainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/common/pages/MainPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/backlog/components/IssuePriority.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/backlog/components/IssuePriority.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/backlog/modals/IssueCreateModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/backlog/modals/IssueCreateModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/backlog/pages/BacklogPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/backlog/pages/BacklogPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/backlog/pages/IssueCreate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/backlog/pages/IssueCreatePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/backlog/pages/IssueCreatePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/backlog/pages/IssueDetail.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/backlog/pages/IssueDetailPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/backlog/pages/IssueDetailPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/board/components/items/Remembrance.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/board/components/items/Remembrance.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/board/components/items/boxes/IssueContainBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/board/components/items/boxes/IssueContainBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/board/components/items/texts/AlarmText.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/board/components/items/texts/AlarmText.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/board/components/items/texts/BoardHeaderText.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/board/components/items/texts/BoardHeaderText.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/board/pages/BoardPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/board/pages/BoardPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/calendar/components/form/CalendarAlarm.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/calendar/components/form/CalendarAlarm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/calendar/components/form/CalendarColorPicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/calendar/components/form/CalendarColorPicker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/calendar/components/form/CalendarInsertBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/calendar/components/form/CalendarInsertBtn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/calendar/components/form/CalendarPublicSet.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/calendar/components/form/CalendarPublicSet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/calendar/components/form/CalendarShareBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/calendar/components/form/CalendarShareBtn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/calendar/components/form/CalendarTension.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/calendar/components/form/CalendarTension.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/calendar/pages/CalendarInsert.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/calendar/pages/CalendarInsert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/calendar/pages/CalendarPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/calendar/pages/CalendarPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/payment/lists/GoodsList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/payment/pages/PaymentPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/payment/pages/PaymentPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/payment/pages/SucceessPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/payment/pages/SucceessPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/Containers/ProjectInputForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/Containers/ProjectInputForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/Containers/ProjectModifyForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/Containers/ProjectModifyForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/items/MyProjectCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/items/MyProjectCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/items/ParticipatedProjectCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/items/ParticipatedProjectCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/items/ProjectMemberCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/items/ProjectMemberCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/items/RegistButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/items/RegistButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/items/RoleChangeButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/items/RoleChangeButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/items/SearchBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/items/SearchBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/items/WaitMemberCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/items/WaitMemberCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/lists/MyProjectList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/lists/MyProjectList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/lists/ParticipatedProjectList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/lists/ParticipatedProjectList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/lists/ProjectMemberList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/lists/ProjectMemberList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/lists/ProjectWaitMemberList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/lists/ProjectWaitMemberList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/lists/TableStyle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/modals/DeleteModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/modals/DeleteModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/modals/MemberListModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/modals/MemberListModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/modals/ModalStyle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/modals/ModifyModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/modals/ModifyModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/components/modals/RegistModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/components/modals/RegistModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/pages/ProjectErrorPage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/pages/ProjectlistPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/project/pages/ProjectlistPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/resource/datas/MemberList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/project/resource/datas/ProjectList.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/qna/lists/QNAList.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/qna/lists/QNAList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/qna/pages/QNADetailPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/qna/pages/QNADetailPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/qna/pages/QNAPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/qna/pages/QNAPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/storage/components/items/boxes/FinishedSprintBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/storage/components/items/boxes/FinishedSprintBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/storage/components/items/buttons/SelectRememberanceButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/storage/components/items/buttons/SelectRememberanceButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/storage/components/items/texts/FinishedSprintText.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/epics/storage/components/items/texts/FinishedSprintText.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/storage/components/items/texts/StorageHeader.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/epics/storage/pages/StoragePage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/modules/PaymentModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/modules/PaymentModule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/modules/ProjectModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/modules/ProjectModule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/modules/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/modules/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/routes/CalendarRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/CalendarRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/routes/PaymentRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/PaymentRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/routes/ProjectRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/routes/ProjectRoute.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2FdwMwWcCsPgePOnl7fGJ9TOdQI" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/HP/Desktop/antjump-project/antjumpProject/server",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="91836b75-5511-49ae-abaa-7582e8970075" name="Changes" comment="" />
+      <created>1664835224704</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1664835224704</updated>
+      <workItem from="1664835227314" duration="36000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

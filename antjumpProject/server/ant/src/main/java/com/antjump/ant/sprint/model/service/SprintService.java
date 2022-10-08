@@ -1,8 +1,6 @@
 package com.antjump.ant.sprint.model.service;
 
 import com.antjump.ant.sprint.model.dao.SprintMapper;
-import com.antjump.ant.sprint.model.dto.AlarmDto;
-import com.antjump.ant.sprint.model.dto.SprintAndAlarmDto;
 import com.antjump.ant.sprint.model.dto.SprintDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,26 +33,28 @@ public class SprintService {
         this.sprintMapper = sprintMapper;
     }
 
-    public Object selectSprintById(String id) {
+    public List<SprintDto> selectSprintById(int id) {
 
         List<SprintDto> sprintList = sprintMapper.selectSprintById(id);
+
+        System.out.println("Service sprintList : " + sprintList);
 
         return sprintList;
     }
 
-    public Object selectSprintsByStatus(String sprintStatus) {
+    public Object selectSprintsByStatus(String status) {
 
-        List<SprintDto> sprintList = sprintMapper.selectSprintsByStatus(sprintStatus);
+        List<SprintDto> sprintList = sprintMapper.selectSprintsByStatus(status);
 
         return sprintList;
     }
 
     @Transactional
-    public Object modifySprintAlarm(AlarmDto alarmDto) {
+    public Object modifySprintAlarm(SprintDto sprintDto) {
 
         String response = "알람 수정 실패";
 
-        int result = sprintMapper.modifySprintAlarm(alarmDto);
+        int result = sprintMapper.modifySprintAlarm(sprintDto);
 
         if(result > 0) {
             response = "알람 수정 성공";
@@ -78,11 +78,11 @@ public class SprintService {
     }
 
     @Transactional
-    public Object startSprint(int id, SprintAndAlarmDto sprintAndAlarmDto) {
+    public Object startSprint(SprintDto sprintDto) {
 
         String response = "스프린트 시작 실패";
 
-        int result = sprintMapper.startSprint(id, sprintAndAlarmDto);
+        int result = sprintMapper.startSprint(sprintDto);
 
         if(result > 0) {
             response = "스프린트 시작 성공";
@@ -105,4 +105,16 @@ public class SprintService {
         return response;
     }
 
+    public Object closeSprint(int id) {
+
+        String response = "스프린트 완료 실패";
+
+        int result = sprintMapper.closeSprint(id);
+
+        if(result > 0) {
+            response = "스프린트 완료 성공";
+        }
+
+        return response;
+    }
 }

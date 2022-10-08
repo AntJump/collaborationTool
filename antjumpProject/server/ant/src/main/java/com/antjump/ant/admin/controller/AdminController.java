@@ -3,7 +3,6 @@ package com.antjump.ant.admin.controller;
 import com.antjump.ant.admin.dto.AdminDto;
 import com.antjump.ant.admin.service.AdminAuthService;
 import com.antjump.ant.common.ResponseDto;
-import com.antjump.ant.member.dto.MemberDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +33,5 @@ public class AdminController {
 
             return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "회원가입 성공", adminAuthService.adminSignup(adminDto)));
         }
-
-
 }
 

@@ -19,28 +19,31 @@ import java.sql.Date;
  */
 public class SprintDto {
     private int sprintId;
-    private String sprintKey;
+    private String sprintName;
     private String sprintStatus;
     private Date sprintStartDate;
     private Date sprintEndDate;
     private Date sprintActualEndDate;
     private String sprintGoal;
+    private String sprintAlarmCycle;
     private int fkProjectsSprints;
     private int fkMembersSprints;
 
     public SprintDto() {}
 
-    public SprintDto(int sprintId, String sprintKey, String sprintStatus, Date sprintStartDate, Date sprintEndDate, Date sprintActualEndDate, String sprintGoal, int fkProjectsSprints, int fkMembersSprints) {
+    public SprintDto(int sprintId, String sprintName, String sprintStatus, Date sprintStartDate, Date sprintEndDate, Date sprintActualEndDate, String sprintGoal, String sprintAlarmCycle, int fkProjectsSprints, int fkMembersSprints) {
         this.sprintId = sprintId;
-        this.sprintKey = sprintKey;
+        this.sprintName = sprintName;
         this.sprintStatus = sprintStatus;
         this.sprintStartDate = sprintStartDate;
         this.sprintEndDate = sprintEndDate;
         this.sprintActualEndDate = sprintActualEndDate;
         this.sprintGoal = sprintGoal;
+        this.sprintAlarmCycle = sprintAlarmCycle;
         this.fkProjectsSprints = fkProjectsSprints;
         this.fkMembersSprints = fkMembersSprints;
     }
+
 
     public int getSprintId() {
         return sprintId;
@@ -50,12 +53,12 @@ public class SprintDto {
         this.sprintId = sprintId;
     }
 
-    public String getSprintKey() {
-        return sprintKey;
+    public String getSprintName() {
+        return sprintName;
     }
 
-    public void setSprintKey(String sprintKey) {
-        this.sprintKey = sprintKey;
+    public void setSprintName(String sprintName) {
+        this.sprintName = sprintName;
     }
 
     public String getSprintStatus() {
@@ -98,6 +101,14 @@ public class SprintDto {
         this.sprintGoal = sprintGoal;
     }
 
+    public String getSprintAlarmCycle() {
+        return sprintAlarmCycle;
+    }
+
+    public void setSprintAlarmCycle(String sprintAlarmCycle) {
+        this.sprintAlarmCycle = sprintAlarmCycle;
+    }
+
     public int getFkProjectsSprints() {
         return fkProjectsSprints;
     }
@@ -118,15 +129,15 @@ public class SprintDto {
     public String toString() {
         return "SprintDto{" +
                 "sprintId=" + sprintId +
-                ", sprintKey='" + sprintKey + '\'' +
+                ", sprintName='" + sprintName + '\'' +
                 ", sprintStatus='" + sprintStatus + '\'' +
                 ", sprintStartDate=" + sprintStartDate +
                 ", sprintEndDate=" + sprintEndDate +
                 ", sprintActualEndDate=" + sprintActualEndDate +
                 ", sprintGoal='" + sprintGoal + '\'' +
+                ", sprintAlarmCycle='" + sprintAlarmCycle + '\'' +
                 ", fkProjectsSprints=" + fkProjectsSprints +
                 ", fkMembersSprints=" + fkMembersSprints +
                 '}';
     }
-
 }

@@ -17,6 +17,11 @@ function ProjectMemberInviteModal({project}){
       setOpen(false);
     };
 
+    const onClickFinish = ()=>{
+        alert("초대 메일을 발송하였습니다!");
+        setOpen(false);
+    }
+
     const inviteHandler = () =>{
         handleClose();
     }
@@ -40,7 +45,7 @@ function ProjectMemberInviteModal({project}){
                                 <InviteInputForm/>
                         </Grid>     
                         <Grid item xs={12}>
-                            <FinishButton text="초대 메일 발송" onClickHandler={inviteHandler}/>
+                            <FinishButton text="초대 메일 발송" onClickHandler={onClickFinish}/>
                         </Grid>
                     </Grid>
                 </Box>
