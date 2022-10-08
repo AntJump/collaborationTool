@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.antjump.ant.remembrance.model.dao.RemembranceMapper">
+
+    <resultMap id="sprintAndRemembranceResultMap" type="SprintAndRemembranceDto">
+        <id property="sprintId" column="SPRINT_ID" />
+        <result property="sprintName" column="SPRINT_NAME" />
+        <result property="sprintStatus" column="SPRINT_STATUS" />
+        <result property="sprintStartDate" column="SPRINT_START_DATE" />
+        <result property="sprintEndDate" column="SPRINT_END_DATE" />
+        <result property="sprintActualEndDate" column="SPRINT_ACTUAL_END_DATE" />
+        <result property="sprintGoal" column="SPRINT_GOAL" />
+        <result property="sprintAlarmCycle" column="SPRINT_ALARM_CYCLE" />
+        <result property="fkProjectsSprints" column="FK_PROJECTS_SPRINTS" />
+        <result property="fkMembersSprints" column="FK_MEMBERS_SPRINTS" />
+        <collection property="remembranceInfo" resultMap="remembranceResultMap"/>
+    </resultMap>
+
+    <resultMap id="remembranceResultMap" type="RemembranceDto">
+        <id property="remembranceId" column="REMEMBRANCE_ID" />
+        <result property="remembranceDate" column="REMEMBRANCE_DATE" />
+        <result property="remembranceArticle" column="REMEMBRANCE_ARTICLE" />
+        <result property="remembranceTitle" column="REMEMBRANCE_TITLE" />
+        <result property="remembranceContent" column="REMEMBRANCE_CONTENT" />
+        <result property="fkSprintsRemembrances" column="FK_SPRINTS_REMEMBRANCES" />
+    </resultMap>
+
+    <select id="selectRemembrances" resultMap="remembranceResultMap">
+        SELECT
+               R.REMEMBRANCE_ID
+             , R.REMEMBRANCE_DATE
+             , R.REMEMBRANCE_ARTICLE
+             , R.REMEMBRANCE_TITLE
+             , R.REMEMBRANCE_CONTENT
+             , R.FK_SPRINTS_REMEMBRANCES
+          FROM TBL_REMEMBRANCES R
+         WHERE R.FK_SPRINTS_REMEMBRANCES = #{fkSprintsRemembrances}
+    </select>
+
+    <select id="selectRemembranceInfo" resultMap="sprintAndRemembranceResultMap">
+        SELECT
+               R.REMEMBRANCE_DATE
+             , S.SPRINT_NAME
+             , R.REMEMBRANCE_ARTICLE
+             , R.REMEMBRANCE_TITLE
+             , R.REMEMBRANCE_CONTENT
+          FROM TBL_REMEMBRANCES R
+          JOIN TBL_SPRINTS S ON(R.FK_SPRINTS_REMEMBRANCES = S.SPRINT_ID)
+         WHERE R.REMEMBRANCE_ID = #{remembranceId}
+           AND R.REMEMBRANCE_ARTICLE = #{remembranceArticle}
+    </select>
+
+    <insert id="createRemembrances" parameterType="RemembranceDto">
+        INSERT
+          INTO TBL_REMEMBRANCES
+        (
+          REMEMBRANCE_DATE
+        , REMEMBRANCE_ARTICLE
+        , FK_SPRINTS_REMEMBRANCES
+        )
+        VALUES
+        (
+          #{remembranceDate}
+        , #{remembranceArticle}
+        , #{fkSprintsRemembrances}
+        )
+    </insert>
+
+    <update id="updateRemembrance" parameterType="RemembranceDto">
+        UPDATE
+               TBL_REMEMBRANCES R
+           SET R.REMEMBRANCE_TITLE = #{remembranceTitle}
+             , R.REMEMBRANCE_CONTENT = #{remembranceContent}
+         WHERE R.REMEMBRANCE_iD = #{remembranceId}
+    </update>
+
+    <delete id="deleteRemembrances" parameterType="RemembranceDto">
+        DELETE
+          FROM TBL_REMEMBRANCES R
+         WHERE R.REMEMBRANCE_DATE = #{remembranceDate}
+    </delete>
+
+</mapper>
+
+
