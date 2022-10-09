@@ -11,18 +11,4 @@
 		<setting name="jdbcTypeForNull" value="NULL" /> 
 	</settings>
 
-	<typeAliases>
-		<typeAlias alias="MemberDto" type="com.antjump.ant.member.dto.MemberDto"/>
-		<typeAlias alias="AdminDto" type="com.antjump.ant.admin.dto.AdminDto"/>
-		<typeAlias alias="QNAListDto" type="com.antjump.ant.qna.dto.QNAListDTO"/>
-	</typeAliases>
-
-	<mappers>
-		<mapper resource="MemberMapper.xml" />
-		<mapper resource="AdminMapper.xml" />
-		<mapper resource="FAQMapper.xml" />
-		<mapper resource="GoodsMapper.xml" />
-		<mapper resource="PaymentMapper.xml" />
-		<mapper resource="QNAMapper.xml" />
-	</mappers>
 </configuration>

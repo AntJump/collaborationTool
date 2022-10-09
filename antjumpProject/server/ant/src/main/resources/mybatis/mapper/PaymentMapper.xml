@@ -4,4 +4,35 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.antjump.ant.payment.dao.PaymentMapper">
 
+    <select id="selectPaymentsList" resultType="PaymentListDTO">
+        select /* com.antjump.ant.payment.dao.PaymentMapper#selectPaymentsList */
+               a.payment_id
+             , a.payment_time
+             , a.payment_key
+             , a.payment_status
+             , b.member_id
+             , b.member_name
+          from tbl_payments a
+          left join tbl_members b on (a.fk_members_payments = b.member_id)
+    </select>
+
+    <select id="selectPaymentsDetail" resultType="PaymentDetailDTO">
+        select /* com.anjump.ant.faq.dao.PaymentMapper#selectPaymentsDetail(String paymentId) */
+               a.payment_id
+             , a.payment_time
+             , a.payment_key
+             , a.payment_status
+             , b.order_id
+             , b.order_amount
+             , c.member_id
+             , c.member_name
+             , c.member_email
+             , c.member_phone
+             , d.refund_reason
+          from tbl_payments a
+          left join tbl_orders b on (a.fk_orders_payments = b.order_id)
+          left join tbl_members c on (a.fk_members_payments = c.member_id)
+          left join tbl_payment_state_histories d on(a.payment_id = d.fk_payments_states)
+         where a.payment_id = #{ paymentId }
+    </select>
 </mapper>

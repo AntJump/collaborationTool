@@ -58,6 +58,7 @@ public class QNAService {
         log.info("[QNAService] selectQNA Start ===============");
 
         QNADetailDTO qnaDetailDTO = qnaMapper.selectQNA(qnaId);
+        log.info("[QNAService] qnaDetailDTO : " + qnaDetailDTO);
         log.info("[QNAService] selectQNA End ===============");
 
         return qnaDetailDTO;

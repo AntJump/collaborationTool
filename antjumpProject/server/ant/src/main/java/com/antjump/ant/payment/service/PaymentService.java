@@ -1,6 +1,14 @@
 package com.antjump.ant.payment.service;
 
+import com.antjump.ant.faq.dto.FAQListDTO;
+import com.antjump.ant.payment.dao.PaymentMapper;
+import com.antjump.ant.payment.dto.PaymentDetailDTO;
+import com.antjump.ant.payment.dto.PaymentListDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <pre>
@@ -18,4 +26,34 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class PaymentService {
+
+    private static final Logger log = LoggerFactory.getLogger(PaymentService.class);
+
+    private final PaymentMapper paymentMapper;
+
+    public PaymentService(PaymentMapper paymentMapper) {
+        this.paymentMapper = paymentMapper;
+    }
+
+    public Object selectPaymentsDetail(String paymentId) {
+        log.info("[PaymentService] selectPaymentsDetail Start ===============");
+
+        PaymentDetailDTO paymentDetailDTO = paymentMapper.selectPaymentsDetail(paymentId);
+
+        log.info("[PaymentService] selectPaymentsDetail End ===============");
+
+        return paymentDetailDTO;
+    }
+
+    public List<PaymentListDTO> selectPaymentsList() {
+
+        log.info("[PaymentService] selectPaymentsList Start ===============");
+
+        List<PaymentListDTO> paymentList = paymentMapper.selectPaymentsList();
+
+        log.info("[PaymentService] selectPaymentsList End ===============");
+
+        return paymentList;
+
+    }
 }
