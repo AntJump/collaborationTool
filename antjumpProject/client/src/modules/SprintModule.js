@@ -1,39 +1,60 @@
 import { createAction, handleActions } from "redux-actions";
 
-// 프로젝트 정보와 관련된 리덕스 모듈 설정
+// 스프린트 정보와 관련된 리덕스 모듈 설정
 
 // 초기 state 값 설정
-const initState = {
-  paticipatedProjects: [],
-  myProjects: [],
-};
+const initState = [];
 
 // 액션 타입 설정
-export const GET_PROJECTS = "project/GET_PROJECTS";
-export const GET_PROJECT_MEMBERS = "project/GET_PROJECT_MEMBERS";
-export const SET_SELECTED_PROJECT = "project/SET_SELECTED_PROJECT";
+export const GET_SPRINT = "sprint/GET_SPRINT";
+export const GET_SPRINTS = "sprint/GET_SPRINTS";
+export const POST_SPRINT = "sprint/POST_SPRINT";
+export const PUT_START_SPRINT = "sprint/PUT_START_SPRINT";
+export const PUT_CLOSE_SPRINT = "sprint/PUT_CLOSE_SPRINT";
+export const PATCH_SPRINT = "sprint/PATCH_SPRINT";
+export const DELETE_SPRINT = "sprint/DELETE_SPRINT";
 
 // 액션 함수 생성
-// 프로젝트 목록 관련 액션 함수
+// 스프린트 액션 함수
 const actions = createAction({
-  [GET_PROJECTS]: () => {},
-  [GET_PROJECT_MEMBERS]: () => {},
-  [SET_SELECTED_PROJECT]: () => {},
+  [GET_SPRINT]: () => {},
+  [GET_SPRINTS]: () => {},
+  [POST_SPRINT]: () => {},
+  [PUT_START_SPRINT]: () => {},
+  [PUT_CLOSE_SPRINT]: () => {},
+  [PATCH_SPRINT]: () => {},
+  [DELETE_SPRINT]: () => {},
 });
 
 // 리듀서 함수 설정
-export const projectReducer = handleActions(
+export const sprintReducer = handleActions(
   {
-    [SET_SELECTED_PROJECT]: (state, { payload }) => {
-      console.log("set selected project payload", payload);
+    [GET_SPRINT]: (state, { payload }) => {
+      console.log("get sprint by sprintId payload", payload);
       return payload;
     },
-    [GET_PROJECTS]: (state, { payload }) => {
-      console.log("get project payload:", payload);
+    [GET_SPRINTS]: (state, { payload }) => {
+      console.log("get sprints by status payload:", payload);
       return payload;
     },
-    [GET_PROJECT_MEMBERS]: (state, { payload }) => {
-      console.log("get porject payload:", payload);
+    [POST_SPRINT]: (state, { payload }) => {
+      console.log("post sprint payload:", payload);
+      return payload;
+    },
+    [PUT_START_SPRINT]: (state, { payload }) => {
+      console.log("put start sprint payload:", payload);
+      return payload;
+    },
+    [PUT_CLOSE_SPRINT]: (state, { payload }) => {
+      console.log("put close sprint payload:", payload);
+      return payload;
+    },
+    [PATCH_SPRINT]: (state, { payload }) => {
+      console.log("patch sprint alarm payload:", payload);
+      return payload;
+    },
+    [DELETE_SPRINT]: (state, { payload }) => {
+      console.log("delete sprint payload:", payload);
       return payload;
     },
   },

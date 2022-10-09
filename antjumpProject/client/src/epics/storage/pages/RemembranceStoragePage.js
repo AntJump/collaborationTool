@@ -1,8 +1,18 @@
 import RemembranceList from "../../board/components/lists/RemembranceList";
 import RemembranceStorageHeader from "../components/items/texts/RemembranceStorageHeader";
 import Grid from "@mui/material/Grid";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { callSprintAPI } from "../../../apis/SprintAPICalls";
 
 function RemembranceStoragePage() {
+  // const dispatch = useDispatch();
+  // const remembrances = useSelector((state) => state.remembranceReducer);
+
+  // useEffect(() => {
+  //   dispatch;
+  // }, []);
+
   return (
     <>
       <Grid
