@@ -51,12 +51,6 @@ public class RemembranceController {
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회고 상세 정보 조회 성공", remembranceService.selectRemembranceInfo(remembranceDto)));
     }
 
-//    @GetMapping("/")
-//    public ResponseEntity<ResponseDto> selectFinishedRemembrances(@RequestParam(name = "sprintId") String sprintId) {
-//
-//        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "완료된 데일리 회고 조회 성공", remembranceService.selectFinishedRemembrances(sprintId)));
-//    }
-
     @PostMapping("")
     public ResponseEntity<ResponseDto> createRemembrances(@RequestParam(name="sprintId") int sprintId, @RequestParam(name="remembranceDate") Date remembranceDate) {
 

@@ -2,12 +2,12 @@ import { useState } from "react";
 import SelectRememberanceButton from "../buttons/SelectRememberanceButton";
 import Stack from "@mui/material/Stack";
 
-function FinishedSprintText() {
-  const [sprintName, setSprintName] = useState("개미 스프린트");
-  const [sprintKey, setSprintKey] = useState("Sprint-01");
-  const [startDate, setStartDate] = useState("2022-07-26");
-  const [finishedDate, setFinishedDate] = useState("2022-08-23");
-  const [deadLineDate, setDeadLineDate] = useState("2022-08-25");
+function FinishedSprintText(sprint) {
+  // const [sprintName, setSprintName] = useState("개미 스프린트");
+  // const [sprintKey, setSprintKey] = useState("Sprint-01");
+  // const [startDate, setStartDate] = useState("2022-07-26");
+  // const [finishedDate, setFinishedDate] = useState("2022-08-23");
+  // const [deadLineDate, setDeadLineDate] = useState("2022-08-25");
   const [finishedCount, setFinishedCount] = useState("4");
   const [unFinishedCount, setUnFinishedCount] = useState("0");
   const [participantCount, setParticipantCount] = useState("5");
@@ -30,10 +30,10 @@ function FinishedSprintText() {
         spacing={0}
       >
         <div>
-          <h2>{sprintName} </h2>
-          <h4>{sprintKey}</h4>
+          <h2>스프린트 이름</h2>
+          <h4>{sprint.sprintName}</h4>
           <h3>
-            {startDate} ~ {finishedDate}
+            {sprint.sprintStartDate} ~ {sprint.sprintEndDate}
           </h3>
         </div>
 
@@ -52,7 +52,7 @@ function FinishedSprintText() {
 
         <div>
           <h3 style={h3Style}>실제 완료 날짜 </h3>
-          <h4 style={h3Style}>{deadLineDate}</h4>
+          <h4 style={h3Style}>{sprint.sprintActualEndDate}</h4>
         </div>
 
         <div>
