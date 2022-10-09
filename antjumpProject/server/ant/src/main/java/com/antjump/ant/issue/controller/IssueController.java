@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.antjump.ant.issue.model.service.IssueService;
 
+
 /**
  * <pre>
  * Class : IssueController
@@ -35,18 +36,19 @@ public class IssueController {
         this.issueService = issueService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity <ResponseDto> selectIssues(){
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "백로그 목록 내 이슈 조회 성공",  issueService.selectIssues()));
     }
 
-//   @PostMapping("/")
-//    public ResponseEntity <ResponseDto> createIssue(@ModelAttribute IssueDTO issueDTO){
+   @PostMapping("")
+    public ResponseEntity <ResponseDto> createIssue(@ModelAttribute IssueDTO newIssue) throws Exception {
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "이슈 생성 성공",  issueService.createIssue(newIssue)));
+    }
+
 //
-//        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "이슈 생성 성공",  issueService.createIssue(issueDTO)));
-//    }
-////
 //    @GetMapping("/{issueId}")
 //    public ResponseEntity <ResponseDto> selectIssueById(@PathVariable int issueId){
 //

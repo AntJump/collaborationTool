@@ -27,28 +27,37 @@
              , A.ISSUE_CATEGORY
              , A.ISSUE_SUMMARY
              , A.ISSUE_STATUS
+             , B.MEMBER_ID
              , A.ISSUE_PRIORITY
           FROM TBL_ISSUES A
-#           LEFT JOIN TBL_MEMBERS B ON (A.FK_MEMBERS_ISSUES = B.MEMBER_ID)
+     LEFT JOIN TBL_MEMBERS B ON (A.FK_MEMBERS_ISSUES = B.MEMBER_ID)
     </select>
 
     <insert id="createIssue" parameterType="IssueDto">
       INSERT
         INTO tbl_issues
         (
-          issue_category
-        , issue_priority
-        , issue_difficulty
+          top_issue_id
+        , issue_name
         , issue_summary
         , issue_explanation
+        , issue_difficulty
+        , issue_category
+        , issue_priority
+        , fk_projects_issues
+        , fk_members_issues
         )
       VALUES
         (
-          #{ issueCategory }
-        , #{ issuePriority }
-        , #{ issueDifficulty }
+          #{ topIssueId }
+        , #{ issueName }
         , #{ issueSummary }
         , #{ issueExplanation }
+        , #{ issueDifficulty }
+        , #{ issueCategory }
+        , #{ issuePriority }
+        , #{ projectId }
+        , #{ memberId }
         )
     </insert>
 
