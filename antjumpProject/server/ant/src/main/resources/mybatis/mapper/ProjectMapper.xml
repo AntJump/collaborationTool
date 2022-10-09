@@ -53,6 +53,12 @@
         <result property="fkProjectsProjectId" column="fk_projects_project_id"/>
     </resultMap>
 
+    <resultMap id="FunctionResultMap" type="com.antjump.ant.project.dto.ProjectFunctionDto">
+        <id property="projectFunctionId" column="project_function_id"/>
+        <result property="projectCategory" column="project_category"/>
+        <result property="projectFunctionDetail" column="project_function_detail"/>
+    </resultMap>
+
     <select id="selectAllProjectTotalCount" parameterType="_int" resultType="_int">
         SELECT
                 COUNT(*)
@@ -193,4 +199,95 @@
         WHERE  project_id = #{ projectId }
           AND  project_status = 'temp-delete'
     </delete>
+
+    <!-- =======================================================================================================  -->
+
+    <resultMap id="ProjectMemberAndRoleAndMemberResultMap" type="com.antjump.ant.project.dto.ProjectMemberAndRoleAndMemberDto">
+        <id property="projectMemberId" column="project_member_id"/>
+        <result property="fkProjectsProjectId" column="fk_projects_project_id"/>
+        <result property="fkProjectsProjectName" column="project_name"/>
+        <association property="fkRolesRoleDto" resultMap="ProjectRoleResultMap"/>
+        <association property="fkMembersMemberDto" resultMap="MemberResultMap"/>
+    </resultMap>
+
+
+    <select id="selectProjectMemberList" parameterType="_int" resultMap="ProjectMemberAndRoleAndMemberResultMap">
+        SELECT
+                A.project_member_id
+             ,  A.fk_members_member_id
+             ,  B.member_name
+             ,  B.member_email
+             ,  A.fk_roles_role_id
+             ,  C.project_role_name
+          FROM  pjhbsy.tbl_project_members A
+          LEFT  JOIN pjhbsy.tbl_members as B ON B.member_id = A.fk_members_member_id
+          LEFT  JOIN pjhbsy.tbl_project_roles as C ON A.fk_roles_role_id = C.project_role_id
+         WHERE  A.fk_projects_project_id = #{ projectId }
+           AND  B.member_delete_yn = 'N'
+         ORDER  BY A.fk_roles_role_id
+    </select>
+
+    <select id="selectProjectMember" parameterType="com.antjump.ant.project.dto.ProjectMemberDto" resultMap="ProjectMemberAndRoleAndMemberResultMap">
+        SELECT
+                A.project_member_id
+             ,  A.fk_members_member_id
+             ,  B.member_name
+             ,  B.member_email
+             ,  A.fk_roles_role_id
+             ,  C.project_role_name
+             ,  A.fk_projects_project_id
+             ,  D.project_name
+          FROM  pjhbsy.tbl_project_members A
+          LEFT  JOIN pjhbsy.tbl_members as B ON B.member_id = A.fk_members_member_id
+          LEFT  JOIN pjhbsy.tbl_project_roles as C ON A.fk_roles_role_id = C.project_role_id
+          LEFT  JOIN pjhbsy.tbl_projects as D ON A.fk_projects_project_id = D.project_id
+         WHERE  A.fk_projects_project_id = #{ fkProjectsProjectId }
+           AND  A.fk_members_member_id = #{ fkMembersMemberId }
+           AND  B.member_delete_yn = 'N'
+    </select>
+
+    <update id="modifyRoleOfProjectMember" parameterType="com.antjump.ant.project.dto.ProjectMemberDto">
+        UPDATE
+                pjhbsy.tbl_project_members
+           SET  fk_roles_role_id = #{ fkRolesRoleId }
+         WHERE  project_member_id = #{ projectMemberId }
+    </update>
+
+
+    <resultMap id="ProjectGradeAndFunctionResultMap" type="com.antjump.ant.project.dto.ProjectGradeAndFunctionDto">
+        <id property="projectGradeId" column="project_grade_id"/>
+        <result property="projectCreateYn" column="project_create_yn"/>
+        <result property="projectUpdateYn" column="project_update_yn"/>
+        <result property="projectDeleteYn" column="project_delete_yn"/>
+        <result property="projectReadYn" column="project_read_yn"/>
+        <result property="fkRolesRoleId" column="fk_roles_role_id"/>
+        <association property="fkFunctionsFunctionDto" resultMap="FunctionResultMap"/>
+    </resultMap>
+
+    <select id="selectAcceptRightListOfProjectMember" parameterType="HashMap" resultMap="ProjectGradeAndFunctionResultMap">
+        SELECT
+                A.project_grade_id
+             ,  A.project_create_yn
+             ,  A.project_read_yn
+             ,  A.project_update_yn
+             ,  A.project_delete_yn
+             ,  A.fk_roles_role_id
+             ,  A.fk_functions_function_id
+             ,  B. project_category
+             ,  B.project_function_detail
+        FROM  pjhbsy.tbl_project_grades as A
+        LEFT  JOIN pjhbsy.tbl_project_functions as B ON A.fk_functions_function_id = B.project_function_id
+       WHERE  B.project_category = #{ functionCategory }
+         AND  A.fk_roles_role_id = (SELECT C.fk_roles_role_id
+                                      FROM pjhbsy.tbl_project_members as C
+                                     WHERE C.project_member_id = #{ projectMemberId } )
+    </select>
+
+    <select id="selectProjectRoleList" resultMap="ProjectRoleResultMap">
+        SELECT
+                A.project_role_id
+             ,  A.project_role_name
+          FROM  pjhbsy.tbl_project_roles as A
+    </select>
+
 </mapper>

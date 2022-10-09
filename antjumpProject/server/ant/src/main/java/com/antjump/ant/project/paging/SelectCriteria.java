@@ -5,7 +5,7 @@ import com.antjump.ant.member.dto.MemberDto;
 /**
  * <pre>
  * Class : SelectCriteria
- * Comment: 목록 조회를 위한 현재 페이징 정보를 담습니다
+ * Comment: 현재 페이징 정보를 포함한 조회 조건을 담습니다
  * History
  * ================================================================
  * DATE             AUTHOR           NOTE
@@ -22,7 +22,6 @@ public class SelectCriteria {
     private PagingInfo pagingInfo;
 
     // 필터링 필드
-//    private char enable;
     private String status;
 
     // 조회 조건에 쓰일 유저 정보

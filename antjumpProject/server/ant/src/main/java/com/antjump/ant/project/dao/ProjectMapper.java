@@ -1,12 +1,11 @@
 package com.antjump.ant.project.dao;
 
-import com.antjump.ant.project.dto.ProjectAndMemberDto;
-import com.antjump.ant.project.dto.ProjectDto;
-import com.antjump.ant.project.dto.ProjectMemberDto;
+import com.antjump.ant.project.dto.*;
 import com.antjump.ant.project.paging.SelectCriteria;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <pre>
@@ -17,6 +16,7 @@ import java.util.List;
  * DATE             AUTHOR           NOTE
  * ----------------------------------------------------------------
  * 2022-10-05       최윤서           최초 생성
+ * 2022-10-06       최윤서           프로젝트 CRUD 매퍼 코드 작성 완료
  * </pre>
  *
  * @author 최윤서
@@ -47,4 +47,15 @@ public interface ProjectMapper {
     int registProjectMember(ProjectMemberDto projectMemberDto);
 
     int temporarilyDeleteProject(int projectId);
+
+    List<ProjectMemberAndRoleAndMemberDto> selectProjectMemberList(int projectId);
+
+    ProjectMemberAndRoleAndMemberDto selectProjectMember(ProjectMemberDto projectMemberDto);
+
+    int modifyRoleOfProjectMember(ProjectMemberDto projectMemberDto);
+
+
+    List<ProjectGradeAndFunctionDto> selectAcceptRightListOfProjectMember(Map<String, Object> map);
+
+    List<ProjectRoleDto> selectProjectRoleList();
 }

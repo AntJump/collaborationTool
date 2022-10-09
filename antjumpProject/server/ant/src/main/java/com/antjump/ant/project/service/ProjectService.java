@@ -1,14 +1,13 @@
 package com.antjump.ant.project.service;
 
 import com.antjump.ant.project.dao.ProjectMapper;
-import com.antjump.ant.project.dto.ProjectAndMemberDto;
-import com.antjump.ant.project.dto.ProjectDto;
-import com.antjump.ant.project.dto.ProjectMemberDto;
+import com.antjump.ant.project.dto.*;
 import com.antjump.ant.project.paging.SelectCriteria;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <pre>
@@ -19,6 +18,8 @@ import java.util.List;
  * DATE             AUTHOR           NOTE
  * ----------------------------------------------------------------
  * 2022-10-04       최윤서           최초 생성
+ * 2022-10-06       최윤서           프로젝트 CRUD 서비스 구현
+ * 2022-10-07       최윤서           프로젝트 팀원 CRUD 서비스 구현 시작
  * </pre>
  *
  * @author 최윤서
@@ -58,7 +59,7 @@ public class ProjectService {
     public Object createProject(ProjectDto projectDto) {
         int createResult = projectMapper.createProject(projectDto);
 
-        int registProjectManagerResult = 0;
+        boolean registProjectManagerResult = false;
         if(createResult >0){
             // PM 정보 생성
             ProjectMemberDto projectMemberDto = new ProjectMemberDto();
@@ -72,7 +73,7 @@ public class ProjectService {
             return  "프로젝트 생성 실패 ㅠ";
         }
 
-        return (registProjectManagerResult > 0) ? "프로젝트 생성 및 PM 등록 완료" : "PM 등록 실패" ;
+        return registProjectManagerResult ? "프로젝트 생성 및 PM 등록 완료" : "PM 등록 실패" ;
     }
 
     public Object modifyProject(ProjectDto projectDto) {
@@ -95,9 +96,31 @@ public class ProjectService {
     }
 
     @Transactional
-    public int registProjectMember(ProjectMemberDto projectMemberDto){
-         return projectMapper.registProjectMember(projectMemberDto);
+    public boolean registProjectMember(ProjectMemberDto projectMemberDto){
+        int result = projectMapper.registProjectMember(projectMemberDto);
+         return (result > 0) ? true : false;
     }
 
 
+    public Object selectProjectMemberList(int projectId) {
+        return projectMapper.selectProjectMemberList(projectId);
+    }
+
+    public Object selectProjectMember(ProjectMemberDto projectMemberDto) {
+        return projectMapper.selectProjectMember(projectMemberDto);
+    }
+
+    @Transactional
+    public Object modifyRoleOfProjectMember(ProjectMemberDto projectMemberDto) {
+        int result = projectMapper.modifyRoleOfProjectMember(projectMemberDto);
+        return result > 0 ? "역할 변경 성공!" : "역할 변경 실패 ㅠ";
+    }
+
+    public Object selectAcceptRightListOfProjectMember(Map<String, Object> map) {
+        return projectMapper.selectAcceptRightListOfProjectMember(map);
+    }
+
+    public Object selectProjectRoleList(){
+        return projectMapper.selectProjectRoleList();
+    }
 }

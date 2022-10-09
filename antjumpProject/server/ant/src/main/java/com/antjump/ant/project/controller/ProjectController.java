@@ -2,19 +2,22 @@ package com.antjump.ant.project.controller;
 
 import com.antjump.ant.common.ResponseDto;
 import com.antjump.ant.member.dto.MemberDto;
-import com.antjump.ant.project.dto.ProjectDto;
+import com.antjump.ant.project.dto.*;
 import com.antjump.ant.project.paging.ResultsDtoWithPaging;
 import com.antjump.ant.project.paging.SelectCriteria;
 import com.antjump.ant.project.service.ProjectService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.antjump.ant.project.date.DateOperation.getCurrentDateWithFormating;
 import static com.antjump.ant.project.paging.Pagenation.getPagingInfo;
@@ -28,6 +31,8 @@ import static com.antjump.ant.project.paging.Pagenation.getPagingInfo;
  * DATE             AUTHOR           NOTE
  * ----------------------------------------------------------------
  * 2022-10-03       최윤서           최초 생성
+ * 2022-10-06       최윤서           프로젝트 CRUD 컨트롤러 작성 완료
+ * 2022-10-07       최윤서           프로젝트 팀원 CRUD 컨트롤러 작성 시작
  * </pre>
  *
  * @author 최윤서
@@ -118,7 +123,7 @@ public class ProjectController {
     }
 
     @GetMapping("/projects/{id}")
-    public ResponseEntity<ResponseDto> selectProjectById(@PathVariable("id") int projectId){
+    public ResponseEntity<ResponseDto> selectProjectInfoById(@PathVariable("id") int projectId){
         return ResponseEntity.ok().body(
                 new ResponseDto(
                         HttpStatus.OK
@@ -128,8 +133,8 @@ public class ProjectController {
         );
     }
 
-    @PostMapping("/projects")
-    public ResponseEntity<ResponseDto> createProject(@ModelAttribute ProjectDto projectDto/*, @AuthenticationPrincipal MemberDto user*/){
+    @PostMapping("/projects" )
+    public ResponseEntity<ResponseDto> createProject(@RequestBody ProjectDto projectDto/*, @AuthenticationPrincipal MemberDto user*/){
 
         MemberDto user = new MemberDto();
         user.setMemberId(2);
@@ -150,7 +155,7 @@ public class ProjectController {
     }
 
     @PutMapping ("/projects/{id}")
-    public ResponseEntity<ResponseDto> modifyProject(@ModelAttribute ProjectDto projectDto, @PathVariable("id") int projectId){
+    public ResponseEntity<ResponseDto> modifyProject(@RequestBody ProjectDto projectDto, @PathVariable("id") int projectId){
         projectDto.setProjectId(projectId);
         return ResponseEntity.ok().body(
                 new ResponseDto(
@@ -190,6 +195,7 @@ public class ProjectController {
     @PatchMapping("/projects/{id}")
     public ResponseEntity<ResponseDto> restoreProject(@PathVariable("id") int projectId){
 
+
         return ResponseEntity.ok().body(
                 new ResponseDto(
                         HttpStatus.OK
@@ -198,5 +204,98 @@ public class ProjectController {
                 )
         );
     }
+
+    @PostMapping("/project-members")
+    public ResponseEntity<ResponseDto> registProjectMember(@RequestBody ProjectMemberDto projectMemberDto) {
+        return ResponseEntity.ok().body(
+                new ResponseDto(
+                        HttpStatus.OK
+                        , "프로젝트 팀원 등록 성공?"
+                        ,  projectService.registProjectMember(projectMemberDto)
+                )
+        );
+    }
+
+
+    @GetMapping("/project-members")
+    public ResponseEntity<ResponseDto> selectProjectMemberList(@RequestParam(value = "projectId") int projectId){
+        return ResponseEntity.ok().body(
+                new ResponseDto(
+                        HttpStatus.OK
+                        , "프로젝트 팀원 목록 조회 성공"
+                        ,  projectService.selectProjectMemberList(projectId)
+                )
+        );
+    }
+
+    @GetMapping("/project-members/user")
+    public ResponseEntity<ResponseDto> selectProjectMemberInfoByUserId(@RequestParam(value = "projectId") int projectId){
+
+        MemberDto user = new MemberDto();
+        user.setMemberId(2);
+
+        ProjectMemberDto projectMemberDto = new ProjectMemberDto();
+        projectMemberDto.setFkMembersMemberId(user.getMemberId());
+        projectMemberDto.setFkProjectsProjectId(projectId);
+
+        return ResponseEntity.ok().body(
+                new ResponseDto(
+                        HttpStatus.OK
+                        , "접속 유저의 프로젝트 팀원 정보 조회 성공"
+                        ,  projectService.selectProjectMember(projectMemberDto)
+                )
+        );
+    }
+
+    @PatchMapping("/project-members/{id}")
+    public ResponseEntity<ResponseDto> modifyRoleOfProjectMember(@PathVariable(value = "id") int projectMemberId,
+                                                                 @RequestParam(value = "roleId") int roleId){
+
+
+        ProjectMemberDto projectMemberDto = new ProjectMemberDto();
+        projectMemberDto.setProjectMemberId(projectMemberId);
+        projectMemberDto.setFkRolesRoleId(roleId);
+
+        return ResponseEntity.ok().body(
+                new ResponseDto(
+                        HttpStatus.OK
+                        , String.valueOf(projectMemberId)+"번 팀원 역할 변경 성공"
+                        , projectService.modifyRoleOfProjectMember(projectMemberDto)
+                )
+        );
+    }
+
+    @GetMapping("/project-roles")
+    public ResponseEntity<ResponseDto> selectProjectRoleList(){
+        return ResponseEntity.ok().body(
+                new ResponseDto(
+                        HttpStatus.OK
+                        , "프로젝트 역할 리스트 조회 성공"
+                        , projectService.selectProjectRoleList()
+                )
+        );
+    }
+
+    @GetMapping("/project-members/{id}/right")
+    public ResponseEntity<ResponseDto> selectAcceptRightListOfProjectMember( @PathVariable(value = "id") int projectMemberId,
+                                                                         @RequestParam(value="function") String functionCategory
+                                                                        /*, @AuthenticationPrincipal MemberDto user*/){
+
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("projectMemberId", projectMemberId);
+        map.put("functionCategory", functionCategory);
+
+        return ResponseEntity.ok().body(
+                new ResponseDto(
+                        HttpStatus.OK
+                        , "프로젝트 팀원 역할과 기능에 따른 권한 조회 성공 "
+                        , projectService.selectAcceptRightListOfProjectMember(map)
+                )
+        );
+
+    }
+
+
 
 }
