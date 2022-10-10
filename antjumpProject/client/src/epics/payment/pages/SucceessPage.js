@@ -2,17 +2,19 @@ import { Typography } from '@mui/material';
 import { Box } from '@mui/material';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { callCreatePaymentAPI } from '../../../apis/PaymentAPICalls'
 
 function SuccessPage () {
 
+    let qs = window.location.search;
     const paymentRecipt = useSelector(state => state.paymentReducer);
     console.log('state : ', paymentRecipt);
     const dispatch = useDispatch();
     
 
     useEffect(
-        () => { dispatch() },
-        [dispatch]
+        () => { dispatch(callCreatePaymentAPI(qs)) },
+        [dispatch, qs]
     );
     return (
         paymentRecipt &&(
@@ -27,7 +29,7 @@ function SuccessPage () {
                         sx={{
                             varient: 'h6'
                         }}                            
-                    >영수증 : <Typography >{paymentRecipt}</Typography></Typography>
+                    >영수증 : <Typography >{paymentRecipt.receiptUrl}</Typography></Typography>
                 </Box>
             </>
         )

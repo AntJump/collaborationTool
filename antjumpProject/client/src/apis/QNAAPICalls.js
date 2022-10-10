@@ -6,7 +6,7 @@ import {
 } from '../modules/QNAModule';
 
 export const callQNAListAPI = () => {
-    const requestURL = `${process.env.REACT_APP_SERVER_IP}/qnas/list/`;
+    const requestURL = `${process.env.REACT_APP_SERVER_IP}/qnas`;
 
     return async (dispatch, getState) => {
 

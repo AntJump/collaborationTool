@@ -26,6 +26,8 @@ public class QNADetailDTO {
     private Timestamp qnaModifyTime;
     private int memberId;
     private String memberName;
+    private int adminId;
+    private String adminName;
     private int qnaDepth;
     private char qnaStatus;
     private Integer refQnaId;
@@ -37,13 +39,15 @@ public class QNADetailDTO {
     public QNADetailDTO() {
     }
 
-    public QNADetailDTO(int qnaId, String qnaTitle, String qnaContent, Timestamp qnaModifyTime, int memberId, String memberName, int qnaDepth, char qnaStatus, Integer refQnaId, int qnaCategoryNo, String qnaCategoryName, MultipartFile qnaFile, String qnaFileUrl) {
+    public QNADetailDTO(int qnaId, String qnaTitle, String qnaContent, Timestamp qnaModifyTime, int memberId, String memberName, int adminId, String adminName, int qnaDepth, char qnaStatus, Integer refQnaId, int qnaCategoryNo, String qnaCategoryName, MultipartFile qnaFile, String qnaFileUrl) {
         this.qnaId = qnaId;
         this.qnaTitle = qnaTitle;
         this.qnaContent = qnaContent;
         this.qnaModifyTime = qnaModifyTime;
         this.memberId = memberId;
         this.memberName = memberName;
+        this.adminId = adminId;
+        this.adminName = adminName;
         this.qnaDepth = qnaDepth;
         this.qnaStatus = qnaStatus;
         this.refQnaId = refQnaId;
@@ -99,6 +103,22 @@ public class QNADetailDTO {
 
     public void setMemberName(String memberName) {
         this.memberName = memberName;
+    }
+
+    public int getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(int adminId) {
+        this.adminId = adminId;
+    }
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
     }
 
     public int getQnaDepth() {
@@ -166,6 +186,8 @@ public class QNADetailDTO {
                 ", qnaModifyTime=" + qnaModifyTime +
                 ", memberId=" + memberId +
                 ", memberName='" + memberName + '\'' +
+                ", adminId=" + adminId +
+                ", adminName='" + adminName + '\'' +
                 ", qnaDepth=" + qnaDepth +
                 ", qnaStatus=" + qnaStatus +
                 ", refQnaId=" + refQnaId +

@@ -7,11 +7,13 @@ const initialState = [
 /* 액션 타입 설정 */
 export const POST_PAY = 'payment/POST_PAY';
 export const GET_GOODS = 'payment/GET_GOODS';
+export const GET_GOODS_DETAIL = 'payment/GET_GOODS_DETAIL';
 
 /* 포켓몬 관련 액션 함수 */
 const actions = createActions({
     [POST_PAY]: () => {}
     , [GET_GOODS]: () => {}
+    , [GET_GOODS_DETAIL]: () => {}
 
 });
 
@@ -30,6 +32,10 @@ const paymentReducer = handleActions(
                 ...state,
                 list
             }
+        }
+        , [GET_GOODS_DETAIL]: (state, { payload : detail }) => {
+
+            return detail
         }
     },
     initialState
