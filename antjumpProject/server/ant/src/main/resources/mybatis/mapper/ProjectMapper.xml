@@ -59,6 +59,14 @@
         <result property="projectFunctionDetail" column="project_function_detail"/>
     </resultMap>
 
+
+    <select id="findMemberIdByEmail" parameterType="String" resultMap="MemberResultMap">
+        SELECT
+            A.member_id
+        FROM  pjhbsy.tbl_members as A
+        WHERE  A.member_email =  #{ email }
+    </select>
+
     <select id="selectAllProjectTotalCount" parameterType="_int" resultType="_int">
         SELECT
                 COUNT(*)
@@ -159,18 +167,6 @@
         </selectKey>
     </insert>
 
-    <insert id="registProjectMember" parameterType="com.antjump.ant.project.dto.ProjectMemberDto">
-        INSERT
-          INTO  pjhbsy.tbl_project_members
-        (
-            fk_roles_role_id, fk_members_member_id, fk_projects_project_id
-        )
-        VALUES
-        (
-            #{ fkRolesRoleId },  #{ fkMembersMemberId } , #{ fkProjectsProjectId }
-        )
-    </insert>
-
     <update id="modifyProject" parameterType="com.antjump.ant.project.dto.ProjectDto">
         UPDATE
                 pjhbsy.tbl_projects
@@ -210,6 +206,18 @@
         <association property="fkMembersMemberDto" resultMap="MemberResultMap"/>
     </resultMap>
 
+
+    <insert id="registProjectMember" parameterType="com.antjump.ant.project.dto.ProjectMemberDto">
+        INSERT
+        INTO  pjhbsy.tbl_project_members
+        (
+            fk_roles_role_id, fk_members_member_id, fk_projects_project_id
+        )
+        VALUES
+            (
+                #{ fkRolesRoleId },  #{ fkMembersMemberId } , #{ fkProjectsProjectId }
+            )
+    </insert>
 
     <select id="selectProjectMemberList" parameterType="_int" resultMap="ProjectMemberAndRoleAndMemberResultMap">
         SELECT

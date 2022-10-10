@@ -1,5 +1,6 @@
 package com.antjump.ant.project.dao;
 
+import com.antjump.ant.member.dto.MemberDto;
 import com.antjump.ant.project.dto.*;
 import com.antjump.ant.project.paging.SelectCriteria;
 import org.apache.ibatis.annotations.Mapper;
@@ -58,4 +59,6 @@ public interface ProjectMapper {
     List<ProjectGradeAndFunctionDto> selectAcceptRightListOfProjectMember(Map<String, Object> map);
 
     List<ProjectRoleDto> selectProjectRoleList();
+
+    MemberDto findMemberIdByEmail(String email);
 }

@@ -95,11 +95,9 @@ public class ProjectService {
         return (result > 0) ? "프로젝트 복원 성공!" : "프로젝트 복원 실패 ㅠ";
     }
 
-    @Transactional
-    public boolean registProjectMember(ProjectMemberDto projectMemberDto){
-        int result = projectMapper.registProjectMember(projectMemberDto);
-         return (result > 0) ? true : false;
-    }
+
+
+
 
 
     public Object selectProjectMemberList(int projectId) {
@@ -122,5 +120,13 @@ public class ProjectService {
 
     public Object selectProjectRoleList(){
         return projectMapper.selectProjectRoleList();
+    }
+
+
+
+    @Transactional
+    public boolean registProjectMember(ProjectMemberDto projectMemberDto){
+        int result = projectMapper.registProjectMember(projectMemberDto);
+         return (result > 0) ? true : false;
     }
 }

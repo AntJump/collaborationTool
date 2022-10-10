@@ -8,18 +8,14 @@ import com.antjump.ant.project.paging.SelectCriteria;
 import com.antjump.ant.project.service.ProjectService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.antjump.ant.project.date.DateOperation.getCurrentDateWithFormating;
+import static com.antjump.ant.project.utils.DateUtil.getCurrentDateWithFormating;
 import static com.antjump.ant.project.paging.Pagenation.getPagingInfo;
 
 /**
@@ -195,7 +191,6 @@ public class ProjectController {
     @PatchMapping("/projects/{id}")
     public ResponseEntity<ResponseDto> restoreProject(@PathVariable("id") int projectId){
 
-
         return ResponseEntity.ok().body(
                 new ResponseDto(
                         HttpStatus.OK
@@ -205,16 +200,7 @@ public class ProjectController {
         );
     }
 
-    @PostMapping("/project-members")
-    public ResponseEntity<ResponseDto> registProjectMember(@RequestBody ProjectMemberDto projectMemberDto) {
-        return ResponseEntity.ok().body(
-                new ResponseDto(
-                        HttpStatus.OK
-                        , "프로젝트 팀원 등록 성공?"
-                        ,  projectService.registProjectMember(projectMemberDto)
-                )
-        );
-    }
+
 
 
     @GetMapping("/project-members")

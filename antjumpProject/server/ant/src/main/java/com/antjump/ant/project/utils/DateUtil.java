@@ -1,11 +1,11 @@
-package com.antjump.ant.project.date;
+package com.antjump.ant.project.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  * <pre>
- * Class : DateGenerator
+ * Class : DateUtil
  * Comment: 클래스에 대한 간단 설명
  * History
  * ================================================================
@@ -18,7 +18,20 @@ import java.util.Date;
  * @version 1
  * @see 참고할 class 또는 외부 url
  */
-public class DateOperation {
+public class DateUtil {
+
+    public static Long getCurrentTime(){
+        return System.currentTimeMillis();
+    }
+
+    public static Date getCurrentDateByTime(Long currentTime){
+        return new Date(currentTime);
+    }
+
+    public static Date getPredictionDateWithIncrement(Long currentTime, Long increment){
+        return new Date(currentTime+increment);
+    }
+
 
     public static String getCurrentDateWithFormating(String pattern){
         SimpleDateFormat format = new SimpleDateFormat(pattern);
