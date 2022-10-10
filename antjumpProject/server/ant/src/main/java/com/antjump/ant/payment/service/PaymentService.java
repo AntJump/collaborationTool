@@ -1,12 +1,16 @@
 package com.antjump.ant.payment.service;
 
+import com.antjump.ant.common.exception.PaymentException;
+import com.antjump.ant.common.exception.PriceNotEqualException;
 import com.antjump.ant.faq.dto.FAQListDTO;
 import com.antjump.ant.payment.dao.PaymentMapper;
+import com.antjump.ant.payment.dto.PaymentCreateDTO;
 import com.antjump.ant.payment.dto.PaymentDetailDTO;
 import com.antjump.ant.payment.dto.PaymentListDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -55,5 +59,14 @@ public class PaymentService {
 
         return paymentList;
 
+    }
+    @Transactional
+    public Object createPayment(PaymentCreateDTO paymentCreateDTO) throws PaymentException {
+
+        int orderResult = paymentMapper.createOrder(paymentCreateDTO);
+
+        int paymentResult = paymentMapper.createPayment(paymentCreateDTO);
+
+        return (paymentResult > 0 || orderResult > 0 ) ? paymentCreateDTO : "결제 입력 실패";
     }
 }

@@ -35,4 +35,42 @@
           left join tbl_payment_state_histories d on(a.payment_id = d.fk_payments_states)
          where a.payment_id = #{ paymentId }
     </select>
+
+
+    <insert id="createOrder" parameterType="paymentCreateDTO">
+        insert
+          into tbl_orders
+        (
+          order_uuid
+        , order_amount
+        , order_name
+        , fk_members_orders
+        )
+        values
+        (
+          #{ orderId }
+        , #{ amount }
+        , #{ orderName }
+        , 1
+        )
+    </insert>
+
+    <insert id="createPayment" parameterType="paymentCreateDTO">
+        insert
+          into tbl_payments
+        (
+          payment_key
+        , payment_status
+        , fk_members_payments
+        , fk_orders_payments
+        )
+        values
+        (
+          #{ paymentKey }
+        , #{ status }
+        , 1
+        , (select max(order_id) from tbl_orders)
+        )
+    </insert>
+
 </mapper>

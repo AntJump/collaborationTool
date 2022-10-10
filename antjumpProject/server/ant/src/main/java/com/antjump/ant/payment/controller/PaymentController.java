@@ -1,15 +1,26 @@
 package com.antjump.ant.payment.controller;
 
 import com.antjump.ant.common.ResponseDto;
+import com.antjump.ant.common.exception.PaymentException;
+import com.antjump.ant.common.exception.PriceNotEqualException;
+import com.antjump.ant.payment.dto.PaymentCreateDTO;
 import com.antjump.ant.payment.service.PaymentService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.*;
+import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.ResponseErrorHandler;
+import org.springframework.web.client.RestTemplate;
+
+import javax.annotation.PostConstruct;
+import java.sql.Timestamp;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <pre>
@@ -30,11 +41,28 @@ import org.springframework.web.bind.annotation.RestController;
 public class PaymentController {
 
     private static final Logger log = LoggerFactory.getLogger(PaymentController.class);
+    private final RestTemplate restTemplate = new RestTemplate();
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final String SECRET_KEY = "test_sk_MGjLJoQ1aVZ1RK57wB13w6KYe2RN";
 
     private final PaymentService paymentService;
 
     public PaymentController(PaymentService paymentService) {
         this.paymentService = paymentService;
+    }
+
+    @PostConstruct
+    private void init() {
+        restTemplate.setErrorHandler(new ResponseErrorHandler() {
+            @Override
+            public boolean hasError(ClientHttpResponse response) {
+                return false;
+            }
+
+            @Override
+            public void handleError(ClientHttpResponse response) {
+            }
+        });
     }
 
     @GetMapping("")
@@ -53,5 +81,34 @@ public class PaymentController {
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "결제 상세 조회 성공", paymentService.selectPaymentsDetail(paymentId)));
 
     }
+
+    @PostMapping("")
+    public ResponseEntity<ResponseDto> createPayment(@ModelAttribute PaymentCreateDTO paymentCreateDTO) throws JsonProcessingException, PriceNotEqualException, PaymentException {
+
+        log.info("[PaymentController] createPayment start ==========");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Basic " + Base64.getEncoder().encodeToString((SECRET_KEY + ":").getBytes()));
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        Map<String, String> payloadMap = new HashMap<>();
+        payloadMap.put("paymentKey", paymentCreateDTO.getPaymentKey());
+        payloadMap.put("orderId", paymentCreateDTO.getOrderId());
+        payloadMap.put("amount", String.valueOf(paymentCreateDTO.getAmount()));
+
+        HttpEntity<String> request = new HttpEntity<>(objectMapper.writeValueAsString(payloadMap), headers);
+
+        ResponseEntity<JsonNode> responseEntity = restTemplate.postForEntity(
+                "https://api.tosspayments.com/v1/payments/confirm", request, JsonNode.class);
+
+        JsonNode successNode = responseEntity.getBody();
+
+        paymentCreateDTO.setOrderName(String.valueOf(successNode.get("orderName")));
+        paymentCreateDTO.setStatus(String.valueOf(successNode.get("status")));
+        paymentCreateDTO.setReceiptUrl(String.valueOf(successNode.get("receipt")));
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "결제 생성 성공", paymentService.createPayment(paymentCreateDTO)));
+    }
+
 
 }

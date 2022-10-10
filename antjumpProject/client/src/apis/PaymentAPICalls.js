@@ -1,5 +1,6 @@
+import axios from "axios";
 import {
-    GET_GOODS, GET_GOODS_DETAIL
+    GET_GOODS, GET_GOODS_DETAIL, POST_PAY
 } from '../modules/PaymentModule'
 
 export const callGoodsDetailAPI = (goodsId) => {
@@ -21,4 +22,24 @@ export const callGoodsDetailAPI = (goodsId) => {
         
     };
     
+}
+
+export function callCreatePaymentAPI(query, url) {
+
+    const requestURL = url || `${process.env.REACT_APP_SERVER_IP}/payment${query}`; 
+
+    return async function getPayment(dispatch, getState) {
+    
+        const paymentresult = await axios(requestURL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(res => res.data.data)
+        .catch(err=> err);
+    
+    
+        dispatch({ type: POST_PAY, payload: paymentresult });
+    }
 }
