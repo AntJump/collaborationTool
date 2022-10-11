@@ -19,7 +19,21 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
-
+/**
+ * <pre>
+ * Class : SecurityConfig
+ * Comment:  스프링 시큐리티 설정
+ * History
+ * ================================================================
+ * DATE             AUTHOR           NOTE
+ * ----------------------------------------------------------------
+ * 2022-10-03       문지현           최초 생성
+ * 2022-10-11       부시연           버그 수정
+ * </pre>
+ *
+ * @author 부시연(최초 작성자)
+ * @version 1(클래스 버전)
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
