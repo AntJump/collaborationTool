@@ -11,6 +11,9 @@ const initState = {
 // 액션 타입 설정
 
 export const GET_PROJECTS= 'project/GET_PROJECTS'; 
+export const GET_ALLPROJECTS = 'project/GET_ALLPROJECTS';
+export const GET_MYPROJECTS = 'project/GET_MYROJECTS';
+
 export const GET_PROJECT_MEMBERS = 'project/GET_PROJECT_MEMBERS';
 export const GET_SELECTED_PROJECT = 'project/GET_SELECTED_PROJECT';
 
@@ -37,6 +40,22 @@ export const projectReducer = handleActions(
             console.log('get project payload:', payload);
 
             return payload;
+        },
+        [GET_ALLPROJECTS]: (state, {payload}) => {
+            console.log('get all project payload:', payload);
+            
+            let projects = { ...state };
+            projects.allProjects = payload;
+
+            return projects;
+        },
+        [GET_MYPROJECTS]: (state, {payload}) => {
+            console.log('get my project payload:', payload);
+            
+            let projects = { ...state };
+            projects.myProjects = payload;
+
+            return projects;
         },
         [GET_PROJECT_MEMBERS]: (state, {payload}) =>{
             console.log('get porject payload:', payload);

@@ -1,11 +1,11 @@
-import { GET_PROJECTS } from "../modules/ProjectModule";
+import { GET_ALLPROJECTS, GET_MYPROJECTS } from "../modules/ProjectModule";
 
 console.log("[ProjectAPICalls]");
 
 export const callAllProjectListApi = ({currentPage})=>{
     console.log("============= callAllProjectListApi ================");
     
-    const requestUrl = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/projects-all?currentPage=${currentPage}&limit=5&buttonCount=1`;
+    const requestUrl = `${process.env.REACT_APP_SERVER_IP}/projects-all?currentPage=${currentPage}&limit=5&buttonCount=0`;
     
     return async(dispatch, getState) => {
         const result = await fetch(requestUrl, {
@@ -17,16 +17,16 @@ export const callAllProjectListApi = ({currentPage})=>{
         .then(response => response.json());
 
         console.log("result: ", result);
-        dispatch({type: GET_PROJECTS, payload: result});
+        dispatch({type: GET_ALLPROJECTS, payload: result.data});
     }
 
 }
 
 
-export const callMyProjectListApi = ({currentPage})=>{
+export const callMyProjectListApi = ({currentPage, status})=>{
    
     console.log("============= callMyProjectListApi ================");
-    const requestUrl = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/projects-my?currentPage=${currentPage}&limit=5&buttonCount=1`;
+    const requestUrl = `${process.env.REACT_APP_SERVER_IP}/projects-my?currentPage=${currentPage}&limit=5&buttonCount=5&status=${status}`;
 
 
     return async(dispatch, getState) => {
@@ -39,7 +39,7 @@ export const callMyProjectListApi = ({currentPage})=>{
         .then(response => response.json());
 
         console.log("result: ", result);
-        dispatch({type: GET_PR+OJECTS, payload: result});
+        dispatch({type: GET_MYPROJECTS, payload: result.data});
     }
 
 }

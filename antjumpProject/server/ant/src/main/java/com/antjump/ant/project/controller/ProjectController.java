@@ -112,7 +112,7 @@ public class ProjectController {
         return ResponseEntity.ok().body(
                 new ResponseDto(
                         HttpStatus.OK
-                        , "모든 프로젝트 목록 조회 성공"
+                        , "내 프로젝트 목록 조회 성공"
                         , new ResultsDtoWithPaging(projectList, selectCriteria2.getPagingInfo())
                 )
         );

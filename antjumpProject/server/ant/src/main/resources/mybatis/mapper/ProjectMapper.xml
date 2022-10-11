@@ -113,6 +113,7 @@
     <select id="selectMyProjectListWithPaging" parameterType="com.antjump.ant.project.paging.ProjectSelectCriteria" resultMap="ProjectAndMemberAndProjectRoleResultMap">
         SELECT
                 A.project_id
+             ,  A.project_key
              ,  A.project_name
              ,  A.project_produce_date
              ,  A.project_enable_yn
