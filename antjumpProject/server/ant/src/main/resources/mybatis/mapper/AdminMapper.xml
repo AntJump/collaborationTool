@@ -7,6 +7,7 @@
         <id column="adminId" property="ADMIN_ID" />
         <result column="adminEmail" property="ADMIN_EMAIL" />
         <result column="adminPwd" property="ADMIN_PWD" />
+        <result column="adminName" property="ADMIN_NAME" />
     </resultMap>
 
     <select id="findByAdminEmail" resultType="AdminDto">
@@ -14,6 +15,7 @@
             ADMIN_ID
              ,  ADMIN_EMAIL
              ,  ADMIN_PWD
+             ,  ADMIN_NAME
         FROM TBL_ADMINS
         WHERE ADMIN_EMAIL = #{adminEmail}
     </select>
@@ -23,6 +25,7 @@
             ADMIN_ID
              ,  ADMIN_EMAIL
              ,  ADMIN_PWD
+             ,  ADMIN_NAME
         FROM TBL_ADMINS
         WHERE ADMIN_EMAIL = #{adminEmail}
     </select>
@@ -31,12 +34,14 @@
         INSERT INTO TBL_ADMINS
         (
             ADMIN_EMAIL,
-            ADMIN_PWD
+            ADMIN_PWD,
+            ADMIN_NAME
         )
         VALUES
             (
                 #{adminEmail},
-                #{adminPwd}
+                #{adminPwd},
+                #{adminName}
             )
     </insert>
 

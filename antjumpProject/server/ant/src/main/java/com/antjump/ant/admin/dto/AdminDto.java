@@ -8,15 +8,18 @@ public class AdminDto implements UserDetails {
 
     private Integer adminId; // 관리자번호
     private String adminEmail; // 관리자아이디
+
+    private String adminName; // 관리자 이름
     private String adminPwd; // 관리자비밀번호
     private String adminRole; // 관리자 권한
 
     public AdminDto() {
     }
 
-    public AdminDto(Integer adminId, String adminEmail, String adminPwd, String adminRole, Collection<? extends GrantedAuthority> authorities) {
+    public AdminDto(Integer adminId, String adminEmail, String adminName, String adminPwd, String adminRole, Collection<? extends GrantedAuthority> authorities) {
         this.adminId = adminId;
         this.adminEmail = adminEmail;
+        this.adminName = adminName;
         this.adminPwd = adminPwd;
         this.adminRole = adminRole;
         this.authorities = authorities;
@@ -36,6 +39,14 @@ public class AdminDto implements UserDetails {
 
     public void setAdminEmail(String adminEmail) {
         this.adminEmail = adminEmail;
+    }
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
     }
 
     public String getAdminPwd() {
@@ -102,6 +113,7 @@ public class AdminDto implements UserDetails {
         return "AdminDto{" +
                 "adminId=" + adminId +
                 ", adminEmail='" + adminEmail + '\'' +
+                ", adminName='" + adminName + '\'' +
                 ", adminPwd='" + adminPwd + '\'' +
                 ", adminRole='" + adminRole + '\'' +
                 ", authorities=" + authorities +
