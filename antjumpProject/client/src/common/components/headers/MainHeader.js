@@ -162,7 +162,7 @@ const MainHeader = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <LogoButton />
-          <Button component={Link} to="/">
+          <Button component={RouterLink} to="/">
             <Typography
               variant="h5"
               noWrap
@@ -247,7 +247,7 @@ const MainHeader = () => {
                   open={Boolean(anchorElIntroduce)}
                   onClose={handleCloseIntroduceMenu}
                 >
-                  <Button component={Link} to="/intro/messenger">
+                  <Button component={RouterLink} to="/intro/messenger">
                     <MenuItem onClick={handleCloseIntroduceMenu}>
                       <Typography textAlign="center">
                         {introduces[0]}
@@ -255,7 +255,7 @@ const MainHeader = () => {
                     </MenuItem>
                   </Button>
                   <p />
-                  <Button component={Link} to="/intro/schedule">
+                  <Button component={RouterLink} to="/intro/schedule">
                     <MenuItem onClick={handleCloseIntroduceMenu}>
                       <Typography textAlign="center">
                         {introduces[1]}
@@ -263,7 +263,7 @@ const MainHeader = () => {
                     </MenuItem>
                   </Button>
                   <p />
-                  <Button component={Link} to="/intro/cooperation">
+                  <Button component={RouterLink} to="/intro/cooperation">
                     <MenuItem onClick={handleCloseIntroduceMenu}>
                       <Typography textAlign="center">
                         {introduces[2]}
@@ -274,19 +274,19 @@ const MainHeader = () => {
               </Box>
 
               <p />
-              <Button component={Link} to="/intro/charge">
+              <Button component={RouterLink} to="/intro/charge">
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{pages[0]}</Typography>
                 </MenuItem>
               </Button>
               <p />
-              <Button component={Link} to="/faqs">
+              <Button component={RouterLink} to="/faqs">
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{pages[1]}</Typography>
                 </MenuItem>
               </Button>
               <p />
-              <Button component={Link} to="/qnas">
+              <Button component={RouterLink} to="/qnas">
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{pages[2]}</Typography>
                 </MenuItem>
@@ -318,7 +318,7 @@ const MainHeader = () => {
             </Box>
 
             <Button
-              component={Link}
+              component={RouterLink}
               to="/intro/charge"
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
@@ -326,7 +326,7 @@ const MainHeader = () => {
               {pages[0]}
             </Button>
             <Button
-              component={Link}
+              component={RouterLink}
               to="/faqs"
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
@@ -334,7 +334,7 @@ const MainHeader = () => {
               {pages[1]}
             </Button>
             <Button
-              component={Link}
+              component={RouterLink}
               to="/qnas"
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: "white", display: "block" }}
