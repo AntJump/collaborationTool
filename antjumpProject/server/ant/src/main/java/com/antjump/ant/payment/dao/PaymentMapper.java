@@ -32,4 +32,8 @@ public interface PaymentMapper {
     int createPayment(PaymentCreateDTO paymentCreateDTO);
 
     int createOrder(PaymentCreateDTO paymentCreateDTO);
+
+    int insertPaymentHistories(PaymentCreateDTO paymentCreateDTO);
+
+    int insertGoodsPossessions(PaymentCreateDTO paymentCreateDTO);
 }
