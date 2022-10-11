@@ -15,7 +15,7 @@
 
     <select id="selectQNAListWithPaging" resultType="QNAListDTO">
         <![CDATA[
-        select /* com.anjump.ant.qna.dao.QNAMapper#selectQNAListWithPaging(SelectCriteria selectCriteria) */
+        select /* com.anjump.ant.qna.dao.QNAMapper#selectQNAListWithPaging(SelectCriteria selectCriteria2) */
                a.qna_id
              , a.qna_title
              , a.qna_modify_time
