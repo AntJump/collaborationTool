@@ -3,7 +3,7 @@ package com.antjump.ant.goods.dto;
 /**
  * <pre>
  * Class : GoodsDetailDTO
- * Comment: 클래스에 대한 간단 설명
+ * Comment: 전송하기 위해 사용한 객체
  * History
  * ================================================================
  * DATE             AUTHOR           NOTE
