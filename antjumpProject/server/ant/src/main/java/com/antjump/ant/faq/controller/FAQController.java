@@ -41,7 +41,7 @@ public class FAQController {
         this.faqService = faqService;
     }
 
-    @GetMapping("list")
+    @GetMapping("")
     public ResponseEntity<ResponseDto> selectFaqList() {
 
 

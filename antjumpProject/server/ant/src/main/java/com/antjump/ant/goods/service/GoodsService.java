@@ -1,5 +1,9 @@
 package com.antjump.ant.goods.service;
 
+import com.antjump.ant.goods.dao.GoodsMapper;
+import com.antjump.ant.goods.dto.GoodsDetailDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,4 +22,23 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class GoodsService {
+
+    private static final Logger log = LoggerFactory.getLogger(GoodsService.class);
+
+    private final GoodsMapper goodsMapper;
+
+    public GoodsService(GoodsMapper goodsMapper) {
+        this.goodsMapper = goodsMapper;
+    }
+
+    public Object selectGoodsDetail(String goodsId) {
+        log.info("[QNAService] selectGoods Start ===============");
+
+        GoodsDetailDTO goodsDetailDTO = goodsMapper.selectGoodsDetail(goodsId);
+
+        log.info("[QNAService] selectGoods End ===============");
+
+        return goodsDetailDTO;
+    }
+
 }

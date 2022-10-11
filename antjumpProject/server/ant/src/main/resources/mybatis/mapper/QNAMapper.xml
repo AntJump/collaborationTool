@@ -52,10 +52,13 @@
              , c.qna_file_url
              , d.member_id
              , d.member_name
+             , e.admin_id
+             , e.admin_name
           from tbl_qnas a
           left join tbl_qna_categories b on(a.fk_qnacategories_qnas = b.qna_category_no)
           left join tbl_qna_files c on(a.qna_id = c.fk_qnas_files)
           left join tbl_members d on(a.fk_members_qnas = d.member_id)
+          left join tbl_admins e on(a.fk_admins_qnas = e.admin_id)
          where qna_delete_yn = 'N'
            and qna_id = #{ qnaId }
     </select>

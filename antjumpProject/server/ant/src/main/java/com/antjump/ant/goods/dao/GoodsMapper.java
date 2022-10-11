@@ -1,5 +1,6 @@
 package com.antjump.ant.goods.dao;
 
+import com.antjump.ant.goods.dto.GoodsDetailDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -18,4 +19,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface GoodsMapper {
+    GoodsDetailDTO selectGoodsDetail(String goodsId);
 }

@@ -1,13 +1,12 @@
-import { faqRows } from "./FAQSample";
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
-import { GET_FAQS } from "../../../../modules/FAQModule";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { callFAQListAPI } from "../../../../apis/FAQAPICalls";
 
 const Demo = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
@@ -23,7 +22,7 @@ function FAQList() {
 
     useEffect(
         ()=>{
-            dispatch({type: GET_FAQS, payload: faqRows});
+            dispatch(callFAQListAPI());
         },
         [dispatch]
     );
@@ -43,8 +42,8 @@ function FAQList() {
                                 {
                                     faqs.filter((faq) => faq.faqCategoryNo === 1)
                                     .map((faq) =>(
-                                        <div key ={faq.id}>
-                                            <Button component={Link} to={faq.id}>
+                                        <div key ={faq.faqId}>
+                                            <Button component={Link} to={String(faq.faqId)}>
                                                 {faq.faqTitle}
                                             </Button>
                                         </div>
@@ -63,8 +62,8 @@ function FAQList() {
                                 {
                                     faqs.filter((faq) => faq.faqCategoryNo === 2)
                                     .map((faq) =>(
-                                        <div key ={faq.id}>
-                                            <Button component={Link} to={faq.id}>
+                                        <div key ={faq.faqId}>
+                                            <Button component={Link} to={String(faq.faqId)}>
                                                 {faq.faqTitle}
                                             </Button>
                                         </div>
@@ -85,8 +84,8 @@ function FAQList() {
                                 {
                                     faqs.filter((faq) => faq.faqCategoryNo === 3)
                                     .map((faq) =>(
-                                        <div key ={faq.id}>
-                                            <Button component={Link} to={faq.id}>
+                                        <div key ={faq.faqId}>
+                                            <Button component={Link} to={String(faq.faqId)}>
                                                 {faq.faqTitle}
                                             </Button>
                                         </div>
@@ -105,8 +104,8 @@ function FAQList() {
                                 {
                                     faqs.filter((faq) => faq.faqCategoryNo === 4)
                                     .map((faq) =>(
-                                        <div key ={faq.id}>
-                                            <Button component={Link} to={faq.id}>
+                                        <div key ={faq.faqId}>
+                                            <Button component={Link} to={String(faq.faqId)}>
                                                 {faq.faqTitle}
                                             </Button>
                                         </div>
