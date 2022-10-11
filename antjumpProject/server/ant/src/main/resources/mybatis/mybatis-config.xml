@@ -21,4 +21,5 @@
 		<mapper resource="AdminMapper.xml" />
 		<mapper resource="ProjectMapper.xml"/>
 	</mappers>
+
 </configuration>

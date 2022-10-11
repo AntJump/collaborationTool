@@ -12,6 +12,17 @@
         <result column="memberPhone" property="MEMBER_PHONE" />
     </resultMap>
 
+    <select id="selectByMemberId" resultType="MemberDto">
+        SELECT
+            MEMBER_ID
+             ,  MEMBER_NAME
+             ,  MEMBER_PWD
+             ,  MEMBER_TYPE
+             ,  MEMBER_EMAIL
+        FROM TBL_MEMBERS
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
     <select id="selectByEmail" resultType="MemberDto">
         SELECT
                 MEMBER_ID
@@ -50,5 +61,7 @@
             #{memberEmail}
         )
     </insert>
+
+
 
 </mapper>

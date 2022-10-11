@@ -46,7 +46,7 @@ function MyProjectTable(){
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Stack m={2} justifyContent='center'>
+            <Stack m={2} justifyContent='c0enter'>
                 <Pagination onClick={onClickPagenation} count={Math.ceil(projects.length/rowLimitCount)} size="large" sx={{margin: 'auto'}} />
             </Stack>
             

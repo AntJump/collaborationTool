@@ -66,9 +66,13 @@ public class TokenProvider {
     public AdminTokenDto generateAdminTokenDto(AdminDto admin) {
         log.info("[AdminTokenProvider] generateTokenDto Start ===================================");
 
+        // 권한들 가져오기
+        List<String> roles =  Collections.singletonList(admin.getAdminRole());
+
         Claims claims = Jwts
                 .claims()
-                .setSubject(String.valueOf(admin.getAdminEmail()));
+                .setSubject(String.valueOf(admin.getAdminId()));
+        claims.put(AUTHORITIES_KEY, roles);
 
         long now = (new Date()).getTime();
 

@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { faqRows } from "../components/samples/FAQSample";
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { GET_FAQ_DETAIL } from '../modules/FAQModule';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button } from '@mui/material';
 import { Link } from "react-router-dom";
+import { callFAQDetailAPI } from '../apis/FAQAPICalls';
 
 function FAQDetailPage() {
 
@@ -15,14 +14,14 @@ function FAQDetailPage() {
     const { faqNumber } = useParams();
 
     const faqs = useSelector(state => state.faqReducer);
-    const faq = faqs[faqNumber];
+    const faq = faqs;
     console.log("faq: ", faq);
 
     const dispatch = useDispatch();
 
     useEffect(
         ()=>{
-            dispatch({type: GET_FAQ_DETAIL, payload: faqRows});
+            dispatch(callFAQDetailAPI(faqNumber));
         },
         [dispatch]
     );
