@@ -2,7 +2,7 @@ package com.antjump.ant.project.service;
 
 import com.antjump.ant.project.dao.ProjectMapper;
 import com.antjump.ant.project.dto.*;
-import com.antjump.ant.project.paging.SelectCriteria;
+import com.antjump.ant.project.paging.ProjectSelectCriteria;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,16 +39,16 @@ public class ProjectService {
     }
 
 
-    public List<ProjectDto> selectAllProjectListWithPaging(SelectCriteria selectCriteria) {
-        return projectMapper.selectAllProjectListWithPaging(selectCriteria);
+    public List<ProjectDto> selectAllProjectListWithPaging(ProjectSelectCriteria selectCriteria2) {
+        return projectMapper.selectAllProjectListWithPaging(selectCriteria2);
     }
 
-    public int selectMyProjectTotalCount(SelectCriteria selectCriteria) {
-        return projectMapper.selectMyProjectTotalCount(selectCriteria);
+    public int selectMyProjectTotalCount(ProjectSelectCriteria selectCriteria2) {
+        return projectMapper.selectMyProjectTotalCount(selectCriteria2);
     }
 
-    public List<ProjectDto> selectMyProjectListWithPaging(SelectCriteria selectCriteria) {
-        return projectMapper.selectMyProjectListWithPaging(selectCriteria);
+    public List<ProjectDto> selectMyProjectListWithPaging(ProjectSelectCriteria selectCriteria2) {
+        return projectMapper.selectMyProjectListWithPaging(selectCriteria2);
     }
 
     public ProjectAndMemberDto selectProjectById(int projectId) {

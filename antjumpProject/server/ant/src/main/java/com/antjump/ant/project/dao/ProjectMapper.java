@@ -2,7 +2,7 @@ package com.antjump.ant.project.dao;
 
 import com.antjump.ant.member.dto.MemberDto;
 import com.antjump.ant.project.dto.*;
-import com.antjump.ant.project.paging.SelectCriteria;
+import com.antjump.ant.project.paging.ProjectSelectCriteria;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -29,11 +29,11 @@ import java.util.Map;
 public interface ProjectMapper {
     int selectAllProjectTotalCount(int userId);
 
-    List<ProjectDto> selectAllProjectListWithPaging(SelectCriteria selectCriteria);
+    List<ProjectDto> selectAllProjectListWithPaging(ProjectSelectCriteria selectCriteria2);
 
-    int selectMyProjectTotalCount(SelectCriteria selectCriteria);
+    int selectMyProjectTotalCount(ProjectSelectCriteria selectCriteria2);
 
-    List<ProjectDto> selectMyProjectListWithPaging(SelectCriteria selectCriteria);
+    List<ProjectDto> selectMyProjectListWithPaging(ProjectSelectCriteria selectCriteria2);
 
     ProjectAndMemberDto selectProjectById(int projectId);
 

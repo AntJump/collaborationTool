@@ -4,7 +4,7 @@ import com.antjump.ant.common.ResponseDto;
 import com.antjump.ant.member.dto.MemberDto;
 import com.antjump.ant.project.dto.*;
 import com.antjump.ant.project.paging.ResultsDtoWithPaging;
-import com.antjump.ant.project.paging.SelectCriteria;
+import com.antjump.ant.project.paging.ProjectSelectCriteria;
 import com.antjump.ant.project.service.ProjectService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.antjump.ant.project.utils.DateUtil.getCurrentDateWithFormating;
-import static com.antjump.ant.project.paging.Pagenation.getPagingInfo;
+import static com.antjump.ant.project.paging.ProjectPagenation.getPagingInfo;
 
 /**
  * <pre>
@@ -66,17 +66,17 @@ public class ProjectController {
 
 
         // 페이징 처리 정보 계산 -> 그 외 조회 조건을 가져다 SelectCriteria 객체 생성
-        SelectCriteria selectCriteria = new SelectCriteria(getPagingInfo(limit, currentPage, buttonCount, totalCount),null, user.getMemberId());
-        System.out.println("selectCriteria:"+selectCriteria);
+        ProjectSelectCriteria selectCriteria2 = new ProjectSelectCriteria(getPagingInfo(limit, currentPage, buttonCount, totalCount),null, user.getMemberId());
+        System.out.println("selectCriteria:"+ selectCriteria2);
 
         // 조회 조건을 가지고 내가 참여중인 모든 프로젝트 조회
-        List<ProjectDto> projectList = projectService.selectAllProjectListWithPaging(selectCriteria);
+        List<ProjectDto> projectList = projectService.selectAllProjectListWithPaging(selectCriteria2);
         System.out.println("projectList:"+projectList);
         return ResponseEntity.ok().body(
                 new ResponseDto(
                         HttpStatus.OK
                         , "모든 프로젝트 목록 조회 성공"
-                        , new ResultsDtoWithPaging(projectList,selectCriteria.getPagingInfo())
+                        , new ResultsDtoWithPaging(projectList, selectCriteria2.getPagingInfo())
                 )
         );
     }
@@ -93,27 +93,27 @@ public class ProjectController {
         MemberDto user = new MemberDto();
         user.setMemberId(2);
 
-        SelectCriteria selectCriteria = new SelectCriteria();
-        selectCriteria.setUser(user.getMemberId());
-        selectCriteria.setStatus(status);
-        System.out.println("selectCriteria:"+selectCriteria);
+        ProjectSelectCriteria selectCriteria2 = new ProjectSelectCriteria();
+        selectCriteria2.setUser(user.getMemberId());
+        selectCriteria2.setStatus(status);
+        System.out.println("selectCriteria:"+ selectCriteria2);
 
         // 모든 프로젝트 수를 읽어와
-        int totalCount = projectService.selectMyProjectTotalCount(selectCriteria);
+        int totalCount = projectService.selectMyProjectTotalCount(selectCriteria2);
         System.out.println("totalCount:"+totalCount);
 
         // 페이징 처리 정보를 계산해 SelectCriteria 객체 생성
-        selectCriteria.setPagingInfo(getPagingInfo(limit, currentPage, buttonCount, totalCount));
+        selectCriteria2.setPagingInfo(getPagingInfo(limit, currentPage, buttonCount, totalCount));
 
-        System.out.println("selectCriteria:"+selectCriteria);
+        System.out.println("selectCriteria:"+ selectCriteria2);
         // 조회 조건을 가지고 내가 참여중인 모든 프로젝트 조회
-        List<ProjectDto> projectList = projectService.selectMyProjectListWithPaging(selectCriteria);
+        List<ProjectDto> projectList = projectService.selectMyProjectListWithPaging(selectCriteria2);
         System.out.println("projectList:"+projectList);
         return ResponseEntity.ok().body(
                 new ResponseDto(
                         HttpStatus.OK
                         , "모든 프로젝트 목록 조회 성공"
-                        , new ResultsDtoWithPaging(projectList,selectCriteria.getPagingInfo())
+                        , new ResultsDtoWithPaging(projectList, selectCriteria2.getPagingInfo())
                 )
         );
     }

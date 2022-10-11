@@ -77,7 +77,7 @@
            AND  C.fk_members_member_id = #{ memberId }
     </select>
 
-    <select id="selectAllProjectListWithPaging" parameterType="com.antjump.ant.project.paging.SelectCriteria" resultMap="ProjectAndMemberAndProjectRoleResultMap">
+    <select id="selectAllProjectListWithPaging" parameterType="com.antjump.ant.project.paging.ProjectSelectCriteria" resultMap="ProjectAndMemberAndProjectRoleResultMap">
         SELECT
                 A.project_id
              ,  A.project_key
@@ -99,7 +99,7 @@
         LIMIT  #{ pagingInfo.limit } OFFSET  #{ pagingInfo.offset }
     </select>
 
-    <select id="selectMyProjectTotalCount" parameterType="com.antjump.ant.project.paging.SelectCriteria"  resultType="_int">
+    <select id="selectMyProjectTotalCount" parameterType="com.antjump.ant.project.paging.ProjectSelectCriteria" resultType="_int">
         SELECT
                 COUNT(*)
           FROM  pjhbsy.tbl_projects as A
@@ -110,7 +110,7 @@
            AND  C.fk_roles_role_id = 1
     </select>
 
-    <select id="selectMyProjectListWithPaging" parameterType="com.antjump.ant.project.paging.SelectCriteria" resultMap="ProjectAndMemberAndProjectRoleResultMap">
+    <select id="selectMyProjectListWithPaging" parameterType="com.antjump.ant.project.paging.ProjectSelectCriteria" resultMap="ProjectAndMemberAndProjectRoleResultMap">
         SELECT
                 A.project_id
              ,  A.project_name

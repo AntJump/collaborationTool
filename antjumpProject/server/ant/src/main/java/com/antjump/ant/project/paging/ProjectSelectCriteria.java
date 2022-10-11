@@ -1,7 +1,5 @@
 package com.antjump.ant.project.paging;
 
-import com.antjump.ant.member.dto.MemberDto;
-
 /**
  * <pre>
  * Class : SelectCriteria
@@ -17,7 +15,7 @@ import com.antjump.ant.member.dto.MemberDto;
  * @version 1
  * @see
  */
-public class SelectCriteria {
+public class ProjectSelectCriteria {
     // 페이징 처리를 위한 필드
     private PagingInfo pagingInfo;
 
@@ -31,9 +29,9 @@ public class SelectCriteria {
 
 
 
-    public SelectCriteria() {}
+    public ProjectSelectCriteria() {}
 
-    public SelectCriteria(PagingInfo pagingInfo, String status, int userId) {
+    public ProjectSelectCriteria(PagingInfo pagingInfo, String status, int userId) {
         this.pagingInfo = pagingInfo;
         this.status = status;
         this.userId = userId;

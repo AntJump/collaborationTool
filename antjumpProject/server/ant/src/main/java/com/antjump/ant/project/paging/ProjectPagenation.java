@@ -15,7 +15,7 @@ package com.antjump.ant.project.paging;
  * @version 1
  * @see
  */
-public class Pagenation {
+public class ProjectPagenation {
 
     // 현재 페이지 위치를 받아 페이징 처리 정보를 생성한다
     public static PagingInfo getPagingInfo(int limit, int currentPage, int buttonCount, int totalCount) {
