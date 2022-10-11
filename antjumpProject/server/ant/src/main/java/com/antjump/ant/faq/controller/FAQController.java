@@ -60,6 +60,8 @@ public class FAQController {
     @PostMapping("admin")
     public ResponseEntity<ResponseDto> insertFAQ(@ModelAttribute FAQCreateDTO faqCreateDTO) {
 
+        System.out.println(faqCreateDTO);
+
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "FAQ 입력 성공", faqService.insertFAQ(faqCreateDTO)));
     }
 
