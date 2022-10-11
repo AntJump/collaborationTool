@@ -100,25 +100,25 @@ const MainHeader = () => {
           open={Boolean(anchorElUser)}
           onClose={handleCloseUserMenu}
         >
-          <Button component={Link} to="/members/profile">
+          <Button component={RouterLink} to="/members/profile">
             <MenuItem onClick={handleCloseUserMenu}>
               <Typography textAlign="center">{settings[0]}</Typography>
             </MenuItem>
           </Button>
           <p />
-          <Button component={Link} to="/payments">
+          <Button component={RouterLink} to="/payments">
             <MenuItem onClick={handleCloseUserMenu}>
               <Typography textAlign="center">{settings[1]}</Typography>
             </MenuItem>
           </Button>
           <p />
-          <Button component={Link} to="/projects">
+          <Button component={RouterLink} to="/projects">
             <MenuItem onClick={handleCloseUserMenu}>
               <Typography textAlign="center">{settings[2]}</Typography>
             </MenuItem>
           </Button>
           <p />
-          <Button component={Link} to="/">
+          <Button component={RouterLink} to="/">
             <MenuItem onClick={handleCloseUserMenu}>
               <Typography textAlign="center">{settings[3]}</Typography>
             </MenuItem>
