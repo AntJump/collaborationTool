@@ -118,7 +118,7 @@ const MainHeader = () => {
             </MenuItem>
           </Button>
           <p />
-          <Button component={RouterLink} to="/">
+          <Button onClick={onClickLogoutHandler}>
             <MenuItem onClick={handleCloseUserMenu}>
               <Typography textAlign="center">{settings[3]}</Typography>
             </MenuItem>
