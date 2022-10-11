@@ -16,6 +16,7 @@
 		<typeAlias alias="AdminDto" type="com.antjump.ant.admin.dto.AdminDto"/>
 		<typeAlias alias="QNAListDto" type="com.antjump.ant.qna.dto.QNAListDTO"/>
 		<typeAlias alias="IssueDto" type="com.antjump.ant.issue.dto.IssueDTO"/>
+		<typeAlias alias="IssueReplyDto" type="com.antjump.ant.issue.dto.IssueReplyDTO"/>
 		<typeAlias alias="SprintDto" type="com.antjump.ant.sprint.model.dto.SprintDto"/>
 		<typeAlias alias="RemembranceDto" type="com.antjump.ant.remembrance.model.dto.RemembranceDto"/>
 

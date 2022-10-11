@@ -19,33 +19,94 @@
         <result property="memberId" column="fk_members_issues"/>
     </resultMap>
 
+    <resultMap id="issueReplyResultmap" type="IssueReplyDto">
+        <id property="issueReplyId" column="issue_reply_id"/>
+        <result property="issueId" column="fk_issues_replies"/>
+        <result property="issueReplyTime" column="issue_reply_time"/>
+        <result property="issueReplyContent" column="issue_reply_content"/>
+        <result property="memberId" column="fk_members_issue_replies"/>
+    </resultMap>
+
 
 
     <select id="selectIssues" resultMap="issueResultMap">
         SELECT
-               A.ISSUE_NAME
-             , A.ISSUE_CATEGORY
-             , A.ISSUE_SUMMARY
-             , A.ISSUE_STATUS
-             , B.MEMBER_ID
-             , A.ISSUE_PRIORITY
-          FROM TBL_ISSUES A
-     LEFT JOIN TBL_MEMBERS B ON (A.FK_MEMBERS_ISSUES = B.MEMBER_ID)
+               a.issue_id
+             , a.top_issue_id
+             , a.issue_name
+             , a.issue_summary
+             , a.issue_explanation
+             , a.issue_difficulty
+             , a.issue_category
+             , a.issue_priority
+             , a.issue_status
+             , a.sprint_include_yn
+             , a.fk_projects_issues
+             , b.member_id
+          FROM tbl_issues a
+     LEFT JOIN tbl_members b ON (a.fk_members_issues = b.member_id)
+         WHERE a.sprint_include_yn = 'N'
+           AND a.top_issue_id - null
     </select>
+
+    <select id="selectCompletedIssues" resultMap="issueResultMap">
+        SELECT
+               a.issue_id
+             , a.top_issue_id
+             , a.issue_name
+             , a.issue_summary
+             , a.issue_explanation
+             , a.issue_difficulty
+             , a.issue_category
+             , a.issue_priority
+             , a.issue_status
+             , a.sprint_include_yn
+             , a.fk_projects_issues
+             , a.fk_members_issues
+             , c.sprint_status
+          FROM tbl_issues a
+     LEFT JOIN tbl_sprints_and_issues b ON (a.issue_id = b.fk_issues_sprints)
+     LEFT JOIN tbl_sprints c ON (b.fk_sprints_issues = c.sprint_id)
+         WHERE c.sprint_status = '완료'
+           AND a.issue_status = '완료'
+           AND a.top_issue_id = null
+
+
+    </select>
+
+
+    <select id="selectIssueById" resultMap="issueResultMap">
+        SELECT
+               a.issue_id
+             , a.top_issue_id
+             , a.issue_name
+             , a.issue_summary
+             , a.issue_explanation
+             , a.issue_difficulty
+             , a.issue_category
+             , a.issue_priority
+             , a.issue_status
+             , a.sprint_include_yn
+             , a.fk_projects_issues
+             , a.fk_members_issues
+        FROM tbl_issues a
+       WHERE issue_id = #{ issueId }
+    </select>
+
 
     <insert id="createIssue" parameterType="IssueDto">
       INSERT
-        INTO tbl_issues
+        INTO tbl_issues a
         (
-          top_issue_id
-        , issue_name
-        , issue_summary
-        , issue_explanation
-        , issue_difficulty
-        , issue_category
-        , issue_priority
-        , fk_projects_issues
-        , fk_members_issues
+          a.top_issue_id
+        , a.issue_name
+        , a.issue_summary
+        , a.issue_explanation
+        , a.issue_difficulty
+        , a.issue_category
+        , a.issue_priority
+        , a.fk_projects_issues
+        , a.fk_members_issues
         )
       VALUES
         (
@@ -61,10 +122,75 @@
         )
     </insert>
 
+    <update id="modifyIssue" parameterType="IssueDto">
+        UPDATE
+               tbl_issues a
+           SET a.issue_name =  #{ issueName }
+             , a.issue_summary = #{ issueSummary }
+             , a.issue_explanation = #{ issueExplanation }
+             , a.issue_difficulty = #{ issueDifficulty }
+             , a.issue_status = #{ issueStatus }
+             , a.issue_category = #{ issueCategory }
+             , a.issue_priority =  #{ issuePriority }
+             , a.fk_members_issues = #{ memberId }
+         WHERE a.issue_id = #{ issueId }
+    </update>
+
     <delete id="deleteIssue" parameterType="IssueDto">
         DELETE
           FROM tbl_issues
-         WHERE issue_name = #{ issueName }
+         WHERE issue_id = #{ issueId }
+    </delete>
+
+    <update id="modifyIssueStatus" parameterType="IssueDto">
+        UPDATE
+               tbl_issues a
+          SET a.issue_status = #{ issueStatus }
+        WHERE a.issue_id = #{ issueId }
+          AND a.sprint_include_yn = 'Y'
+    </update>
+
+    <select id="selectIssueReply" resultMap="issueReplyResultmap">
+        SELECT
+               a.issue_reply_id
+             , a.fk_issues_replies
+             , a.issue_reply_time
+             , a.issue_reply_content
+             , a.fk_members_issue_replies
+          FROM tbl_issue_replies a
+         WHERE a.fk_issues_replies = #{ issueId }
+    </select>
+
+    <insert id="createIssueReply" parameterType="IssueReplyDto">
+        INSERT
+        INTO tbl_issue_replies
+        (
+          fk_issues_replies
+        , issue_reply_time
+        , issue_reply_content
+        , fk_members_issue_replies
+        )
+        VALUES
+            (
+              #{ issueId }
+            , now()
+            , #{ issueReplyContent }
+            , #{ memberId }
+            )
+    </insert>
+
+    <update id="modifyIssueReply" parameterType="IssueReplyDto">
+        UPDATE
+               tbl_issue_replies a
+           SET a.issue_reply_time = now()
+             , a.issue_reply_content = #{ issueReplyContent }
+         WHERE issue_reply_id = #{ issueReplyId }
+    </update>
+
+    <delete id="deleteIssueReply" parameterType="IssueReplyDto">
+        DELETE
+          FROM tbl_issue_replies
+         WHERE issue_reply_id =  #{ issueReplyId }
     </delete>
 
 </mapper>
