@@ -61,4 +61,6 @@ public interface ProjectMapper {
     List<ProjectRoleDto> selectProjectRoleList();
 
     MemberDto findMemberIdByEmail(String email);
+
+    ProjectMemberDto selectProjectMemberByEmail(String projectMemberEmail);
 }

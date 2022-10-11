@@ -214,6 +214,17 @@ public class ProjectController {
         );
     }
 
+    @GetMapping("/members/{email}")
+    public ResponseEntity<ResponseDto> selectMemberByEmail(@PathVariable(value = "email") String email){
+        return ResponseEntity.ok().body(
+                new ResponseDto(
+                        HttpStatus.OK
+                        , "회원 id 조회 성공"
+                        ,  projectService.findMemberIdByEmail(email)
+                )
+        );
+    }
+
     @GetMapping("/project-members/user")
     public ResponseEntity<ResponseDto> selectProjectMemberInfoByUserId(@RequestParam(value = "projectId") int projectId){
 

@@ -129,4 +129,12 @@ public class ProjectService {
         int result = projectMapper.registProjectMember(projectMemberDto);
          return (result > 0) ? true : false;
     }
+
+    public Object selectProjectMemberByEmail(String projectMemberEmail) {
+        return projectMapper.selectProjectMemberByEmail(projectMemberEmail);
+    }
+
+    public Object findMemberIdByEmail(String email){
+        return projectMapper.findMemberIdByEmail(email);
+    }
 }

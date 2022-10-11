@@ -83,4 +83,6 @@ public class InvitationService  {
         int result = invitationMapper.deleteInvitationInfoById(invitationId);
         return (result>0) ? "초대 정보 삭제 성공" : "초대 정보 삭제 실패";
     }
+
+
 }
