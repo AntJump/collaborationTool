@@ -1,17 +1,14 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { FAQ_CONTENT, FAQ_TITLE } from '../modules/FAQModule';
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { InputAdornment } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles'
-import { useNavigate } from 'react-router-dom';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import { useState } from "react";
-import { callFAQRegistAPI } from '../apis/FAQAPICalls';
 
 const CustomButton = styled(Button)({
 
@@ -24,38 +21,28 @@ const CustomButton = styled(Button)({
 
 function FAQWritePage() {
 
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
     
-    const [form, setForm] = useState({
-        faqTitle: '',
-        faqContent: '',
-        faqCategory: 0,
-        adminId: 1
-    });
+    const faq = useSelector(state => state.faqReducer);
+    const dispatch = useDispatch();
 
-    const onChangeHandler = (e) => {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        });
-    };
+    console.log(faq);
 
-    const onClickFAQHandler = () => {        
-        console.log('[FAQWritePage] onClickFAQHandler Start!!');
-        console.log('form', form);
-        dispatch(callFAQRegistAPI({	// 글 작성
-            form: form
-        }));
+    useEffect(
+        () => { 
+            dispatch({ type: FAQ_TITLE, payload : '' })
+            dispatch({ type: FAQ_CONTENT, payload : '' })
+        },
+        []
+    );
 
-        alert('글 등록이 완료되었습니다.');
-
-        navigate(`/faqs`);
-
-        console.log('[FAQWritePage] onClickFAQHandler End!!');
-
+    const titleOnChangeHandler = (e) => {
+        dispatch({ type: FAQ_TITLE, payload : e.target.value });
     }
+  
+    const contentOnChangeHandler = (e) => {
+        dispatch({ type: FAQ_CONTENT, payload : e.target.value });
+    }
+
 
     return (
         <>
@@ -76,10 +63,8 @@ function FAQWritePage() {
                     label="FAQ 제목"
                     multiline
                     fullWidth
-                    name='faqTitle'
-                    type="text" 
-                    placeholder="글 제목" 
-                    onChange={onChangeHandler}
+                    value={ faq.faqTitle }
+                    onChange={titleOnChangeHandler}
                 />
                 </Box>
                 <Box
@@ -99,10 +84,8 @@ function FAQWritePage() {
                     multiline
                     rows={10}
                     fullWidth
-                    name='faqContent'
-                    type="text" 
-                    placeholder="글 본문" 
-                    onChange={onChangeHandler}
+                    value={ faq.faqContent }
+                    onChange={contentOnChangeHandler}
                 />
                 </Box>
                 <Box
@@ -127,19 +110,7 @@ function FAQWritePage() {
                         }}
                     />
                 </Box>
-
-                <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    name='faqCategory'
-                    onChange={onChangeHandler}
-                    >
-                    <MenuItem value={1}>개미 협업툴 사용 관련</MenuItem>
-                    <MenuItem value={2}>가격 정책</MenuItem>
-                    <MenuItem value={3}>결제 관련</MenuItem>
-                    <MenuItem value={4}>관리자</MenuItem>
-                </Select>
-                <CustomButton variant="contained" disableElevation onClick={onClickFAQHandler}>
+                <CustomButton variant="contained" disableElevation>
                     작성 완료
                 </CustomButton>
             </Box>

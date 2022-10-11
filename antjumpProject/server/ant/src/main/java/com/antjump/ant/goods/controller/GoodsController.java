@@ -44,17 +44,4 @@ public class GoodsController {
 
     }
 
-    @GetMapping("possession")
-    public ResponseEntity<ResponseDto> selectGoodsPossessionsList() {
-
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "보유 상품 리스트 조회 성공", goodsService.selectGoodsPossessionsList()));
-
-    }
-
-    @GetMapping("possession/{possessionId}")
-    public ResponseEntity<ResponseDto> selectGoodsPossessionDetail(@PathVariable String possessionId) {
-
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "보유 상품 상세 조회 성공", goodsService.selectGoodsPossessionDetail(possessionId)));
-
-    }
 }

@@ -1,11 +1,13 @@
 import * as React from 'react';
+import { paymentRows } from "../components/samples/PaymentSample";
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { GET_PAYMENT_DETAIL } from '../modules/PaymentModule';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { callPaymentDetailAPI } from "../apis/PaymentAPICalls";
-import moment from "moment";
+import { Button } from '@mui/material';
+import { Link } from "react-router-dom";
 
 function PaymentDetailPage() {
 
@@ -13,14 +15,14 @@ function PaymentDetailPage() {
     const { paymentNumber } = useParams();
 
     const payments = useSelector(state => state.paymentReducer);
-    const payment = payments;
+    const payment = payments[paymentNumber-1];
     console.log("payment: ", payments);
 
     const dispatch = useDispatch();
 
     useEffect(
         ()=>{
-            dispatch(callPaymentDetailAPI(paymentNumber));
+            dispatch({type: GET_PAYMENT_DETAIL, payload: paymentRows});
         },
         [dispatch]
     );
@@ -47,7 +49,7 @@ function PaymentDetailPage() {
                 <Typography sx={{ mt: 1, mb: 1,
                         fontFamily: 'monospace',
                         fontWeight: 700 }} variant="h5" align='left' color='#004392' >
-                    회원 결제일자 : { payment.paymentTime=moment().format('YYYY-MM-DD') }
+                    회원 결제일자 : { payment.paymentTime }
                 </Typography>
                 <Typography sx={{ mt: 1, mb: 1,
                         fontFamily: 'monospace',
@@ -57,22 +59,12 @@ function PaymentDetailPage() {
                 <Typography sx={{ mt: 1, mb: 1,
                         fontFamily: 'monospace',
                         fontWeight: 700 }} variant="h5" align='left' color='#004392' >
-                    결제금액 : { payment.orderAmount }
-                </Typography>
-                <Typography sx={{ mt: 1, mb: 1,
-                      fontFamily: 'monospace',
-                      fontWeight: 700 }} variant="h5" align='left' color='#004392' >
-                    상품 사용여부 : { payment.goodsUseYn }
-                </Typography>
-                <Typography sx={{ mt: 1, mb: 1,
-                      fontFamily: 'monospace',
-                      fontWeight: 700 }} variant="h5" align='left' color='#004392' >
-                    상품 남은 일자 : { payment.goodsRemainingDate}
+                    결제금액 : { payment.paymentAmount }
                 </Typography>
                 <Typography sx={{ mt: 1, mb: 1,
                         fontFamily: 'monospace',
                         fontWeight: 700 }} variant="h5" align='left' color='#004392' >
-                    환불 요청 여부 : { payment.refundYn }
+                    환불 요청 여부 : { payment.refund }
                 </Typography>
                 <Typography sx={{ mt: 1, mb: 1,
                       fontFamily: 'monospace',

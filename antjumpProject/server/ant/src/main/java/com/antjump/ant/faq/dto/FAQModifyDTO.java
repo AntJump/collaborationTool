@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 /**
  * <pre>
  * Class : FAQModifyDTO
- * Comment: 전송하기 위해 사용한 객체
+ * Comment: 클래스에 대한 간단 설명
  * History
  * ================================================================
  * DATE             AUTHOR           NOTE

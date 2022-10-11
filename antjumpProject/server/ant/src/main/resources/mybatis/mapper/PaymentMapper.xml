@@ -12,10 +12,8 @@
              , a.payment_status
              , b.member_id
              , b.member_name
-             , c.refund_yn
           from tbl_payments a
           left join tbl_members b on (a.fk_members_payments = b.member_id)
-          left join tbl_payment_state_histories c on(a.payment_id = c.fk_payments_states)
     </select>
 
     <select id="selectPaymentsDetail" resultType="PaymentDetailDTO">
@@ -30,21 +28,17 @@
              , c.member_name
              , c.member_email
              , c.member_phone
-             , c.member_type
-             , d.refund_yn
              , d.refund_reason
-             , e.goods_use_yn
-             , e.goods_remaining_date
           from tbl_payments a
           left join tbl_orders b on (a.fk_orders_payments = b.order_id)
           left join tbl_members c on (a.fk_members_payments = c.member_id)
           left join tbl_payment_state_histories d on(a.payment_id = d.fk_payments_states)
-          left join tbl_goods_possessions e on (e.fk_orders_possessions = b.order_id)
          where a.payment_id = #{ paymentId }
     </select>
 
+
     <insert id="createOrder" parameterType="paymentCreateDTO">
-        insert /* com.anjump.ant.faq.dao.PaymentMapper#createOrder(PaymentCreateDTO paymentCreateDTO) */
+        insert
           into tbl_orders
         (
           order_uuid
@@ -62,7 +56,7 @@
     </insert>
 
     <insert id="createPayment" parameterType="paymentCreateDTO">
-        insert /* com.anjump.ant.faq.dao.PaymentMapper#createOrder(PaymentCreateDTO paymentCreateDTO) */
+        insert
           into tbl_payments
         (
           payment_key
@@ -77,39 +71,6 @@
         , 1
         , (select max(order_id) from tbl_orders)
         )
-    </insert>
-
-    <insert id="insertPaymentHistories" parameterType="paymentCreateDTO">
-        insert /* com.anjump.ant.faq.dao.PaymentMapper#createOrder(PaymentCreateDTO paymentCreateDTO) */
-          into tbl_payment_state_histories
-        (
-          payment_state
-        , fk_payments_states
-        , fk_members_payment_states
-        )
-        values
-        (
-          #{ status }
-        , (select max(payment_id) from tbl_payments)
-        , 1
-        )
-    </insert>
-
-    <insert id="insertGoodsPossessions" parameterType="paymentCreateDTO">
-        insert /* com.anjump.ant.faq.dao.PaymentMapper#createOrder(PaymentCreateDTO paymentCreateDTO) */
-          into tbl_goods_possessions
-        (
-          goods_remaining_date
-        , fk_goods_possessions
-        , fk_orders_possessions
-        )
-        values
-        (
-          30
-        , 1
-        , (select max(order_id) from tbl_orders)
-        )
-
     </insert>
 
 </mapper>

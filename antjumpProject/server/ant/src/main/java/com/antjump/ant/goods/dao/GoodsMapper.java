@@ -1,11 +1,7 @@
 package com.antjump.ant.goods.dao;
 
 import com.antjump.ant.goods.dto.GoodsDetailDTO;
-import com.antjump.ant.goods.dto.GoodsPossesionsListDTO;
-import com.antjump.ant.goods.dto.GoodsPossessionDetailDTO;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
 
 /**
  * <pre>
@@ -24,8 +20,4 @@ import java.util.List;
 @Mapper
 public interface GoodsMapper {
     GoodsDetailDTO selectGoodsDetail(String goodsId);
-
-    List<GoodsPossesionsListDTO> selectGoodsPossessionsList();
-
-    GoodsPossessionDetailDTO selectGoodsPossessionDetail(String possessionId);
 }

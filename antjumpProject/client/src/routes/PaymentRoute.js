@@ -11,7 +11,7 @@ function PaymentRoute() {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<PaymentPage />} />
-        <Route path=":possessionNumber" element={<PaymentDetailPage />} />
+        <Route path=":memberNumber" element={<PaymentDetailPage />} />
         <Route path="success" element={<SucceessPage />} />
         <Route path="goods" element={<GoodsPage />} />
         <Route path="fail" element={<FailPage />} />

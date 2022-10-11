@@ -23,19 +23,17 @@ public class PaymentListDTO {
     private String paymentStatus;
     private int memberId;
     private String memberName;
-    private Character refundYn;
 
     public PaymentListDTO() {
     }
 
-    public PaymentListDTO(int paymentId, Timestamp paymentTime, String paymentKey, String paymentStatus, int memberId, String memberName, Character refundYn) {
+    public PaymentListDTO(int paymentId, Timestamp paymentTime, String paymentKey, String paymentStatus, int memberId, String memberName) {
         this.paymentId = paymentId;
         this.paymentTime = paymentTime;
         this.paymentKey = paymentKey;
         this.paymentStatus = paymentStatus;
         this.memberId = memberId;
         this.memberName = memberName;
-        this.refundYn = refundYn;
     }
 
     public int getPaymentId() {
@@ -86,14 +84,6 @@ public class PaymentListDTO {
         this.memberName = memberName;
     }
 
-    public Character getRefundYn() {
-        return refundYn;
-    }
-
-    public void setRefundYn(Character refundYn) {
-        this.refundYn = refundYn;
-    }
-
     @Override
     public String toString() {
         return "PaymentListDTO{" +
@@ -103,7 +93,6 @@ public class PaymentListDTO {
                 ", paymentStatus='" + paymentStatus + '\'' +
                 ", memberId=" + memberId +
                 ", memberName='" + memberName + '\'' +
-                ", refundYn=" + refundYn +
                 '}';
     }
 

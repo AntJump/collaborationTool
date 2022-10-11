@@ -67,10 +67,6 @@ public class PaymentService {
 
         int paymentResult = paymentMapper.createPayment(paymentCreateDTO);
 
-        int paymentHistoryResult = paymentMapper.insertPaymentHistories(paymentCreateDTO);
-
-        int goodsPossessionsResult = paymentMapper.insertGoodsPossessions(paymentCreateDTO);
-
-        return (paymentResult > 0 || orderResult > 0 || paymentHistoryResult > 0 || goodsPossessionsResult > 0) ? paymentCreateDTO : "결제 입력 실패";
+        return (paymentResult > 0 || orderResult > 0 ) ? paymentCreateDTO : "결제 입력 실패";
     }
 }

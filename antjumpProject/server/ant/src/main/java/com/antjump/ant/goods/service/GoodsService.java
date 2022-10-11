@@ -1,15 +1,10 @@
 package com.antjump.ant.goods.service;
 
-import com.antjump.ant.faq.dto.FAQListDTO;
 import com.antjump.ant.goods.dao.GoodsMapper;
 import com.antjump.ant.goods.dto.GoodsDetailDTO;
-import com.antjump.ant.goods.dto.GoodsPossesionsListDTO;
-import com.antjump.ant.goods.dto.GoodsPossessionDetailDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * <pre>
@@ -46,25 +41,4 @@ public class GoodsService {
         return goodsDetailDTO;
     }
 
-    public List<GoodsPossesionsListDTO> selectGoodsPossessionsList() {
-
-        log.info("[GoodsService] selectGoodsPossessionsList Start ===================================");
-
-        List<GoodsPossesionsListDTO> goodsPossesionsList = goodsMapper.selectGoodsPossessionsList();
-
-        log.info("[GoodsService] selectGoodsPossessionsList End ===================================");
-
-        return goodsPossesionsList;
-    }
-
-    public Object selectGoodsPossessionDetail(String possessionId) {
-
-        log.info("[GoodsService] selectGoodsPossessionsList Start ===================================");
-
-        GoodsPossessionDetailDTO goodsPossessionDetailDTO = goodsMapper.selectGoodsPossessionDetail(possessionId);
-
-        log.info("[GoodsService] selectGoodsPossessionsList End ===================================");
-
-        return goodsPossessionDetailDTO;
-    }
 }
