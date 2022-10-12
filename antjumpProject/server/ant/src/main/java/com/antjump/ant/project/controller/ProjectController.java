@@ -162,6 +162,7 @@ public class ProjectController {
         );
     }
 
+    /* 프로젝트 완전 삭제 api */
     @DeleteMapping  ("/projects/{id}")
     public ResponseEntity<ResponseDto> deleteProject(@PathVariable("id") int projectId){
 
@@ -174,6 +175,8 @@ public class ProjectController {
         );
     }
 
+
+    /* 프로젝트 임시 삭제 api */
     @PatchMapping  ("/projects/{id}/temp-delete")
     public ResponseEntity<ResponseDto> temporarilyDeleteProject(@PathVariable("id") int projectId){
 

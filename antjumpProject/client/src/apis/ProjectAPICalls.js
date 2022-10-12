@@ -1,5 +1,14 @@
-import { GET_ALLPROJECTS, GET_MYPROJECTS } from "../modules/ProjectListModule";
-import { GET_PROJECT, POST_PROJECT, PUT_PROJECT } from "../modules/ProjectModule";
+import { 
+    GET_ALLPROJECTS, 
+    GET_MYPROJECTS 
+} from "../modules/ProjectListModule";
+
+import { 
+    GET_PROJECT, 
+    POST_PROJECT, 
+    PUT_PROJECT,  
+    PATCH_PROJECT
+} from "../modules/ProjectModule";
 
 console.log("[ProjectAPICalls]");
 
@@ -86,9 +95,9 @@ export const callProjectCreateApi = ({form}) => {
 
         if(result.status == 200){
             dispatch({type: POST_PROJECT, payload: result.data});
-            alert('프로젝트 생성 완료!');
-        }else{
-            alert('프로젝트 생성 실패!');
+            alert("프로젝트 생성 성공");
+        } else{
+            alert("프로젝트 생성 실패");
         }
 
         window.location.reload(true);
@@ -117,14 +126,66 @@ export const callProjectUdateApi = ({form, projectId}) => {
         console.log("result: ", result);
 
         if(result.status == 200){
-            dispatch({type: PUT_PROJECT, payload: result.data});
-            alert('프로젝트 수정 완료!');
-        }else{
-            alert('프로젝트 수정 실패!');
+            dispatch({type: PUT_PROJECT, payload: result.data});  
+            alert("프로젝트 수정 성공");
+        } else{
+            alert("프로젝트 수정 실패");
         }
-
-        window.location.reload(true);
         
     }
     
+}
+
+
+export const callProjectTemporaryDeleteApi= ({projectId})=>{
+    console.log("============= callProjectTemporaryDelete ================");
+    const requestUrl = `${process.env.REACT_APP_SERVER_IP}/projects/${projectId}/temp-delete`;
+
+    return async(dispatch, state)=>{
+        const result = await fetch(requestUrl, {
+            method: 'PATCH',
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        })
+        .then(response => response.json());
+
+        console.log("result :", result);
+
+        if(result.status == 200){
+            dispatch({type: PATCH_PROJECT , payload: result});  
+            alert("프로젝트 임시 삭제 성공");
+        } else{
+            alert("프로젝트 임시 삭제 실패");
+        }
+
+        window.location.reload(true);
+    }
+}
+
+
+export const callProjectRestoreApi= ({projectId})=>{
+    console.log("============= callProjectRestoreApi ================");
+    const requestUrl = `${process.env.REACT_APP_SERVER_IP}/projects/${projectId}`;
+
+    return async(dispatch, state)=>{
+        const result = await fetch(requestUrl, {
+            method: 'PATCH',
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        })
+        .then(response => response.json());
+
+        console.log("result :", result);
+
+        if(result.status == 200){
+            dispatch({type: PATCH_PROJECT , payload: result});  
+            alert("프로젝트 복구 성공");
+        } else{
+            alert("프로젝트 복구 실패");
+        }
+
+        window.location.reload(true);
+    }
 }
