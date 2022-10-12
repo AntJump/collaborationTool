@@ -12,7 +12,7 @@ function QNAPage() {
         <Typography sx={{ mt: 1, mb: 1,
                 fontFamily: 'monospace',
                 fontWeight: 700 }} variant="h3" align='center' color='#004392' >
-            문의게시판
+            미답변 문의
         </Typography>
         <QNAList/>
         <Box sx={{

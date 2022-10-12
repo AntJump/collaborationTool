@@ -6,7 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Button } from '@mui/material';
 import { Link } from "react-router-dom";
-import { callFAQDetailAPI } from '../apis/FAQAPICalls';
+import { useNavigate } from 'react-router-dom';
+import { callFAQDetailAPI, callQNADeleteAPI } from '../apis/FAQAPICalls';
 
 function FAQDetailPage() {
 
@@ -18,6 +19,7 @@ function FAQDetailPage() {
     console.log("faq: ", faq);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(
         ()=>{
@@ -25,6 +27,20 @@ function FAQDetailPage() {
         },
         [dispatch]
     );
+    
+    const deleteFaq = () => {        
+        console.log('[FAQDetailPage] deleteFAQ Start!!');
+
+        dispatch(callQNADeleteAPI(faqNumber));
+
+        alert('글 삭제가 완료되었습니다.');
+
+        navigate(`/faqs`);
+
+        console.log('[FAQDetailPage] deleteFAQ End!!');
+
+    }
+
     return faq && (
         <>
         
@@ -54,7 +70,7 @@ function FAQDetailPage() {
             <Button
               component={Link} to="modify">수정하기
             </Button>
-            <Button>삭제하기</Button>
+            <Button onClick={ deleteFaq }>삭제하기</Button>
           </Box>
         </>
     );
