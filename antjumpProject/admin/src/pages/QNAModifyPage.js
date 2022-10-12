@@ -6,10 +6,10 @@ import { InputAdornment } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles'
+import { styled } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { callFAQDetailAPI, callFAQUpdateAPI } from '../apis/FAQAPICalls';
+import { callQNADetailAPI, callQNAUpdateAPI } from '../apis/QNAAPICalls';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
@@ -23,25 +23,23 @@ const CustomButton = styled(Button)({
       color: '#3c52b2'
 }})
 
+function QNAModifyPage() {
 
-export default function FAQModifyPage() {
-
-    
     const dispatch = useDispatch();
-    const { faqNumber } = useParams();
+    const { qnaNumber } = useParams();
 
-    const faqs = useSelector(state => state.faqReducer);
-    const faq = faqs;
+    const qnas = useSelector(state => state.qnaReducer);
+    const qna = qnas;
 
-    console.log("faq: ", faq);
+    console.log("qna: ", qna);
 
     const navigate = useNavigate();
 
     const [form, setForm] = useState({
-        faqId : faqNumber,
-        faqTitle: faq.faqTitle,
-        faqContent: faq.faqContent,
-        faqCategoryNo: faq.faqCategoryNo,
+        qnaId : qnaNumber,
+        qnaTitle: qna.qnaTitle,
+        qnaContent: qna.qnaContent,
+        qnaCategoryNo: qna.qnaCategoryNo,
         adminId: 1
     });
 
@@ -54,27 +52,27 @@ export default function FAQModifyPage() {
 
     useEffect(
         () => {
-            dispatch(callFAQDetailAPI(faqNumber));
+            dispatch(callQNADetailAPI(qnaNumber));
         }
     , []);
 
-    const onClickFAQHandler = () => {        
-        console.log('[FAQModifyPage] onClickFAQHandler Start!!');
+    const onClickQNAHandler = () => {        
+        console.log('[QNAModifyPage] onClickQNAHandler Start!!');
         console.log('form', form);
-        dispatch(callFAQUpdateAPI({	// 글 작성
+        dispatch(callQNAUpdateAPI({	// 글 작성
             form: form
         }));
 
         alert('글 등록이 완료되었습니다.');
 
-        navigate(`/faqs`);
+        navigate(`/qnas`);
 
-        console.log('[FAQModifyPage] onClickFAQHandler End!!');
+        console.log('[QNAModifyPage] onClickQNAHandler End!!');
 
     }
 
-    return faq && (
-        <Box sx ={{mt: 15}}>
+    return qna&& (
+        <Box>
             <Box
                 component="form"
                 noValidate
@@ -88,11 +86,11 @@ export default function FAQModifyPage() {
             >
             <TextField
                 id="outlined-multiline-static, fullWidth"
-                label="FAQ 제목"
+                label="문의 제목"
                 multiline
                 fullWidth
-                defaultValue={faq.faqTitle}
-                name='faqTitle'
+                defaultValue={qna.qnaTitle}
+                name='qnaTitle'
                 onChange={onChangeHandler}
             />
             </Box>
@@ -109,12 +107,12 @@ export default function FAQModifyPage() {
             >
             <TextField
                 id="outlined-multiline-static, fullWidth"
-                label="FAQ 내용"
+                label="문의 내용"
                 multiline
                 rows={10}
                 fullWidth
-                defaultValue={faq.faqContent}
-                name='faqContent'
+                defaultValue={qna.qnaContent}
+                name='qnaContent'
                 onChange={onChangeHandler}
             />
             </Box>
@@ -140,21 +138,26 @@ export default function FAQModifyPage() {
                     }}
                 />
             </Box>
+            
             <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                name='faqCategory'
-                defaultValue={faq.faqCategoryNo}
-                onChange={onChangeHandler}
-                >
-                <MenuItem value={1}>개미 협업툴 사용 관련</MenuItem>
-                <MenuItem value={2}>가격 정책</MenuItem>
-                <MenuItem value={3}>결제 관련</MenuItem>
-                <MenuItem value={4}>관리자</MenuItem>
-            </Select>
-            <CustomButton variant="contained" disableElevation onClick={onClickFAQHandler}>
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    defaultValue={qna.qnaCategoryNo}
+                    name='qnaCategoryNo'
+                    onChange={onChangeHandler}
+                    >
+                    <MenuItem value={1}>프로젝트 관련</MenuItem>
+                    <MenuItem value={2}>채팅 관련</MenuItem>
+                    <MenuItem value={3}>협업툴 관련</MenuItem>
+                    <MenuItem value={4}>결제 관련</MenuItem>
+                    <MenuItem value={5}>역할 관련</MenuItem>
+                    <MenuItem value={6}>기타</MenuItem>
+                </Select>
+            <CustomButton variant="contained" disableElevation onClick={onClickQNAHandler}>
             작성 완료
             </CustomButton>
         </Box>
     );
 }
+
+export default QNAModifyPage;

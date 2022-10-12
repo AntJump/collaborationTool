@@ -58,7 +58,7 @@ public class FAQController {
     }
 
     @PostMapping("admin")
-    public ResponseEntity<ResponseDto> insertFAQ(@ModelAttribute FAQCreateDTO faqCreateDTO) {
+    public ResponseEntity<ResponseDto> insertFAQ(@RequestBody FAQCreateDTO faqCreateDTO) {
 
         System.out.println(faqCreateDTO);
 
@@ -66,7 +66,7 @@ public class FAQController {
     }
 
     @PutMapping("admin")
-    public  ResponseEntity<ResponseDto> modifyFAQ(@ModelAttribute FAQModifyDTO faqModifyDTO) {
+    public  ResponseEntity<ResponseDto> modifyFAQ(@RequestBody FAQModifyDTO faqModifyDTO) {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "FAQ 업데이트 성공", faqService.updateFAQ(faqModifyDTO)));
     }

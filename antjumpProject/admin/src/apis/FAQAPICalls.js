@@ -1,7 +1,8 @@
 import {
     GET_FAQS,
     GET_FAQ_DETAIL,
-    POST_FAQ
+    POST_FAQ,
+    PUT_FAQ
 } from '../modules/FAQModule';
 
 
@@ -63,7 +64,7 @@ export const callFAQRegistAPI = ({form}) => {
             body: JSON.stringify({
                 faqTitle: form.faqTitle,
                 faqContent: form.faqContent,
-                faqCategory: form.faqCategory,
+                faqCategoryNo: form.faqCategory,
                 adminId: form.adminId
             })
         })
@@ -74,4 +75,48 @@ export const callFAQRegistAPI = ({form}) => {
         dispatch({ type: POST_FAQ,  payload: result });
         
     };    
+}
+
+
+export const callFAQUpdateAPI = ({form}) => {
+    console.log('[FAQAPICalls] callFAQUpdateAPI Call');
+
+    const requestURL = `${process.env.REACT_APP_SERVER_IP}/faqs/admin`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "*/*"
+            },
+            body: JSON.stringify({
+                faqId : form.faqId,
+                faqTitle: form.faqTitle,
+                faqContent: form.faqContent,
+                faqCategoryNo: form.faqCategoryNo,
+                adminId: form.adminId
+            })
+        })
+        .then(response => response.json());
+        
+        console.log('[FAQAPICalls] callFAQUpdateAPI Result : ', result);
+
+        dispatch({ type: PUT_FAQ, payload: result });
+        
+    }
+}
+
+
+export const callQNADeleteAPI = (faqId) => {
+    const requestURL = `${process.env.REACT_APP_SERVER_IP}/faqs/${faqId}`;
+
+    return async (dispatch, getState) => {
+
+        const result = await fetch(requestURL, {
+            method: "DELETE"
+        })
+        .then();
+    };
 }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { InputAdornment } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
@@ -31,7 +31,7 @@ function FAQWritePage() {
     const [form, setForm] = useState({
         faqTitle: '',
         faqContent: '',
-        faqCategory: 0,
+        faqCategoryNo: 0,
         adminId: 1
     });
 

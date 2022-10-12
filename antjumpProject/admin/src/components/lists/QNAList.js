@@ -142,10 +142,14 @@ function QNAList() {
             </TableCell >
           </TableHead>
           <TableBody>
+            
             {(rowsPerPage > 0
-              ? qnas.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              : qnas
-            ).map((qna) => (
+              ? qnas
+              .filter((qna)=> qna.qnaStatus === '-')
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : qnas.filter((qna)=> qna.qnaStatus === '-')
+            )
+            .map((qna) => (
               <TableRow key={qna.qnaId} component={Link} to={String(qna.qnaId)}>
                 <TableCell component="th" scope="row">
                   {qna.qnaTitle}

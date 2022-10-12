@@ -29,7 +29,7 @@ public class QNADetailDTO {
     private int adminId;
     private String adminName;
     private int qnaDepth;
-    private char qnaStatus;
+    private String qnaStatus;
     private Integer refQnaId;
     private int qnaCategoryNo;
     private String  qnaCategoryName;
@@ -39,7 +39,7 @@ public class QNADetailDTO {
     public QNADetailDTO() {
     }
 
-    public QNADetailDTO(int qnaId, String qnaTitle, String qnaContent, Timestamp qnaModifyTime, int memberId, String memberName, int adminId, String adminName, int qnaDepth, char qnaStatus, Integer refQnaId, int qnaCategoryNo, String qnaCategoryName, MultipartFile qnaFile, String qnaFileUrl) {
+    public QNADetailDTO(int qnaId, String qnaTitle, String qnaContent, Timestamp qnaModifyTime, int memberId, String memberName, int adminId, String adminName, int qnaDepth, String qnaStatus, Integer refQnaId, int qnaCategoryNo, String qnaCategoryName, MultipartFile qnaFile, String qnaFileUrl) {
         this.qnaId = qnaId;
         this.qnaTitle = qnaTitle;
         this.qnaContent = qnaContent;
@@ -129,11 +129,11 @@ public class QNADetailDTO {
         this.qnaDepth = qnaDepth;
     }
 
-    public char getQnaStatus() {
+    public String getQnaStatus() {
         return qnaStatus;
     }
 
-    public void setQnaStatus(char qnaStatus) {
+    public void setQnaStatus(String qnaStatus) {
         this.qnaStatus = qnaStatus;
     }
 
@@ -189,7 +189,7 @@ public class QNADetailDTO {
                 ", adminId=" + adminId +
                 ", adminName='" + adminName + '\'' +
                 ", qnaDepth=" + qnaDepth +
-                ", qnaStatus=" + qnaStatus +
+                ", qnaStatus='" + qnaStatus + '\'' +
                 ", refQnaId=" + refQnaId +
                 ", qnaCategoryNo=" + qnaCategoryNo +
                 ", qnaCategoryName='" + qnaCategoryName + '\'' +
@@ -197,5 +197,4 @@ public class QNADetailDTO {
                 ", qnaFileUrl='" + qnaFileUrl + '\'' +
                 '}';
     }
-
 }

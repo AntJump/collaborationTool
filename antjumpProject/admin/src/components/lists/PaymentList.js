@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { TableHead } from '@mui/material';
 import { callPaymentListAPI } from '../../apis/PaymentAPICalls';
+import moment from 'moment';
 
 
 function TablePaginationActions(props) {
@@ -150,7 +151,7 @@ function PaymentList() {
                   {payment.refundYn}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                  {payment.paymentTime}
+                  {payment.paymentTime=moment().format('YYYY-MM-DD')}
                 </TableCell>
               </TableRow>
             ))}

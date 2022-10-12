@@ -11,6 +11,7 @@ import Paper from '@mui/material/Paper';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { callPossessionListAPI } from "../../../apis/PaymentAPICalls";
+import moment from 'moment';
 
 function PaymentPage() {
 
@@ -47,7 +48,7 @@ function PaymentPage() {
                             {possession.goodsPossessionId}
                         </TableCell>
                         <TableCell align="right">{possession.goodsName}</TableCell>
-                        <TableCell align="right">{possession.paymentTime}</TableCell>
+                        <TableCell align="right">{possession.paymentTime=moment().format('YYYY-MM-DD')}</TableCell>
                         </TableRow>
                     ))}
                     </TableBody>
