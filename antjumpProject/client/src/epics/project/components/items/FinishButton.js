@@ -4,11 +4,12 @@ function FinishButton({text, onClickHandler}){
     return (
         <Grid item xs={12}>
             <Button 
-                type="submit" 
+                // type="submit" 
                 color='button' 
                 variant="contained" 
                 onClick={onClickHandler}
                 sx={{float: 'right'}}
+                mt={5}
             >
                 {text}
             </Button>

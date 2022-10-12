@@ -9,7 +9,7 @@ function ProjectList(){
     return(
         <>
             <h3>참여중인 모든 프로젝트</h3>
-            <Stack direction="row" m={2} justifyContent='center'>
+            <Stack direction="row" m={2} >
                 <AllProjectList />
             </Stack>
             

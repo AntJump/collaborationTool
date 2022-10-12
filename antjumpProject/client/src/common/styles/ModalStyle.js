@@ -12,5 +12,6 @@ export function modalBoxStyle({w, h}) {
         borderRadius: 10,
         boxShadow: 24,
         p: 4,
+        
     };
 }

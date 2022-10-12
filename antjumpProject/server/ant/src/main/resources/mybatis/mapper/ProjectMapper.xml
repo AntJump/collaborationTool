@@ -115,6 +115,7 @@
                 A.project_id
              ,  A.project_key
              ,  A.project_name
+             ,  A.project_summary
              ,  A.project_produce_date
              ,  A.project_enable_yn
              ,  A.project_status

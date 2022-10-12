@@ -16,7 +16,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { callMyProjectListApi } from "../../../../apis/ProjectAPICalls";
 
 function MyProjectTable(){
-    const result = useSelector(state => state.projectReducer);
+    const result = useSelector(state => state.projectListReducer);
     const projects = result.myProjects.data;
     const pagingInfo = result.myProjects.pagingInfo;
         console.log("my projects :", projects);
@@ -56,6 +56,7 @@ function MyProjectTable(){
                         <TableRow>
                             <StyledTableCell align="center">KEY</StyledTableCell>
                             <StyledTableCell align="center">프로젝트 이름</StyledTableCell>
+                            <StyledTableCell align="center">프로젝트 요약</StyledTableCell>
                             <StyledTableCell align="center">생성 날짜</StyledTableCell>
                             <StyledTableCell align="center">PM</StyledTableCell>
                             <StyledTableCell align="center" sx={{width: '30px'}}></StyledTableCell>

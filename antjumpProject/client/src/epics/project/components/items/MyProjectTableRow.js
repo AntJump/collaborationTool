@@ -23,10 +23,11 @@ function MyProjectTableRow({ project }) {
         >
           {project.projectName}
         </TableCell>
+        <TableCell align="center">{project.projectSummary}</TableCell>
         <TableCell align="center">{project.projectProduceDate}</TableCell>
         <TableCell align="center">{project.fkMembersMemberDto.username} </TableCell>
         <TableCell align="right"> 
-          <ProjectMenuButton project={project} />
+          <ProjectMenuButton projectId={project.projectId} />
         </TableCell>
       </TableRow>
     </>

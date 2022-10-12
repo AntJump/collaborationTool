@@ -17,11 +17,12 @@ import PagingBeforeButton from '../items/PagingBeforeButton';
 
 function AllProjectList(){
 
-    const result = useSelector(state => state.projectReducer);
+    const result = useSelector(state => state.projectListReducer);
     const projects = result.allProjects.data;
     const pagingInfo = result.allProjects.pagingInfo;
         console.log("all projects :", projects);
         console.log("all projects paging:", pagingInfo);
+    
 
     const dispatch = useDispatch();
     useEffect(
@@ -51,7 +52,6 @@ function AllProjectList(){
             <PagingBeforeButton onClickHandler={onClickButton} currentPage={currentPage}/>
             
             {projects.map(project => 
-              
                 <Button  
                     key ={project.projectId} 
                     component={Link} to={`/project/${project.id}`} 
@@ -60,7 +60,6 @@ function AllProjectList(){
                 >
                     <AllProjectCard project = {project}/>
                 </Button>                       
-
             )}
 
             <PagingAfterButton onClickHandler={onClickButton} currentPage={currentPage} pagingInfo={pagingInfo}/>
