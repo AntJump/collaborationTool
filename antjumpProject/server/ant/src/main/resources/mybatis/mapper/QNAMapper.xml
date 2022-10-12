@@ -84,6 +84,24 @@
         )
     </insert>
 
+    <insert id="insertQnaFile" parameterType="QNACreateDTO">
+        insert
+          into tbl_qna_files
+        (
+          qna_file_url
+        , qna_original_name
+        , qna_save_name
+        , fk_qnas_files
+        )
+        values
+        (
+          #{ qnaFileUrl }
+        , #{ qnaOriginalName }
+        , #{ qnaSaveName }
+        , (select max(qna_id) from tbl_qnas)
+        )
+    </insert>
+
     <update id="updateQNA" parameterType="QNAModifyDTO">
         update /* com.anjump.ant.qna.dao.QNAMapper#updateQNA(QNAModifyDTO qnaModifyDTO) */
                tbl_qnas

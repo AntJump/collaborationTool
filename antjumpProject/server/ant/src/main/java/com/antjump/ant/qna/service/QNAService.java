@@ -1,15 +1,19 @@
 package com.antjump.ant.qna.service;
 
+import com.antjump.ant.common.file.S3Uploader;
 import com.antjump.ant.common.paging.SelectCriteria;
 import com.antjump.ant.qna.dao.QNAMapper;
 import com.antjump.ant.qna.dto.*;
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * <pre>
@@ -29,9 +33,16 @@ import java.util.List;
 public class QNAService {
 
     private static final Logger log = LoggerFactory.getLogger(QNAService.class);
+
+    private final S3Uploader s3Uploader;
+
+    @Value("${image.image-dir}")
+    private String IMAGE_DIR;
+
     private final QNAMapper qnaMapper;
 
-    public QNAService(QNAMapper qnaMapper) {
+    public QNAService(S3Uploader s3Uploader, QNAMapper qnaMapper) {
+        this.s3Uploader = s3Uploader;
         this.qnaMapper = qnaMapper;
     }
 
@@ -71,7 +82,33 @@ public class QNAService {
         log.info("[QNAService] insertQNA Start ===============");
         log.info("[QNAService] qnaCreateDTO : " + qnaCreateDTO);
 
-        int result = qnaMapper.insertQNA(qnaCreateDTO);
+        String changeName = UUID.randomUUID().toString().replace("-", "");
+        int result = 0;
+
+        try {
+
+            if(qnaCreateDTO.getQnaFile() != null){
+
+                System.out.println("asldkjflksajdflksjlf;kjas;lfdj");
+                System.out.println(qnaCreateDTO.getQnaFile().getOriginalFilename());
+
+                qnaCreateDTO.setQnaOriginalName(qnaCreateDTO.getQnaFile().getOriginalFilename());
+
+                String ext = FilenameUtils.getExtension(qnaCreateDTO.getQnaFile().getResource().getFilename());
+
+                qnaCreateDTO.setQnaSaveName(changeName + "." + ext);
+
+                qnaCreateDTO.setQnaFileUrl(s3Uploader.upload(qnaCreateDTO.getQnaFile(), changeName + "." + ext,"image"));
+
+                qnaMapper.insertQnaFile(qnaCreateDTO);
+
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        result = qnaMapper.insertQNA(qnaCreateDTO);
 
         return (result > 0) ? "문의 입력 성공" : "문의 입력 실패";
 

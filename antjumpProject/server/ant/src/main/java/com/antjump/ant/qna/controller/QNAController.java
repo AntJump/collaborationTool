@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <pre>
@@ -69,8 +70,8 @@ public class QNAController {
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 상세 조회 성공", qnaService.selectQNA(qnaId)));
     }
 
-    @PostMapping("")
-    public ResponseEntity<ResponseDto> insertQNA(@RequestBody QNACreateDTO qnaCreateDTO) {
+    @PostMapping(value = "", consumes = "multipart/form-data")
+    public ResponseEntity<ResponseDto> insertQNA(QNACreateDTO qnaCreateDTO) {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 입력 성공", qnaService.insertQNA(qnaCreateDTO)));
     }
