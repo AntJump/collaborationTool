@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useDispatch } from "react-redux";
-import { InputAdornment } from "@mui/material";
+import { InputAdornment, Typography } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Button from '@mui/material/Button';
@@ -10,7 +10,7 @@ import { styled } from '@mui/material/styles'
 import { useNavigate } from 'react-router-dom';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { callQNARegistAPI } from '../../../apis/QNAAPICalls';
 
 const CustomButton = styled(Button)({
@@ -27,6 +27,9 @@ function QNAWritePage() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
+    
+    const [image, setImage] = useState(null);
+    const imageInput = useRef();
     const [form, setForm] = useState({
         qnaTitle: '',
         qnaContent: '',
@@ -41,11 +44,41 @@ function QNAWritePage() {
         });
     };
 
+    
+    const onChangeImageUpload = (e) => {
+
+        const image = e.target.files[0];
+
+        setImage(image);
+    };
+
+    const onClickImageUpload = () => {
+        imageInput.current.click();
+    }
+
+
     const onClickQNAHandler = () => {        
         console.log('[QNAWritePage] onClickQNAHandler Start!!');
+
+        const formData = new FormData();
+
+        formData.append("qnaTitle", form.qnaTitle)
+        formData.append("qnaContent", form.qnaContent)
+        formData.append("qnaCategoryNo", form.qnaCategoryNo)
+        formData.append("memberId", form.memberId)
+
+        console.log('fromData : ', formData.get("qnaTitle"));
+        console.log('fromData : ', formData.get("qnaContent"));
+        console.log('fromData : ', formData.get("qnaCategoryNo"));
+        console.log('fromData : ', formData.get("memberId"));
+
+        if(image) {
+            formData.append("qnaFile", image);
+        }
+
         console.log('form', form);
         dispatch(callQNARegistAPI({	// 글 작성
-            form: form
+            form: formData
         }));
 
         alert('글 등록이 완료되었습니다.');
@@ -112,11 +145,13 @@ function QNAWritePage() {
                         fullWidth label="파일 첨부"
                         id="fullWidth"
                         readOnly
+                        name="qnaFile"
                         InputProps={{
                         startAdornment: <InputAdornment position="start">
-                                <IconButton color="primary" aria-label="upload picture" component="label">
-                                    <input hidden accept="image/*" type="file" />
+                                <IconButton color="primary" aria-label="upload picture" component="label" >
+                                    <Typography component="input" hidden accept="image/*" type="file" onChange={onChangeImageUpload} ref= { imageInput }/>
                                     <PhotoCamera />
+                                    <Box component="button" onClick={ onClickImageUpload }></Box>
                                 </IconButton>
                             </InputAdornment>
                         }}

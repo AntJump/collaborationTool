@@ -85,12 +85,11 @@ public class QNAService {
         String changeName = UUID.randomUUID().toString().replace("-", "");
         int result = 0;
 
+        result = qnaMapper.insertQNA(qnaCreateDTO);
+
         try {
 
             if(qnaCreateDTO.getQnaFile() != null){
-
-                System.out.println("asldkjflksajdflksjlf;kjas;lfdj");
-                System.out.println(qnaCreateDTO.getQnaFile().getOriginalFilename());
 
                 qnaCreateDTO.setQnaOriginalName(qnaCreateDTO.getQnaFile().getOriginalFilename());
 
@@ -107,8 +106,6 @@ public class QNAService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        result = qnaMapper.insertQNA(qnaCreateDTO);
 
         return (result > 0) ? "문의 입력 성공" : "문의 입력 실패";
 

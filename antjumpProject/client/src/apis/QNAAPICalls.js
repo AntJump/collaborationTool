@@ -57,15 +57,7 @@ export const callQNARegistAPI = ({form}) => {
 
         const result = await fetch(requestURL, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                qnaTitle: form.qnaTitle,
-                qnaContent: form.qnaContent,
-                qnaCategoryNo: form.qnaCategoryNo,
-                memberId: form.memberId
-            })
+            body: form
         })
         .then(response => response.json());
 
