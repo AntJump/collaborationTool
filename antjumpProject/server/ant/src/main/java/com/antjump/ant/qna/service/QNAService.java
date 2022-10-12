@@ -105,9 +105,11 @@ public class QNAService {
         log.info("[QNAService] insertQNA Start ===============");
         log.info("[QNAService] qnaCreateDTO : " + qnaAdminCreateDTO);
 
+        int refResult = qnaMapper.updateRefQNA(qnaAdminCreateDTO);
+
         int result = qnaMapper.insertAdminQNA(qnaAdminCreateDTO);
 
-        return (result > 0) ? "문의 입력 성공" : "문의 입력 실패";
+        return (result > 0 || refResult > 0) ? "문의 입력 성공" : "문의 입력 실패";
 
     }
 

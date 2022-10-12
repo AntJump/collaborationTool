@@ -15,7 +15,7 @@
 
     <select id="selectQNAListWithPaging" resultType="QNAListDTO">
         <![CDATA[
-        select /* com.anjump.ant.qna.dao.QNAMapper#selectQNAListWithPaging(SelectCriteria selectCriteria) */
+        select /* com.anjump.ant.qna.dao.QNAMapper#selectQNAListWithPaging(SelectCriteria selectCriteria2) */
                a.qna_id
              , a.qna_title
              , a.qna_modify_time
@@ -33,6 +33,7 @@
           left join tbl_members c on (a.fk_members_qnas = c.member_id)
           left join tbl_admins d on(a.fk_admins_qnas = d.admin_id)
          where a.qna_delete_yn = 'N'
+         order by qna_id desc
          limit #{ startRow }, #{ limit }
         ]]>
     </select>
@@ -112,6 +113,7 @@
         , fk_qnacategories_qnas
         , fk_admins_qnas
         , ref_qna_id
+        , qna_status
         )
         values
         (
@@ -121,18 +123,27 @@
         , #{ qnaCategoryNo }
         , #{ adminId }
         , #{ refQnaId }
+        , '답변완료'
         )
     </insert>
 
+    <update id="updateRefQNA" parameterType="QNAAdminCreateDTO">
+        update /* com.anjump.ant.qna.dao.QNAMapper#updateRefQNA(QNAAdminCreateDTO qnaAdminCreateDTO) */
+               tbl_qnas
+           set
+          qna_status = '답변완료'
+         where qna_id = #{ refQnaId }
+    </update>
+
     <update id="updateAdminQNA" parameterType="QNAAdminModifyDTO">
         update /* com.anjump.ant.qna.dao.QNAMapper#updateAdminQNA(QNAAdminModifyDTO qnaAdminModifyDTO) */
-            tbl_qnas
-        set
-            qna_title = #{ qnaTitle }
-          , qna_content = #{ qnaContent }
-          , qna_modify_time = now()
-          , fk_qnacategories_qnas = #{ qnaCategoryNo }
-        where qna_id = #{ qnaId }
+               tbl_qnas
+           set
+          qna_title = #{ qnaTitle }
+        , qna_content = #{ qnaContent }
+        , qna_modify_time = now()
+        , fk_qnacategories_qnas = #{ qnaCategoryNo }
+         where qna_id = #{ qnaId }
     </update>
 
 </mapper>

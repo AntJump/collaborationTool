@@ -1,14 +1,17 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { QNA_CONTENT, QNA_TITLE } from '../../../modules/QNAModule';
-// import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { InputAdornment } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles'
+import { styled } from '@mui/material/styles';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { callQNADetailAPI, callQNAUpdateAPI } from '../../../apis/QNAAPICalls';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 
 const CustomButton = styled(Button)({
@@ -20,21 +23,52 @@ const CustomButton = styled(Button)({
       color: '#3c52b2'
 }})
 
-
-export default function QNATitle() {
+function QNAModifyPage() {
 
     const dispatch = useDispatch();
+    const { qnaNumber } = useParams();
+
     const qnas = useSelector(state => state.qnaReducer);
     const qna = qnas;
+
     console.log("qna: ", qna);
 
-    
-    const titleOnChangeHandler = (e) => {
-        dispatch({ type: QNA_TITLE, payload : e.target.value });
-    }
+    const navigate = useNavigate();
 
-    const contentOnChangeHandler = (e) => {
-        dispatch({ type: QNA_CONTENT, payload : e.target.value });
+    const [form, setForm] = useState({
+        qnaId : qnaNumber,
+        qnaTitle: qna.qnaTitle,
+        qnaContent: qna.qnaContent,
+        qnaCategoryNo: qna.qnaCategoryNo,
+        memberId: 1
+    });
+
+    const onChangeHandler = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    useEffect(
+        () => {
+            dispatch(callQNADetailAPI(qnaNumber));
+        }
+    , []);
+
+    const onClickQNAHandler = () => {        
+        console.log('[QNAModifyPage] onClickQNAHandler Start!!');
+        console.log('form', form);
+        dispatch(callQNAUpdateAPI({	// 글 작성
+            form: form
+        }));
+
+        alert('글 등록이 완료되었습니다.');
+
+        navigate(`/qnas`);
+
+        console.log('[QNAModifyPage] onClickQNAHandler End!!');
+
     }
 
     return qna&& (
@@ -55,8 +89,9 @@ export default function QNATitle() {
                 label="문의 제목"
                 multiline
                 fullWidth
-                value={qna.qnaTitle}
-                onChange={titleOnChangeHandler}
+                defaultValue={qna.qnaTitle}
+                name='qnaTitle'
+                onChange={onChangeHandler}
             />
             </Box>
             <Box
@@ -76,8 +111,9 @@ export default function QNATitle() {
                 multiline
                 rows={10}
                 fullWidth
-                value={qna.qnaContent}
-                onChange={contentOnChangeHandler}
+                defaultValue={qna.qnaContent}
+                name='qnaContent'
+                onChange={onChangeHandler}
             />
             </Box>
             <Box
@@ -102,9 +138,26 @@ export default function QNATitle() {
                     }}
                 />
             </Box>
-            <CustomButton variant="contained" disableElevation>
+            
+            <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    defaultValue={qna.qnaCategoryNo}
+                    name='qnaCategoryNo'
+                    onChange={onChangeHandler}
+                    >
+                    <MenuItem value={1}>프로젝트 관련</MenuItem>
+                    <MenuItem value={2}>채팅 관련</MenuItem>
+                    <MenuItem value={3}>협업툴 관련</MenuItem>
+                    <MenuItem value={4}>결제 관련</MenuItem>
+                    <MenuItem value={5}>역할 관련</MenuItem>
+                    <MenuItem value={6}>기타</MenuItem>
+                </Select>
+            <CustomButton variant="contained" disableElevation onClick={onClickQNAHandler}>
             작성 완료
             </CustomButton>
         </Box>
     );
 }
+
+export default QNAModifyPage;

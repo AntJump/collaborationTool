@@ -70,13 +70,13 @@ public class QNAController {
     }
 
     @PostMapping("")
-    public ResponseEntity<ResponseDto> insertQNA(@ModelAttribute QNACreateDTO qnaCreateDTO) {
+    public ResponseEntity<ResponseDto> insertQNA(@RequestBody QNACreateDTO qnaCreateDTO) {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 입력 성공", qnaService.insertQNA(qnaCreateDTO)));
     }
 
     @PutMapping("")
-    public  ResponseEntity<ResponseDto> modifyQNA(@ModelAttribute QNAModifyDTO qnaModifyDTO) {
+    public  ResponseEntity<ResponseDto> modifyQNA(@RequestBody QNAModifyDTO qnaModifyDTO) {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 업데이트 성공", qnaService.updateQNA(qnaModifyDTO)));
     }
@@ -88,13 +88,13 @@ public class QNAController {
     }
 
     @PostMapping("admin")
-    public ResponseEntity<ResponseDto> insertAdminQNA(@ModelAttribute QNAAdminCreateDTO qnaAdminCreateDTO) {
+    public ResponseEntity<ResponseDto> insertAdminQNA(@RequestBody QNAAdminCreateDTO qnaAdminCreateDTO) {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 입력 성공", qnaService.insertAdminQNA(qnaAdminCreateDTO)));
     }
 
     @PutMapping("admin")
-    public  ResponseEntity<ResponseDto> modifyAdminQNA(@ModelAttribute QNAAdminModifyDTO qnaAdminModifyDTO) {
+    public  ResponseEntity<ResponseDto> modifyAdminQNA(@RequestBody QNAAdminModifyDTO qnaAdminModifyDTO) {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 업데이트 성공", qnaService.updateAdminQNA(qnaAdminModifyDTO)));
     }

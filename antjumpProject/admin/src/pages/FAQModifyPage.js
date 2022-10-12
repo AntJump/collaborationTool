@@ -1,14 +1,17 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { FAQ_CONTENT, FAQ_TITLE } from '../modules/FAQModule';
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 import { InputAdornment } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles'
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { callFAQDetailAPI, callFAQUpdateAPI } from '../apis/FAQAPICalls';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 
 const CustomButton = styled(Button)({
@@ -23,19 +26,51 @@ const CustomButton = styled(Button)({
 
 export default function FAQModifyPage() {
 
+    
     const dispatch = useDispatch();
     const { faqNumber } = useParams();
+
     const faqs = useSelector(state => state.faqReducer);
-    const faq = faqs[faqNumber];
+    const faq = faqs;
+
     console.log("faq: ", faq);
 
-    
-    const titleOnChangeHandler = (e) => {
-        dispatch({ type: FAQ_TITLE, payload : e.target.value });
-    }
+    const navigate = useNavigate();
 
-    const contentOnChangeHandler = (e) => {
-        dispatch({ type: FAQ_CONTENT, payload : e.target.value });
+    const [form, setForm] = useState({
+        faqId : faqNumber,
+        faqTitle: faq.faqTitle,
+        faqContent: faq.faqContent,
+        faqCategoryNo: faq.faqCategoryNo,
+        adminId: 1
+    });
+
+    const onChangeHandler = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    useEffect(
+        () => {
+            dispatch(callFAQDetailAPI(faqNumber));
+        }
+    , []);
+
+    const onClickFAQHandler = () => {        
+        console.log('[FAQModifyPage] onClickFAQHandler Start!!');
+        console.log('form', form);
+        dispatch(callFAQUpdateAPI({	// 글 작성
+            form: form
+        }));
+
+        alert('글 등록이 완료되었습니다.');
+
+        navigate(`/faqs`);
+
+        console.log('[FAQModifyPage] onClickFAQHandler End!!');
+
     }
 
     return faq && (
@@ -56,8 +91,9 @@ export default function FAQModifyPage() {
                 label="FAQ 제목"
                 multiline
                 fullWidth
-                value={faq.faqTitle}
-                onChange={titleOnChangeHandler}
+                defaultValue={faq.faqTitle}
+                name='faqTitle'
+                onChange={onChangeHandler}
             />
             </Box>
             <Box
@@ -77,8 +113,9 @@ export default function FAQModifyPage() {
                 multiline
                 rows={10}
                 fullWidth
-                value={faq.faqContent}
-                onChange={contentOnChangeHandler}
+                defaultValue={faq.faqContent}
+                name='faqContent'
+                onChange={onChangeHandler}
             />
             </Box>
             <Box
@@ -103,7 +140,19 @@ export default function FAQModifyPage() {
                     }}
                 />
             </Box>
-            <CustomButton variant="contained" disableElevation>
+            <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                name='faqCategory'
+                defaultValue={faq.faqCategoryNo}
+                onChange={onChangeHandler}
+                >
+                <MenuItem value={1}>개미 협업툴 사용 관련</MenuItem>
+                <MenuItem value={2}>가격 정책</MenuItem>
+                <MenuItem value={3}>결제 관련</MenuItem>
+                <MenuItem value={4}>관리자</MenuItem>
+            </Select>
+            <CustomButton variant="contained" disableElevation onClick={onClickFAQHandler}>
             작성 완료
             </CustomButton>
         </Box>

@@ -15,12 +15,12 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
-import { paymentRows } from '../samples/PaymentSample';
 import { Link } from 'react-router-dom';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {GET_PAIES} from "../../modules/PaymentModule";
 import { TableHead } from '@mui/material';
+import { callPaymentListAPI } from '../../apis/PaymentAPICalls';
+import moment from 'moment';
 
 
 function TablePaginationActions(props) {
@@ -94,7 +94,7 @@ function PaymentList() {
 
   useEffect(
       ()=>{
-          dispatch({type: GET_PAIES, payload: paymentRows});
+          dispatch(callPaymentListAPI());
       },
       [dispatch]
   );
@@ -140,7 +140,7 @@ function PaymentList() {
               ? payments.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : payments
             ).map((payment) => (
-              <TableRow key={payment.id} component ={Link} to={payment.id}>
+              <TableRow key={payment.paymentId} component ={Link} to={String(payment.paymentId)}>
                 <TableCell component="th" scope="row">
                   {payment.memberName}
                 </TableCell>
@@ -148,10 +148,10 @@ function PaymentList() {
                   {payment.paymentKey}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                  {payment.refund}
+                  {payment.refundYn}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                  {payment.paymentTime}
+                  {payment.paymentTime=moment().format('YYYY-MM-DD')}
                 </TableCell>
               </TableRow>
             ))}
