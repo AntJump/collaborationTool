@@ -1,5 +1,6 @@
 package com.antjump.ant.payment.dto;
 
+import java.nio.charset.Charset;
 import java.sql.Timestamp;
 
 /**
@@ -28,12 +29,16 @@ public class PaymentDetailDTO {
     private String memberName;
     private String memberEmail;
     private String memberPhone;
+    private String memberType;
+    private Character refundYn;
     private String refundReason;
+    private char goodsUseYn;
+    private int goodsRemainingDate;
 
     public PaymentDetailDTO() {
     }
 
-    public PaymentDetailDTO(int paymentId, Timestamp paymentTime, String paymentKey, String paymentStatus, int orderId, int orderAmount, int memberId, String memberName, String memberEmail, String memberPhone, String refundReason) {
+    public PaymentDetailDTO(int paymentId, Timestamp paymentTime, String paymentKey, String paymentStatus, int orderId, int orderAmount, int memberId, String memberName, String memberEmail, String memberPhone, String memberType, Character refundYn, String refundReason, char goodsUseYn, int goodsRemainingDate) {
         this.paymentId = paymentId;
         this.paymentTime = paymentTime;
         this.paymentKey = paymentKey;
@@ -44,7 +49,11 @@ public class PaymentDetailDTO {
         this.memberName = memberName;
         this.memberEmail = memberEmail;
         this.memberPhone = memberPhone;
+        this.memberType = memberType;
+        this.refundYn = refundYn;
         this.refundReason = refundReason;
+        this.goodsUseYn = goodsUseYn;
+        this.goodsRemainingDate = goodsRemainingDate;
     }
 
     public int getPaymentId() {
@@ -127,12 +136,44 @@ public class PaymentDetailDTO {
         this.memberPhone = memberPhone;
     }
 
+    public String getMemberType() {
+        return memberType;
+    }
+
+    public void setMemberType(String memberType) {
+        this.memberType = memberType;
+    }
+
+    public Character getRefundYn() {
+        return refundYn;
+    }
+
+    public void setRefundYn(Character refundYn) {
+        this.refundYn = refundYn;
+    }
+
     public String getRefundReason() {
         return refundReason;
     }
 
     public void setRefundReason(String refundReason) {
         this.refundReason = refundReason;
+    }
+
+    public char getGoodsUseYn() {
+        return goodsUseYn;
+    }
+
+    public void setGoodsUseYn(char goodsUseYn) {
+        this.goodsUseYn = goodsUseYn;
+    }
+
+    public int getGoodsRemainingDate() {
+        return goodsRemainingDate;
+    }
+
+    public void setGoodsRemainingDate(int goodsRemainingDate) {
+        this.goodsRemainingDate = goodsRemainingDate;
     }
 
     @Override
@@ -148,8 +189,11 @@ public class PaymentDetailDTO {
                 ", memberName='" + memberName + '\'' +
                 ", memberEmail='" + memberEmail + '\'' +
                 ", memberPhone='" + memberPhone + '\'' +
+                ", memberType='" + memberType + '\'' +
+                ", refundYn=" + refundYn +
                 ", refundReason='" + refundReason + '\'' +
+                ", goodsUseYn=" + goodsUseYn +
+                ", goodsRemainingDate=" + goodsRemainingDate +
                 '}';
     }
-
 }

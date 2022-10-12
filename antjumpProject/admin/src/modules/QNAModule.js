@@ -15,14 +15,14 @@ const initialState = {
 /* 액션 */
 export const GET_QNAS = 'qnas/GET_QNAS';
 export const GET_QNA_DETAIL = 'qnas/GET_QNA_DETAIL';
-export const QNA_TITLE = 'qnas/QNA_TITLE';
-export const QNA_CONTENT = 'qnas/QNA_CONTENT';
+export const POST_QNA = 'qnas/POST_QNA';
+export const PUT_QNA = 'qnas/PUT_QNA';
 
 const actions = createActions({
     [GET_QNAS]: () => {},
     [GET_QNA_DETAIL]: () => {},
-    [QNA_TITLE]: () => {},
-    [QNA_CONTENT]: () => {}
+    [POST_QNA]: () => {},
+    [PUT_QNA]: () => {}
 });
 
 console.log(actions);
@@ -41,15 +41,14 @@ const qnaReducer = handleActions(
                   list
               }
           }
-        , [QNA_TITLE]: (state, { payload: qnaTitle }) => {
+        , [POST_QNA]: (state, { payload }) => {
             
-              state = {...state, qnaTitle}
-              return state;    
-          }
-        , [QNA_CONTENT]: (state, { payload:qnaContent }) => {
-              state = {...state, qnaContent}
-              return state; 
-          }
+            return payload; 
+        }
+        , [PUT_QNA]: (state, { payload }) => {
+            
+            return payload; 
+        }
     },
     initialState
 );

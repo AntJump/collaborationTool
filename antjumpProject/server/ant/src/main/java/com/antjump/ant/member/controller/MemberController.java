@@ -6,10 +6,12 @@ import com.antjump.ant.member.service.AuthService;
 import com.antjump.ant.member.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
-    @RequestMapping("/")
     public class MemberController {
     private final AuthService authService;
     private final MemberService memberService;
@@ -20,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
     }
 
     @PostMapping("/auth/signup")
-    public ResponseEntity<ResponseDto> signup(@RequestBody MemberDto memberDto) {
+    public ResponseEntity<ResponseDto> signup(@RequestBody @Valid MemberDto memberDto) {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "회원가입 성공", authService.signup(memberDto)));
     }
