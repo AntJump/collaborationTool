@@ -18,26 +18,21 @@ import { Badge, TextField } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import { GET_SELECTED_PROJECT } from "../../../modules/ProjectModule";
 import { useDispatch } from "react-redux";
-import { participatedProjects } from "../../../epics/project/datas/ProjectList"
+
+import { callProjectMemberByUserApi } from "../../../apis/ProjectAPICalls";
 
 function ProjectHeader() {
 
-  const projects = participatedProjects;
   const {id} = useParams();
 
-  
-  const result = useSelector(state => state.projectReducer);
-  const selectedProject = result[0];
-
-
-  console.log('project header ', selectedProject);
+  const project = useSelector(state => state.projectReducer);
+    console.log("project:",project);
 
   const dispatch = useDispatch();
   useEffect(
     ()=>{
-      dispatch({type: GET_SELECTED_PROJECT, payload:{projects ,id}})
+      dispatch(callProjectMemberByUserApi({projectId: id}));
     },
     []
   )
@@ -132,7 +127,7 @@ function ProjectHeader() {
     </Menu>
   );
 
-  return selectedProject && (
+  return project && (
 
       <AppBar position="static" sx={{ backgroundColor: 'white', borderRadius:'20px'}}>
         <Toolbar>
@@ -145,7 +140,7 @@ function ProjectHeader() {
               <HomeIcon/> 
             </IconButton>
           <Button component={Link} to={`/project/${id}`}> 
-                  <Typography sx={{ color:"black"}} textAlign="center">{selectedProject.name}</Typography>
+                  <Typography sx={{ color:"black"}} textAlign="center">{project.fkProjectsProjectName}</Typography>
           </Button>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex", color:"black"}}}>

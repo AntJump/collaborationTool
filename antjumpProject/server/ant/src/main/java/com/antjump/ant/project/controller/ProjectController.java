@@ -229,13 +229,11 @@ public class ProjectController {
     }
 
     @GetMapping("/project-members/user")
-    public ResponseEntity<ResponseDto> selectProjectMemberInfoByUserId(@RequestParam(value = "projectId") int projectId){
-
-        MemberDto user = new MemberDto();
-        user.setMemberId(2);
+    public ResponseEntity<ResponseDto> selectProjectMemberInfoByUserId(@RequestParam(value = "projectId") int projectId,
+                                                                       @RequestParam(value="userId") int userId){
 
         ProjectMemberDto projectMemberDto = new ProjectMemberDto();
-        projectMemberDto.setFkMembersMemberId(user.getMemberId());
+        projectMemberDto.setFkMembersMemberId(userId);
         projectMemberDto.setFkProjectsProjectId(projectId);
 
         return ResponseEntity.ok().body(

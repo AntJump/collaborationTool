@@ -189,3 +189,25 @@ export const callProjectRestoreApi= ({projectId})=>{
         window.location.reload(true);
     }
 }
+
+
+export const callProjectMemberByUserApi= ({projectId})=>{
+    console.log("============= callProjectMemberByUserApi ================");
+    const userId = 2;
+    const requestUrl = `${process.env.REACT_APP_SERVER_IP}/project-members/user?projectId=${projectId}&userId=${userId}`;
+
+    return async(dispatch, state)=>{
+        const result = await fetch(requestUrl, {
+            method: 'GET',
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        })
+        .then(response => response.json());
+
+        console.log("result :", result);
+
+        dispatch({type: GET_PROJECT , payload: result.data});  
+
+    }
+}

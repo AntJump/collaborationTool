@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import {  useEffect,useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { callAllProjectListApi } from "../../../../apis/ProjectAPICalls";
+import { callAllProjectListApi  } from "../../../../apis/ProjectAPICalls";
 
 
 import AllProjectCard from '../items/AllProjectCard';
@@ -46,7 +46,6 @@ function AllProjectList(){
     );
 
 
-
     return  Array.isArray(projects) && (
         <div>
             <PagingBeforeButton onClickHandler={onClickButton} currentPage={currentPage}/>
@@ -54,9 +53,8 @@ function AllProjectList(){
             {projects.map(project => 
                 <Button  
                     key ={project.projectId} 
-                    component={Link} to={`/project/${project.id}`} 
+                    component={Link} to={`/project/${project.projectId}`} 
                     color="blackline" sx={{minWidth:  275, maxWidth: 300}}
-                    
                 >
                     <AllProjectCard project = {project}/>
                 </Button>                       
