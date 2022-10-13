@@ -1,6 +1,15 @@
 package com.antjump.ant.goods.service;
 
+import com.antjump.ant.faq.dto.FAQListDTO;
+import com.antjump.ant.goods.dao.GoodsMapper;
+import com.antjump.ant.goods.dto.GoodsDetailDTO;
+import com.antjump.ant.goods.dto.GoodsPossesionsListDTO;
+import com.antjump.ant.goods.dto.GoodsPossessionDetailDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <pre>
@@ -18,4 +27,44 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class GoodsService {
+
+    private static final Logger log = LoggerFactory.getLogger(GoodsService.class);
+
+    private final GoodsMapper goodsMapper;
+
+    public GoodsService(GoodsMapper goodsMapper) {
+        this.goodsMapper = goodsMapper;
+    }
+
+    public Object selectGoodsDetail(String goodsId) {
+        log.info("[QNAService] selectGoods Start ===============");
+
+        GoodsDetailDTO goodsDetailDTO = goodsMapper.selectGoodsDetail(goodsId);
+
+        log.info("[QNAService] selectGoods End ===============");
+
+        return goodsDetailDTO;
+    }
+
+    public List<GoodsPossesionsListDTO> selectGoodsPossessionsList(String memberId) {
+
+        log.info("[GoodsService] selectGoodsPossessionsList Start ===================================");
+
+        List<GoodsPossesionsListDTO> goodsPossesionsList = goodsMapper.selectGoodsPossessionsList(memberId);
+
+        log.info("[GoodsService] selectGoodsPossessionsList End ===================================");
+
+        return goodsPossesionsList;
+    }
+
+    public Object selectGoodsPossessionDetail(String possessionId) {
+
+        log.info("[GoodsService] selectGoodsPossessionsList Start ===================================");
+
+        GoodsPossessionDetailDTO goodsPossessionDetailDTO = goodsMapper.selectGoodsPossessionDetail(possessionId);
+
+        log.info("[GoodsService] selectGoodsPossessionsList End ===================================");
+
+        return goodsPossessionDetailDTO;
+    }
 }

@@ -13,6 +13,16 @@ spring:
     url: jdbc:mysql://metaverse.ohgiraffers.com/pjhbsy?serverTimezone=Asia/Seoul
     username: pjhbsy
     password: pjhbsy
+  # smtp 설정
+  mail:
+    host: smtp.naver.com
+    port: 465
+    username: antjjump@naver.com
+    password: antjump123123!
+    properties: # 전송을 위한 prop - ssl 신뢰, 권한 등 사용 허가
+      mail.smtp.auth: true
+      mail.smtp.ssl.enable: true
+      mail.smtp.ssl.trust: smtp.naver.com
   servlet:
     multipart:
       enabled: true
@@ -45,3 +55,4 @@ logging:
       amazonaws:
         util:
           EC2MetadataUtils: error
+

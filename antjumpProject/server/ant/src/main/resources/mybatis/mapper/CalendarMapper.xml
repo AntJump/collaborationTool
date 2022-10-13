@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.antjump.ant.calendar.dao.CalendarMapper">
+
+    <select id="findAllPlan" resultType="CalendarDTO">
+        select
+               calendar_id
+             , calendar_name
+             , calendar_start_date
+             , calendar_end_date
+             , calendar_color
+             , calendar_explanation
+             , calendar_location
+             , calendar_attenders
+          from tbl_calendars
+    </select>
+
+    <insert id="insertPlan" parameterType="CalendarDTO">
+        INSERT INTO tbl_calendars
+        (
+            calendar_name
+          , calendar_start_date
+          , calendar_end_date
+          , calendar_color
+          , calendar_category
+          , calendar_open_yn
+        )
+        VALUES
+        (
+            #{calendarName}
+          , #{calendarStartDate}
+          , #{calendarEndDate}
+          , #{calendarColor}
+          , #{calendarCategory}
+          , #{calendarOpenYn}
+        )
+    </insert>
+
+    <update id="updatePlan" parameterType="CalendarDTO">
+        update
+               tbl_calendars
+           set
+               calendar_name = #{calendarName}
+             , calendar_start_date = #{calendarStartDate}
+             , calendar_end_date = #{calendarEndDate}
+             , calendar_color = #{calendarColor}
+             , calendar_category = #{calendarCategory}
+             , calendar_open_yn = #{calendarOpenYn}
+         where calendar_id = #{calendarId}
+    </update>
+
+    <delete id="deletePlan">
+        delete from tbl_calendars
+         where calendar_id = #{calendarId}
+    </delete>
+
+    <select id="findPlanById" resultType="CalendarDTO">
+        select
+               calendar_id
+             , calendar_name
+             , calendar_start_date
+             , calendar_end_date
+             , calendar_color
+             , calendar_explanation
+             , calendar_location
+             , calendar_attenders
+          from tbl_calendars
+         where calendar_id = #{calendarId}
+    </select>
+
+</mapper>

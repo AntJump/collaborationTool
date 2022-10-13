@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles'
+import { styled } from '@mui/material/styles';
 
 const CustomButton = styled(Button)({
 
@@ -10,7 +10,7 @@ const CustomButton = styled(Button)({
         backgroundColor: '#E8E8E8',
         color: 'black'
       },
-      marginTop: '8px',
+      marginTop: '10px',
       marginLeft: '15px',
       height: '40px'
 })
