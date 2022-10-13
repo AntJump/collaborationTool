@@ -20,7 +20,8 @@ import {
 
 import {
     GET_INVITATIONS,
-    SET_EMAIL
+    SET_EMAIL,
+    VERIFY_TOKEN
 } from "../modules/ProjectInvitationModule";
 
 console.log("[ProjectAPICalls]");
@@ -398,5 +399,21 @@ export const callProjectInvitationDeleteApi = ({invitationId})=>{
 
 
 /* 팀원 초대장(토큰) 검증 */
+export const callProjectInvitationVerifyApi=({token})=>{
+    console.log("============= callProjectInvitationVerifyApi ================");
 
+    const requestUrl = `${process.env.REACT_APP_SERVER_IP}/invitations/${token}`;
+    
+    return async(dispatch, getState) => {
+        const result = await fetch(requestUrl, {
+            method: 'PATCH',
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        })
+        .then(response => response.json());
 
+        console.log("result: ", result);
+        dispatch({type: VERIFY_TOKEN, payload: result.data});
+    }
+}
