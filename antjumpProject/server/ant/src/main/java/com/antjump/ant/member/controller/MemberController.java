@@ -35,6 +35,12 @@ import javax.validation.Valid;
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "로그인 성공", authService.login(memberDto)));
     }
 
+    @GetMapping("/member")
+    public ResponseEntity<ResponseDto> selectMemberList() {
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "조회 성공", memberService.selectMemberList()));
+    }
+
     @GetMapping("/member/{memberId}")
     public ResponseEntity<ResponseDto> selectMyMemberInfo(@PathVariable String memberId) {
         System.out.println("memberId = " + memberId);

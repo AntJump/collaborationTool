@@ -46,11 +46,11 @@ public class GoodsService {
         return goodsDetailDTO;
     }
 
-    public List<GoodsPossesionsListDTO> selectGoodsPossessionsList() {
+    public List<GoodsPossesionsListDTO> selectGoodsPossessionsList(String memberId) {
 
         log.info("[GoodsService] selectGoodsPossessionsList Start ===================================");
 
-        List<GoodsPossesionsListDTO> goodsPossesionsList = goodsMapper.selectGoodsPossessionsList();
+        List<GoodsPossesionsListDTO> goodsPossesionsList = goodsMapper.selectGoodsPossessionsList(memberId);
 
         log.info("[GoodsService] selectGoodsPossessionsList End ===================================");
 

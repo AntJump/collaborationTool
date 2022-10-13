@@ -23,7 +23,7 @@ public class MemberDto implements UserDetails {
     @NotBlank(message = "비밀번호를 입력헤주세요")
     @Pattern(regexp = "^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[!@#$%]).{8,20}$")
     private String memberPwd; // 비밀번호
-    private Timestamp memberRegistDate; // 가입일시
+    private Timestamp memberRegistTime; // 가입일시
     private String memberType; // 등급유형
     private String memberDeleteYn; // 탈퇴여부
     private Date memberDeleteDate; // 탈퇴일시
@@ -36,13 +36,13 @@ public class MemberDto implements UserDetails {
     }
 
     // 전체 내용이 파라미터로 들어가는 생성자
-    public MemberDto(Integer memberId, String memberEmail, String memberName, String memberPhone, String memberPwd, Timestamp memberRegistDate, String memberType, String memberDeleteYn, Date memberDeleteDate, String refreshToken, Collection<? extends GrantedAuthority> authorities) {
+    public MemberDto(Integer memberId, String memberEmail, String memberName, String memberPhone, String memberPwd, Timestamp memberRegistTime, String memberType, String memberDeleteYn, Date memberDeleteDate, String refreshToken, Collection<? extends GrantedAuthority> authorities) {
         this.memberId = memberId;
         this.memberEmail = memberEmail;
         this.memberName = memberName;
         this.memberPhone = memberPhone;
         this.memberPwd = memberPwd;
-        this.memberRegistDate = memberRegistDate;
+        this.memberRegistTime = memberRegistTime;
         this.memberType = memberType;
         this.memberDeleteYn = memberDeleteYn;
         this.memberDeleteDate = memberDeleteDate;
@@ -91,12 +91,12 @@ public class MemberDto implements UserDetails {
         this.memberPwd = memberPwd;
     }
 
-    public Date getMemberRegistDate() {
-        return memberRegistDate;
+    public Date getMemberRegistTime() {
+        return memberRegistTime;
     }
 
-    public void setMemberRegistDate(Timestamp memberRegistDate) {
-        this.memberRegistDate = memberRegistDate;
+    public void setMemberRegistTime(Timestamp memberRegistTime) {
+        this.memberRegistTime = memberRegistTime;
     }
 
     public String getMemberType() {
@@ -182,7 +182,7 @@ public class MemberDto implements UserDetails {
                 ", memberName='" + memberName + '\'' +
                 ", memberPhone='" + memberPhone + '\'' +
                 ", memberPwd='" + memberPwd + '\'' +
-                ", memberRegistDate=" + memberRegistDate +
+                ", memberRegistTime=" + memberRegistTime +
                 ", memberType='" + memberType + '\'' +
                 ", memberDeleteYn='" + memberDeleteYn + '\'' +
                 ", memberDeleteDate=" + memberDeleteDate +

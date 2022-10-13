@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 
 @Service
 public class MemberService {
@@ -22,6 +24,13 @@ public class MemberService {
         this.memberMapper = memberMapper;
     }
 
+
+    public List<MemberDto> selectMemberList() {
+
+        List<MemberDto> memberList = memberMapper.selectMemberList();
+
+        return  memberList;
+    }
     @GetMapping
     public MemberDto selectMyInfo(@PathVariable String memberId) {
         log.info("[MemberService] getMyInfo Start ==============================");
@@ -47,4 +56,5 @@ public class MemberService {
         log.info("[MemberService] delete ==============================");
         return true;
     }
+
 }

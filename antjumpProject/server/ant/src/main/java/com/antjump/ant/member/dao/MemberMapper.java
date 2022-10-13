@@ -3,6 +3,7 @@ package com.antjump.ant.member.dao;
 import com.antjump.ant.member.dto.MemberDto;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -23,4 +24,6 @@ public interface MemberMapper {
     int updateMember(MemberDto memberDto);
 
     void deleteMember(String memberId);
+
+    List<MemberDto> selectMemberList();
 }

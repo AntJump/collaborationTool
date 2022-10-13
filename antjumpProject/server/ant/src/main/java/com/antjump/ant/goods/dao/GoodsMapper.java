@@ -25,7 +25,7 @@ import java.util.List;
 public interface GoodsMapper {
     GoodsDetailDTO selectGoodsDetail(String goodsId);
 
-    List<GoodsPossesionsListDTO> selectGoodsPossessionsList();
+    List<GoodsPossesionsListDTO> selectGoodsPossessionsList(String memberId);
 
     GoodsPossessionDetailDTO selectGoodsPossessionDetail(String possessionId);
 }

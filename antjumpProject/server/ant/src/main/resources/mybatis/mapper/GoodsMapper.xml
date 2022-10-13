@@ -22,6 +22,8 @@
           left join tbl_goods b on (b.goods_id = a.fk_goods_possessions)
           left join tbl_orders c on(a.fk_orders_possessions = c.order_id)
           left join tbl_payments d on(c.order_id = d.fk_orders_payments)
+          left join tbl_members e on(e.member_id = d.fk_members_payments)
+        where e.member_id = #{ memberId }
          order by a.goods_possession_id desc
     </select>
 
