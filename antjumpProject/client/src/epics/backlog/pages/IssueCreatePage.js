@@ -35,15 +35,12 @@ export default function IssueCreatePage() {
   const { id } = useParams();
 
   const [open, setOpen] = React.useState(false);
-  const [difficulty, setDifficulty] = React.useState("");
-  const [priority, setPriority] = React.useState("");
-  const [issueType, setIssueType] = React.useState("");
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const [form, setForm] = useState({
-    issueName: "ㅁㄴㅇㄹ",
+    issueName: "ISSUE",
     issueSummary: "",
     issueExplanation: "",
     issueDifficulty: "",
@@ -94,9 +91,9 @@ export default function IssueCreatePage() {
                 name="issueCategory"
                 onChange={onChangeHandler}
               >
-                <MenuItem value={"task"}>태스크</MenuItem>
-                <MenuItem value={"story"}>스토리</MenuItem>
-                <MenuItem value={"bug"}>버그</MenuItem>
+                <MenuItem value={"태스크"}>태스크</MenuItem>
+                <MenuItem value={"스토리"}>스토리</MenuItem>
+                <MenuItem value={"버그"}>버그</MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -110,10 +107,10 @@ export default function IssueCreatePage() {
                 name="issuePriority"
                 onChange={onChangeHandler}
               >
-                <MenuItem value={"must"}>M</MenuItem>
-                <MenuItem value={"should"}>S</MenuItem>
-                <MenuItem value={"could"}>C</MenuItem>
-                <MenuItem value={"willNot"}>W</MenuItem>
+                <MenuItem value={"M"}>Must</MenuItem>
+                <MenuItem value={"S"}>Should</MenuItem>
+                <MenuItem value={"C"}>Could</MenuItem>
+                <MenuItem value={"W"}>Won't</MenuItem>
               </Select>
             </FormControl>
           </Box>
@@ -127,9 +124,9 @@ export default function IssueCreatePage() {
                 label="difficulty"
                 onChange={onChangeHandler}
               >
-                <MenuItem value={"easy"}>Easy</MenuItem>
-                <MenuItem value={"normal"}>Normal</MenuItem>
-                <MenuItem value={"hard"}>Hard</MenuItem>
+                <MenuItem value={"Easy"}>Easy</MenuItem>
+                <MenuItem value={"Normal"}>Normal</MenuItem>
+                <MenuItem value={"Hard"}>Hard</MenuItem>
               </Select>
             </FormControl>
           </Box>

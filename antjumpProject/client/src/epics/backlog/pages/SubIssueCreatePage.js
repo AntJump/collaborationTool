@@ -13,7 +13,7 @@ export default function SubIssueCreatePage() {
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box>
-        <h3>하위이슈 생성</h3>
+        <h3>하위 이슈 생성</h3>
         <Box
           sx={{
             display: "flex",

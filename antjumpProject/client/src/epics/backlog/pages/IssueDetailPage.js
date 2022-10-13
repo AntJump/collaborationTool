@@ -12,14 +12,14 @@ import IssueManager from "../components/IssueManager.js";
 import IssueDeleteModal from "../modals/IssueDeleteModal";
 import IssuseStatus from "../components/IssueStatus";
 import SubIssueListHeader from "../components/SubIssueListHeader.js";
-import { useParams } from "react-router-dom";
 import SubIssueTable from "../components/subissue/SubIssueTable.js";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 
 export default function IssueDetailPage() {
-  const { id } = useParams();
+  const { id, issueId } = useParams();
   const dispatch = useDispatch();
   const [state, setState] = useState([]);
   async function date() {
@@ -102,7 +102,15 @@ export default function IssueDetailPage() {
             />
           </Box>
           <IssueFileUpload />
-
+          <Button
+            color="button"
+            variant="contained"
+            size="small"
+            component={Link}
+            to={`/project/${id}/issue/${issueId}/subissue-create`}
+          >
+            하위이슈 생성
+          </Button>
           {/* <SubIssueListHeader />
           <SubIssueList /> */}
           <SubIssueTable isHeader={true} issues={state} />

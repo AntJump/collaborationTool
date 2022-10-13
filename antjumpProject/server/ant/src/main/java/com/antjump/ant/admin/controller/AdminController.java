@@ -23,16 +23,15 @@ public class AdminController {
     }
 
     @PostMapping ("/login")
-        public ResponseEntity<ResponseDto> login(@RequestBody AdminDto adminDto) {
+    public ResponseEntity<ResponseDto> login(@RequestBody AdminDto adminDto) {
 
-            return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "로그인 성공", adminAuthService.adminLogin(adminDto)));
-        }
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "로그인 성공", adminAuthService.adminLogin(adminDto)));
+    }
 
 
     @PostMapping("/signup")
-        public ResponseEntity<ResponseDto> signup(@RequestBody AdminDto adminDto) {
+    public ResponseEntity<ResponseDto> signup(@RequestBody AdminDto adminDto) {
 
-            return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "회원가입 성공", adminAuthService.adminSignup(adminDto)));
-        }
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "회원가입 성공", adminAuthService.adminSignup(adminDto)));
+    }
 }
-

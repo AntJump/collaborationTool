@@ -16,7 +16,7 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import moment from 'moment';
 import { callQNAListAPI } from "../../apis/QNAAPICalls";
@@ -91,12 +91,18 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function QNAList() {
+function QNAList({isSw}) {
   const qna = useSelector((state) => state.qnaReducer);
   const qnas = qna.list;
   console.log("qnas: ", qnas);
 
+  const [psw, setPsw] = React.useState(isSw);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setPsw(isSw);
+  }, [isSw]);
 
   useEffect(() => {
     dispatch(callQNAListAPI({
@@ -120,6 +126,8 @@ function QNAList() {
     setPage(0);
   };
 
+  console.log(isSw);
+
   return (
     qnas && (
       <TableContainer
@@ -142,10 +150,33 @@ function QNAList() {
             </TableCell >
           </TableHead>
           <TableBody>
-            {(rowsPerPage > 0
-              ? qnas.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            
+            { psw && (rowsPerPage > 0
+              ? qnas
+              .filter((qna)=> qna.qnaStatus === '-')
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : qnas.filter((qna)=> qna.qnaStatus === '-')
+            )
+            .map((qna) => (
+              <TableRow key={qna.qnaId} component={Link} to={String(qna.qnaId)}>
+                <TableCell component="th" scope="row">
+                  {qna.qnaTitle}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  {qna.qnaStatus}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  {qna.qnaModifyTime=moment().format('YYYY-MM-DD')}
+                </TableCell>
+              </TableRow>
+            ))}
+
+            { !psw && (rowsPerPage > 0
+              ? qnas
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : qnas
-            ).map((qna) => (
+            )
+            .map((qna) => (
               <TableRow key={qna.qnaId} component={Link} to={String(qna.qnaId)}>
                 <TableCell component="th" scope="row">
                   {qna.qnaTitle}

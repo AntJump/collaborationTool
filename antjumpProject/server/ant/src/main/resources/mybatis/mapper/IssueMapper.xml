@@ -116,8 +116,7 @@
       INSERT
         INTO tbl_issues
         (
-          top_issue_id
-        , issue_name
+          issue_name
         , issue_summary
         , issue_explanation
         , issue_difficulty
@@ -128,8 +127,7 @@
         )
       VALUES
         (
-          #{ topIssueId }
-        , #{ issueName }
+          #{ issueName }
         , #{ issueSummary }
         , #{ issueExplanation }
         , #{ issueDifficulty }

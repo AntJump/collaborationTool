@@ -4,13 +4,13 @@ import { createAction, handleActions } from "redux-actions";
 
 // 초기 state 값 설정
 const initState = {
-  paticipatedProjects: [],
+  allProjects: [],
   myProjects: [],
 };
 
 // 액션 타입 설정
 
-export const GET_PROJECTS= 'project/GET_PROJECTS';
+export const GET_PROJECTS= 'project/GET_PROJECTS'; 
 export const GET_PROJECT_MEMBERS = 'project/GET_PROJECT_MEMBERS';
 export const GET_SELECTED_PROJECT = 'project/GET_SELECTED_PROJECT';
 
