@@ -28,6 +28,8 @@ public class MemberDto implements UserDetails {
     private String memberDeleteYn; // 탈퇴여부
     private Date memberDeleteDate; // 탈퇴일시
     private String refreshToken; // 리프레쉬 토큰
+    
+    private String resetPasswordToken; // 비밀번호 재발급 토큰
 
     // 기본생성자
     public MemberDto() {
