@@ -1,6 +1,7 @@
 import Remembrance from "../items/Remembrance";
 import RemembranceHeader from "../items/texts/RemembranceHeader";
 import Box from "@mui/material/Box";
+import { useSelector } from "react-redux";
 
 const remembranceStyle = {
   bgcolor: "background.paper",
@@ -12,11 +13,19 @@ const remembranceStyle = {
 };
 
 function RemembranceList() {
+  const results = useSelector((state) => state.remembranceReducer);
+  const rememberanceList = results.rememberanceList;
   return (
     <>
-      <Box sx={{ ...remembranceStyle, borderRadius: "16px" }}>
-        <Remembrance />
-      </Box>
+      {rememberanceList &&
+        rememberanceList.map((remembrance) => (
+          <Box
+            key={remembrance.remembranceId}
+            sx={{ ...remembranceStyle, borderRadius: "16px" }}
+          >
+            <Remembrance remembrances={remembrance} />
+          </Box>
+        ))}
     </>
   );
 }

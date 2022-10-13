@@ -4,52 +4,51 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.antjump.ant.remembrance.model.dao.RemembranceMapper">
 
-    <resultMap id="sprintAndRemembranceResultMap" type="SprintAndRemembranceDto">
-        <id property="sprintId" column="SPRINT_ID" />
-        <result property="sprintName" column="SPRINT_NAME" />
-        <result property="sprintStatus" column="SPRINT_STATUS" />
-        <result property="sprintStartDate" column="SPRINT_START_DATE" />
-        <result property="sprintEndDate" column="SPRINT_END_DATE" />
-        <result property="sprintActualEndDate" column="SPRINT_ACTUAL_END_DATE" />
-        <result property="sprintGoal" column="SPRINT_GOAL" />
-        <result property="sprintAlarmCycle" column="SPRINT_ALARM_CYCLE" />
-        <result property="fkProjectsSprints" column="FK_PROJECTS_SPRINTS" />
-        <result property="fkMembersSprints" column="FK_MEMBERS_SPRINTS" />
-        <collection property="remembranceInfo" resultMap="remembranceResultMap"/>
+    <resultMap id="remembranceAndArticleResultMap" type="RemembranceAndArticleDto">
+        <id property="remembranceId" column="REMEMBRANCE_ID" />
+        <result property="remembranceDate" column="REMEMBRANCE_DATE" />
+        <result property="fkSprintsRemembrances" column="FK_SPRINTS_REMEMBRANCES" />
+        <association property="articleInfo" resultMap="articleResultMap"/>
+    </resultMap>
+
+    <resultMap id="articleResultMap" type="ArticleDto">
+        <id property="articleId" column="ARTICLE_ID" />
+        <result property="articleTitle" column="ARTICLE_TITLE" />
+        <result property="articleContent" column="ARTICLE_CONTENT" />
+        <result property="articleType" column="ARTICLE_TYPE" />
+        <result property="fkRemembrancesArticles" column="FK_REMEMBRANCES_ARTICLES" />
     </resultMap>
 
     <resultMap id="remembranceResultMap" type="RemembranceDto">
-        <id property="remembranceId" column="REMEMBRANCE_ID" />
-        <result property="remembranceDate" column="REMEMBRANCE_DATE" />
-        <result property="remembranceArticle" column="REMEMBRANCE_ARTICLE" />
-        <result property="remembranceTitle" column="REMEMBRANCE_TITLE" />
-        <result property="remembranceContent" column="REMEMBRANCE_CONTENT" />
-        <result property="fkSprintsRemembrances" column="FK_SPRINTS_REMEMBRANCES" />
+        <id property="remembranceId" column="REMEMBRANCE_ID"/>
+        <result property="remembranceDate" column="REMEMBRANCE_DATE"/>
+        <result property="fkSprintsRemembrances" column="FK_SPRINTS_REMEMBRANCES"/>
     </resultMap>
 
-    <select id="selectRemembrances" resultMap="remembranceResultMap">
+    <select id="selectRemembrances" resultMap="remembranceAndArticleResultMap">
         SELECT
                R.REMEMBRANCE_ID
              , R.REMEMBRANCE_DATE
-             , R.REMEMBRANCE_ARTICLE
-             , R.REMEMBRANCE_TITLE
-             , R.REMEMBRANCE_CONTENT
              , R.FK_SPRINTS_REMEMBRANCES
+             , A.ARTICLE_ID
+             , A.ARTICLE_TITLE
+             , A.ARTICLE_CONTENT
+             , A.ARTICLE_TYPE
           FROM TBL_REMEMBRANCES R
+          LEFT JOIN TBL_ARTICLES A ON R.REMEMBRANCE_ID = A.FK_REMEMBRANCES_ARTICLES
          WHERE R.FK_SPRINTS_REMEMBRANCES = #{fkSprintsRemembrances}
     </select>
 
-    <select id="selectRemembranceInfo" resultMap="sprintAndRemembranceResultMap">
+    <select id="selectArticleByRemembranceId" resultMap="articleResultMap">
         SELECT
-               R.REMEMBRANCE_DATE
-             , S.SPRINT_NAME
-             , R.REMEMBRANCE_ARTICLE
-             , R.REMEMBRANCE_TITLE
-             , R.REMEMBRANCE_CONTENT
-          FROM TBL_REMEMBRANCES R
-          JOIN TBL_SPRINTS S ON(R.FK_SPRINTS_REMEMBRANCES = S.SPRINT_ID)
-         WHERE R.REMEMBRANCE_ID = #{remembranceId}
-           AND R.REMEMBRANCE_ARTICLE = #{remembranceArticle}
+               A.ARTICLE_ID
+             , A.ARTICLE_TITLE
+             , A.ARTICLE_CONTENT
+             , A.ARTICLE_TYPE
+             , A.FK_REMEMBRANCES_ARTICLES
+          FROM TBL_ARTICLES A
+         WHERE A.FK_REMEMBRANCES_ARTICLES = #{fkRemembrancesArticles}
+           AND A.ARTICLE_TYPE = #{articleType}
     </select>
 
     <insert id="createRemembrances" parameterType="RemembranceDto">
@@ -57,29 +56,43 @@
           INTO TBL_REMEMBRANCES
         (
           REMEMBRANCE_DATE
-        , REMEMBRANCE_ARTICLE
         , FK_SPRINTS_REMEMBRANCES
         )
         VALUES
         (
-          #{remembranceDate}
-        , #{remembranceArticle}
+          sysdate()
         , #{fkSprintsRemembrances}
         )
     </insert>
 
-    <update id="updateRemembrance" parameterType="RemembranceDto">
+    <insert id="createArticles" parameterType="ArticleDto">
+        INSERT
+          INTO TBL_ARTICLES
+        (
+          ARTICLE_TYPE
+        , FK_REMEMBRANCES_ARTICLES
+        )
+        VALUES
+        (
+          #{articleType}
+        , #{fkRemembrancesArticles}
+        )
+    </insert>
+
+    <update id="updateArticle" parameterType="ArticleDto">
         UPDATE
-               TBL_REMEMBRANCES R
-           SET R.REMEMBRANCE_TITLE = #{remembranceTitle}
-             , R.REMEMBRANCE_CONTENT = #{remembranceContent}
-         WHERE R.REMEMBRANCE_iD = #{remembranceId}
+               TBL_ARTICLES
+           SET ARTICLE_TITLE = #{articleTitle}
+             , ARTICLE_CONTENT = #{articleContent}
+         WHERE FK_REMEMBRANCES_ARTICLES = #{fkRemembrancesArticles}
+           AND ARTICLE_ID = #{articleId}
     </update>
 
-    <delete id="deleteRemembrances" parameterType="RemembranceDto">
+    <delete id="deleteRemembrance" parameterType="RemembranceDto">
         DELETE
           FROM TBL_REMEMBRANCES R
-         WHERE R.REMEMBRANCE_DATE = #{remembranceDate}
+         WHERE R.FK_REMEMBRANCES_ARTICLES = #{fkRemembrancesArticles}
+           AMD R.ARTICLE_ID = #{articleId}
     </delete>
 
 </mapper>

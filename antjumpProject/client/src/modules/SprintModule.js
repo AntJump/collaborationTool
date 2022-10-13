@@ -8,6 +8,7 @@ const initState = [];
 // 액션 타입 설정
 export const GET_SPRINT = "sprint/GET_SPRINT";
 export const GET_SPRINTS = "sprint/GET_SPRINTS";
+export const GET_SPRINT_LIST = "sprint/GET_SPRINT_LIST";
 export const POST_SPRINT = "sprint/POST_SPRINT";
 export const PUT_START_SPRINT = "sprint/PUT_START_SPRINT";
 export const PUT_CLOSE_SPRINT = "sprint/PUT_CLOSE_SPRINT";
@@ -19,6 +20,7 @@ export const DELETE_SPRINT = "sprint/DELETE_SPRINT";
 const actions = createAction({
   [GET_SPRINT]: () => {},
   [GET_SPRINTS]: () => {},
+  [GET_SPRINT_LIST]: () => {},
   [POST_SPRINT]: () => {},
   [PUT_START_SPRINT]: () => {},
   [PUT_CLOSE_SPRINT]: () => {},
@@ -31,10 +33,17 @@ export const sprintReducer = handleActions(
   {
     [GET_SPRINT]: (state, { payload }) => {
       console.log("get sprint by sprintId payload", payload);
-      return payload;
+      return {
+        ...state,
+        sprint: payload,
+      };
     },
     [GET_SPRINTS]: (state, { payload }) => {
       console.log("get sprints by status payload:", payload);
+      return { ...state, finish: payload };
+    },
+    [GET_SPRINT_LIST]: (state, { payload }) => {
+      console.log("get sprint list payload:", payload);
       return payload;
     },
     [POST_SPRINT]: (state, { payload }) => {

@@ -50,7 +50,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function RemembranceLearnedModal() {
+export default function RemembranceLearnedModal({ remembrances }) {
   const [open, setOpen] = useState(false);
   const [sprintKey, setSprintKey] = useState("Sprint-01");
   const [createdDate, setCreatedDate] = useState("2022-07-15");
@@ -100,7 +100,7 @@ export default function RemembranceLearnedModal() {
                 fontSize: 35,
               }}
             >
-              {sprintKey} : {createdDate}
+              날짜 : {remembrances.remembranceDate}
             </span>
             <br />
             <br />

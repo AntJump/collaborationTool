@@ -5,16 +5,29 @@ import MuiAlert from "@mui/material/Alert";
 
 import PlusIcon from "../icons/PlusIcon";
 import { useState, forwardRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import {
+  callCreateRemembranceAPI,
+  callCreateArticlesAPI,
+} from "../../../../../apis/RemembranceAPICalls";
+import { callSelectRemembrancesAPI } from "../../../../../apis/RemembranceAPICalls";
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function RemembranceHeader() {
+function RemembranceHeader({ fk_sprints_remembrances }) {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  // const sprint = useSelector((state) => state.sprintReducer);
+  const remembrance = useSelector((state) => state.remembranceReducer);
 
   const handleClick = () => {
     setOpen(true);
+    dispatch(callCreateRemembranceAPI(fk_sprints_remembrances));
+    dispatch(callCreateArticlesAPI(fk_sprints_remembrances));
+    // dispatch(callSelectRemembrancesAPI(fk_sprints_remembrances));
   };
 
   const handleClose = (event, reason) => {
@@ -62,6 +75,7 @@ function RemembranceHeader() {
               >
                 오늘의 회고가 생성되었습니다.
               </Alert>
+
               {/* <Alert
                   onClose={handleClose}
                   severity="error"

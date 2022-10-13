@@ -33,18 +33,26 @@ public class SprintService {
         this.sprintMapper = sprintMapper;
     }
 
-    public List<SprintDto> selectSprintById(int id) {
+    public List<SprintDto> selectSprintById(SprintDto sprintInfo) {
 
-        List<SprintDto> sprintList = sprintMapper.selectSprintById(id);
+        List<SprintDto> sprintList = sprintMapper.selectSprintById(sprintInfo);
 
-        System.out.println("Service sprintList : " + sprintList);
 
         return sprintList;
     }
 
-    public Object selectSprintsByStatus(String status) {
+    public Object selectSprintsByStatus(SprintDto sprintInfo) {
 
-        List<SprintDto> sprintList = sprintMapper.selectSprintsByStatus(status);
+
+        List<SprintDto> sprintList = sprintMapper.selectSprintsByStatus(sprintInfo);
+
+
+        return sprintList;
+    }
+
+    public Object selectSprintList(String projectId) {
+
+        List<SprintDto> sprintList = sprintMapper.selectSprintList(projectId);
 
         return sprintList;
     }

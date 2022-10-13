@@ -50,10 +50,10 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function RemembranceLikedModal() {
+export default function RemembranceLikedModal({ remembrances }) {
   const [open, setOpen] = useState(false);
   const [sprintKey, setSprintKey] = useState("Sprint-01");
-  const [createdDate, setCreatedDate] = useState("2022-07-15");
+  // const [createdDate, setCreatedDate] = useState("2022-07-15");
   const [title, setTitle] = useState("좋았던 점 제목");
   const [content, setContent] = useState("좋았던 점 내용");
 
@@ -100,7 +100,7 @@ export default function RemembranceLikedModal() {
                 fontSize: 35,
               }}
             >
-              {sprintKey} : {createdDate}
+              날짜 : {remembrances.remembranceDate}
             </span>
             <br />
             <br />

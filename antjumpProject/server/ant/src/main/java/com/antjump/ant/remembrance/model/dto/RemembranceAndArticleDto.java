@@ -4,31 +4,32 @@ import java.sql.Date;
 
 /**
  * <pre>
- * Class : ArticleDto
+ * Class : RemembranceDto
  * Comment: 클래스에 대한 간단 설명
  * History
  * ================================================================
  * DATE             AUTHOR           NOTE
  * ----------------------------------------------------------------
- * 2022-10-13       이상학           최초 생성
+ * 2022-10-04       이상학           최초 생성
  * </pre>
  *
  * @author 이상학(최초 작성자)
  * @version 1(클래스 버전)
- * @see
  */
+public class RemembranceAndArticleDto {
 
-public class RemembranceDto {
     private int remembranceId;
     private Date remembranceDate;
     private int fkSprintsRemembrances;
+    private ArticleDto articleInfo;
 
-    public RemembranceDto() {}
+    public RemembranceAndArticleDto() {}
 
-    public RemembranceDto(int remembranceId, Date remembranceDate, int fkSprintsRemembrances) {
+    public RemembranceAndArticleDto(int remembranceId, Date remembranceDate, int fkSprintsRemembrances, ArticleDto articleInfo) {
         this.remembranceId = remembranceId;
         this.remembranceDate = remembranceDate;
         this.fkSprintsRemembrances = fkSprintsRemembrances;
+        this.articleInfo = articleInfo;
     }
 
     public int getRemembranceId() {
@@ -55,12 +56,21 @@ public class RemembranceDto {
         this.fkSprintsRemembrances = fkSprintsRemembrances;
     }
 
+    public ArticleDto getArticleInfo() {
+        return articleInfo;
+    }
+
+    public void setArticleInfo(ArticleDto articleInfo) {
+        this.articleInfo = articleInfo;
+    }
+
     @Override
     public String toString() {
-        return "RemembranceDto{" +
+        return "RemembranceAndArticleDto{" +
                 "remembranceId=" + remembranceId +
                 ", remembranceDate=" + remembranceDate +
                 ", fkSprintsRemembrances=" + fkSprintsRemembrances +
+                ", articleInfo=" + articleInfo +
                 '}';
     }
 }

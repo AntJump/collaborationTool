@@ -31,11 +31,12 @@
              , S.SPRINT_ALARM_CYCLE
           FROM TBL_SPRINTS S
          WHERE S.SPRINT_ID = #{sprintId}
+           AND S.FK_PROJECTS_SPRINTS = #{fkProjectsSprints}
     </select>
 
     <select id="selectSprintsByStatus" resultMap="sprintResultMap">
         SELECT
-            S.SPRINT_ID
+               S.SPRINT_ID
              , S.SPRINT_NAME
              , S.SPRINT_STATUS
              , S.SPRINT_START_DATE
@@ -46,7 +47,24 @@
              , S.FK_MEMBERS_SPRINTS
              , S.SPRINT_ALARM_CYCLE
           FROM TBL_SPRINTS S
-         WHERE S.SPRINT_STATUS = #{status}
+         WHERE S.SPRINT_STATUS = #{sprintStatus}
+           AND S.FK_PROJECTS_SPRINTS = #{fkProjectsSprints}
+    </select>
+
+    <select id="selectSprintList" resultMap="sprintResultMap">
+        SELECT
+               S.SPRINT_ID
+             , S.SPRINT_NAME
+             , S.SPRINT_STATUS
+             , S.SPRINT_START_DATE
+             , S.SPRINT_END_DATE
+             , S.SPRINT_ACTUAL_END_DATE
+             , S.SPRINT_GOAL
+             , S.FK_PROJECTS_SPRINTS
+             , S.FK_MEMBERS_SPRINTS
+             , S.SPRINT_ALARM_CYCLE
+          FROM TBL_SPRINTS S
+         WHERE S.FK_PROJECTS_SPRINTS = #{fkMembersSprints}
     </select>
 
     <insert id="createSprint" parameterType="SprintDto">
@@ -71,6 +89,7 @@
           , S.SPRINT_END_DATE = #{sprintEndDate}
           , S.SPRINT_GOAL = #{sprintGoal}
           , S.SPRINT_ALARM_CYCLE = #{sprintAlarmCycle}
+          , S.SPRINT_STATUS = #{sprintStatus}
         WHERE S.SPRINT_ID = #{sprintId}
     </update>
 

@@ -1,6 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import FinishedSprintText from "../texts/FinishedSprintText";
+import { useSelector } from "react-redux";
 
 const remembranceStyle = {
   bgcolor: "background.paper",
@@ -12,14 +13,21 @@ const remembranceStyle = {
 };
 
 function FinishedSprintBox() {
+  const sprints = useSelector((state) => state.sprintReducer);
+  const finishSprints = sprints.finish;
+
+  console.log(sprints);
   return (
     <>
-      <Box sx={{ ...remembranceStyle, borderRadius: "16px" }}>
-        <FinishedSprintText />
-      </Box>
-      <Box sx={{ ...remembranceStyle, borderRadius: "16px" }}>
-        <FinishedSprintText />
-      </Box>
+      {finishSprints &&
+        finishSprints.map((sprint) => (
+          <Box
+            key={sprint.sprintId}
+            sx={{ ...remembranceStyle, borderRadius: "16px" }}
+          >
+            <FinishedSprintText sprint={sprint} />
+          </Box>
+        ))}
     </>
   );
 }

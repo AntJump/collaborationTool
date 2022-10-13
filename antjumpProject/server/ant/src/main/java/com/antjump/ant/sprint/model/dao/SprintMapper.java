@@ -24,9 +24,11 @@ import java.util.List;
 public interface SprintMapper {
 
 
-    List<SprintDto> selectSprintById(int id);
+    List<SprintDto> selectSprintById(SprintDto sprintInfo);
 
-    List<SprintDto> selectSprintsByStatus(String status);
+    List<SprintDto> selectSprintsByStatus(SprintDto sprintInfo);
+
+    List<SprintDto> selectSprintList(String projectId);
 
     int modifySprintAlarm(SprintDto sprintDto);
 
@@ -37,4 +39,5 @@ public interface SprintMapper {
     int deleteSprint(int id);
 
     int closeSprint(int id);
+
 }

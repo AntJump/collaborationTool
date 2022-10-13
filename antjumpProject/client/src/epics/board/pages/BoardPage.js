@@ -8,8 +8,32 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import RemembranceList from "../components/lists/RemembranceList";
 import Grid from "@mui/material/Grid";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import {
+  callCloseSprintAPI,
+  callModifySprintAlarmAPI,
+  callSelectSprintByIdAPI,
+} from "../../../apis/SprintAPICalls";
+import { callSelectRemembrancesAPI } from "../../../apis/RemembranceAPICalls";
+import { useSelector } from "react-redux";
+import { INIT_REMEMBRANCES } from "../../../modules/RemembranceModule";
 
 function BoardPage() {
+  const dispatch = useDispatch();
+  const results = useSelector((state) => state.remembranceReducer);
+
+  const sprintId = 1;
+  const projectId = 1;
+
+  useEffect(() => {
+    if (results.postSuccess !== "") {
+      dispatch(callSelectSprintByIdAPI(sprintId, projectId));
+      dispatch(callSelectRemembrancesAPI(sprintId));
+      dispatch({ type: INIT_REMEMBRANCES });
+    }
+  }, [results.postSuccess]);
+
   return (
     <>
       <Grid
@@ -27,7 +51,7 @@ function BoardPage() {
         <hr />
         <Grid item xs={3}>
           <AlarmText />
-          <RemembranceHeader />
+          <RemembranceHeader fk_sprints_remembrances={sprintId} />
           <RemembranceList />
         </Grid>
       </Grid>

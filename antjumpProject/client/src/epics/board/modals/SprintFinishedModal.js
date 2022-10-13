@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
@@ -10,6 +10,8 @@ import IconButton from "@mui/material/IconButton";
 // import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 import CloseButton from "../../../common/components/items/CloseButton";
+import { useDispatch } from "react-redux";
+import { callCloseSprintAPI } from "../../../apis/SprintAPICalls";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -49,15 +51,40 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function SprintFinishedModal() {
+export default function SprintFinishedModal({ sprintInfo }) {
+  const dispatch = useDispatch();
+
+  const sprintId = sprintInfo.sprintId;
+  console.log("sprintId : ", sprintId);
+
   const [open, setOpen] = useState(false);
-  const [sprintName, setSprintName] = useState("개미 스프린트");
   const [finishedIssueCount, setFinishedIssueCount] = useState(3);
   const [ingIssueCount, setIngIssueCount] = useState(2);
 
+  const [form, setForm] = useState({
+    sprintActualEndDate: "",
+    sprintStatus: "",
+  });
+
   const handleClickOpen = () => {
+    //오늘 날짜 구하기
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const day = ("0" + date.getDate()).slice(-2);
+    const dateStr = year + "-" + month + "-" + day;
+
     setOpen(true);
+
+    setForm({
+      sprintActualEndDate: dateStr,
+      sprintStatus: "완료",
+    });
+
+    console.log("form : ", form);
+    dispatch(callCloseSprintAPI(sprintId, form));
   };
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -79,7 +106,7 @@ export default function SprintFinishedModal() {
           fontSize="30px"
           width="500px"
         >
-          {sprintName} 완료
+          {sprintInfo.sprintName} 완료
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>

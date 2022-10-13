@@ -38,19 +38,28 @@ public class SprintController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseDto> selectSprintById(@PathVariable int id) {
+    public ResponseEntity<ResponseDto> selectSprintById(@PathVariable int id, @RequestParam(name = "projectId") int projectId) {
 
-        List<SprintDto> sprintList = sprintService.selectSprintById(id);
+        SprintDto sprintList = new SprintDto();
+        sprintList.setSprintId(id);
+        sprintList.setFkProjectsSprints(projectId);
 
-        System.out.println("sprintList : " + sprintList);
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "스프린트 정보 조회 성공", sprintService.selectSprintById(sprintList)));
+    }
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "스프린트 정보 조회 성공", sprintList));
+    @GetMapping("/")
+    public ResponseEntity<ResponseDto> selectSprintsByStatus(@RequestParam(name = "status") String status, @RequestParam(name = "projectId") int projectId) {
+
+        SprintDto sprintInfo = new SprintDto();
+        sprintInfo.setSprintStatus(status);
+        sprintInfo.setFkProjectsSprints(projectId);
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "진행 상태에 따른 스프린트 조회 성공", sprintService.selectSprintsByStatus(sprintInfo)));
     }
 
     @GetMapping("")
-    public ResponseEntity<ResponseDto> selectSprintsByStatus(@RequestParam(name = "status") String sprintStatus) {
+    public ResponseEntity<ResponseDto> selectSprintList(@RequestParam(name = "projectId") String projectId) {
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "진행 상태에 따른 스프린트 조회 성공", sprintService.selectSprintsByStatus(sprintStatus)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "진행 상태에 따른 스프린트 조회 성공", sprintService.selectSprintList(projectId)));
     }
 
     @PostMapping("")
@@ -64,7 +73,7 @@ public class SprintController {
     public ResponseEntity<ResponseDto> startSprint(@PathVariable int id, @RequestBody SprintDto sprintDto) {
 
         sprintDto.setSprintId(id);
-
+        sprintDto.setSprintStatus("진행중");
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "스프린트 시작 성공", sprintService.startSprint(sprintDto)));
     }
 

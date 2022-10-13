@@ -2,7 +2,8 @@ import { useState } from "react";
 import SelectRememberanceButton from "../buttons/SelectRememberanceButton";
 import Stack from "@mui/material/Stack";
 
-function FinishedSprintText(sprint) {
+function FinishedSprintText({ sprint }) {
+  console.log("sprintddd", sprint);
   // const [sprintName, setSprintName] = useState("개미 스프린트");
   // const [sprintKey, setSprintKey] = useState("Sprint-01");
   // const [startDate, setStartDate] = useState("2022-07-26");
@@ -23,52 +24,56 @@ function FinishedSprintText(sprint) {
 
   return (
     <>
-      <Stack
-        direction="row"
-        justifyContent="center"
-        alignItems="flex-start"
-        spacing={0}
-      >
-        <div>
-          <h2>스프린트 이름</h2>
-          <h4>{sprint.sprintName}</h4>
-          <h3>
-            {sprint.sprintStartDate} ~ {sprint.sprintEndDate}
-          </h3>
-        </div>
+      {sprint ? (
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="flex-start"
+          spacing={0}
+        >
+          <div>
+            <h2>스프린트 이름</h2>
+            <h4>{sprint.sprintName}</h4>
+            <h3>
+              {sprint.sprintStartDate} ~ {sprint.sprintEndDate}
+            </h3>
+          </div>
 
-        {/* <div
+          {/* <div
           style={{
             display: "flex",
           }}
         > */}
-        <div>
-          <h3 style={h3Style}>백로그 </h3>
           <div>
-            <h4 style={h4Style}>완료: {finishedCount}</h4>
-            <h4 style={h4Style}>미완료: {unFinishedCount}</h4>
+            <h3 style={h3Style}>백로그 </h3>
+            <div>
+              <h4 style={h4Style}>완료: {finishedCount}</h4>
+              <h4 style={h4Style}>미완료: {unFinishedCount}</h4>
+            </div>
           </div>
-        </div>
 
-        <div>
-          <h3 style={h3Style}>실제 완료 날짜 </h3>
-          <h4 style={h3Style}>{sprint.sprintActualEndDate}</h4>
-        </div>
+          <div>
+            <h3 style={h3Style}>실제 완료 날짜 </h3>
+            <h4 style={h3Style}>{sprint.sprintActualEndDate}</h4>
+          </div>
 
-        <div>
-          <h3>참여자 수</h3>
-          <h4>{participantCount}명</h4>
-        </div>
-        <div
-          style={{
-            marginLeft: "50px",
-            marginTop: "40px",
-          }}
-        >
-          <SelectRememberanceButton />
-        </div>
-        {/* </div> */}
-      </Stack>
+          <div>
+            <h3>참여자 수</h3>
+            <h4>{participantCount}명</h4>
+          </div>
+          <div
+            style={{
+              marginLeft: "50px",
+              marginTop: "40px",
+            }}
+          >
+            <SelectRememberanceButton />
+          </div>
+          {/* </div> */}
+        </Stack>
+      ) : (
+        ""
+      )}
     </>
   );
 }
