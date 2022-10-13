@@ -15,6 +15,7 @@ function GoodsPage() {
     const goods = useSelector(state => state.paymentReducer);
     const good = goods;
     console.log("good: ", good);
+    
 
     const dispatch = useDispatch();
 
@@ -32,7 +33,6 @@ function GoodsPage() {
             amount: goods.goodsAmount,
             orderId: uuid(),
             orderName: goods.goodsName,
-            customerName: '부시연',
             successUrl: `${process.env.REACT_APP_CLIENT_IP}` + '/payments/success',
             failUrl: `${process.env.REACT_APP_CLIENT_IP}` + '/payments/fail',
           }).catch(function (error) {

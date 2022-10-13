@@ -12,6 +12,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { callQNADetailAPI, callQNAUpdateAPI } from '../../../apis/QNAAPICalls';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { callGetMemberAPI } from "../../../apis/MemberAPICalls";
+import { decodeJwt } from "../../../utils/tokenUtils";
 
 
 const CustomButton = styled(Button)({
@@ -24,6 +26,21 @@ const CustomButton = styled(Button)({
 }})
 
 function QNAModifyPage() {
+
+    const member = useSelector(state => state.memberReducer);
+
+    const token = decodeJwt(window.localStorage.getItem("accessToken"));
+    
+    useEffect(() => {
+        console.log("token", token.sub);
+        if (token !== null) {
+          dispatch(
+            callGetMemberAPI({
+              memberId: token.sub,
+            })
+          );
+        }
+      }, []);
 
     const dispatch = useDispatch();
     const { qnaNumber } = useParams();
@@ -45,7 +62,7 @@ function QNAModifyPage() {
         qnaContent: qna.qnaContent,
         qnaCategoryNo: qna.qnaCategoryNo,
         qnaSaveName: qna.qnaSaveName,
-        memberId: 1
+        memberId: token.sub
     });
 
     useEffect(() => {

@@ -28,7 +28,7 @@ function PaymentDetailPage() {
             <Typography sx={{ mt: 1, mb: 1,
                     fontFamily: 'monospace',
                     fontWeight: 700 }} variant="h3" align='center' color='#004392' >
-                현재 상품
+                내 상품 정보
             </Typography>
             <Box sx={{ml:10}} >
                 <Typography sx={{ mt: 1, mb: 1,

@@ -12,19 +12,34 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { callPossessionListAPI } from "../../../apis/PaymentAPICalls";
 import moment from 'moment';
+import { callGetMemberAPI } from "../../../apis/MemberAPICalls";
+import { decodeJwt } from "../../../utils/tokenUtils";
 
 function PaymentPage() {
 
     const possession = useSelector(state => state.paymentReducer);
-    const member = useSelector(state => state.memberReducer);
     const possessions = possession.list;
+    const member = useSelector(state => state.memberReducer);
+    const token = decodeJwt(window.localStorage.getItem("accessToken"));
+
+    useEffect(() => {
+        console.log("token", token.sub);
+        if (token !== null) {
+          dispatch(
+            callGetMemberAPI({
+              memberId: token.sub,
+            })
+          );
+        }
+      }, []);
+
+    
     console.log("possession: ", possession);
 
     const dispatch = useDispatch();
-
   
     useEffect(() => {
-        dispatch(callPossessionListAPI(member.memberId));
+        dispatch(callPossessionListAPI(String(token.sub)));
       }, [dispatch]);
 
     return possessions && (

@@ -36,13 +36,10 @@
              , a.goods_remaining_date
              , b.goods_name
              , d.payment_time
-             , e.goods_use_yn
-             , e.goods_remaining_date
           from tbl_goods_possessions a
           left join tbl_goods b on (b.goods_id = a.fk_goods_possessions)
           left join tbl_orders c on(a.fk_orders_possessions = c.order_id)
           left join tbl_payments d on(c.order_id = d.fk_orders_payments)
-          left join tbl_goods_possessions e on (e.fk_orders_possessions = c.order_id)
          where a.goods_possession_id = #{ possessionId }
     </select>
 </mapper>

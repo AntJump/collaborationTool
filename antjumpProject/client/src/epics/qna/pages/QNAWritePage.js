@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { InputAdornment, Typography } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
@@ -12,6 +12,8 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { useEffect, useState, useRef } from "react";
 import { callQNARegistAPI } from '../../../apis/QNAAPICalls';
+import { callGetMemberAPI } from "../../../apis/MemberAPICalls";
+import { decodeJwt } from "../../../utils/tokenUtils";
 
 const CustomButton = styled(Button)({
 
@@ -25,6 +27,22 @@ const CustomButton = styled(Button)({
 
 function QNAWritePage() {
 
+    
+    const member = useSelector(state => state.memberReducer);
+
+    const token = decodeJwt(window.localStorage.getItem("accessToken"));
+    
+    useEffect(() => {
+        console.log("token", token.sub);
+        if (token !== null) {
+          dispatch(
+            callGetMemberAPI({
+              memberId: token.sub,
+            })
+          );
+        }
+      }, []);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
@@ -36,7 +54,7 @@ function QNAWritePage() {
         qnaTitle: '',
         qnaContent: '',
         qnaCategoryNo: 0,
-        memberId: 1
+        memberId: token.sub
     });
 
     useEffect(() => {
