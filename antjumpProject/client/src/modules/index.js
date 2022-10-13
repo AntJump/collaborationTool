@@ -5,6 +5,7 @@ import memberReducer from "./MemberModule";
 import faqReducer from "./FAQModule";
 import { backlogReducer } from "./BacklogModule";
 import { remembranceReducer } from "./RemembranceModule";
+import calendarReducer from "./CalendarModule";
 
 // 프로젝트 관련 모듈 import
 
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   memberReducer,
   issueReducer,
   remembranceReducer,
+  calendarReducer,
 });
 
 export default rootReducer;
