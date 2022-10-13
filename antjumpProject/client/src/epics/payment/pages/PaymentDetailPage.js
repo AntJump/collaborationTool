@@ -23,6 +23,7 @@ function PaymentDetailPage() {
         },
         [dispatch]
     );
+    
     return possession && (
         <>
             <Typography sx={{ mt: 1, mb: 1,
