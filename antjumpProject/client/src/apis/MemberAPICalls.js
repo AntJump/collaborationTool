@@ -1,8 +1,14 @@
-import { GET_MEMBER, POST_LOGIN, POST_REGISTER } from "../modules/MemberModule";
+import {
+  GET_MEMBER,
+  POST_LOGIN,
+  POST_REGISTER,
+  POST_UPDATE,
+  POST_DELETE,
+} from "../modules/MemberModule";
 
 export const callGetMemberAPI = ({ memberId }) => {
   console.log(memberId);
-  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/members/${memberId}`;
+  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/member/${memberId}`;
 
   console.log(requestURL);
 
@@ -80,6 +86,51 @@ export const callRegisterAPI = ({ data }) => {
 
     if (result.status === 201) {
       dispatch({ type: POST_REGISTER, payload: result });
+    }
+  };
+};
+
+export const callUpdateMemberAPI = ({ form }) => {
+  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/member/update`;
+
+  return async (dispatch, getState) => {
+    const result = await fetch(requestURL, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "*/*",
+      },
+      body: JSON.stringify({
+        memberId: form.memberId,
+        memberName: form.name,
+        memberPhone: form.phone,
+      }),
+    }).then((response) => response.json());
+
+    console.log("[MemberAPICalls] callUpdateMemberAPI RESULT : ", result);
+
+    if (result.status === 201) {
+      dispatch({ type: POST_UPDATE, payload: result });
+    }
+  };
+};
+
+export const callDeleteMemberAPI = ({ memberId }) => {
+  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/member/delete/${memberId}`;
+
+  return async (dispatch, getState) => {
+    const result = await fetch(requestURL, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "*/*",
+      },
+    }).then((response) => response.json());
+
+    console.log("[MemberAPICalls] callDeleteMemberAPI RESULT : ", result);
+
+    if (result.status === 201) {
+      dispatch({ type: POST_DELETE, payload: result });
     }
   };
 };
