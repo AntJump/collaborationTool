@@ -7,7 +7,8 @@ import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
-
+import { callIssueStatusAPI } from "../../../../../apis/IssueStatusAPICalls";
+import { useDispatch } from "react-redux";
 function not(a, b) {
   return a.filter((value) => b.indexOf(value) === -1);
 }
@@ -26,7 +27,7 @@ export default function IssueContainBox() {
   const middleChecked = intersection(checked, middle);
   const rightChecked = intersection(checked, right);
   const issueId = 1;
-
+  const dispatch = useDispatch();
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
@@ -109,7 +110,10 @@ export default function IssueContainBox() {
             sx={{ my: 0.5 }}
             variant="outlined"
             size="small"
-            onClick={handlecheckedLeftToMiddle}
+            onClick={() => {
+              handlecheckedLeftToMiddle();
+              dispatch(callIssueStatusAPI());
+            }}
             disabled={leftChecked.length === 0}
             aria-label="move selected right"
           >

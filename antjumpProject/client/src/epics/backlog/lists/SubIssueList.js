@@ -27,7 +27,7 @@ export default function SubIssueList() {
         <Table sx={{ minWidth: 600 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="center">KEY</StyledTableCell>
+              <StyledTableCell align="center">이슈 이름</StyledTableCell>
               <StyledTableCell align="center">요약</StyledTableCell>
               <StyledTableCell align="center">상태</StyledTableCell>
               <StyledTableCell align="center">담당자</StyledTableCell>

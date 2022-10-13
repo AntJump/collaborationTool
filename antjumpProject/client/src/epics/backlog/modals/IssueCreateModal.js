@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useParams } from "react-router-dom";
 
-const style = {
+const styleModal = {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -40,7 +40,7 @@ export default function BasicModal() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={styleModal}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             이슈 생성
           </Typography>

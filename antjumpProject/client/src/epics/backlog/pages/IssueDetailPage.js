@@ -9,16 +9,29 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import IssueFileUpload from "../components/IssueFileUpload.js";
 import IssueManager from "../components/IssueManager.js";
-import SubIssueCard from "../items/SubIssueCard.js";
-import SubIssueList from "../lists/SubIssueList.js";
 import IssueDeleteModal from "../modals/IssueDeleteModal";
 import IssuseStatus from "../components/IssueStatus";
 import SubIssueListHeader from "../components/SubIssueListHeader.js";
 import { useParams } from "react-router-dom";
+import SubIssueTable from "../components/subissue/SubIssueTable.js";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function IssueDetailPage() {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const [state, setState] = useState([]);
+  async function date() {
+    const result = await fetch("http://localhost:8181/issues/sub")
+      .then((result) => result.json())
+      .then((data) => data.data);
+    setState(result);
+  }
 
+  useEffect(() => {
+    date();
+  }, []);
   return (
     <>
       <Box
@@ -89,8 +102,11 @@ export default function IssueDetailPage() {
             />
           </Box>
           <IssueFileUpload />
-          <SubIssueListHeader />
-          <SubIssueList />
+
+          {/* <SubIssueListHeader />
+          <SubIssueList /> */}
+          <SubIssueTable isHeader={true} issues={state} />
+
           <Box sx={{ float: "left", m: 2 }}>
             <IssueDeleteModal />
           </Box>
