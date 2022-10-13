@@ -3,7 +3,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { callPaymentDetailAPI } from "../apis/PaymentAPICalls";
 import moment from "moment";
 
@@ -17,6 +17,7 @@ function PaymentDetailPage() {
     console.log("payment: ", payments);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(
         ()=>{
@@ -24,6 +25,7 @@ function PaymentDetailPage() {
         },
         [dispatch]
     );
+
     return payment && (
         <>
         
@@ -86,6 +88,7 @@ function PaymentDetailPage() {
                 }}>
             </Box>
           </Box>
+          <Box component="Button" onClick={() => navigate(-1)}>뒤로 가기</Box>
         </>
     );
 }

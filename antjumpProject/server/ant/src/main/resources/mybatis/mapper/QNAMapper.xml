@@ -51,6 +51,7 @@
              , b.qna_category_name
              , c.qna_file_id
              , c.qna_file_url
+             , c.qna_save_name
              , d.member_id
              , d.member_name
              , e.admin_id
@@ -84,6 +85,24 @@
         )
     </insert>
 
+    <insert id="insertQnaFile" parameterType="QNACreateDTO">
+        insert
+          into tbl_qna_files
+        (
+          qna_file_url
+        , qna_original_name
+        , qna_save_name
+        , fk_qnas_files
+        )
+        values
+        (
+          #{ qnaFileUrl }
+        , #{ qnaOriginalName }
+        , #{ qnaSaveName }
+        , (select max(qna_id) from tbl_qnas)
+        )
+    </insert>
+
     <update id="updateQNA" parameterType="QNAModifyDTO">
         update /* com.anjump.ant.qna.dao.QNAMapper#updateQNA(QNAModifyDTO qnaModifyDTO) */
                tbl_qnas
@@ -93,6 +112,16 @@
         , qna_modify_time = now()
         , fk_qnacategories_qnas = #{ qnaCategoryNo }
          where qna_id = #{ qnaId }
+    </update>
+
+    <update id="updateQnaFile" parameterType="QNAModifyDTO">
+        update
+               tbl_qna_files
+           set
+          qna_file_url = #{ qnaFileUrl }
+        , qna_original_name = #{ qnaOriginalName }
+        , qna_save_name = #{ qnaSaveName }
+         where fk_qnas_files = #{ qnaId }
     </update>
 
     <update id="deleteQNA">

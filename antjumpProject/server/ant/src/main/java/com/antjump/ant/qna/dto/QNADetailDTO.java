@@ -35,11 +35,12 @@ public class QNADetailDTO {
     private String  qnaCategoryName;
     private MultipartFile qnaFile;
     private String qnaFileUrl;
+    private String qnaSaveName;
 
     public QNADetailDTO() {
     }
 
-    public QNADetailDTO(int qnaId, String qnaTitle, String qnaContent, Timestamp qnaModifyTime, int memberId, String memberName, int adminId, String adminName, int qnaDepth, String qnaStatus, Integer refQnaId, int qnaCategoryNo, String qnaCategoryName, MultipartFile qnaFile, String qnaFileUrl) {
+    public QNADetailDTO(int qnaId, String qnaTitle, String qnaContent, Timestamp qnaModifyTime, int memberId, String memberName, int adminId, String adminName, int qnaDepth, String qnaStatus, Integer refQnaId, int qnaCategoryNo, String qnaCategoryName, MultipartFile qnaFile, String qnaFileUrl, String qnaSaveName) {
         this.qnaId = qnaId;
         this.qnaTitle = qnaTitle;
         this.qnaContent = qnaContent;
@@ -55,6 +56,7 @@ public class QNADetailDTO {
         this.qnaCategoryName = qnaCategoryName;
         this.qnaFile = qnaFile;
         this.qnaFileUrl = qnaFileUrl;
+        this.qnaSaveName = qnaSaveName;
     }
 
     public int getQnaId() {
@@ -177,6 +179,14 @@ public class QNADetailDTO {
         this.qnaFileUrl = qnaFileUrl;
     }
 
+    public String getQnaSaveName() {
+        return qnaSaveName;
+    }
+
+    public void setQnaSaveName(String qnaSaveName) {
+        this.qnaSaveName = qnaSaveName;
+    }
+
     @Override
     public String toString() {
         return "QNADetailDTO{" +
@@ -195,6 +205,8 @@ public class QNADetailDTO {
                 ", qnaCategoryName='" + qnaCategoryName + '\'' +
                 ", qnaFile=" + qnaFile +
                 ", qnaFileUrl='" + qnaFileUrl + '\'' +
+                ", qnaSaveName='" + qnaSaveName + '\'' +
                 '}';
     }
+
 }

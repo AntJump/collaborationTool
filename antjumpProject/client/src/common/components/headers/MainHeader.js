@@ -15,8 +15,9 @@ import LogoButton from "../items/LogoButton";
 import { useSelector, useDispatch } from "react-redux";
 import { decodeJwt } from "../../../utils/tokenUtils";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { callLogoutAPI } from "../../../apis/MemberAPICalls";
+import { callLogoutAPI, callGetMemberAPI } from "../../../apis/MemberAPICalls";
 import Link from "@mui/material/Link";
+import { useEffect } from "react";
 
 const pages = ["요금제", "FAQ", "문의"];
 const settings = ["내 정보", "결제", "프로젝트", "로그아웃"];
@@ -25,6 +26,7 @@ const introduces = ["메신저", "일정 관리", "프로젝트"];
 const MainHeader = () => {
   const navigate = useNavigate();
 
+  const token = decodeJwt(window.localStorage.getItem("accessToken"));
   const dispatch = useDispatch();
   const loginMember = useSelector((state) => state.memberReducer); // 저장소에서 가져온 loginMember 정보
   const isLogin = window.localStorage.getItem("accessToken"); // Local Storage 에 token 정보 확인
@@ -41,6 +43,17 @@ const MainHeader = () => {
 
   //   navigate("/mypage", { replace: true });
   // };
+
+  // useEffect(() => {
+  //   console.log("token", token.sub);
+  //   if (token !== null) {
+  //     dispatch(
+  //       callGetMemberAPI({
+  //         memberId: token.sub,
+  //       })
+  //     );
+  //   }
+  // }, []);
 
   const onClickLogoutHandler = () => {
     window.localStorage.removeItem("accessToken");

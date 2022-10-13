@@ -10,5 +10,4 @@
 		<!-- null parameter 허용 -->
 		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
-
 </configuration>

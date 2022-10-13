@@ -21,8 +21,6 @@ export const DELETE_EMAIL=  'project/DELETE_EMAIL';
 
 export const VERIFY_TOKEN = 'project/VERIFY_TOKEN';
 
-export const SET_TOKEN = 'project/SET_TOKEN';
-
 
 // 액션 함수 생성
 const actions =  createAction({
@@ -30,8 +28,7 @@ const actions =  createAction({
     [GET_INVITATIONS]: ()=>{},
     [SET_EMAIL]: ()=>{},
     [DELETE_EMAIL]: ()=>{},
-    [VERIFY_TOKEN]: ()=>{},
-    [SET_TOKEN]: ()=>{}
+    [VERIFY_TOKEN]: ()=>{}
 });
 
 // 리듀서 함수 설정
@@ -61,10 +58,6 @@ export const projectInvitationReducer = handleActions(
                 ...state,
                 emails: state.emails.filter(email=>email != payload)
             }
-        },
-        [SET_TOKEN]:(state, {payload})=>{
-            console.log('set token payload:', payload);
-            return payload;
         },
         [VERIFY_TOKEN]: (state, {payload})=>{
             console.log('verify token payload:', payload);

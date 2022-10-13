@@ -61,6 +61,13 @@ function QNADetailPage() {
                     { qna.qnaContent }
                 </Typography>
             </Box>
+            <Box>
+                {
+                    qna.qnaFileUrl !== null
+                    ?<Box component="img" src={qna.qnaFileUrl}/>
+                    : null
+                }
+            </Box>
             <Box sx={{
                     display: 'flex',
                     justifyContent: 'center'
