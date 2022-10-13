@@ -29,14 +29,14 @@ public class QNAListDTO {
     private String adminName;
     private int qnaDepth;
     private Integer refQnaId;
-    private char qnaStatus;
+    private String qnaStatus;
     private int qnaCategoryNo;
     private String  qnaCategoryName;
 
     public QNAListDTO() {
     }
 
-    public QNAListDTO(int qnaId, String qnaTitle, Timestamp qnaModifyTime, Integer memberId, String memberName, Integer adminId, String adminName, int qnaDepth, Integer refQnaId, char qnaStatus, int qnaCategoryNo, String qnaCategoryName) {
+    public QNAListDTO(int qnaId, String qnaTitle, Timestamp qnaModifyTime, Integer memberId, String memberName, Integer adminId, String adminName, int qnaDepth, Integer refQnaId, String qnaStatus, int qnaCategoryNo, String qnaCategoryName) {
         this.qnaId = qnaId;
         this.qnaTitle = qnaTitle;
         this.qnaModifyTime = qnaModifyTime;
@@ -123,11 +123,11 @@ public class QNAListDTO {
         this.refQnaId = refQnaId;
     }
 
-    public char getQnaStatus() {
+    public String getQnaStatus() {
         return qnaStatus;
     }
 
-    public void setQnaStatus(char qnaStatus) {
+    public void setQnaStatus(String qnaStatus) {
         this.qnaStatus = qnaStatus;
     }
 
@@ -159,10 +159,9 @@ public class QNAListDTO {
                 ", adminName='" + adminName + '\'' +
                 ", qnaDepth=" + qnaDepth +
                 ", refQnaId=" + refQnaId +
-                ", qnaStatus=" + qnaStatus +
+                ", qnaStatus='" + qnaStatus + '\'' +
                 ", qnaCategoryNo=" + qnaCategoryNo +
                 ", qnaCategoryName='" + qnaCategoryName + '\'' +
                 '}';
     }
-
 }

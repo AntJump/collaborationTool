@@ -71,6 +71,15 @@ function AdminPage() {
         >
           로그인
         </Button>
+        <Button
+          component={RouterLink}
+          to="add"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 3 }}
+        >
+          회원가입
+        </Button>
       </Box>
     </Container>
   );
