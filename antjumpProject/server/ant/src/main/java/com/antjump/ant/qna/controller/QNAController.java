@@ -76,8 +76,8 @@ public class QNAController {
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 입력 성공", qnaService.insertQNA(qnaCreateDTO)));
     }
 
-    @PutMapping("")
-    public  ResponseEntity<ResponseDto> modifyQNA(@RequestBody QNAModifyDTO qnaModifyDTO) {
+    @PutMapping(value = "", consumes = "multipart/form-data")
+    public  ResponseEntity<ResponseDto> modifyQNA(QNAModifyDTO qnaModifyDTO) {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "문의 업데이트 성공", qnaService.updateQNA(qnaModifyDTO)));
     }

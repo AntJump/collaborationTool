@@ -77,17 +77,7 @@ export const callQNAUpdateAPI = ({form}) => {
 
         const result = await fetch(requestURL, {
             method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "*/*"
-            },
-            body: JSON.stringify({
-                qnaId : form.qnaId,
-                qnaTitle: form.qnaTitle,
-                qnaContent: form.qnaContent,
-                qnaCategoryNo: form.qnaCategoryNo,
-                memberId: form.memberId
-            })
+            body: form
         })
         .then(response => response.json());
         

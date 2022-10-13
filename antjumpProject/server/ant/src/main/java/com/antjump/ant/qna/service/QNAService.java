@@ -117,7 +117,31 @@ public class QNAService {
         log.info("[QNAService] modifyQNA Start ===============");
         log.info("[QNAService] qnaModifyDTO : " + qnaModifyDTO);
 
+        String changeName = UUID.randomUUID().toString().replace("-", "");
+
         int result = qnaMapper.updateQNA(qnaModifyDTO);
+
+        try {
+
+            if(qnaModifyDTO.getQnaFile() != null){
+
+                s3Uploader.delete(qnaModifyDTO.getQnaSaveName());
+
+                qnaModifyDTO.setQnaOriginalName(qnaModifyDTO.getQnaFile().getOriginalFilename());
+
+                String ext = FilenameUtils.getExtension(qnaModifyDTO.getQnaFile().getResource().getFilename());
+
+                qnaModifyDTO.setQnaSaveName(changeName + "." + ext);
+
+                qnaModifyDTO.setQnaFileUrl(s3Uploader.upload(qnaModifyDTO.getQnaFile(), changeName + "." + ext,"image"));
+
+                qnaMapper.updateQnaFile(qnaModifyDTO);
+
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         return (result > 0 ) ? "문의 수정 성공" : "문의 수정 실패";
     }

@@ -9,12 +9,14 @@ const initialState = {
 export const GET_PAIES = 'payment/GET_PAIES';
 export const GET_PAYMENT_DETAIL = 'payment/GET_PAY_DETAIL';
 export const POST_PAY = 'payment/POST_PAY';
+export const POST_REFUND = 'payment/POST_REFUND';
 
 /* 결제 관련 액션 함수 */
 const actions = createActions({
     [GET_PAIES]: () => {},
     [GET_PAYMENT_DETAIL]: () => {},
-    [POST_PAY]: () => {}
+    [POST_PAY]: () => {},
+    [POST_REFUND]: () => {}
 });
 
 console.log(actions);
@@ -34,6 +36,10 @@ const paymentReducer = handleActions(
             }
         }
       , [POST_PAY]: (state, { payload }) => {
+
+            return payload;
+        }
+      , [POST_REFUND]: (state, { payload }) => {
 
             return payload;
         }

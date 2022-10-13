@@ -2,9 +2,12 @@ package com.antjump.ant.common.file;
 
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.antjump.ant.qna.service.QNAService;
 import lombok.RequiredArgsConstructor;
+import net.coobird.thumbnailator.Thumbnails;
+import org.apache.poi.hpsf.Thumbnail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,7 +50,11 @@ public class S3Uploader {
         return upload(uploadFile, changeName, dirName);
     }
 
-    private String upload(File uploadFile, String changeName, String dirName) {
+    private String upload(File uploadFile, String changeName, String dirName) throws IOException {
+        Thumbnails.of(uploadFile)
+                .size(300, 300)
+                .toFile(uploadFile);
+
         String fileName = dirName + "/" + changeName;
         String uploadImageUrl = putS3(uploadFile, fileName);
         removeNewFile(uploadFile);
@@ -79,4 +86,8 @@ public class S3Uploader {
         return Optional.empty();
     }
 
+    public void delete(String fileName) {
+        DeleteObjectRequest request = new DeleteObjectRequest(bucket, "image/" + fileName);
+        amazonS3Client.deleteObject(request);
+    }
 }

@@ -83,6 +83,25 @@ function FAQWritePage() {
                 />
                 </Box>
                 <Box
+                    sx={{
+                        float: 'right',
+                        width: 200,
+                        margin: 'auto'
+                    }}
+                >
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        name='faqCategory'
+                        onChange={onChangeHandler}
+                        >
+                        <MenuItem value={1}>개미 협업툴 사용 관련</MenuItem>
+                        <MenuItem value={2}>가격 정책</MenuItem>
+                        <MenuItem value={3}>결제 관련</MenuItem>
+                        <MenuItem value={4}>관리자</MenuItem>
+                    </Select>
+                </Box>
+                <Box
                     component="form"
                     noValidate
                     autoComplete="off"
@@ -105,40 +124,6 @@ function FAQWritePage() {
                     onChange={onChangeHandler}
                 />
                 </Box>
-                <Box
-                    sx={{
-                        width: 700,
-                        maxWidth: '100%',
-                        paddingTop: 5,
-                        margin: 'auto'
-                    }}
-                >
-                    <TextField
-                        fullWidth label="파일 첨부"
-                        id="fullWidth"
-                        readOnly
-                        InputProps={{
-                        startAdornment: <InputAdornment position="start">
-                                <IconButton color="primary" aria-label="upload picture" component="label">
-                                    <input hidden accept="image/*" type="file" />
-                                    <PhotoCamera />
-                                </IconButton>
-                            </InputAdornment>
-                        }}
-                    />
-                </Box>
-
-                <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    name='faqCategory'
-                    onChange={onChangeHandler}
-                    >
-                    <MenuItem value={1}>개미 협업툴 사용 관련</MenuItem>
-                    <MenuItem value={2}>가격 정책</MenuItem>
-                    <MenuItem value={3}>결제 관련</MenuItem>
-                    <MenuItem value={4}>관리자</MenuItem>
-                </Select>
                 <CustomButton variant="contained" disableElevation onClick={onClickFAQHandler}>
                     작성 완료
                 </CustomButton>
