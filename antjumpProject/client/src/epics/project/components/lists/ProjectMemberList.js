@@ -7,10 +7,9 @@ import RoleChangeButton from '../items/RoleChangeButton';
 import { useDispatch,useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { callProjectMemberListApi } from '../../../../apis/ProjectAPICalls';
-import { PATCH_PROJECT } from '../../../../modules/ProjectModule';
+
 function ProjectMemberList({isRoleChange, projectId}){
-    const result = useSelector((state)=>state.projectMemberReducer);
-    const members = result.projectMembers; 
+    const members = useSelector((state)=>state.projectMemberReducer);
         console.log("members:", members);
     const projectState= useSelector((state)=>state.projectReducer); 
 

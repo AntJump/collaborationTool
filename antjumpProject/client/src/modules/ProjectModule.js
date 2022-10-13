@@ -20,6 +20,7 @@ export const GET_PROJECT_ROLES = 'project/GET_PROJECT_ROLES';
 export const POST_PROJECT = 'project/POST_PROJECT';
 export const PUT_PROJECT = 'project/PUT_PROJECT';
 export const PATCH_PROJECT = 'project/PATCH_PROJECT';
+export const DELETE_PROJECT = 'project/DELETE_PROJECT';
 
 // 액션 함수 생성
 // 프로젝트 목록 관련 액션 함수
@@ -29,7 +30,8 @@ const actions =  createAction({
     [POST_PROJECT]: ()=>{},
     [SET_PROJECT]: () => {},
     [PUT_PROJECT]: () => {},
-    [PATCH_PROJECT]: () => {}
+    [PATCH_PROJECT]: () => {},
+    [DELETE_PROJECT]: ()=>{}
 });
 
 // 리듀서 함수 설정
@@ -60,6 +62,10 @@ export const projectReducer = handleActions(
         },
         [PATCH_PROJECT]:(state, {payload}) =>{
             console.log('get patch project payload: ', payload);
+            return payload;
+        },
+        [DELETE_PROJECT]:(state, {payload}) =>{
+            console.log('get delete project payload: ', payload);
             return payload;
         }
   },

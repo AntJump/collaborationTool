@@ -10,13 +10,18 @@ import {
     GET_PROJECT, 
     POST_PROJECT, 
     PUT_PROJECT,  
-    PATCH_PROJECT
+    PATCH_PROJECT,
+    DELETE_PROJECT
 } from "../modules/ProjectModule";
 
 import {
-    GET_PROJECT_MEMBERS,
-    GET_INVITATIONS
+    GET_PROJECT_MEMBERS
 } from "../modules/ProjectMemberModule";
+
+import {
+    GET_INVITATIONS,
+    SET_EMAIL
+} from "../modules/ProjectInvitationModule";
 
 console.log("[ProjectAPICalls]");
 
@@ -252,7 +257,7 @@ export const callProjectMemberListApi = ({projectId})=>{
             method: 'GET',
             headers:{
                 "Content-Type" : "application/json"
-            },
+            }
         })
         .then(response => response.json());
 
@@ -273,7 +278,7 @@ export const callProjectMemberRoleModifyApi = ({projectMemberId, roleId})=>{
             method: 'PATCH',
             headers:{
                 "Content-Type" : "application/json"
-            },
+            }
         })
         .then(response => response.json());
 
@@ -294,12 +299,104 @@ export const callProjectRoleListApi = ()=>{
             method: 'GET',
             headers:{
                 "Content-Type" : "application/json"
-            },
+            }
         })
         .then(response => response.json());
 
         console.log("result: ", result);
         dispatch({type: GET_PROJECT, payload: result.data});
     }
-
 }
+
+/* 프로젝트 팀원 초대 */
+export const callProjectInviteApi = ({form})=> {
+    console.log("============= callProjectInviteApi ================");
+    console.log("form:", form);
+    const requestUrl = `${process.env.REACT_APP_SERVER_IP}/invitations`;
+
+    return async(dispatch, getState) => {
+        const result = await fetch(requestUrl,{
+            method:'POST',
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(form)
+        })
+        .then(response => response.json());
+
+        console.log("result:", result);
+        dispatch({type: POST_PROJECT, payload: result.data});
+    }
+}
+
+
+/* 이메일이 회원인지 확인 */
+export const callCheckMemberByEmailApi = ({email})=> {
+    const requestUrl = `${process.env.REACT_APP_SERVER_IP}/invitations/check/${email}`;
+
+    return  async(dispatch, getState) => {
+        const result = await fetch(requestUrl, {
+            method: 'GET',
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        })
+        .then(response => response.json());
+
+        console.log("result: ", result);
+        if(result.status == 200 && result.data.memberId > 0){
+            dispatch({type: SET_EMAIL, payload: email});
+        }
+
+    }
+}
+
+
+/* 초대 리스트 조회 (대기 명단) */
+export const callProjectInvitationListApi = ({projectId})=>{
+    console.log("============= callInvitationListApi ================");
+
+    const requestUrl = `${process.env.REACT_APP_SERVER_IP}/invitations?projectId=${projectId}`;
+    
+    return async(dispatch, getState) => {
+        const result = await fetch(requestUrl, {
+            method: 'GET',
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        })
+        .then(response => response.json());
+
+        console.log("result: ", result);
+        dispatch({type: GET_INVITATIONS, payload: result.data});
+    }
+}
+
+
+
+/* 초대 취소 */
+export const callProjectInvitationDeleteApi = ({invitationId})=>{
+    console.log("============= callInvitationDeleteApi ================");
+
+    const requestUrl = `${process.env.REACT_APP_SERVER_IP}/invitations/${invitationId}`;
+    
+    return async(dispatch, getState) => {
+        const result = await fetch(requestUrl, {
+            method: 'DELETE',
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        })
+        .then(response => response.json());
+
+        console.log("result: ", result);
+        dispatch({type: DELETE_PROJECT, payload: result.data});
+    }
+}
+
+
+
+
+/* 팀원 초대장(토큰) 검증 */
+
+
