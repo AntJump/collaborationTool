@@ -1,20 +1,17 @@
-import Button from "@mui/material/Button";
-import { useParams } from "react-router-dom";
+import { Grid } from "@mui/material";
 
+// import { DndProvider } from 'react-dnd'
+// import  {HTML5Backend} from 'react-dnd-html5-backend'
+import BacklogTableIndex from "../components/BacklogTableIndex";
 function BacklogPage() {
-  const { id } = useParams();
-
   return (
-    <>
-      <h2>프로젝트 페이지</h2>
-      <h3>메인 스프린트</h3>
-      <h3>임시 스프린트</h3>
-      <h3>백로그 목록</h3>
 
-      <Button variant="contained" href={`/project/${id}/issue-create`}>
-        이슈 생성
-      </Button>
-    </>
+    // <DndProvider backend={HTML5Backend}>
+      <Grid container spacing={1} sx={{width:'90%' , margin:'auto'}}>
+        <BacklogTableIndex/>
+      </Grid>
+    // </DndProvider>
+
   );
 }
 

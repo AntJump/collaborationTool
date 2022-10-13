@@ -8,6 +8,7 @@ import IssuePriority from "../components/IssuePriority.js";
 import IssueDifficulty from "../components/IssueDifficulty.js";
 import IssueCreateModal from "../modals/IssueCreateModal.js";
 import IssueDetail from "./IssueDetailPage.js";
+import IssueFileUpload from "../components/IssueFileUpload.js";
 
 export default function IssueCreatePage() {
   return (
@@ -59,6 +60,7 @@ export default function IssueCreatePage() {
             rows={10}
           />
         </Box>
+        <IssueFileUpload />
         <IssueCreateModal />
       </Box>
     </Box>

@@ -1,7 +1,16 @@
-import { GET_MEMBER, POST_LOGIN, POST_REGISTER } from "../modules/MemberModule";
+import {
+  GET_MEMBER,
+  POST_LOGIN,
+  POST_REGISTER,
+  POST_UPDATE,
+  POST_DELETE,
+} from "../modules/MemberModule";
 
-export const callGetMemberAPI = ({ memberEmail }) => {
-  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/members/${memberEmail}`;
+export const callGetMemberAPI = ({ memberId }) => {
+  console.log(memberId);
+  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/member/${memberId}`;
+
+  console.log(requestURL);
 
   return async (dispatch, getState) => {
     // 클라이언트 fetch mode : no-cors 사용시 application/json 방식으로 요청이 불가능
@@ -11,7 +20,7 @@ export const callGetMemberAPI = ({ memberEmail }) => {
       headers: {
         "Content-Type": "application/json",
         Accept: "*/*",
-        Authorization: "Bearer " + window.localStorage.getItem("accessToken"),
+        //    Authorization: "Bearer " + window.localStorage.getItem("accessToken"),
       },
     }).then((response) => response.json());
 
@@ -22,7 +31,7 @@ export const callGetMemberAPI = ({ memberEmail }) => {
 };
 
 export const callLoginAPI = ({ data }) => {
-  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/login`;
+  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/auth/login`;
 
   return async (dispatch, getState) => {
     // 클라이언트 fetch mode : no-cors 사용시 application/json 방식으로 요청이 불가능
@@ -56,7 +65,7 @@ export const callLogoutAPI = () => {
 };
 
 export const callRegisterAPI = ({ data }) => {
-  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/signup`;
+  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/auth/signup`;
 
   return async (dispatch, getState) => {
     const result = await fetch(requestURL, {
@@ -77,6 +86,51 @@ export const callRegisterAPI = ({ data }) => {
 
     if (result.status === 201) {
       dispatch({ type: POST_REGISTER, payload: result });
+    }
+  };
+};
+
+export const callUpdateMemberAPI = ({ form }) => {
+  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/member/update`;
+
+  return async (dispatch, getState) => {
+    const result = await fetch(requestURL, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "*/*",
+      },
+      body: JSON.stringify({
+        memberId: form.memberId,
+        memberName: form.name,
+        memberPhone: form.phone,
+      }),
+    }).then((response) => response.json());
+
+    console.log("[MemberAPICalls] callUpdateMemberAPI RESULT : ", result);
+
+    if (result.status === 201) {
+      dispatch({ type: POST_UPDATE, payload: result });
+    }
+  };
+};
+
+export const callDeleteMemberAPI = ({ memberId }) => {
+  const requestURL = `http://${process.env.REACT_APP_RESTAPI_IP}:8181/member/delete/${memberId}`;
+
+  return async (dispatch, getState) => {
+    const result = await fetch(requestURL, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "*/*",
+      },
+    }).then((response) => response.json());
+
+    console.log("[MemberAPICalls] callDeleteMemberAPI RESULT : ", result);
+
+    if (result.status === 201) {
+      dispatch({ type: POST_DELETE, payload: result });
     }
   };
 };

@@ -14,18 +14,23 @@ export const GET_FAQS = 'faqs/GET_FAQS';
 export const GET_FAQ_DETAIL = 'faqs/GET_FAQ_DETAIL';
 export const FAQ_TITLE = 'faqs/FAQ_TITLE';
 export const FAQ_CONTENT = 'faqs/FAQ_CONTENT';
+export const POST_FAQ = 'faqs/POST_FAQ';
+export const PUT_FAQ = 'faqs/PUT_FAQ';
 
 const actions = createActions({
     [GET_FAQS]: () => {},
     [GET_FAQ_DETAIL]: () => {},
     [FAQ_TITLE]: () => {},
-    [FAQ_CONTENT]: () => {}
+    [FAQ_CONTENT]: () => {},
+    [POST_FAQ]: () => {},
+    [PUT_FAQ]: () => {},
+
 });
 
 console.log(actions);
 
-/* 리듀서 */
-const qnaReducer = handleActions(
+/* FAQ 리듀서 */
+const faqReducer = handleActions(
     {
           [GET_FAQ_DETAIL]: (state, { payload : detail }) => {
 
@@ -47,8 +52,16 @@ const qnaReducer = handleActions(
               state = {...state, faqContent}
               return state; 
           }
+        , [POST_FAQ]: (state, { payload }) => {
+            
+            return payload; 
+        }
+        , [PUT_FAQ]: (state, { payload }) => {
+            
+            return payload; 
+        }
     },
     initialState
 );
 
-export default qnaReducer;
+export default faqReducer;

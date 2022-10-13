@@ -27,11 +27,12 @@ export default function BasicModal() {
   return (
     <div>
       <Button
-        style={{ marginBottom: 20 }}
+        style={{ marginTop: 20, marginBottom: 20 }}
         variant="contained"
         onClick={handleOpen}
+        color="button"
       >
-        생성하기
+        확인
       </Button>
       <Modal
         open={open}
@@ -46,7 +47,7 @@ export default function BasicModal() {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             새로운 이슈가 백로그 목록에 추가되었습니다!
           </Typography>
-          <Button variant="contained" href={`/project/${id}`}>
+          <Button color="button" variant="contained" href={`/project/${id}`}>
             확인
           </Button>
         </Box>

@@ -22,6 +22,7 @@ function AdminAddPage() {
     try {
       const response = await axios.post("http://localhost:8181/admin/signup", {
         adminEmail: data.get("email"),
+        adminName: data.get("name"),
         adminPwd: data.get("password"),
       });
       navigate("/");
@@ -57,6 +58,17 @@ function AdminAddPage() {
                 fullWidth
                 id="email"
                 label="이메일"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                autoComplete="name"
+                name="name"
+                required
+                fullWidth
+                id="name"
+                label="이름"
                 autoFocus
               />
             </Grid>

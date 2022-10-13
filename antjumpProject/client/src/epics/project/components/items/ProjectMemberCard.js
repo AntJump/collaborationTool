@@ -1,17 +1,14 @@
 import FaceIcon from '@mui/icons-material/Face';
-import { Box, Typography, Stack } from '@mui/material';
+import { Paper,  Chip } from '@mui/material';
 
 function ProjectMemberCard({member}){
+    
 
     return (
-        <>
-            <Box sx={{border:2, borderRadius:'10px', borderBlockColor:'#E8E8E8', width: '230px'}}>
-               
-                <FaceIcon/>{member.userName}
-                <Typography sx={{display: 'inline-block'}}color = "grey" variant="contained">
-                    {member.userEmail}
-                </Typography>
-            </Box>
+        < >
+            <Paper sx={{ borderRadius:'10px',borderBlockColor:'#E8E8E8',float:'center', width: '200px'}}>
+                <FaceIcon/>{member.userName}<Chip label={member.userEmail}/>
+            </Paper>
         </>
     );
 }

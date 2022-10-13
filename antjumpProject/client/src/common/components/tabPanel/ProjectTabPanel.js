@@ -6,54 +6,45 @@ import WorkIcon from "@mui/icons-material/Work";
 import TodayIcon from "@mui/icons-material/Today";
 import ChatIcon from "@mui/icons-material/Chat";
 import styled from "@emotion/styled";
-import { Divider, Tabs, Tab} from "@mui/material";
+import { Divider, Tabs, Tab } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import LogoButton from "../items/LogoButton";
 
 import { useParams } from "react-router-dom";
 
-
 const StyledTabs = styled(Tabs)(({ theme }) => ({
-    height: "95vh",
-    backgroundColor: '#000',
-    color: theme.palette.common.white,
-    borderRadius: "20px",
-    width: "240px",
-    marginTop: "15px",
-    marginBottom: "10px"
+  height: "95vh",
+  backgroundColor: "#000",
+  color: theme.palette.common.white,
+  borderRadius: "20px",
+  width: "240px",
+  marginTop: "15px",
+  marginBottom: "10px",
 }));
-
 
 const StyledTab = styled(Tab)(({ theme }) => ({
   color: theme.palette.common.white,
-  marginBottom: "30px"
+  marginBottom: "30px",
 }));
 
 export default function ProjectTabPanel() {
-
-
-  const {id} = useParams();
+  const { id } = useParams();
 
   return (
     <>
-
-      <StyledTabs
-
-        aria-label="icon label tabs example"
-        orientation="vertical"
-      >
-        <LogoButton/>
-        <Divider sx={{ backgroundColor:"white", marginBottom: "0.1vh"}}/>
-        <NavLink to= {`/project/${id}`}>
-          <StyledTab icon={<ImageAspectRatio />} label="백로그"/>
+      <StyledTabs aria-label="icon label tabs example" orientation="vertical">
+        <LogoButton />
+        <Divider sx={{ backgroundColor: "white", marginBottom: "0.1vh" }} />
+        <NavLink to={`/project/${id}`}>
+          <StyledTab icon={<ImageAspectRatio />} label="백로그" />
         </NavLink>
         <NavLink to={`/project/${id}/board`}>
-          <StyledTab icon={<ContentPasteIcon />} label="보드"/>
+          <StyledTab icon={<ContentPasteIcon />} label="보드" />
         </NavLink>
-        <NavLink to={`/project/${id}/storage`}>
+        <NavLink to={`/project/${id}/sprintstorage`}>
           <StyledTab icon={<PersonPinIcon />} label="보관" />
         </NavLink>
-        <Divider sx={{ backgroundColor:"white", marginBottom: "0.1vh"}}/>
+        <Divider sx={{ backgroundColor: "white", marginBottom: "0.1vh" }} />
         <NavLink to={`/project/${id}/mywork`}>
           <StyledTab icon={<WorkIcon />} label="내 작업" />
         </NavLink>

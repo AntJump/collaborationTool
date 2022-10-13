@@ -1,9 +1,13 @@
-import { Button, Modal, Box, Grid } from "@mui/material";
-import { inviteModalBoxstyle } from "./ModalStyle";
+
 import { useState } from "react";
-import ModalHeader from "./ModalHeader";
+
+import { Button, Modal, Box, Grid, Paper} from "@mui/material";
+
+import { modalBoxStyle } from "../../../../common/styles/ModalStyle";
+import ModalHeader from "../../../../common/components/headers/ModalHeader";
+import InviteInputForm from "../containers/InviteInputForm";
 import FinishButton from "../items/FinishButton";
-import InviteInputForm from "../Containers/InviteInputForm";
+
 function ProjectMemberInviteModal({project}){
     const [open, setOpen] = useState(false);
     const handleOpen = () => {
@@ -13,6 +17,11 @@ function ProjectMemberInviteModal({project}){
       setOpen(false);
     };
 
+    const onClickFinish = ()=>{
+        alert("초대 메일을 발송하였습니다!");
+        setOpen(false);
+    }
+
     const inviteHandler = () =>{
         handleClose();
     }
@@ -21,6 +30,7 @@ function ProjectMemberInviteModal({project}){
             <Button 
                 onClick={handleOpen}
                 color="button" variant="contained"
+                sx={{float: 'right'}}
             >
                 팀원 초대
             </Button>
@@ -28,29 +38,17 @@ function ProjectMemberInviteModal({project}){
                 open={open}
                 onClose={handleClose}
             >
-                <Box sx={inviteModalBoxstyle} >
+                <Box sx={modalBoxStyle({w:'30vw', h:'50vh'})} >
                     <ModalHeader title="팀원 초대" onClickHandler={handleClose}/>
-                    <Box sx={{}}>
-                        <Grid container spacing={2}  >
-                            <Grid item xs={12}>
+                    <Grid container spacing={1} height='80%'>
+                        <Grid item xs={12} height='80%'  sx={{backgroundColor: '#F2F2F2'}}>
                                 <InviteInputForm/>
-                            </Grid>
-                            <Grid item xs={12} >
-                                <Button  
-                                    color='button' 
-                                    variant="contained" 
-                                    onClick={inviteHandler}
-                                    sx={{float: 'right'}}
-                                >
-                                    초대 메일 발송
-                                </Button>
-                            </Grid>
+                        </Grid>     
+                        <Grid item xs={12}>
+                            <FinishButton text="초대 메일 발송" onClickHandler={onClickFinish}/>
                         </Grid>
-                    </Box>
-
-                   
+                    </Grid>
                 </Box>
-                
             </Modal>
         </>
         

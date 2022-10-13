@@ -3,7 +3,6 @@ package com.antjump.ant.admin.controller;
 import com.antjump.ant.admin.dto.AdminDto;
 import com.antjump.ant.admin.service.AdminAuthService;
 import com.antjump.ant.common.ResponseDto;
-import com.antjump.ant.member.dto.MemberDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,18 +22,15 @@ public class AdminController {
     }
 
     @PostMapping ("/login")
-        public ResponseEntity<ResponseDto> login(@RequestBody AdminDto adminDto) {
+    public ResponseEntity<ResponseDto> login(@RequestBody AdminDto adminDto) {
 
-            return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "로그인 성공", adminAuthService.adminLogin(adminDto)));
-        }
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "로그인 성공", adminAuthService.adminLogin(adminDto)));
+    }
 
 
     @PostMapping("/signup")
-        public ResponseEntity<ResponseDto> signup(@RequestBody AdminDto adminDto) {
+    public ResponseEntity<ResponseDto> signup(@RequestBody AdminDto adminDto) {
 
-            return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "회원가입 성공", adminAuthService.adminSignup(adminDto)));
-        }
-
-
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.CREATED, "회원가입 성공", adminAuthService.adminSignup(adminDto)));
+    }
 }
-

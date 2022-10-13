@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/server/ant/ant.iml" filepath="$PROJECT_DIR$/server/ant/ant.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/antjumpProject.iml" filepath="$PROJECT_DIR$/.idea/antjumpProject.iml" />
     </modules>
   </component>

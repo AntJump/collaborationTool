@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.antjump.ant.project.dao.InvitationMapper">
+
+    <resultMap id="InvitationResultMap" type="com.antjump.ant.project.dto.InvitationDto">
+        <id property="invitationId" column="invitation_id"/>
+        <result property="invitationEmail" column="invitation_email"/>
+        <result property="invitationAuthYn" column="invitation_auth_yn"/>
+        <result property="fkProjectsProjectId" column="fk_projects_project_id"/>
+    </resultMap>
+
+    <insert id="registInvitationInfo" parameterType="com.antjump.ant.project.dto.InvitationDto">
+        INSERT
+          INTO  pjhbsy.tbl_invitations
+        (
+            invitation_email, invitation_auth_yn, fk_projects_project_id, auth_token, token_produce_time, token_expiration_date
+        )
+        VALUES
+        (
+           #{ invitationEmail }, 'N', #{ fkProjectsProjectId }, null, null, null
+        )
+    </insert>
+
+    <update id="invitationConfirmation" parameterType="com.antjump.ant.project.dto.InvitationDto">
+        UPDATE
+                pjhbsy.tbl_invitations
+           SET  invitation_auth_yn = 'Y'
+         WHERE  fk_projects_project_id = #{ fkProjectsProjectId }
+           AND  invitation_email = #{ invitationEmail }
+    </update>
+
+    <select id="checkIsRegisteredByInvitation" parameterType="com.antjump.ant.project.dto.InvitationDto" resultType="_int">
+        SELECT
+                count(*)
+          FROM  pjhbsy.tbl_project_members as A
+          LEFT  JOIN pjhbsy.tbl_members as B ON A.fk_members_member_id = B.member_id
+         WHERE  A.fk_projects_project_id =  #{ fkProjectsProjectId }
+           AND  B.member_email = #{ invitationEmail };
+    </select>
+
+
+    <select id="selectInvitationList" parameterType="_int" resultMap="InvitationResultMap">
+        SELECT
+                A.invitation_id
+             ,  A.invitation_email
+             ,  A.invitation_auth_yn
+             ,  A.fk_projects_project_id
+          FROM  pjhbsy.tbl_invitations as A
+         WHERE  A.fk_projects_project_id = #{ projectId }
+           AND  A.invitation_auth_yn = 'N'
+    </select>
+
+    <delete id="deleteInvitationInfoById" parameterType="_int">
+        DELETE
+          FROM  pjhbsy.tbl_invitations as A
+         WHERE  A.invitation_id = #{ invitationId }
+    </delete>
+
+</mapper>
