@@ -17,7 +17,7 @@ function ProjectModifyForm({projectId}){
     const dispatch = useDispatch();
     useEffect(
         ()=>{
-        dispatch(callProjectDetailApi({projectId: projectId}));
+            dispatch(callProjectDetailApi({projectId: projectId}));
         },
         []
     );
@@ -38,13 +38,13 @@ function ProjectModifyForm({projectId}){
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <TextField 
-                            name="projectSummary" 
-                            variant="outlined" 
-                            label="프로젝트 요약 *"
-                            value={project.projectSummary}
-                            fullWidth
-                            rows={3}
-                            onChange={onChangeHandler}
+                        name="projectSummary" 
+                        variant="outlined" 
+                        label="프로젝트 요약 *"
+                        value={project.projectSummary}
+                        fullWidth
+                        rows={3}
+                        onChange={onChangeHandler}
                     /><br/>
                 </Grid>
                 <Grid item xs={12}  mb={3}>
@@ -52,7 +52,6 @@ function ProjectModifyForm({projectId}){
                         name="projectExplanation" 
                         variant="outlined" 
                         label="프로젝트 설명"
-                        
                         value={project.projectExplanation}
                         multiline
                         rows={9}

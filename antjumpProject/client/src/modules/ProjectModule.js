@@ -4,6 +4,7 @@ import { createAction, handleActions } from "redux-actions";
 
 // 초기 state 값 설정
 const initState = {
+    projectId: 0,
     projectKey: "",
     projectName: "",
     projectSummary: "",
@@ -14,6 +15,7 @@ const initState = {
 export const SET_PROJECT = 'project/SET_PROJECT';
 
 export const GET_PROJECT= 'project/GET_PROJECT'; 
+export const GET_PROJECT_ROLES = 'project/GET_PROJECT_ROLES';
 
 export const POST_PROJECT = 'project/POST_PROJECT';
 export const PUT_PROJECT = 'project/PUT_PROJECT';
@@ -23,6 +25,7 @@ export const PATCH_PROJECT = 'project/PATCH_PROJECT';
 // 프로젝트 목록 관련 액션 함수
 const actions =  createAction({
     [GET_PROJECT]: () => {},
+    [GET_PROJECT_ROLES]: ()=> {},
     [POST_PROJECT]: ()=>{},
     [SET_PROJECT]: () => {},
     [PUT_PROJECT]: () => {},
@@ -40,6 +43,10 @@ export const projectReducer = handleActions(
             }
         },
         [GET_PROJECT] : (state, {payload}) => {
+            console.log('get project payload: ', payload);
+            return payload;
+        },
+        [GET_PROJECT_ROLES] : (state, {payload}) => {
             console.log('get project payload: ', payload);
             return payload;
         },

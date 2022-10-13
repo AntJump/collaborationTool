@@ -10,9 +10,9 @@ import MembersMenuItem from "./MembersMenuItem";
 
 import { StyledMenu } from "./StyledMenu";
 
-function ProjectMenuButton({projectId}) {
+function ProjectMenuButton({project}) {
 
-  console.log("projectId", projectId); 
+  console.log("project", project); 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -23,6 +23,7 @@ function ProjectMenuButton({projectId}) {
       setAnchorEl(null);
     };
 
+    
 
     return (
       <div>
@@ -38,11 +39,11 @@ function ProjectMenuButton({projectId}) {
           open={open}
           onClose={handleClose}
         >
-          <ModifyMenuItem projectId={projectId}/>
+          <ModifyMenuItem projectId={project.projectId}/>
           <Divider sx={{ my: 0.5 }} />
-          {/* <MembersMenuItem projectId={projectId}/> */}
-          {/* <Divider sx={{ my: 0.5 }} /> */}
-          <DeleteMenuItem projectId={projectId}/>
+          <MembersMenuItem project={project}/>
+          <Divider sx={{ my: 0.5 }} />
+          <DeleteMenuItem projectId={project.projectId}/>
 
         </StyledMenu>
       </div>

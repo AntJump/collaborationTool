@@ -20,7 +20,7 @@ export default function ModifyModal({open, handleClose, projectId}) {
   const dispatch = useDispatch();
 
   const onClickHandler = ()=>{
-    dispatch(callProjectUdateApi({form: form, projectId: projectId}))
+    dispatch(callProjectUdateApi({form: form}))
   }
 
   return (

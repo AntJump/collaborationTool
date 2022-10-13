@@ -11,6 +11,7 @@ import { remembranceReducer } from "./RemembranceModule";
 import { issueReducer } from "./IssueModule";
 import { projectReducer } from "./ProjectModule";
 import { projectListReducer } from "./ProjectListModule";
+import { projectMemberReducer } from "./ProjectMemberModule";
 
 const rootReducer = combineReducers({
   qnaReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   faqReducer,
   projectReducer,
   projectListReducer,
+  projectMemberReducer,
   backlogReducer,
   memberReducer,
   issueReducer,
