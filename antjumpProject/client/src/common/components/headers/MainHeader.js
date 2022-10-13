@@ -44,16 +44,16 @@ const MainHeader = () => {
   //   navigate("/mypage", { replace: true });
   // };
 
-  useEffect(() => {
-    console.log("token", token.sub);
-    if (token !== null) {
-      dispatch(
-        callGetMemberAPI({
-          memberId: token.sub,
-        })
-      );
-    }
-  }, []);
+  // useEffect(() => {
+  //   console.log("token", token.sub);
+  //   if (token !== null) {
+  //     dispatch(
+  //       callGetMemberAPI({
+  //         memberId: token.sub,
+  //       })
+  //     );
+  //   }
+  // }, []);
 
   const onClickLogoutHandler = () => {
     window.localStorage.removeItem("accessToken");

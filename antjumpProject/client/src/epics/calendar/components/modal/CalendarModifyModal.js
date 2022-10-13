@@ -4,8 +4,7 @@ import ModalHeader from './ModalHeader';
 import { modalBoxstyle } from './ModalStyle';
 import CalendarModify from '../form/container/CalendarModify';
 
-export default function CalendarModifyModal({open, handleClose}) {
-
+export default function CalendarModifyModal({calendarId, open, handleClose}) {
 
   return (
     <Modal
@@ -16,7 +15,7 @@ export default function CalendarModifyModal({open, handleClose}) {
     >
         <Box sx={modalBoxstyle}>
             <ModalHeader title="일정 수정" onClickHandler={handleClose}/>
-            <CalendarModify/>
+            <CalendarModify calendarId = { calendarId }/>
         </Box>
     </Modal>
   );

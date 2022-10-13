@@ -9,6 +9,7 @@ import CalendarPage from "../epics/calendar/pages/CalendarPage";
 import ChattingPage from "../epics/chatting/pages/ChattingPage";
 import ProjectErrorPage from "../common/pages/ErrorPages/ProjectErrorPage";
 import CalendarInsert from "../epics/calendar/pages/CalendarInsert";
+import CalendarDetail from "../epics/calendar/pages/CalendarDetail";
 import IssueCreatePage from "../epics/backlog/pages/IssueCreatePage";
 import IssueDetailPage from "../epics/backlog/pages/IssueDetailPage";
 
@@ -38,6 +39,7 @@ function ProjectRoute() {
           <Route path="calendar">
             <Route index element={<CalendarPage />} />
             <Route path="add" element={<CalendarInsert />} />
+            <Route path="plan/:calendarId" element={<CalendarDetail/>}/>
           </Route>
           <Route path="chatting" element={<ChattingPage />} />
         </Route>

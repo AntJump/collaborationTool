@@ -16,12 +16,12 @@ export default function CalendarTitle() {
                 margin: 'auto'
             }}
         >
-        <TextField
-            id="outlined-multiline-static, fullWidth"
-            label="일정 제목 *"
-            multiline
-            fullWidth
-        />
+            <TextField
+                id="outlined-multiline-static, fullWidth"
+                label="일정 제목 *"
+                multiline
+                fullWidth
+            />
         </Box>
     );
 }
