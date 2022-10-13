@@ -1,5 +1,7 @@
 package com.antjump.ant.qna.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.sql.Timestamp;
 
 /**
@@ -27,11 +29,15 @@ public class QNACreateDTO {
     private String memberName;
     private int qnaCategoryNo;
     private String qnaCategoryName;
+    private MultipartFile qnaFile;
+    private String qnaFileUrl;
+    private String qnaOriginalName;
+    private String qnaSaveName;
 
     public QNACreateDTO() {
     }
 
-    public QNACreateDTO(int qnaId, String qnaTitle, String qnaContent, Timestamp qnaWriteTime, Timestamp qnaModifyTime, int memberId, String memberName, int qnaCategoryNo, String qnaCategoryName) {
+    public QNACreateDTO(int qnaId, String qnaTitle, String qnaContent, Timestamp qnaWriteTime, Timestamp qnaModifyTime, int memberId, String memberName, int qnaCategoryNo, String qnaCategoryName, MultipartFile qnaFile, String qnaFileUrl, String qnaOriginalName, String qnaSaveName) {
         this.qnaId = qnaId;
         this.qnaTitle = qnaTitle;
         this.qnaContent = qnaContent;
@@ -41,6 +47,10 @@ public class QNACreateDTO {
         this.memberName = memberName;
         this.qnaCategoryNo = qnaCategoryNo;
         this.qnaCategoryName = qnaCategoryName;
+        this.qnaFile = qnaFile;
+        this.qnaFileUrl = qnaFileUrl;
+        this.qnaOriginalName = qnaOriginalName;
+        this.qnaSaveName = qnaSaveName;
     }
 
     public int getQnaId() {
@@ -115,6 +125,38 @@ public class QNACreateDTO {
         this.qnaCategoryName = qnaCategoryName;
     }
 
+    public MultipartFile getQnaFile() {
+        return qnaFile;
+    }
+
+    public void setQnaFile(MultipartFile qnaFile) {
+        this.qnaFile = qnaFile;
+    }
+
+    public String getQnaFileUrl() {
+        return qnaFileUrl;
+    }
+
+    public void setQnaFileUrl(String qnaFileUrl) {
+        this.qnaFileUrl = qnaFileUrl;
+    }
+
+    public String getQnaOriginalName() {
+        return qnaOriginalName;
+    }
+
+    public void setQnaOriginalName(String qnaOriginalName) {
+        this.qnaOriginalName = qnaOriginalName;
+    }
+
+    public String getQnaSaveName() {
+        return qnaSaveName;
+    }
+
+    public void setQnaSaveName(String qnaSaveName) {
+        this.qnaSaveName = qnaSaveName;
+    }
+
     @Override
     public String toString() {
         return "QNACreateDTO{" +
@@ -127,6 +169,10 @@ public class QNACreateDTO {
                 ", memberName='" + memberName + '\'' +
                 ", qnaCategoryNo=" + qnaCategoryNo +
                 ", qnaCategoryName='" + qnaCategoryName + '\'' +
+                ", qnaFile=" + qnaFile +
+                ", qnaFileUrl='" + qnaFileUrl + '\'' +
+                ", qnaOriginalName='" + qnaOriginalName + '\'' +
+                ", qnaSaveName='" + qnaSaveName + '\'' +
                 '}';
     }
 

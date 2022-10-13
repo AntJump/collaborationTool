@@ -40,4 +40,8 @@ public interface QNAMapper {
     int updateAdminQNA(QNAAdminModifyDTO qnaAdminModifyDTO);
 
     int updateRefQNA(QNAAdminCreateDTO qnaAdminCreateDTO);
+
+    int insertQnaFile(QNACreateDTO qnaCreateDTO);
+
+    void updateQnaFile(QNAModifyDTO qnaModifyDTO);
 }
