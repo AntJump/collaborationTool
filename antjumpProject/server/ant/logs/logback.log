@@ -1,0 +1,10 @@
+[2022-10-12 22:53:56:1597806][http-nio-8181-exec-8] INFO  c.a.a.faq.controller.FAQController - [FAQController] selectFaqList start ==========
+[2022-10-12 22:53:58:1599197][http-nio-8181-exec-3] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectQNAListWithPaging : 1
+[2022-10-12 22:53:58:1599239][http-nio-8181-exec-3] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectCriteria : SelectCriteria [pageNo=1, totalCount=0, limit=10, buttonAmount=5, maxPage=1, startPage=1, endPage=1, startRow=0, endRow=9]
+[2022-10-12 22:54:05:1606261][http-nio-8181-exec-6] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectQNAListWithPaging : 1
+[2022-10-12 22:54:05:1606273][http-nio-8181-exec-6] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectCriteria : SelectCriteria [pageNo=1, totalCount=0, limit=10, buttonAmount=5, maxPage=1, startPage=1, endPage=1, startRow=0, endRow=9]
+[2022-10-12 22:54:11:1612042][http-nio-8181-exec-2] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectQNAListWithPaging : 1
+[2022-10-12 22:54:11:1612062][http-nio-8181-exec-2] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectCriteria : SelectCriteria [pageNo=1, totalCount=0, limit=10, buttonAmount=5, maxPage=1, startPage=1, endPage=1, startRow=0, endRow=9]
+[2022-10-12 22:55:55:1716796][http-nio-8181-exec-10] INFO  c.a.a.faq.controller.FAQController - [FAQController] selectFaqList start ==========
+[2022-10-12 22:55:56:1717695][http-nio-8181-exec-3] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectQNAListWithPaging : 1
+[2022-10-12 22:55:56:1717736][http-nio-8181-exec-3] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectCriteria : SelectCriteria [pageNo=1, totalCount=0, limit=10, buttonAmount=5, maxPage=1, startPage=1, endPage=1, startRow=0, endRow=9]

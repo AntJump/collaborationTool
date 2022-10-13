@@ -1,39 +1,45 @@
 import ChipInput from 'material-ui-chip-input';
 import { useState } from 'react';
+import { callCheckMemberByEmailApi } from '../../../../apis/ProjectAPICalls';
 
-
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { INIT_EMAILS, DELETE_EMAIL } from '../../../../modules/ProjectInvitationModule';
 function InviteInputForm(){
 
-    const {chips, setChips} = useState(
-        [
-            'hello'
-        ]
-    )
+    console.log("[InviteInputForm]");
+    const {emails} = useSelector(state => state.projectInvitationReducer); 
+        console.log("emails:", emails);
 
-    const handleAddChip= (c) => {
-        setChips(
-            [ 
-                ...chips,
-                c
-            ]
-        );
-    }
+    const dispatch = useDispatch();
+    useEffect(
+        ()=>{
+            dispatch({type:INIT_EMAILS});
+        },
+        []
+    );
+    // const {chips, setChips} = useState([]);
 
-    const handleDeleteChip= ({c, i})=>{
-        setChips(
-            chips.filter(chip=>chip != c)
-        )
-    }
+
+
+    const handleAddChip= (email) =>  {
+        dispatch(callCheckMemberByEmailApi({email: email}));
+    };
+
+    const handleDeleteChip= (email, i)=>{
+        dispatch({type:DELETE_EMAIL, payload: email});
+    };
 
     return (
 
         <>
             <ChipInput
                 fullWidth
-                value={chips}
-                onAdd={(chip) => handleAddChip(chip)}
-                onDelete={(chip, index) => handleDeleteChip(chip, index)}
+                value={emails}
+                onAdd={(email) => handleAddChip(email)}
+                onDelete={(email, index) => handleDeleteChip(email, index)}
                 fullWidthInput
+                placeholder='초대할 회원 이메일을 입력해주세요'
             /><br/>
         </>
     );

@@ -3,10 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import MainPage from "../common/pages/MainPage";
 
-
-
 import ProjectlistPage from "../epics/project/pages/ProjectlistPage";
-
 function RootRoute() {
   return (
     <Routes>
