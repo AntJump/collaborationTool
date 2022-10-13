@@ -10,7 +10,7 @@ const CustomButton = styled(Button)({
         backgroundColor: '#E8E8E8',
         color: 'black'
       },
-      marginTop: '8px',
+      marginTop: '10px',
       marginLeft: '15px',
       height: '40px'
 })

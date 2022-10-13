@@ -14,10 +14,12 @@
 	<typeAliases>
 		<typeAlias alias="MemberDto" type="com.antjump.ant.member.dto.MemberDto"/>
 		<typeAlias alias="AdminDto" type="com.antjump.ant.admin.dto.AdminDto"/>
+		<typeAlias alias="CalendarDTO" type="com.antjump.ant.calendar.dto.CalendarDTO"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="MemberMapper.xml" />
 		<mapper resource="AdminMapper.xml" />
+		<mapper resource="CalendarMapper.xml" />
 	</mappers>
 </configuration>
