@@ -42,11 +42,29 @@
              , a.issue_status
              , a.sprint_include_yn
              , a.fk_projects_issues
-             , b.member_id
+             , a.fk_members_issues
+          FROM tbl_issues a
+         WHERE a.sprint_include_yn = 'N'
+           AND a.top_issue_id is null
+    </select>
+
+    <select id="selectSubIssues" resultMap="issueResultMap">
+        SELECT
+               a.issue_id
+             , a.top_issue_id
+             , a.issue_name
+             , a.issue_summary
+             , a.issue_explanation
+             , a.issue_difficulty
+             , a.issue_category
+             , a.issue_priority
+             , a.issue_status
+             , a.sprint_include_yn
+             , a.fk_projects_issues
+             , a.fk_members_issues
+             , b.member_name
           FROM tbl_issues a
      LEFT JOIN tbl_members b ON (a.fk_members_issues = b.member_id)
-         WHERE a.sprint_include_yn = 'N'
-           AND a.top_issue_id - null
     </select>
 
     <select id="selectCompletedIssues" resultMap="issueResultMap">
@@ -96,17 +114,17 @@
 
     <insert id="createIssue" parameterType="IssueDto">
       INSERT
-        INTO tbl_issues a
+        INTO tbl_issues
         (
-          a.top_issue_id
-        , a.issue_name
-        , a.issue_summary
-        , a.issue_explanation
-        , a.issue_difficulty
-        , a.issue_category
-        , a.issue_priority
-        , a.fk_projects_issues
-        , a.fk_members_issues
+          top_issue_id
+        , issue_name
+        , issue_summary
+        , issue_explanation
+        , issue_difficulty
+        , issue_category
+        , issue_priority
+        , fk_projects_issues
+        , fk_members_issues
         )
       VALUES
         (

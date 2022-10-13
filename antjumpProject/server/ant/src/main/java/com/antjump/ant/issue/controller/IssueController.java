@@ -82,10 +82,19 @@ public class IssueController {
     }
 
     @PatchMapping("/{issueId}")
-    public ResponseEntity <ResponseDto> modifyIssueStatus(@PathVariable int issueId, @RequestBody IssueDTO issueDTO) throws  Exception{
+    public void   modifyIssueStatus(@PathVariable int issueId) throws  Exception{
+//        <ResponseDto>
+//        , @RequestBody IssueDTO issueDTO
+        System.out.println("sfdsfdsfdsf");
+//        issueDTO.setIssueId(issueId);
+//        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "스프린트에 포함된 이슈 수정 성공",  issueService.modifyIssueStatus(issueDTO)));
+//        return ResponseEntity.ok().body(HttpStatus.OK);
+    }
 
-        issueDTO.setIssueId(issueId);
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "스프린트에 포함된 이슈 수정 성공",  issueService.modifyIssueStatus(issueDTO)));
+    @GetMapping("/sub")
+    public ResponseEntity <ResponseDto> selectSubIssues() {
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "하위 이슈 조회 성공",  issueService.selectSubIssues()));
     }
 
     @GetMapping("/{issueId}/replies")

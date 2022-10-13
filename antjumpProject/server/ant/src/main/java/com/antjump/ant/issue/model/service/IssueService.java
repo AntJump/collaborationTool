@@ -110,6 +110,15 @@ public class IssueService {
         return true;
     }
 
+    //하위이슈 목록 조회
+    public List<IssueDTO> selectSubIssues() {
+
+        List<IssueDTO>subIssueList = issueMapper.selectSubIssues();
+
+        return subIssueList;
+
+    }
+
     //이슈 댓글 조회
     public List<IssueReplyDTO> selectIssueReply(int issueId) {
 

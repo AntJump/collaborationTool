@@ -46,6 +46,9 @@ public interface IssueMapper {
      //스프린트에 포함된 이슈의 진행상태 변경
      int modifyIssueStatus(IssueDTO issueDTO);
 
+     //하위 이슈 목록 조회
+     List<IssueDTO> selectSubIssues();
+
      //댓글 조회
      List<IssueReplyDTO> selectIssueReply(int issueId);
 
