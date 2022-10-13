@@ -16,6 +16,7 @@ import moment from 'moment';
 function PaymentPage() {
 
     const possession = useSelector(state => state.paymentReducer);
+    const member = useSelector(state => state.memberReducer);
     const possessions = possession.list;
     console.log("possession: ", possession);
 
@@ -23,7 +24,7 @@ function PaymentPage() {
 
   
     useEffect(() => {
-        dispatch(callPossessionListAPI());
+        dispatch(callPossessionListAPI(member.memberId));
       }, [dispatch]);
 
     return possessions && (

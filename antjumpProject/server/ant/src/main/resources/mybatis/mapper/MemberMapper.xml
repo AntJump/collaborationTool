@@ -10,18 +10,30 @@
         <result property="memberPwd" column="MEMBER_PWD" />
         <result property="memberType" column="MEMBER_TYPE" />
         <result property="memberPhone" column="MEMBER_PHONE" />
+        <result property="memberRegistTime" column="member_regist_time" />
         <result property="memberDeleteYn" column="MEMBER_DELETE_YN" />
         <result property="memberDeleteDate" column="MEMBER_DELETE_DATE" />
     </resultMap>
+
+    <select id="selectMemberList" resultType="MemberDto">
+        SELECT
+               member_id
+             , member_name
+             , member_type
+             , member_regist_time
+             , member_delete_yn
+          from tbl_members
+    </select>
 
     <select id="selectByMemberId" resultType="MemberDto">
         SELECT
             MEMBER_ID
              ,  MEMBER_NAME
-             ,  MEMBER_PWD
              ,  MEMBER_TYPE
              ,  MEMBER_EMAIL
              ,  MEMBER_PHONE
+             , member_regist_time
+             , member_delete_yn
         FROM TBL_MEMBERS
         WHERE MEMBER_ID = #{memberId}
     </select>

@@ -11,7 +11,7 @@ export const callIssueStatusAPI = (issueId) => {
     }).then((response) => response.json());
 
     console.log(result);
-    console.log("[FAQAPICalls] callFAQListAPI RESULT : ", result.data);
+    console.log(result.data);
 
     // dispatch({ type: , payload: result.data });
   };

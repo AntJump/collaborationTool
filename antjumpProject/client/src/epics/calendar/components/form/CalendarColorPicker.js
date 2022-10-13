@@ -49,7 +49,7 @@ class CalendarColorPicker extends React.Component {
           height: '30px'
         },
         popover: {
-          position: 'absolute',
+          position: 'relative',
           zIndex: '2'
         },
         cover: {
@@ -63,14 +63,14 @@ class CalendarColorPicker extends React.Component {
     });
 
     return (
-      <Box sx={{ display: 'inline-block' }}>
+      <Box sx={{ display: 'inline-block', zIndex: 2 }}>
         <div style={{ justifyContent:'center', padding: '10px 15px 10px 15px' }}>
           <div style={ styles.swatch } onClick={ this.handleClick }>
               <div style={ styles.color } />
           </div>
           { this.state.displayColorPicker ? <div style={ styles.popover }>
               <div style={ styles.cover } onClick={ this.handleClose }/>
-              <SketchPicker color={ this.state.color } onChange={ this.handleChange } style={{ position: 'relative' }} />
+              <SketchPicker color={ this.state.color } onChange={ this.handleChange } style={{ position: 'absolute' }} />
           </div> : null }
 
         </div>
