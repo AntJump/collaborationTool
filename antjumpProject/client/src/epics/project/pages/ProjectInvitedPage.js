@@ -19,7 +19,7 @@ function ProjectInvitedPage() {
         []
     )
 
-    return  (!result.emails || result) && (
+    return  !result.emails && (
         <>
            <h2 align="center">{result}</h2>
         </>
