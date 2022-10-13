@@ -44,8 +44,8 @@ public class GoodsController {
 
     }
 
-    @GetMapping("possession")
-    public ResponseEntity<ResponseDto> selectGoodsPossessionsList(String memberId) {
+    @GetMapping(value = "mypossession/{memberId}" )
+    public ResponseEntity<ResponseDto> selectGoodsPossessionsList(@PathVariable String memberId) {
 
         return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "보유 상품 리스트 조회 성공", goodsService.selectGoodsPossessionsList(memberId)));
 

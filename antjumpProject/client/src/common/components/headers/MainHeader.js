@@ -20,7 +20,7 @@ import Link from "@mui/material/Link";
 import { useEffect } from "react";
 
 const pages = ["요금제", "FAQ", "문의"];
-const settings = ["내 정보", "결제", "프로젝트", "로그아웃"];
+const settings = ["내 정보", "상품", "프로젝트", "로그아웃"];
 const introduces = ["메신저", "일정 관리", "프로젝트"];
 
 const MainHeader = () => {
@@ -30,30 +30,6 @@ const MainHeader = () => {
   const dispatch = useDispatch();
   const loginMember = useSelector((state) => state.memberReducer); // 저장소에서 가져온 loginMember 정보
   const isLogin = window.localStorage.getItem("accessToken"); // Local Storage 에 token 정보 확인
-
-  // const onClickMypageHandler = () => {
-  //   // 토큰이 만료되었을때 다시 로그인
-  //   const token = decodeJwt(window.localStorage.getItem("accessToken"));
-  //   console.log("[Header] onClickMypageHandler token : ", token);
-
-  //   if (token.exp * 1000 < Date.now()) {
-  //     setLoginModal(true);
-  //     return;
-  //   }
-
-  //   navigate("/mypage", { replace: true });
-  // };
-
-  // useEffect(() => {
-  //   console.log("token", token.sub);
-  //   if (token !== null) {
-  //     dispatch(
-  //       callGetMemberAPI({
-  //         memberId: token.sub,
-  //       })
-  //     );
-  //   }
-  // }, []);
 
   const onClickLogoutHandler = () => {
     window.localStorage.removeItem("accessToken");
@@ -90,6 +66,16 @@ const MainHeader = () => {
   }
 
   function AfterLogin() {
+    
+    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    
+    const handleOpenUserMenu = (event) => {
+      setAnchorElUser(event.currentTarget);
+    };
+    const handleCloseUserMenu = () => {
+      setAnchorElUser(null);
+    };
+
     return (
       <Box sx={{ flexGrow: 0 }}>
         <Tooltip title="설정 열기">
@@ -142,14 +128,10 @@ const MainHeader = () => {
   }
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [anchorElIntroduce, setAnchorElIntroduce] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
   };
   const handleOpenintroduceMenu = (event) => {
     setAnchorElIntroduce(event.currentTarget);
@@ -159,9 +141,6 @@ const MainHeader = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
 
   const handleCloseIntroduceMenu = () => {
     setAnchorElIntroduce(null);

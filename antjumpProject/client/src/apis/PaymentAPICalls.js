@@ -45,8 +45,8 @@ export function callCreatePaymentAPI(query, url) {
 }
 
 
-export const callPossessionListAPI = () => {
-    const requestURL = `${process.env.REACT_APP_SERVER_IP}/goods/possession`;
+export const callPossessionListAPI = (memberId) => {
+    const requestURL = `${process.env.REACT_APP_SERVER_IP}/goods/mypossession/${memberId}`;
 
     return async (dispatch, getState) => {
 

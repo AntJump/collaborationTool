@@ -100,7 +100,7 @@
         insert /* com.anjump.ant.faq.dao.PaymentMapper#createOrder(PaymentCreateDTO paymentCreateDTO) */
           into tbl_goods_possessions
         (
-          oods_remaining_date
+          goods_remaining_date
         , fk_goods_possessions
         , fk_orders_possessions
         )
