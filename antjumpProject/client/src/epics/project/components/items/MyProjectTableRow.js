@@ -5,7 +5,7 @@ import ProjectMenuButton from "./ProjectMenuButton";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-function MyProjectTableRow({ project }) {
+function MyProjectTableRow({project}) {
   const dispatch = useDispatch();
 
 
@@ -13,18 +13,22 @@ function MyProjectTableRow({ project }) {
     <>
       <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
         <TableCell component="th" scope="row" align="center">
-          {project.key}
+
+
+
+          {project.projectKey}
+
         </TableCell>
         <TableCell
           component={Link}
-          to={`/project/${project.id}`}
+          to={`/project/${project.projectId}`}
           align="center"
         >
-          {project.name}
+          {project.projectName}
         </TableCell>
-        <TableCell align="center">{project.produceTime}</TableCell>
-        <TableCell align="center">{project.endDate}</TableCell>
-        <TableCell align="center">{project.constructor} </TableCell>
+        <TableCell align="center">{project.projectSummary}</TableCell>
+        <TableCell align="center">{project.projectProduceDate}</TableCell>
+        <TableCell align="center">{project.fkMembersMemberDto.username} </TableCell>
         <TableCell align="right"> 
           <ProjectMenuButton project={project} />
         </TableCell>

@@ -50,34 +50,30 @@ public class ProjectController {
     @GetMapping("/projects-all")
     public ResponseEntity<ResponseDto> selectAllProjectListWithPaging(@RequestParam(name = "currentPage", defaultValue = "1") int currentPage,
                                                                       @RequestParam(name="limit") int limit,
-                                                                      @RequestParam(name="buttonCount") int buttonCount
-                                                                      /*,@AuthenticationPrincipal MemberDto user*/){
+                                                                      @RequestParam(name="buttonCount") int buttonCount,
+                                                                      @RequestParam(name="user") int userId){
 
         System.out.println("==============[ProjectController] selectAllProjectListWithPaging ======================");
         System.out.println("currentPage:"+currentPage+", limit:"+limit+", buttonCount:"+buttonCount);
 
 
-        MemberDto user = new MemberDto();
-        user.setMemberId(2);
-
-
         // 모든 프로젝트 수를 읽어와
-        int totalCount = projectService.selectAllProjectTotalCount(user.getMemberId());
+        int totalCount = projectService.selectAllProjectTotalCount(userId);
         System.out.println("totalCount:"+totalCount);
 
 
         // 페이징 처리 정보 계산 -> 그 외 조회 조건을 가져다 SelectCriteria 객체 생성
-        ProjectSelectCriteria selectCriteria2 = new ProjectSelectCriteria(getPagingInfo(limit, currentPage, buttonCount, totalCount),null, user.getMemberId());
-        System.out.println("selectCriteria:"+ selectCriteria2);
+        ProjectSelectCriteria projectSelectCriteria = new ProjectSelectCriteria(getPagingInfo(limit, currentPage, buttonCount, totalCount),null, userId);
+        System.out.println("selectCriteria:"+ projectSelectCriteria);
 
         // 조회 조건을 가지고 내가 참여중인 모든 프로젝트 조회
-        List<ProjectDto> projectList = projectService.selectAllProjectListWithPaging(selectCriteria2);
+        List<ProjectDto> projectList = projectService.selectAllProjectListWithPaging(projectSelectCriteria);
         System.out.println("projectList:"+projectList);
         return ResponseEntity.ok().body(
                 new ResponseDto(
                         HttpStatus.OK
                         , "모든 프로젝트 목록 조회 성공"
-                        , new ResultsDtoWithPaging(projectList, selectCriteria2.getPagingInfo())
+                        , new ResultsDtoWithPaging(projectList, projectSelectCriteria.getPagingInfo())
                 )
         );
     }
@@ -86,35 +82,33 @@ public class ProjectController {
     public ResponseEntity<ResponseDto> selectMyProjectListWithPaging(@RequestParam(name = "currentPage", defaultValue = "1") int currentPage,
                                                                       @RequestParam(name="limit") int limit,
                                                                       @RequestParam(name="buttonCount") int buttonCount,
-                                                                      @RequestParam(name = "status") String status
-                                                                      /*,@AuthenticationPrincipal MemberDto user*/){
+                                                                      @RequestParam(name = "status") String status,
+                                                                     @RequestParam(name="user") int userId){
 
         System.out.println("==============[ProjectController] selectMyProjectListWithPaging ======================");
         System.out.println("currentPage:"+currentPage+", limit:"+limit+", buttonCount:"+buttonCount+", status:"+status);
-        MemberDto user = new MemberDto();
-        user.setMemberId(2);
 
-        ProjectSelectCriteria selectCriteria2 = new ProjectSelectCriteria();
-        selectCriteria2.setUser(user.getMemberId());
-        selectCriteria2.setStatus(status);
-        System.out.println("selectCriteria:"+ selectCriteria2);
+        ProjectSelectCriteria projectSelectCriteria = new ProjectSelectCriteria();
+        projectSelectCriteria.setUser(userId);
+        projectSelectCriteria.setStatus(status);
+        System.out.println("selectCriteria:"+ projectSelectCriteria);
 
         // 모든 프로젝트 수를 읽어와
-        int totalCount = projectService.selectMyProjectTotalCount(selectCriteria2);
+        int totalCount = projectService.selectMyProjectTotalCount(projectSelectCriteria);
         System.out.println("totalCount:"+totalCount);
 
         // 페이징 처리 정보를 계산해 SelectCriteria 객체 생성
-        selectCriteria2.setPagingInfo(getPagingInfo(limit, currentPage, buttonCount, totalCount));
+        projectSelectCriteria.setPagingInfo(getPagingInfo(limit, currentPage, buttonCount, totalCount));
 
-        System.out.println("selectCriteria:"+ selectCriteria2);
+        System.out.println("selectCriteria:"+ projectSelectCriteria);
         // 조회 조건을 가지고 내가 참여중인 모든 프로젝트 조회
-        List<ProjectDto> projectList = projectService.selectMyProjectListWithPaging(selectCriteria2);
+        List<ProjectDto> projectList = projectService.selectMyProjectListWithPaging(projectSelectCriteria);
         System.out.println("projectList:"+projectList);
         return ResponseEntity.ok().body(
                 new ResponseDto(
                         HttpStatus.OK
-                        , "모든 프로젝트 목록 조회 성공"
-                        , new ResultsDtoWithPaging(projectList, selectCriteria2.getPagingInfo())
+                        , "내 프로젝트 목록 조회 성공"
+                        , new ResultsDtoWithPaging(projectList, projectSelectCriteria.getPagingInfo())
                 )
         );
     }
@@ -131,13 +125,11 @@ public class ProjectController {
     }
 
     @PostMapping("/projects" )
-    public ResponseEntity<ResponseDto> createProject(@RequestBody ProjectDto projectDto/*, @AuthenticationPrincipal MemberDto user*/){
+    public ResponseEntity<ResponseDto> createProject(@RequestBody ProjectDto projectDto,
+                                                     @RequestParam(value = "user") int userId){
 
-        MemberDto user = new MemberDto();
-        user.setMemberId(2);
-
-        // 생성자의 memberId 세팅
-        projectDto.setFkMembersMemberId(user.getMemberId());
+        // 생성자(PM) id 세팅
+        projectDto.setFkMembersMemberId(userId);
 
         // 생성한 날짜(현재 날짜) 세팅
         projectDto.setProjectProduceDate(getCurrentDateWithFormating("yyyy-MM-dd"));
@@ -152,7 +144,8 @@ public class ProjectController {
     }
 
     @PutMapping ("/projects/{id}")
-    public ResponseEntity<ResponseDto> modifyProject(@RequestBody ProjectDto projectDto, @PathVariable("id") int projectId){
+    public ResponseEntity<ResponseDto> modifyProject(@RequestBody ProjectDto projectDto,
+                                                     @PathVariable("id") int projectId){
         projectDto.setProjectId(projectId);
         return ResponseEntity.ok().body(
                 new ResponseDto(
@@ -163,6 +156,7 @@ public class ProjectController {
         );
     }
 
+    /* 프로젝트 완전 삭제 api */
     @DeleteMapping  ("/projects/{id}")
     public ResponseEntity<ResponseDto> deleteProject(@PathVariable("id") int projectId){
 
@@ -175,6 +169,8 @@ public class ProjectController {
         );
     }
 
+
+    /* 프로젝트 임시 삭제 api */
     @PatchMapping  ("/projects/{id}/temp-delete")
     public ResponseEntity<ResponseDto> temporarilyDeleteProject(@PathVariable("id") int projectId){
 
@@ -202,6 +198,22 @@ public class ProjectController {
     }
 
 
+    @GetMapping("/project-members/user")
+    public ResponseEntity<ResponseDto> selectProjectMemberInfoByUserId(@RequestParam(value = "projectId") int projectId,
+                                                                       @RequestParam(value = "user") int userId){
+
+        ProjectMemberDto projectMemberDto = new ProjectMemberDto();
+        projectMemberDto.setFkMembersMemberId(userId);
+        projectMemberDto.setFkProjectsProjectId(projectId);
+
+        return ResponseEntity.ok().body(
+                new ResponseDto(
+                        HttpStatus.OK
+                        , "접속 유저의 프로젝트 팀원 정보 조회 성공"
+                        ,  projectService.selectProjectMember(projectMemberDto)
+                )
+        );
+    }
 
 
     @GetMapping("/project-members")
@@ -215,35 +227,7 @@ public class ProjectController {
         );
     }
 
-    @GetMapping("/members/{email}")
-    public ResponseEntity<ResponseDto> selectMemberByEmail(@PathVariable(value = "email") String email){
-        return ResponseEntity.ok().body(
-                new ResponseDto(
-                        HttpStatus.OK
-                        , "회원 id 조회 성공"
-                        ,  projectService.findMemberIdByEmail(email)
-                )
-        );
-    }
 
-    @GetMapping("/project-members/user")
-    public ResponseEntity<ResponseDto> selectProjectMemberInfoByUserId(@RequestParam(value = "projectId") int projectId){
-
-        MemberDto user = new MemberDto();
-        user.setMemberId(2);
-
-        ProjectMemberDto projectMemberDto = new ProjectMemberDto();
-        projectMemberDto.setFkMembersMemberId(user.getMemberId());
-        projectMemberDto.setFkProjectsProjectId(projectId);
-
-        return ResponseEntity.ok().body(
-                new ResponseDto(
-                        HttpStatus.OK
-                        , "접속 유저의 프로젝트 팀원 정보 조회 성공"
-                        ,  projectService.selectProjectMember(projectMemberDto)
-                )
-        );
-    }
 
     @PatchMapping("/project-members/{id}")
     public ResponseEntity<ResponseDto> modifyRoleOfProjectMember(@PathVariable(value = "id") int projectMemberId,

@@ -61,7 +61,7 @@ public class InvitationController {
         System.out.println("projectAndMemberDto: "+projectAndMemberDto);
 
         // 메일 발송
-        mailService.sendMail(senderEmail,invitationDto.getInvitationEmail(), "ANT 협업툴으로부터 온 초대장", "<h1> '"+projectAndMemberDto.getProjectName()+"' 프로젝트에 초대 되었습니다</h1> <a href=http://localhost:3000/invite/"+invitationToken+">초대 링크 클릭</a>");
+        mailService.sendMail(senderEmail,invitationDto.getInvitationEmail(), "ANT 협업툴으로부터 온 초대장", "<h1> '"+projectAndMemberDto.getProjectName()+"' 프로젝트에 초대 되었습니다</h1> <a href=http://localhost:3000/invited/"+invitationToken+">초대 링크 클릭</a>");
 
         return ResponseEntity.ok().body(
                 new ResponseDto(
@@ -90,6 +90,8 @@ public class InvitationController {
        // 초대 확인 처리
        int result = invitationService.invitationConfirmation(invitationDto);
         System.out.println("invitationConfirmation result:" + result);
+
+
 
         // 팀원 등록 처리
         return ResponseEntity.ok().body(
@@ -120,6 +122,17 @@ public class InvitationController {
                         HttpStatus.OK
                         , "프로젝트 초대 정보 삭제"
                         , invitationService.deleteInvitationInfoById(invitationId)
+                )
+        );
+    }
+
+    @GetMapping("/check/{email}")
+    public ResponseEntity<ResponseDto> selectMemberByEmail(@PathVariable(value = "email") String email){
+        return ResponseEntity.ok().body(
+                new ResponseDto(
+                        HttpStatus.OK
+                        , "회원 id 조회 성공"
+                        ,  projectService.findMemberIdByEmail(email)
                 )
         );
     }

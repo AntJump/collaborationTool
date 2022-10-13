@@ -11,12 +11,17 @@ import calendarReducer from "./CalendarModule";
 
 import { issueReducer } from "./IssueModule";
 import { projectReducer } from "./ProjectModule";
-
+import { projectListReducer } from "./ProjectListModule";
+import { projectMemberReducer } from "./ProjectMemberModule";
+import { projectInvitationReducer } from "./ProjectInvitationModule";
 const rootReducer = combineReducers({
   qnaReducer,
   paymentReducer,
   faqReducer,
   projectReducer,
+  projectListReducer,
+  projectMemberReducer,
+  projectInvitationReducer,
   backlogReducer,
   memberReducer,
   issueReducer,

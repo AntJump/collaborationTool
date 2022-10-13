@@ -24,14 +24,14 @@ function MemberListModal({open, handleClose, project}) {
                 <Grid container spacing={2}>
                     <Grid xs={6} >
                         <Typography sx={{ mt: 1, ml: 2}} >
-                            {project.key}
+                            {project.projectKey}
                         </Typography>
                         <Typography  sx={{mb:2 , ml: 2, fontSize: 25 }}>
-                            {project.name}
+                            {project.projectName}
                         </Typography>
                     </Grid>
                     <Grid xs={6}>
-                        <ProjectMemberInviteModal project={project}/>
+                        <ProjectMemberInviteModal projectId={project.projectId}/>
                     </Grid>
                 </Grid>
             </Box>
@@ -47,11 +47,11 @@ function MemberListModal({open, handleClose, project}) {
                     >   
                         <Grid item xs ={7} height={'90%'}  sx={{ textAlign:"center"}}>
                             <h3>팀원</h3>
-                            <ProjectMemberList isRoleChange={true}/>
+                            <ProjectMemberList isRoleChange={true} projectId={project.projectId} />
                         </Grid>
                         <Grid item xs ={5} height={'90%'}  sx={{ textAlign:"center"}}>
                             <h3>초대 대기</h3>
-                            <ProjectWaitMemberList />
+                            <ProjectWaitMemberList projectId={project.projectId}/>
                         </Grid> 
                     </Grid>
                 </Grid>
