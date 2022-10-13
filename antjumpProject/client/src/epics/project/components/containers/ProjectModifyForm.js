@@ -1,56 +1,66 @@
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+
 import Typography from '@mui/material/Typography';
 import { Grid } from '@mui/material';
-import FinishButton from '../items/FinishButton';
 
-function ProjectModifyForm({project}){
+import { callProjectDetailApi } from '../../../../apis/ProjectAPICalls';
+import { useDispatch,useSelector} from 'react-redux';
+import { useEffect } from 'react';
 
-    const onSubmitHandler = (e) =>{
+import { SET_PROJECT } from '../../../../modules/ProjectModule';
 
-    }
+function ProjectModifyForm({projectId}){
 
-    const onClickHandler = ()=>{
-        alert('프로젝트 수정 완료!');
-    }
 
-    return (
+    const project = useSelector(state=> state.projectReducer);
+    console.log("project:", project); 
+    const dispatch = useDispatch();
+    useEffect(
+        ()=>{
+            dispatch(callProjectDetailApi({projectId: projectId}));
+        },
+        []
+    );
 
-        <form onSubmit={onSubmitHandler}>
-            <input name="id" value={project.id} type="hidden" readOnly disabled></input>
+    const onChangeHandler = (e) =>{
+        dispatch({type: SET_PROJECT, payload:{key: e.target.name, value: e.target.value}}); 
+    };
+
+    return project && (
+        <>
+            <input name="id" value={project.projectId} type="hidden" readOnly disabled></input>
             <Typography  sx={{ mt: 1}}>
-                {project.key}
+                {project.projectKey}
             </Typography>
             <Typography  sx={{ mt: 1, mb:5 , fontSize: 35 }}>
-                {project.name}
+                {project.projectName}
             </Typography>
             <Grid container spacing={2}>
-            <Grid item xs={12}>
-                <TextField 
-                        name="summary" 
-                        variant="outlined" 
-                        label="프로젝트 요약 *"
-                        defaultValue={project.summary}
-                        fullWidth
-                        rows={3}
-                /><br/>
-                </Grid>
                 <Grid item xs={12}>
                     <TextField 
-                        name="explanation" 
+                        name="projectSummary" 
+                        variant="outlined" 
+                        label="프로젝트 요약 *"
+                        value={project.projectSummary}
+                        fullWidth
+                        rows={3}
+                        onChange={onChangeHandler}
+                    /><br/>
+                </Grid>
+                <Grid item xs={12}  mb={3}>
+                    <TextField 
+                        name="projectExplanation" 
                         variant="outlined" 
                         label="프로젝트 설명"
-                        
-                        defaultValue={project.explanation}
+                        value={project.projectExplanation}
                         multiline
                         rows={9}
                         fullWidth
+                        onChange={onChangeHandler}
                     /><br/>
                 </Grid>
-                <FinishButton text={"완료"} onClickHandler={onClickHandler}/>
             </Grid>
-        </form>
-
+        </>
     );
 }
 

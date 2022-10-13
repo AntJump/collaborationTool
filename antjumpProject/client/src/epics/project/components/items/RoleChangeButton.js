@@ -2,35 +2,53 @@ import { Button, MenuItem, Box} from "@mui/material";
 import { StyledMenu } from "./StyledMenu";
 import { useState } from "react";
 
-function RoleChangeButton({member}){
-    const [role, setRole] = useState(member.roleName);
+import { useDispatch, useSelector } from "react-redux";
+import { callProjectRoleListApi, callProjectMemberRoleModifyApi } from "../../../../apis/ProjectAPICalls";
+function RoleChangeButton({roleInfo, projectMemberId}){
+    console.log("roleInfo:", roleInfo);
+    const roleList = useSelector(state => state.projectReducer);
+        console.log("roleList:", roleList);
+    const dispatch = useDispatch();
+
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
     const handleClick = (event) => {
+
+        // 역할 목록 api 호출 -> roleList세팅
+        dispatch(callProjectRoleListApi());    
         setAnchorEl(event.currentTarget);
     };
     const handleClose = (e) => {
-        setRole(e.target.value);
-        setAnchorEl(null)
+        setAnchorEl(null);
     };
 
+
+    const onClickOtherRole = (e)=>{
+        dispatch(callProjectMemberRoleModifyApi({projectMemberId: projectMemberId, roleId: e.target.value}));
+        setAnchorEl(null);
+    }
+
     
     
 
-    return (
+    return roleInfo && (
         <Box >
             <Button color = "grey" variant="contained" onClick={handleClick} sx={{ borderRadius:10, display: 'inline-block'}}>
-                {role}
+                {roleInfo.projectRoleName}
             </Button>
+            {roleInfo.projectRoleName != 'PM' && 
             <StyledMenu
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose} value = '팀원' disableRipple> 팀원 </MenuItem>
-                <MenuItem onClick={handleClose} value = '스크럼 매니저'disableRipple> 스크럼 매니저 </MenuItem>
-            </StyledMenu> 
+                {Array.isArray(roleList) &&  roleList.map(role => 
+                    role.projectRoleName!= 'PM' && 
+                    role.projectRoleName != roleInfo.projectRoleName &&  
+                    <MenuItem onClick={onClickOtherRole} value = {role.projectRoleId} disableRipple> {role.projectRoleName} </MenuItem>
+                )}
+            </StyledMenu> }
         </Box>
     );
 }

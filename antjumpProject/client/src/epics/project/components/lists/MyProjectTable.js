@@ -5,29 +5,50 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { StyledTableCell } from '../../../../common/styles/TableStyle.js';
-import { Pagination, Stack } from '@mui/material';
-import {useSelector} from "react-redux";
+import { Stack } from '@mui/material';
 
 import MyProjectTableRow from '../items/MyProjectTableRow.js';
-import { useState } from 'react';
+import PagingButtons from '../items/PagingButtons.js';
 
+import {  useEffect,useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
+import { callMyProjectListApi } from "../../../../apis/ProjectAPICalls";
 
 function MyProjectTable(){
-    const result = useSelector(state => state.projectReducer);
-    const projects = result.myProjects;
+    const result = useSelector(state => state.projectListReducer);
+    const projects = result.myProjects.data;
+    const pagingInfo = result.myProjects.pagingInfo;
+        console.log("my projects :", projects);
+        console.log("my projects paging:", pagingInfo);
 
-    const rowLimitCount = 5;
-    const [offset, setOffset] = useState(0);
-    const onClickPagenation = (e) => {
-        const pageInfo = e.target.ariaLabel;
-        const selectedNum = Number(pageInfo[pageInfo.length-1]);
-        setOffset((selectedNum-1)*rowLimitCount);
+    const dispatch = useDispatch();
 
-        console.log('selectedNum :' + selectedNum + ' offset : ' + offset);
+    // 초기 랜더링
+    useEffect(
+        ()=>{
+            dispatch(callMyProjectListApi({currentPage: 1, status: 'activate'}));
+        },
+        []
+    );
+
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const onClickButton = (param)=>{
+        setCurrentPage(param);
     }
 
-    return projects && (
+    // 현재 페이지가 바뀔 때마다 api호출해서 랜더링
+    useEffect(
+        ()=>{
+            dispatch(callMyProjectListApi({currentPage: currentPage, status: 'activate'}));
+        },
+        [currentPage]
+    );
+
+
+
+    return (
         <>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 600 }} aria-label="simple table">
@@ -35,20 +56,25 @@ function MyProjectTable(){
                         <TableRow>
                             <StyledTableCell align="center">KEY</StyledTableCell>
                             <StyledTableCell align="center">프로젝트 이름</StyledTableCell>
-                            <StyledTableCell align="center">시작 날짜</StyledTableCell>
-                            <StyledTableCell align="center">종료 날짜</StyledTableCell>
+                            <StyledTableCell align="center">프로젝트 요약</StyledTableCell>
+                            <StyledTableCell align="center">생성 날짜</StyledTableCell>
                             <StyledTableCell align="center">PM</StyledTableCell>
                             <StyledTableCell align="center" sx={{width: '30px'}}></StyledTableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody>
-                        {projects.slice(offset,offset+rowLimitCount).map(project =>  <MyProjectTableRow key={project.id} project={project} />)}
-                    </TableBody>
+                    {Array.isArray(projects) && 
+                        <TableBody>
+                            {projects.map(project =>  <MyProjectTableRow key={project.projectId} project={project} />)}
+                        </TableBody>
+                    }
                 </Table>
             </TableContainer>
-            <Stack m={2} justifyContent='center'>
-                <Pagination onClick={onClickPagenation} count={Math.ceil(projects.length/rowLimitCount)} size="large" sx={{margin: 'auto'}} />
-            </Stack>
+            {Array.isArray(projects) && 
+                <Stack direction="row" m={2} justifyContent='center'>
+                    <PagingButtons onClickHandler={onClickButton} currentPage ={currentPage} pagingInfo={pagingInfo}/>
+                </Stack>
+            }
+            
             
         </>
 

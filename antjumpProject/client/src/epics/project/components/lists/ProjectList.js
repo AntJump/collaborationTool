@@ -1,33 +1,16 @@
 
-import { Box } from "@mui/material";
-
-import {  useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-
-import { GET_PROJECTS } from "../../../../modules/ProjectModule";
-import {participatedProjects, myProjects} from "../../datas/ProjectList"
-
 import RegistButton from "../items/RegistButton";
 import MyProjectTable from "./MyProjectTable";
-import ParticipatedProjectList from "./ParticipatedProjectList";
+import AllProjectList from "./AllProjectList";
 import {Stack} from "@mui/material";
 
 function ProjectList(){
-    const projects = useSelector(state => state.projectReducer);
-    const dispatch = useDispatch();
 
-    useEffect(
-        ()=>{
-            dispatch({type: GET_PROJECTS, payload: {participatedProjects: participatedProjects , myProjects: myProjects}});
-        },
-        []
-    );
-
-    return projects && (
+    return(
         <>
-            <h3>참여중인 프로젝트</h3>
-            <Stack m={2} justifyContent='center'>
-                <ParticipatedProjectList />
+            <h3>참여중인 모든 프로젝트</h3>
+            <Stack direction="row" m={2} >
+                <AllProjectList />
             </Stack>
             
            

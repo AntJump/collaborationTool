@@ -1,6 +1,11 @@
 package com.antjump.ant.payment.dao;
 
+import com.antjump.ant.payment.dto.PaymentCreateDTO;
+import com.antjump.ant.payment.dto.PaymentDetailDTO;
+import com.antjump.ant.payment.dto.PaymentListDTO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * <pre>
@@ -18,4 +23,17 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface PaymentMapper {
+    PaymentDetailDTO selectPaymentsDetail(String paymentId);
+
+    List<PaymentListDTO> selectPaymentsList();
+
+    String selectPriceByOrderId(String orderId);
+
+    int createPayment(PaymentCreateDTO paymentCreateDTO);
+
+    int createOrder(PaymentCreateDTO paymentCreateDTO);
+
+    int insertPaymentHistories(PaymentCreateDTO paymentCreateDTO);
+
+    int insertGoodsPossessions(PaymentCreateDTO paymentCreateDTO);
 }

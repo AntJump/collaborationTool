@@ -15,13 +15,12 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
-import { faqRows } from '../samples/FAQSample';
 import { Link } from 'react-router-dom';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {GET_FAQS} from "../../modules/FAQModule";
 import { TableHead } from '@mui/material';
-
+import { callFAQListAPI } from '../../apis/FAQAPICalls';
+import moment from 'moment';
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -94,7 +93,7 @@ function FAQList() {
 
   useEffect(
       ()=>{
-          dispatch({type: GET_FAQS, payload: faqRows});
+          dispatch(callFAQListAPI());
       },
       [dispatch]
   );
@@ -137,7 +136,7 @@ function FAQList() {
               ? faqs.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : faqs
             ).map((faq) => (
-              <TableRow key={faq.id} component ={Link} to={faq.id}>
+              <TableRow key={faq.faqId} component ={Link} to={String(faq.faqId)}>
                 <TableCell component="th" scope="row">
                   {faq.faqTitle}
                 </TableCell>
@@ -145,7 +144,7 @@ function FAQList() {
                   {faq.faqCategoryNo}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                  {faq.faqModifyDate}
+                  {faq.faqModifyTime=moment().format('YYYY-MM-DD')}
                 </TableCell>
               </TableRow>
             ))}

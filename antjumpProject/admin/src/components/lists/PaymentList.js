@@ -15,12 +15,12 @@ import FirstPageIcon from '@mui/icons-material/FirstPage';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
-import { paymentRows } from '../samples/PaymentSample';
 import { Link } from 'react-router-dom';
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {GET_PAIES} from "../../modules/PaymentModule";
 import { TableHead } from '@mui/material';
+import { callPaymentListAPI } from '../../apis/PaymentAPICalls';
+import moment from 'moment';
 
 
 function TablePaginationActions(props) {
@@ -84,7 +84,7 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-function PaymentList() {
+function PaymentList({isSw}) {
 
   const payment = useSelector(state => state.paymentReducer);
   const payments = payment.list
@@ -92,9 +92,15 @@ function PaymentList() {
 
   const dispatch = useDispatch();
 
+  const [psw, setPsw] = React.useState(isSw);
+
+  useEffect(() => {
+    setPsw(isSw);
+  }, [isSw]);
+
   useEffect(
       ()=>{
-          dispatch({type: GET_PAIES, payload: paymentRows});
+          dispatch(callPaymentListAPI());
       },
       [dispatch]
   );
@@ -136,11 +142,11 @@ function PaymentList() {
               </TableCell>
           </TableHead>
           <TableBody>
-            {(rowsPerPage > 0
+            { psw && (rowsPerPage > 0
               ? payments.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               : payments
             ).map((payment) => (
-              <TableRow key={payment.id} component ={Link} to={payment.id}>
+              <TableRow key={payment.paymentId} component ={Link} to={String(payment.paymentId)}>
                 <TableCell component="th" scope="row">
                   {payment.memberName}
                 </TableCell>
@@ -148,10 +154,32 @@ function PaymentList() {
                   {payment.paymentKey}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                  {payment.refund}
+                  {payment.refundYn}
                 </TableCell>
                 <TableCell style={{ width: 160 }} align="right">
-                  {payment.paymentTime}
+                  {payment.paymentTime=moment().format('YYYY-MM-DD')}
+                </TableCell>
+              </TableRow>
+            ))}
+
+            { !psw && (rowsPerPage > 0
+              ? payments
+              .filter((payment)=> payment.refundYn === 'Y')
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              : payments.filter((payment)=> payment.refundYn === 'Y')
+            ).map((payment) => (
+              <TableRow key={payment.paymentId} component ={Link} to={String(payment.paymentId)+'/refund'}>
+                <TableCell component="th" scope="row">
+                  {payment.memberName}
+                </TableCell>
+                <TableCell style={{ width: 240 }} align="right">
+                  {payment.paymentKey}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  {payment.refundYn}
+                </TableCell>
+                <TableCell style={{ width: 160 }} align="right">
+                  {payment.paymentTime=moment().format('YYYY-MM-DD')}
                 </TableCell>
               </TableRow>
             ))}

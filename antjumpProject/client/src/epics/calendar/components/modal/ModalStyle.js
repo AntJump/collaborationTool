@@ -10,5 +10,6 @@ export const modalBoxstyle = {
     borderRadius: 10,
     boxShadow: 24,
     p: 4,
+    zIndex: -1
     // overflowY: 'scroll',
 };

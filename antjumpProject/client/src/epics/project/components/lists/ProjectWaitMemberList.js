@@ -1,27 +1,32 @@
 import {Box, Stack} from '@mui/material';
-// import {  useEffect } from "react";
-// import { useSelector, useDispatch } from "react-redux";
-import { waitMembers } from '../../datas/MemberList';
+import {  useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import WaitMemberCard from '../items/WaitMemberCard';
 
-function ProjectWaitMemberList(){
-    const waits = waitMembers;
+import { callProjectInvitationListApi } from '../../../../apis/ProjectAPICalls';
 
-    // const dispatch = useDispatch();
-    // useEffect(
-    //     ()=>{
-    //         dispatch();
-    //     },
-    //     []
-    // );
+function ProjectWaitMemberList({projectId}){
+    const {invitations} = useSelector((state)=>state.projectInvitationReducer);
+        console.log("invitations:", invitations);
+    const projectState= useSelector((state)=>state.projectReducer); 
 
 
-    return waits && (
+    const dispatch = useDispatch();
+    useEffect(
+        ()=>{
+            dispatch(callProjectInvitationListApi({projectId: projectId}));
+        },
+        [projectState]
+    );
+;
+
+
+    return Array.isArray(invitations) && (
         <Box sx={{overflowY:"scroll"}}  maxHeight={'90%'} maxWidth={'100%'} >
-            {waits.map(wait => 
-                <Box key ={wait.memberId} sx={{ minWidth:  210, maxWidth: 300 , margin: 'auto'}}>
+            {invitations.map(invitation => 
+                <Box key ={invitation.invitationId} sx={{ minWidth:  210, maxWidth: 300 , margin: 'auto'}}>
                     <Stack direction='row' spacing={1}>
-                        <WaitMemberCard wait = {wait}/>
+                        <WaitMemberCard invitation = {invitation}/>
                     </Stack>
                 </Box>
             )}
