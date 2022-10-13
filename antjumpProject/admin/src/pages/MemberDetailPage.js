@@ -9,7 +9,6 @@ import moment from "moment";
 
 function MemberDetailPage() {
 
-    
     const { memberNumber } = useParams();
 
     const members = useSelector(state => state.memberReducer);
