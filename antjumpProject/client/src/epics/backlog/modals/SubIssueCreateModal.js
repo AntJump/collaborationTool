@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useParams } from "react-router-dom";
 
-const styleModal = {
+const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -17,8 +17,8 @@ const styleModal = {
   p: 4,
 };
 
-export default function BasicModal() {
-  const { id } = useParams();
+export default function SubIssueCreateModal() {
+  const { id, issueId } = useParams();
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -40,14 +40,18 @@ export default function BasicModal() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={styleModal}>
+        <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            이슈 생성
+            하위이슈 생성
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            새로운 이슈가 백로그 목록에 추가되었습니다!
+            새로운 하위이슈가 추가되었습니다!
           </Typography>
-          <Button color="button" variant="contained" href={`/project/${id}`}>
+          <Button
+            color="button"
+            variant="contained"
+            href={`/project/${id}/issue/${issueId}`}
+          >
             확인
           </Button>
         </Box>
