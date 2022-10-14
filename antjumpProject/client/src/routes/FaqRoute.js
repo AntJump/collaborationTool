@@ -8,7 +8,7 @@ function FaqRoute() {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<FAQPage />} />
-        {/* <Route path="faqs" element={<FAQPage />} /> */}
+        <Route path="faqs" element={<FAQPage />} />
         <Route path=":faqNumber" element={<FAQDetailPage />} />
       </Route>
     </Routes>
