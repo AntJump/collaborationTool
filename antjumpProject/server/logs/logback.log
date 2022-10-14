@@ -7,3 +7,4 @@
 [2022-10-14 09:00:25:586085][http-nio-8181-exec-1] INFO  c.a.a.faq.controller.FAQController - [FAQController] selectFaqList start ==========
 [2022-10-14 09:00:25:586499][http-nio-8181-exec-3] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectQNAListWithPaging : 1
 [2022-10-14 09:00:25:586504][http-nio-8181-exec-3] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectCriteria : SelectCriteria [pageNo=1, totalCount=0, limit=10, buttonAmount=5, maxPage=1, startPage=1, endPage=1, startRow=0, endRow=9]
+[2022-10-14 09:00:26:586885][http-nio-8181-exec-4] INFO  c.a.a.faq.controller.FAQController - [FAQController] selectFaqList start ==========
