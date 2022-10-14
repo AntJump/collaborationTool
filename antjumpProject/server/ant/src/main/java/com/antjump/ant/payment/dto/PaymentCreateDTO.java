@@ -24,17 +24,19 @@ public class PaymentCreateDTO {
     private String orderName;
     private String status;
     private String receiptUrl;
+    private String memberId;
 
     public PaymentCreateDTO() {
     }
 
-    public PaymentCreateDTO(String paymentKey, String orderId, Long amount, String orderName, String status, String receiptUrl) {
+    public PaymentCreateDTO(String paymentKey, String orderId, Long amount, String orderName, String status, String receiptUrl, String memberId) {
         this.paymentKey = paymentKey;
         this.orderId = orderId;
         this.amount = amount;
         this.orderName = orderName;
         this.status = status;
         this.receiptUrl = receiptUrl;
+        this.memberId = memberId;
     }
 
     public String getPaymentKey() {
@@ -85,6 +87,14 @@ public class PaymentCreateDTO {
         this.receiptUrl = receiptUrl;
     }
 
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
     @Override
     public String toString() {
         return "PaymentCreateDTO{" +
@@ -94,6 +104,8 @@ public class PaymentCreateDTO {
                 ", orderName='" + orderName + '\'' +
                 ", status='" + status + '\'' +
                 ", receiptUrl='" + receiptUrl + '\'' +
+                ", memberId='" + memberId + '\'' +
                 '}';
     }
+
 }
