@@ -3,14 +3,16 @@ import { Box } from '@mui/material';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { callCreatePaymentAPI } from '../../../apis/PaymentAPICalls'
+import { decodeJwt } from "../../../utils/tokenUtils";
 
 function SuccessPage () {
 
-    let qs = window.location.search;
+    const token = decodeJwt(window.localStorage.getItem("accessToken"));
+
+    let qs = window.location.search + "&memberId=" + token.sub;
     const paymentRecipt = useSelector(state => state.paymentReducer);
     console.log('state : ', paymentRecipt);
     const dispatch = useDispatch();
-    
 
     useEffect(
         () => { dispatch(callCreatePaymentAPI(qs)) },

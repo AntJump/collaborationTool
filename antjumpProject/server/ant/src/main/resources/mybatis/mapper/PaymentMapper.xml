@@ -58,7 +58,7 @@
           #{ orderId }
         , #{ amount }
         , #{ orderName }
-        , 1
+        , #{ memberId }
         )
     </insert>
 
@@ -75,7 +75,7 @@
         (
           #{ paymentKey }
         , #{ status }
-        , 1
+        , #{ memberId }
         , (select max(order_id) from tbl_orders)
         )
     </insert>
@@ -92,7 +92,7 @@
         (
           #{ status }
         , (select max(payment_id) from tbl_payments)
-        , 1
+        , #{ memberId }
         )
     </insert>
 
