@@ -6,15 +6,14 @@ import TextField from "@mui/material/TextField";
 import IssueType from "../components/IssueType.js";
 import IssuePriority from "../components/IssuePriority.js";
 import IssueDifficulty from "../components/IssueDifficulty.js";
-import IssueCreateModal from "../modals/IssueCreateModal.js";
-import IssueDetail from "./IssueDetailPage.js";
+import SubIssueCreateModal from "../modals/SubIssueCreateModal";
 import IssueFileUpload from "../components/IssueFileUpload.js";
 
 export default function SubIssueCreatePage() {
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <Box>
-        <h3>하위이슈 생성</h3>
+        <h3>하위 이슈 생성</h3>
         <Box
           sx={{
             display: "flex",
@@ -61,7 +60,7 @@ export default function SubIssueCreatePage() {
           />
         </Box>
         <IssueFileUpload />
-        <IssueCreateModal />
+        <SubIssueCreateModal />
       </Box>
     </Box>
   );

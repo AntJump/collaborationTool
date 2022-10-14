@@ -4,7 +4,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { StyledTableCell } from "./IssueTableStyle.js";
+import { StyledTableCell } from "../../../common/styles/TableStyle.js";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,7 @@ import SubIssueCard from "../items/SubIssueCard.js";
 
 export default function SubIssueList() {
   const issues = useSelector((state) => state.issueReducer);
-  console.log("8uohkjbkjb : ", issues);
+  console.log(issues);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function SubIssueList() {
         <Table sx={{ minWidth: 600 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="center">KEY</StyledTableCell>
+              <StyledTableCell align="center">이슈 이름</StyledTableCell>
               <StyledTableCell align="center">요약</StyledTableCell>
               <StyledTableCell align="center">상태</StyledTableCell>
               <StyledTableCell align="center">담당자</StyledTableCell>

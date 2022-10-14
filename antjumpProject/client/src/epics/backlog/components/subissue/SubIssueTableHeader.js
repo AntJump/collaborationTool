@@ -1,11 +1,11 @@
 import { TableHead, TableRow } from "@mui/material";
-import { StyledTableCell } from "../../../common/styles/TableStyle";
+import { StyledTableCell } from "../../../../common/styles/TableStyle";
 
-function BacklogTableHeader() {
+function SubIssueTableHeader() {
   return (
     <TableHead>
       <TableRow>
-        <StyledTableCell align="center">이슈 이름</StyledTableCell>
+        <StyledTableCell align="center">하위이슈 이름</StyledTableCell>
         <StyledTableCell align="center">유형</StyledTableCell>
         <StyledTableCell align="center">요약</StyledTableCell>
         <StyledTableCell align="center">상태</StyledTableCell>
@@ -15,4 +15,4 @@ function BacklogTableHeader() {
   );
 }
 
-export default BacklogTableHeader;
+export default SubIssueTableHeader;

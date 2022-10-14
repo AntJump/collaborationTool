@@ -9,24 +9,30 @@ import { issuesData } from "../datas/backlog";
 
 import { Link, useParams } from "react-router-dom";
 import SprintStartModal from "../modals/SprintStartModal";
-
 import { useState } from "react";
 import { callCreateSprintAPI } from "../../../apis/SprintAPICalls";
 
 function BacklogTableIndex() {
   const { id } = useParams();
-
   const backlog = useSelector((state) => state.backlogReducer);
   console.log(backlog);
   const dispatch = useDispatch();
-
+  const [state, setState] = useState([]);
   const [form, setForm] = useState({
     fkProjectsSprints: 1,
     fkMembersSprints: 1,
   });
 
+  async function date() {
+    const result = await fetch("http://192.168.0.63:8181/issues")
+      .then((result) => result.json())
+      .then((data) => data.data);
+    setState(result);
+  }
+
   useEffect(() => {
     dispatch({ type: GET_BACKLOG, payload: issuesData });
+    date();
   }, []);
 
   const onClickCreate = () => {
@@ -109,7 +115,7 @@ function BacklogTableIndex() {
               이슈 생성
             </Button>
           </Stack>
-          <BacklogTable isHeader={true} issues={backlog[0]} />
+          <BacklogTable isHeader={true} issues={state} />
         </Box>
       </Grid>
     </>

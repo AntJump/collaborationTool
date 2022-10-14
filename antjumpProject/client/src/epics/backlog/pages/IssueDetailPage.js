@@ -9,18 +9,46 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import IssueFileUpload from "../components/IssueFileUpload.js";
 import IssueManager from "../components/IssueManager.js";
-import SubIssueCard from "../items/SubIssueCard.js";
-import SubIssueList from "../lists/SubIssueList.js";
-import { useParams } from "react-router-dom";
+import IssueDeleteModal from "../modals/IssueDeleteModal";
+import IssuseStatus from "../components/IssueStatus";
+import SubIssueListHeader from "../components/SubIssueListHeader.js";
+import SubIssueTable from "../components/subissue/SubIssueTable.js";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 
 export default function IssueDetailPage() {
-  const { id } = useParams();
+  const { id, issueId } = useParams();
+  const dispatch = useDispatch();
+  const [state, setState] = useState([]);
+  async function date() {
+    const result = await fetch("http://192.168.0.63:8181/issues/sub")
+      .then((result) => result.json())
+      .then((data) => data.data);
+    setState(result);
+  }
 
+  useEffect(() => {
+    date();
+  }, []);
   return (
     <>
-      <Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          width: "100%",
+          marginBottom: 5,
+          "& > :not(style)": {
+            m: 1,
+          },
+        }}
+      >
         <h3>Task</h3>
         <h1>ISSUE-1</h1>
+        <IssuseStatus />
       </Box>
 
       <Box sx={{ display: "flex", justifyContent: "center" }}>
@@ -74,9 +102,24 @@ export default function IssueDetailPage() {
             />
           </Box>
           <IssueFileUpload />
-          <SubIssueList />
           <Button
-            style={{ marginTop: 20, marginBottom: 20 }}
+            color="button"
+            variant="contained"
+            size="small"
+            component={Link}
+            to={`/project/${id}/issue/${issueId}/subissue-create`}
+          >
+            하위이슈 생성
+          </Button>
+          {/* <SubIssueListHeader />
+          <SubIssueList /> */}
+          <SubIssueTable isHeader={true} issues={state} />
+
+          <Box sx={{ float: "left", m: 2 }}>
+            <IssueDeleteModal />
+          </Box>
+          <Button
+            style={{ marginTop: 50, marginBottom: 20 }}
             color="button"
             variant="contained"
             href={`/project/${id}`}
