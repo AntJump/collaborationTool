@@ -9,6 +9,8 @@ import Stack from "@mui/material/Stack";
 import Paper from "@mui/material/Paper";
 import { useState } from "react";
 import { styled } from "@mui/material/styles";
+import { useDispatch, useSelector } from "react-redux";
+import { callModifySprintAlarmAPI } from "../../../../../apis/SprintAPICalls";
 
 // const Item = styled(Paper)(({ theme }) => ({
 //   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -19,43 +21,60 @@ import { styled } from "@mui/material/styles";
 // }));
 
 function AlarmText() {
+  const dispatch = useDispatch();
+  const results = useSelector((state) => state.sprintReducer);
+  const sprint = results.sprint;
+
   const [alarmCycle, setAlarmCycle] = useState("");
 
-  const handleChange = (event) => {
-    setAlarmCycle(event.target.value);
+  const [form, setForm] = useState({
+    sprintAlarmCycle: "",
+  });
+
+  const handleChange = (e) => {
+    setForm({
+      sprintAlarmCycle: e.target.value,
+    });
+
+    dispatch(callModifySprintAlarmAPI(1, form));
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "right",
-      }}
-    >
-      <Stack direction="row" spacing={2} justifyContent="space-between">
-        {/* <Item> */}
-        <AlarmIcon />
-        {/* </Item> */}
-        {/* <Item> */}
-        <Box sx={{ minWidth: 100, marginTop: "10px" }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">알람 주기</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={alarmCycle}
-              label="알람 주기"
-              onChange={handleChange}
-            >
-              <MenuItem value={1}>하루마다</MenuItem>
-              <MenuItem value={3}>3일마다</MenuItem>
-              <MenuItem value={7}>7일마다</MenuItem>
-              <MenuItem value={10}>10일마다</MenuItem>
-            </Select>
-          </FormControl>
-        </Box>
-      </Stack>
-    </div>
+    <>
+      {sprint &&
+        sprint.map((sprintInfo) => (
+          <div
+            key={sprintInfo.sprintId}
+            style={{
+              display: "flex",
+              justifyContent: "right",
+            }}
+          >
+            <Stack direction="row" spacing={2} justifyContent="space-between">
+              <AlarmIcon />
+              <Box sx={{ minWidth: 100, marginTop: "10px" }}>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">
+                    알람 주기
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={sprintInfo.sprintAlarmCycle}
+                    label="알람 주기"
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={"하루마다"}>하루마다</MenuItem>
+                    <MenuItem value={"3일마다"}>3일마다</MenuItem>
+                    <MenuItem value={"7일마다"}>7일마다</MenuItem>
+                    <MenuItem value={"10일마다"}>10일마다</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+            </Stack>
+          </div>
+        ))}
+    </>
   );
 }
 

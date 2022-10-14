@@ -1,8 +1,12 @@
 package com.antjump.ant.remembrance.controller;
 
+import com.amazonaws.Response;
 import com.antjump.ant.common.ResponseDto;
+import com.antjump.ant.remembrance.model.dto.ArticleDto;
+import com.antjump.ant.remembrance.model.dto.RemembranceAndArticleDto;
 import com.antjump.ant.remembrance.model.dto.RemembranceDto;
 import com.antjump.ant.remembrance.model.service.RemembranceService;
+import org.apache.el.util.Validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,37 +40,56 @@ public class RemembranceController {
     }
 
     @GetMapping("")
-    public ResponseEntity<ResponseDto> selectRemembrances(@RequestParam(name="sprintId") int sprintId) {
+    public ResponseEntity<ResponseDto> selectRemembrances(@RequestParam(name="fkSprintsRemembrances") int fkSprintsRemembrances) {
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회고 항목 조회 성공", remembranceService.selectRemembrances(sprintId)));
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회고 리스트 조회 성공", remembranceService.selectRemembrances(fkSprintsRemembrances)));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseDto> selectRemembranceInfo(@PathVariable int id, @RequestParam(name="remembranceArticle") String remembranceArticle) {
+    public ResponseEntity<ResponseDto> selectArticleByRemembranceId(@PathVariable(value = "id") int id, @RequestParam(name="articleType") String articleType) {
 
-        RemembranceDto remembranceDto = new RemembranceDto();
-        remembranceDto.setRemembranceId(id);
-        remembranceDto.setRemembranceArticle(remembranceArticle);
-
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회고 상세 정보 조회 성공", remembranceService.selectRemembranceInfo(remembranceDto)));
+        ArticleDto articleDto = new ArticleDto();
+        articleDto.setFkRemembrancesArticles(id);
+        articleDto.setArticleType(articleType);
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회고 항목 조회 성공", remembranceService.selectArticleByRemembranceId(articleDto)));
     }
+
 
     @PostMapping("")
-    public ResponseEntity<ResponseDto> createRemembrances(@RequestParam(name="sprintId") int sprintId, @RequestParam(name="remembranceDate") Date remembranceDate) {
+    public ResponseEntity<ResponseDto> createRemembrance(@RequestParam(name="fkSprintsRemembrances") int fkSprintsRemembrances) {
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회고 항목 생성 성공", remembranceService.createRemembrances(sprintId, remembranceDate)));
+        RemembranceDto remembranceDto = new RemembranceDto();
+        remembranceDto.setFkSprintsRemembrances(fkSprintsRemembrances);
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "데일리 회고 생성 성공", remembranceService.createRemembrances(remembranceDto)));
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<ResponseDto> updateRemembrance(@PathVariable int id, @RequestBody RemembranceDto remembranceDto) {
+    @PostMapping("/")
+    public ResponseEntity<ResponseDto> createArticles(@RequestParam(name="sprintId") int sprintId) {
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회고 항목 수정 완료", remembranceService.updateRemembrance(id, remembranceDto)));
+        ArticleDto articleDto = new ArticleDto();
+        articleDto.setFkRemembrancesArticles(sprintId);
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회고 항목 생성 성공", remembranceService.createArticles(articleDto)));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseDto> updateArticle(@PathVariable int id, @RequestParam(name="articleId") int articleId, @RequestBody ArticleDto articleDto) {
+
+        articleDto.setFkRemembrancesArticles(id);
+        articleDto.setArticleId(articleId);
+
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "화고 항목 수정 성공", remembranceService.updateArticle(articleDto)));
+
     }
 
     @DeleteMapping("")
-    public ResponseEntity<ResponseDto> deleteRemembrances(@RequestParam(name="remembranceDate") Date remembranceDate) {
+    public ResponseEntity<ResponseDto> deleteRemembrance(@PathVariable int id, @RequestParam(name="sprintId") int sprintId, @RequestParam(name="remembranceDate") Date remembranceDate){
 
-        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "회고 항목 삭제 완료", remembranceService.deleteRemembrances(remembranceDate)));
+        RemembranceDto remembranceDto = new RemembranceDto();
+        remembranceDto.setRemembranceId(id);
+        remembranceDto.setFkSprintsRemembrances(sprintId);
+        remembranceDto.setRemembranceDate(remembranceDate);
+        return ResponseEntity.ok().body(new ResponseDto(HttpStatus.OK, "데일리 회고 삭제 성공", remembranceService.deleteRemembrance(remembranceDto)));
     }
+
 }
 

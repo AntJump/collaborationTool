@@ -4,19 +4,16 @@ import { useState } from "react";
 import RemembranceLikedModal from "../../modals/RemembranceLikedModal";
 import RemembranceLearnedModal from "../../modals/RemembranceLearnedModal";
 import RemembranceLackedModal from "../../modals/RemembranceLackedModal";
+import ArticleModal from "../../modals/ArticleModal";
 // import { useDispatch, useSelector } from "react-redux";
 
-function Remembrance() {
-  const [writtenDate, setWrittenDate] = useState("2022-07-15");
-  // const [likedTitle, setLikedTitle] = useState("좋았던 점");
-  // const [learnedTitle, setLearnedTitle] = useState("배웠던 점");
-  // const [lackedTitle, setlackedTitle] = useState("부족했던 점");
-  // const results = useSelector((state) => state);
-  // const dispatch = useDispatch();
-
+function Remembrance({ remembrances }) {
   return (
     <>
+      {/* {remembrances &&
+        remembrances.map((remembrance) => ( */}
       <Box
+        // key={remembrance.remembranceId}
         sx={{
           flexWrap: "wrap",
         }}
@@ -56,13 +53,17 @@ function Remembrance() {
               },
             }}
           >
-            <Paper elevation={3}>스프린트 키 : {writtenDate}</Paper>
-            <RemembranceLikedModal />
-            <RemembranceLearnedModal />
-            <RemembranceLackedModal />
+            <Paper elevation={3}>
+              회고 날짜 : {remembrances.remembranceDate}
+            </Paper>
+
+            <RemembranceLikedModal remembrances={remembrances} />
+            <RemembranceLearnedModal remembrances={remembrances} />
+            <RemembranceLackedModal remembrances={remembrances} />
           </Box>
         </div>
       </Box>
+      {/* ))} */}
     </>
   );
 }

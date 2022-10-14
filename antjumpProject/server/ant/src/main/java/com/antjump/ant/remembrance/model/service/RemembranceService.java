@@ -1,13 +1,13 @@
 package com.antjump.ant.remembrance.model.service;
 
 import com.antjump.ant.remembrance.model.dao.RemembranceMapper;
+import com.antjump.ant.remembrance.model.dto.ArticleDto;
+import com.antjump.ant.remembrance.model.dto.RemembranceAndArticleDto;
 import com.antjump.ant.remembrance.model.dto.RemembranceDto;
-import com.antjump.ant.sprint.model.dao.SprintMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
 import java.util.List;
 
 /**
@@ -34,80 +34,83 @@ public class RemembranceService {
         this.remembranceMapper = remembranceMapper;
     }
 
-    public Object selectRemembrances(int sprintId) {
-        List<RemembranceDto> remembranceList = remembranceMapper.selectRemembrances(sprintId);
+    public Object selectRemembrances(int fkSprintsRemembrances) {
+        List<RemembranceAndArticleDto> remembranceList = remembranceMapper.selectRemembrances(fkSprintsRemembrances);
 
         return remembranceList;
     }
 
-    public Object selectRemembranceInfo(RemembranceDto remembranceInfo) {
+    public Object selectArticleByRemembranceId(ArticleDto articleDto) {
 
-        List<RemembranceDto> remembranceList = remembranceMapper.selectRemembranceInfo(remembranceInfo);
+        List<ArticleDto> articleInfo = remembranceMapper.selectArticleByRemembranceId(articleDto);
 
-        return remembranceList;
-    }
-
-//    public Object selectFinishedRemembrances(String sprintId) {
-//
-//        List<RemembranceDto> finishedRemembranceList = remembranceMapper.selectFinishedRemembrances(sprintId);
-//
-//        return finishedRemembranceList;
-//    }
-
-    @Transactional
-    public Object createRemembrances(int sprintId, Date date) {
-
-        String response = "회고 항목 생성 실패";
-        RemembranceDto remembranceDto = new RemembranceDto();
-
-        int result = 0;
-
-        remembranceDto.setFkSprintsRemembrances(sprintId);
-        remembranceDto.setRemembranceDate(date);
-
-        remembranceDto.setRemembranceArticle("Liked");
-        result += remembranceMapper.createRemembrances(remembranceDto);
-
-        remembranceDto.setRemembranceArticle("Learned");
-        result += remembranceMapper.createRemembrances(remembranceDto);
-
-        remembranceDto.setRemembranceArticle("Lacked");
-        result += remembranceMapper.createRemembrances(remembranceDto);
-
-        if(result > 2) {
-            response = "회고 항목 생성 성공";
-        }
-        return response;
+        return articleInfo;
     }
 
     @Transactional
-    public Object updateRemembrance(int id, RemembranceDto remembranceDto) {
+    public Object createRemembrances(RemembranceDto remembranceDto) {
 
-        String response = "회고 수정 실패";
-
-        remembranceDto.setRemembranceId(id);
-
-        int result = remembranceMapper.updateRemembrance(remembranceDto);
+        String response = "회고 생성 실패";
+        int result = remembranceMapper.createRemembrances(remembranceDto);
 
         if(result > 0) {
-            response = "회고 수정 성공";
+            response = "회고 생성 성공";
         }
 
         return response;
     }
 
     @Transactional
-    public Object deleteRemembrances(Date remembranceDate) {
+    public Object createArticles(ArticleDto articleDto) {
+
+        String response = "회고 생성 실패";
+        int result = 0;
+
+        articleDto.setArticleType("Liked");
+        result += remembranceMapper.createArticles(articleDto);
+
+        articleDto.setArticleType("Learned");
+        result += remembranceMapper.createArticles(articleDto);
+
+        articleDto.setArticleType("Lacked");
+        result += remembranceMapper.createArticles(articleDto);
+
+        if(result > 2) {
+            response = "회고 생성 성공";
+        }
+
+        return response;
+
+    }
+
+    @Transactional
+    public Object updateArticle(ArticleDto articleDto) {
+
+        String response = "항목 수정 실패";
+
+        int result = remembranceMapper.updateArticle(articleDto);
+
+        if(result > 0) {
+            response = "항목 수정 성공";
+        }
+
+        return response;
+
+    }
+
+    @Transactional
+    public Object deleteRemembrance(RemembranceDto remembranceDto) {
 
         String response = "회고 삭제 실패";
 
-        int result = remembranceMapper.deleteRemembrances(remembranceDate);
+        int result = remembranceMapper.deleteRemembrance(remembranceDto);
 
         if(result > 0) {
-            response="회고 삭제 성공";
+            response = "회고 삭제 성공";
         }
 
         return response;
     }
+
 }
 

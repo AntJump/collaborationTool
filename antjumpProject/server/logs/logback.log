@@ -1,2 +1,10 @@
-[2022-10-04 15:27:35:79137][http-nio-8181-exec-8] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectQNAListWithPaging : 1
-[2022-10-04 15:27:35:79464][http-nio-8181-exec-8] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectCriteria : SelectCriteria [pageNo=1, totalCount=1, limit=10, buttonAmount=5, maxPage=1, startPage=1, endPage=1, startRow=1, endRow=10]
+[2022-10-14 08:59:12:513551][http-nio-8181-exec-5] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectQNAListWithPaging : 1
+[2022-10-14 08:59:12:513580][http-nio-8181-exec-5] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectCriteria : SelectCriteria [pageNo=1, totalCount=0, limit=10, buttonAmount=5, maxPage=1, startPage=1, endPage=1, startRow=0, endRow=9]
+[2022-10-14 08:59:35:535737][http-nio-8181-exec-5] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectQNAListWithPaging : 1
+[2022-10-14 08:59:35:535759][http-nio-8181-exec-5] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectCriteria : SelectCriteria [pageNo=1, totalCount=0, limit=10, buttonAmount=5, maxPage=1, startPage=1, endPage=1, startRow=0, endRow=9]
+[2022-10-14 09:00:20:581668][http-nio-8181-exec-8] INFO  c.a.a.faq.controller.FAQController - [FAQController] selectFaqList start ==========
+[2022-10-14 09:00:24:585210][http-nio-8181-exec-10] INFO  c.a.a.faq.controller.FAQController - [FAQController] selectFaqList start ==========
+[2022-10-14 09:00:25:586085][http-nio-8181-exec-1] INFO  c.a.a.faq.controller.FAQController - [FAQController] selectFaqList start ==========
+[2022-10-14 09:00:25:586499][http-nio-8181-exec-3] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectQNAListWithPaging : 1
+[2022-10-14 09:00:25:586504][http-nio-8181-exec-3] INFO  c.a.a.qna.controller.QNAController - [QNAController] selectCriteria : SelectCriteria [pageNo=1, totalCount=0, limit=10, buttonAmount=5, maxPage=1, startPage=1, endPage=1, startRow=0, endRow=9]
+[2022-10-14 09:00:26:586885][http-nio-8181-exec-4] INFO  c.a.a.faq.controller.FAQController - [FAQController] selectFaqList start ==========

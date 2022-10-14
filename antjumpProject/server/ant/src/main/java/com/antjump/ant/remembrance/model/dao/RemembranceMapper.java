@@ -1,5 +1,7 @@
 package com.antjump.ant.remembrance.model.dao;
 
+import com.antjump.ant.remembrance.model.dto.ArticleDto;
+import com.antjump.ant.remembrance.model.dto.RemembranceAndArticleDto;
 import com.antjump.ant.remembrance.model.dto.RemembranceDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,15 +25,25 @@ import java.util.List;
 @Mapper
 public interface RemembranceMapper {
 
-    List<RemembranceDto> selectRemembrances(int sprintId);
+    List<RemembranceAndArticleDto> selectRemembrances(int fkSprintsRemembrances);
 
-    List<RemembranceDto> selectRemembranceInfo(RemembranceDto remembranceInfo);
-
-    List<RemembranceDto> selectFinishedRemembrances(String sprintId);
+    List<ArticleDto> selectArticleByRemembranceId(ArticleDto articleDto);
 
     int createRemembrances(RemembranceDto remembranceDto);
 
-    int updateRemembrance(RemembranceDto remembranceDto);
+    int createArticles(ArticleDto articleDto);
 
-    int deleteRemembrances(Date remembranceDate);
+    int updateArticle(ArticleDto articleDto);
+
+    int deleteRemembrance(RemembranceDto remembranceDto);
+
+//    List<RemembranceDto> selectRemembranceInfo(RemembranceDto remembranceInfo);
+//
+//    List<RemembranceDto> selectFinishedRemembrances(String sprintId);
+//
+//    int createRemembrances(RemembranceDto remembranceDto);
+//
+//    int updateRemembrance(RemembranceDto remembranceDto);
+//
+//    int deleteRemembrances(Date remembranceDate);
 }

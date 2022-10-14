@@ -50,7 +50,7 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function RemembranceLackedModal({ remembrances }) {
+export default function ArticleModal() {
   const [open, setOpen] = useState(false);
   const [sprintKey, setSprintKey] = useState("Sprint-01");
   const [createdDate, setCreatedDate] = useState("2022-07-15");
@@ -67,7 +67,7 @@ export default function RemembranceLackedModal({ remembrances }) {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        부족했던 점
+        배운 점
       </Button>
       <BootstrapDialog
         onClose={handleClose}
@@ -100,7 +100,7 @@ export default function RemembranceLackedModal({ remembrances }) {
                 fontSize: 35,
               }}
             >
-              날짜 : {remembrances.remembranceDate}
+              {sprintKey} : {createdDate}
             </span>
             <br />
             <br />

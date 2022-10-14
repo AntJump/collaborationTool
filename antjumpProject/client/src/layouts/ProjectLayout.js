@@ -11,22 +11,22 @@ import { Stack } from "@mui/material";
 function ProjectLayout() {
   const Item = styled(Paper)(({ theme }) => ({
     textAlign: "center",
-    borderRadius:'20px'
+    borderRadius: "20px",
   }));
 
   return (
     <>
       <Stack direction="row" spacing={3}>
-        <Grid div xs={1}/>
+        <Grid div xs={1} />
         <Grid item xs={2}>
-            <Item >
-              <ProjectTabPanel />
-            </Item>
+          <Item>
+            <ProjectTabPanel />
+          </Item>
         </Grid>
         <Grid container spacing={2}>
           <Grid item xs={11.8}>
             <Item>
-            <ProjectHeader />
+              <ProjectHeader />
             </Item>
           </Grid>
           <Grid item xs={11.8}>
@@ -39,6 +39,5 @@ function ProjectLayout() {
     </>
   );
 }
-
 
 export default ProjectLayout;
