@@ -116,11 +116,13 @@ export default function CalendarDetail() {
             dispatch(getCalendarsById({calendarId}
             ));
             
-            // setForm(form.calendarName = calendarDetail.calendarName)
-            
             if(calendarDetail !== undefined ) {
                 setForm({
                     ...form,
+                    calendarId: calendarDetail.calendarId,
+                    calendarColor: 'blue',
+                    calendarCategory: '개인일정',
+                    calendarOpenYn: 'Y',
                     calendarName : calendarDetail.calendarName,
                     calendarStartDate : calendarDetail.calendarStartDate,
                     calendarEndDate : calendarDetail.calendarEndDate,
@@ -140,10 +142,8 @@ export default function CalendarDetail() {
 
     const onClickUpdateHandler = () => {
 
-        dispatch(putCalendars({
-            form:form,
-            calendarId: calendarId
-        }));
+        dispatch(putCalendars({form}
+        ));
 
         // navigate(`project/2/calendar/plan/${calendarId}`, { replace: false});
         window.location.reload();
@@ -299,86 +299,86 @@ export default function CalendarDetail() {
             </div>
             <div style={{display: 'flex', justifyContent: 'center', marginRight: '10px' }}>
 
-        {/* 캘린더 상태 선택 */}
-        <Box sx={{ display: 'inline-block' }}>
-            <FormControl sx={{ m: 1, minWidth: 140 }} size="small">
-                <InputLabel id="demo-select-small">상태</InputLabel>
-                <Select
-                    labelId="demo-select-small"
-                    id="demo-select-small"
-                    value={tension}
-                    label="tension"
-                    onChange={ handleChangeTension }
-                >
-                    <MenuItem value={10}>바쁨</MenuItem>
-                    <MenuItem value={20}>한가함</MenuItem>
-                </Select>
-            </FormControl>
-        </Box>
+                {/* 캘린더 상태 선택 */}
+                <Box sx={{ display: 'inline-block' }}>
+                    <FormControl sx={{ m: 1, minWidth: 140 }} size="small">
+                        <InputLabel id="demo-select-small">상태</InputLabel>
+                        <Select
+                            labelId="demo-select-small"
+                            id="demo-select-small"
+                            value={tension}
+                            label="tension"
+                            onChange={ handleChangeTension }
+                        >
+                            <MenuItem value={10}>바쁨</MenuItem>
+                            <MenuItem value={20}>한가함</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
 
-        {/* 캘린더 컬러 피커 */}
-        <CalendarColorPicker/>
+                {/* 캘린더 컬러 피커 */}
+                <CalendarColorPicker/>
 
-        {/* 캘린더 알람 설정 */}
-        <Box sx={{ display: 'inline-block', marginRight: '4px' }}>
-            <FormControl sx={{ m: 1, minWidth: 140 }} size="small">
-                <InputLabel id="demo-select-small">알람</InputLabel>
-                <Select
-                    labelId="demo-select-small"
-                    id="demo-select-small"
-                    value={alarmTime}
-                    label="alarmTime"
-                    onChange={ handleChangeAlarm }
-                >
-                    <MenuItem  name="calendarAlarmCycle" value="">
-                        <em>없음</em>
-                    </MenuItem>
-                    <MenuItem name="calendarAlarmCycle" onChange={ onChangeHandler } value={10}>10분 전</MenuItem>
-                    <MenuItem name="calendarAlarmCycle" onChange={ onChangeHandler } value={20}>30분 전</MenuItem>
-                    <MenuItem name="calendarAlarmCycle" onChange={ onChangeHandler } value={30}>1시간 전</MenuItem>
-                </Select>
-            </FormControl>
-        </Box>
+                {/* 캘린더 알람 설정 */}
+                <Box sx={{ display: 'inline-block', marginRight: '4px' }}>
+                    <FormControl sx={{ m: 1, minWidth: 140 }} size="small">
+                        <InputLabel id="demo-select-small">알람</InputLabel>
+                        <Select
+                            labelId="demo-select-small"
+                            id="demo-select-small"
+                            value={alarmTime}
+                            label="alarmTime"
+                            onChange={ handleChangeAlarm }
+                        >
+                            <MenuItem  name="calendarAlarmCycle" value="">
+                                <em>없음</em>
+                            </MenuItem>
+                            <MenuItem name="calendarAlarmCycle" onChange={ onChangeHandler } value={10}>10분 전</MenuItem>
+                            <MenuItem name="calendarAlarmCycle" onChange={ onChangeHandler } value={20}>30분 전</MenuItem>
+                            <MenuItem name="calendarAlarmCycle" onChange={ onChangeHandler } value={30}>1시간 전</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
 
-        {/* 캘린더 공개 여부 */}
-        <Box sx={{ display: 'inline-block' }}>
-            <FormControl sx={{ m: 1, minWidth: 148 }} size="small">
-                <InputLabel id="demo-select-small">공개 여부 *</InputLabel>
-                <Select
-                    labelId="demo-select-small"
-                    id="demo-select-small"
-                    value={PublicSetting}
-                    label="PublicSetting"
-                    onChange={handleChange}
-                >
-                    <MenuItem name="calendarOpenYn" onChange={ onChangeHandler } value={10}>전체 공개</MenuItem>
-                    <MenuItem name="calendarOpenYn" onChange={ onChangeHandler } value={20}>나만 보기</MenuItem>
-                </Select>
-            </FormControl>
-        </Box>
+                {/* 캘린더 공개 여부 */}
+                <Box sx={{ display: 'inline-block' }}>
+                    <FormControl sx={{ m: 1, minWidth: 148 }} size="small">
+                        <InputLabel id="demo-select-small">공개 여부 *</InputLabel>
+                        <Select
+                            labelId="demo-select-small"
+                            id="demo-select-small"
+                            value={PublicSetting}
+                            label="PublicSetting"
+                            onChange={handleChange}
+                        >
+                            <MenuItem name="calendarOpenYn" onChange={ onChangeHandler } value={10}>전체 공개</MenuItem>
+                            <MenuItem name="calendarOpenYn" onChange={ onChangeHandler } value={20}>나만 보기</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
 
-        {/* 일정 공유하기 버튼 */}
-        <CustomButtonShare variant="contained" disableElevation onClick={handleOpen}>
-          일정 공유하기
-        </CustomButtonShare>
-        <CalendarShareModal open = { open } handleClose = { handleClose } />
+                {/* 일정 공유하기 버튼 */}
+                <CustomButtonShare variant="contained" disableElevation onClick={handleOpen}>
+                    일정 공유하기
+                </CustomButtonShare>
+                <CalendarShareModal open = { open } handleClose = { handleClose } />
 
-      </div>
-
-                <div style={{display: 'flex', justifyContent: 'center'}}>
-                    {/* 일정 수정하기 버튼 */}
-                    <CustomButton 
-                        variant="contained" 
-                        disableElevation
-                        onClick={onClickUpdateHandler}
-                    >
-                        일정 수정
-                    </CustomButton>
-                    <CustomButtonShare variant="contained" disableElevation onClick={onClickDeleteHandler}>
-                        일정 삭제하기
-                    </CustomButtonShare>
-                </div>
             </div>
+
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+                {/* 일정 수정하기 버튼 */}
+                <CustomButton 
+                    variant="contained" 
+                    disableElevation
+                    onClick={onClickUpdateHandler}
+                >
+                    일정 수정
+                </CustomButton>
+                <CustomButtonShare variant="contained" disableElevation onClick={onClickDeleteHandler}>
+                    일정 삭제하기
+                </CustomButtonShare>
+            </div>
+        </div>
         )
     );
 }

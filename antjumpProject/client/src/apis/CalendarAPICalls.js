@@ -1,3 +1,4 @@
+import { formatDayString } from '@fullcalendar/core';
 import {
     GET_CALENDARS,
     GET_CALENDAR,
@@ -90,37 +91,24 @@ export const postCalendars = ({form}) => {
     }
 }
 
-export const putCalendars = ({form}, calendarId) => {
+export const putCalendars = ({form}) => {
+    console.log('calendarForm', form);
 
-    const requestURL = `${process.env.REACT_APP_SERVER_IP}/calendar/plan/${calendarId}`;
+    const requestURL = `${process.env.REACT_APP_SERVER_IP}/calendar/plan/${form.calendarId}`;
 
     return async (dispatch, getState) => {
 
         const result = await fetch(requestURL, {
             method: 'PUT',
             headers: {
-                "Content-Type": "application/json"
+                "Allow": "PUT" 
             },
-            body: JSON.stringify({
-                calendarId: form.calendarId,
-                calendarName: form.calendarName,
-                calendarStartDate: form.calendarStartDate,
-                calendarEndDate: form.calendarEndDate,
-                calendarStartTime: form.calendarStartTime,
-                calendarEndTime: form.calendarEndTime,
-                calendarColor: form.calendarColor,
-                calendarRepeatYn: form.calendarRepeatYn,
-                explanation: form.explanation,
-                calendarAlarmCycle: form.calendarAlarmCycle,
-                calendarLocation: form.calendarLocation,
-                calendarAttenders: form.calendarAttenders,
-                calendarCategory: form.calendarCategory,
-                calendarOpenYn: form.calendarOpenYn,
-                fkMembersCalendars: form.fkMembersCalendars,
-                fkSprintsCalendars: form.fkSprintsCalendars
-            })
+            body: form,
+            withCredentials: true
         })
         .then(response => response.json());
+
+        console.log(' RESULT : ', result);
 
         dispatch({ type: PUT_CALENDARS, payload: result });
     }

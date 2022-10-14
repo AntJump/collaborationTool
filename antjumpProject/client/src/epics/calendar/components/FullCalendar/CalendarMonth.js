@@ -2,20 +2,14 @@ import React, { Component, useState, useEffect } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import CalendarMonthCss from './CalendarMonth.css';
-import CalendarModifyModal from '../modal/CalendarModifyModal';
 import interactionPlugin from '@fullcalendar/interaction';
 import { useSelector, useDispatch } from 'react-redux';
-import { GET_CALENDARS } from '../../../../modules/CalendarModule';
 import { getCalendars } from '../../../../apis/CalendarAPICalls';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function CalendarMonth() {
 
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
     const navigate = useNavigate();
-    let [calendarPlanList, setCalendarPlanList] = useState('');
 
     //리덕스
     const dispatch = useDispatch();
@@ -29,6 +23,7 @@ function CalendarMonth() {
         }, []
     );
 
+    // 세부 정보 이동
     const onClickDetail = (calendarId) => {
         navigate(`plan/${calendarId}`, { replace: false })
     }

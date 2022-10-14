@@ -5,9 +5,9 @@ function LogoButton() {
         <Button component={Link} to="/" sx={ {padding: '20px'}}>
             <img 
             style={{
-            width: '71px',
+            // width: '71px',
             height: '63px'}}
-            src="/그림1.jpg" />
+            src="/그림2.png" />
             <Typography
               variant="h6"
               noWrap
